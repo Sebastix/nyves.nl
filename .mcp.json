@@ -1,0 +1,28 @@
+{
+  "mcpServers": {
+    "js-dev": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@soapbox.pub/js-dev-mcp@latest"
+      ]
+    },
+    "nostr": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@nostrbook/mcp@latest"
+      ]
+    },
+    "nuxt": {
+      "type": "custom",
+      "command": "npx",
+      "args": [
+        "mcp-remote",
+        "https://nuxt.com/mcp"
+      ]
+    }
+  }
+}

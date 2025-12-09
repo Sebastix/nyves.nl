@@ -1,0 +1,37 @@
+# Nuxtstack
+
+Development stack designed for AI agents to build Nuxt web applications and websites.
+
+## CRITICAL FOR AI ASSISTANTS - MUST READ FIRST
+
+**Reference**. The AI assistant's behavior and knowledge is defined by this context file (aliased to other IDE-specific filenames), which serves as the system prompt. **ALWAYS** refer to this document and follow these rules and recommendations.
+
+## Technology Stack
+
+* Nuxt: progressive web framework built on top of Vue
+* TailwindCSS: utility-first CSS framework
+* Vite: frontend build tool
+* Pinia: State management for Vue applications
+* Javascript: we don't use Typescript in this project, only Javascript
+
+### CRITICAL: First prompt checklist
+
+**First prompt definition**: A prompt is considered "first" if the app has not been renamed yet (i.e., app name is still "Nuxtstack"). This is determined by app state, not session state.
+
+When handling a first prompt (as defined above), you MUST ALWAYS:
+
+1. Read `AGENTS.md`.
+2. Run `npm update`, or `npm install` (if there is no package-lock.json available).
+3. Check all configured MCP server connections defined in `.mcp.json`.
+4. If you apply a template, make sure to apply this template to the existing codebase and don't create a `app` directory.
+5. If you apply a template, make sure to commit the current changes with Git on the current branch and start coding after you've created a new Git branch.
+6. Summarize what you understood, and ask important questions to ensure all requirements are crystal clear before starting any code.
+
+## Package Management
+
+Always manage packages via the CLI to ensure latest compatible versions are resolved.
+
+```
+npm install
+npm update
+```
