@@ -3,11 +3,11 @@
   "title": "Nuxtstack",
   "description": "Build Nostr apps in minutes with this Nuxt framework",
   "commands": [
-    "npm"
+    "npm",
+    "npx"
   ],
   "uri": "git+https://gitlab.com/sebastix-group/nostr/nuxtstack.git",
-  "images": "",
-  "image": "",
+  "image": "https://gitlab.com/sebastix-group/nostr/nuxtstack/-/raw/master/public/nuxtstack-cover.png",
   "tech": [
     "vue",
     "nuxt",
