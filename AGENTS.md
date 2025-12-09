@@ -12,8 +12,8 @@ This document provides comprehensive guidelines for AI agents working with the N
 Build decentralized Nostr applications rapidly using Vue.js/Nuxt framework with TailwindCSS styling.
 
 ### Technology Stack
-- **Framework**: Nuxt 4.2.1 (Vue.js-based)
-- **Styling**: TailwindCSS 4.1.17
+- **Framework**: Nuxt (Vue.js-based)
+- **Styling**: TailwindCSS
 - **State Management**: Pinia
 - **Build Tool**: Vite
 - **Language**: JavaScript (NO TypeScript)
@@ -25,17 +25,26 @@ Build decentralized Nostr applications rapidly using Vue.js/Nuxt framework with 
 A prompt is "first" if the app name is still "Nuxtstack" (not yet renamed for specific project).
 
 **MANDATORY steps for first prompts:**
-1. ✅ Read this AGENTS.md file completely
-2. ✅ Run `npm update` or `npm install` 
-3. ✅ Check MCP server connections in `.mcp.json`
-4. ✅ Summarize understanding and ask clarifying questions
-5. ✅ Do NOT start coding until requirements are crystal clear
+1. ✅ Read `AGENTS.md` file completely
+2. ✅ Run `npm update` or `npm install` (if there is no package-lock.json available)
+3. ✅ Check all configured MCP server connections defined in `.mcp.json`
+4. ✅ **Template Application**: When applying templates, integrate them directly into the existing codebase structure. Never create separate `app` directories or subdirectories for template content.
+5. ✅ **Git Workflow**: If you apply a template, make sure to commit the current changes with Git on the current branch and start coding after you've created a new Git branch.
+6. ✅ Summarize what you understood, and ask important questions to ensure all requirements are crystal clear before starting any code.
 
 ### 🔧 MCP Server Verification
 Check these configured MCP servers:
 - **js-dev**: JavaScript development tools (`@soapbox.pub/js-dev-mcp`)
 - **nostr**: Nostr protocol tools (`@nostrbook/mcp`)
 - **nuxt**: Nuxt framework tools (`https://nuxt.com/mcp`)
+
+### 📦 Package Management
+Always manage packages via the CLI to ensure latest compatible versions are resolved.
+
+```bash
+npm install
+npm update
+```
 
 ## 📁 Project Structure Guide
 
@@ -75,7 +84,7 @@ nuxtstack/
 3. **Consider these factors**:
    - Design aesthetic compatibility with Nostr apps
    - Component structure (matches our needs)
-   - Technology stack compatibility (Vue 3, Nuxt 3+, TailwindCSS preferred)
+   - Technology stack compatibility (Vue 3, Nuxt 4+, TailwindCSS preferred)
    - Responsive design quality
    - Performance characteristics
 
@@ -235,15 +244,6 @@ export default defineNuxtConfig({
 })
 ```
 
-**Prepare for Nostr Components:**
-```bash
-# Create Nostr-specific directories
-mkdir -p components/nostr-web-components
-mkdir -p composables/nostr
-mkdir -p stores/nostr
-mkdir -p middleware/nostr
-```
-
 **Update Color Scheme (if needed):**
 ```css
 /* assets/css/main.css or tailwind.css */
@@ -263,7 +263,6 @@ mkdir -p middleware/nostr
 
 ### State Management
 1. **Use Pinia stores** in `stores/` directory
-2. **Composables**: Create reusable logic in `composables/`
 
 ## 🌐 Nostr Integration Guidelines
 
@@ -282,9 +281,22 @@ mkdir -p middleware/nostr
 
 ### Recommended Nostr Libraries
 Consider integrating these in components:
-- `@nostr-dev-kit/ndk` - High-level Nostr development kit
+- `applesauce-core` - Preferred library to be used which can be extended with
+  - `applesauce-content`
+  - `applesauce-signer`
+  - `applesauce-accounts`
+  - `applesauce-factory`
+  - `applesauce-factory`
+  - `applesauce-loaders`
+  - `applesauce-actions`
+  - `applesauce-relays`
+  - `applesauce-wallet`
+  - Don't use `applesauce-factory` as this project is not the React development framework.
 - `nostr-tools` - Low-level Nostr utilities
+- `@nostr-dev-kit/ndk` - High-level Nostr development kit
 - `@welshman/lib` - Modern Nostr client library
+
+Each of these libraries can be installed with `npm`. Don't install multiple of one of these libraries to avoid conflicts.
 
 ## 🎨 Styling Guidelines
 
@@ -396,7 +408,8 @@ export const useNostrStore = defineStore('nostr', () => {
 ### Nostr Protocol
 - [Nostr NIPs Repository](https://github.com/nostr-protocol/nips)
 - [Awesome Nostr](https://github.com/aljazceru/awesome-nostr)
-- [Nostr Dev Guide](https://nostr-dev.guide)
+- [NostrBook](https://nostrbook.dev/)
+- [Nostr Event Kinds reference](https://nostr.dev/)
 
 ### Vue/Nuxt
 - [Nuxt Documentation](https://nuxt.com/docs)

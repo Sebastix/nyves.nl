@@ -23,8 +23,8 @@ When handling a first prompt (as defined above), you MUST ALWAYS:
 1. Read `AGENTS.md`.
 2. Run `npm update`, or `npm install` (if there is no package-lock.json available).
 3. Check all configured MCP server connections defined in `.mcp.json`.
-4. If you apply a template, make sure to apply this template to the existing codebase and don't create a `app` directory.
-5. If you apply a template, make sure to commit the current changes with Git on the current branch and start coding after you've created a new Git branch.
+4. **Template Application**: When applying templates, integrate them directly into the existing codebase structure. Never create separate `app` directories or subdirectories for template content.
+5. **Git Workflow**: If you apply a template, make sure to commit the current changes with Git on the current branch and start coding after you've created a new Git branch.
 6. Summarize what you understood, and ask important questions to ensure all requirements are crystal clear before starting any code.
 
 ## Package Management

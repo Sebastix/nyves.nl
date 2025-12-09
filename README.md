@@ -2,15 +2,11 @@
 
 ![](public/nuxtstack-cover.png)
 
-Similar to [MKStack](https://getstacks.dev/stack/naddr1qvzqqqrhl5pzqprpljlvcnpnw3pejvkkhrc3y6wvmd7vjuad0fg2ud3dky66gaxaqqrk66mnw3skx6c4g6ltw), but build upon [Nuxt](https://nuxt.com/) with [Vue](https://vuejs.org/) and Javascript only.
+Similar to [MKStack](https://getstacks.dev/stack/naddr1qvzqqqrhl5pzqprpljlvcnpnw3pejvkkhrc3y6wvmd7vjuad0fg2ud3dky66gaxaqqrk66mnw3skx6c4g6ltw), but build upon [Nuxt](https://nuxt.com/) with [Vue](https://vuejs.org/) and Javascript only (so no React and no Typescript).
 
-**Nuxstack provides a development framework for Rapid Application Building (RAD).**
+**Nuxstack provides a Rapid Application Building (RAD) development framework using an AI agent like Goose or Claude Desktop.**
 
-Nuxtstack is a development boilerplate/starter template specifically designed for building Nostr applications using modern web technologies. Build Nostr apps in minutes with this comprehensive framework.
-
-## 🎯 Project Overview
- 
-This is a **development framework** that combines cutting-edge web technologies with Nostr protocol integration, designed for rapid prototyping and AI-assisted development workflows.
+This is a development boilerplate/starter template specifically designed for rapid prototyping and AI-assisted development workflows. The goal is to build (Nostr) apps and websites in minutes.
 
 ## 🛠️ Technology Stack
 
