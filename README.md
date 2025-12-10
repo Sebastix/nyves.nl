@@ -8,6 +8,15 @@ Similar to [MKStack](https://getstacks.dev/stack/naddr1qvzqqqrhl5pzqprpljlvcnpnw
 
 This is a development boilerplate/starter template specifically designed for rapid prototyping and AI-assisted development workflows. The goal is to build (Nostr) apps and websites in minutes.
 
+## How to start
+
+1. Clone this repository
+2. Start the development server from your CLI in the cloned directory `npm run dev` and the application will be accessible via the browser (follow the instructions on your terminal)
+3. Start your AI agent application (Goose) and point it to the cloned directory
+4. Start prompting, let the AI agent make changes
+5. Optionally, choose a template from https://nuxt.com/templates and tell the AI agent to use this template to apply.
+6. When the template is active, start prompting to make changes and build the application you have in mind.
+
 ## 🛠️ Technology Stack
 
 - **Nuxt**: Progressive Vue.js framework for web applications
