@@ -184,10 +184,7 @@ npm update
 
 4. **Test Integration**
 ```bash
-npm run dev
-# Verify everything works
-# Check responsive design
-# Test build process
+npm run generate
 ```
 
 #### 🎨 Popular Template Categories for Nostr Apps
@@ -219,11 +216,9 @@ Before applying any template:
 - [ ] License compatible with our project
 
 After integration:
-- [ ] `npm run dev` works without errors
-- [ ] All routes accessible
 - [ ] TailwindCSS properly configured
 - [ ] Components auto-import correctly
-- [ ] Build process (`npm run build`) succeeds
+- [ ] Build process (`npm run generate`) succeeds
 - [ ] MCP servers still functional
 - [ ] Ready for Nostr feature integration
 
