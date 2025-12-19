@@ -11,11 +11,12 @@ This is a development boilerplate/starter template specifically designed for rap
 ## How to start
 
 1. Clone this repository `git clone https://gitlab.com/sebastix-group/nostr/nuxtstack.git`
-2. Start the development server from your CLI in the cloned directory `npm run dev` and the application will be accessible via the browser (follow the instructions on your terminal)
-3. Start your AI agent application (Goose) and point it to the cloned directory
-4. Start prompting, let the AI agent make changes
-5. Optionally, choose a template from https://nuxt.com/templates and tell the AI agent to use this template to apply.
-6. When the template is active, start prompting to make changes and build the application you have in mind.
+2. Install all depencies `npm install`
+3. Start the development server from your CLI in the cloned directory `npm run dev` and the application will be accessible via the browser (follow the instructions on your terminal)
+4. Start your AI agent application (Goose) and point it to the cloned directory
+5. Start prompting, let the AI agent make changes
+6. Optionally, choose a template from https://nuxt.com/templates and tell the AI agent to use this template to apply.
+7. When the template is active, start prompting to make changes and build the application you have in mind.
 
 ## 🛠️ Technology Stack
 
