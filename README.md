@@ -116,8 +116,7 @@ This framework is perfect for building:
 
 ## 📄 License
 
-MIT License
-
+GNU GENERAL PUBLIC LICENSE v3
 ---
 
 **Ready to build the decentralized web?** Start developing your Nostr application with this modern, AI-friendly framework.
