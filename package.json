@@ -15,7 +15,11 @@
   "dependencies": {
     "@pinia/nuxt": "^0.11.3",
     "@tailwindcss/vite": "^4.1.17",
+    "gsap": "^3.14.2",
+    "marked": "^17.0.4",
+    "nostr-tools": "^2.23.3",
     "nuxt": "^4.2.1",
+    "shaders": "^2.3.75",
     "vite": "^7.2.7"
   }
 }

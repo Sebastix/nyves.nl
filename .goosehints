@@ -9,10 +9,12 @@ Development stack designed for AI agents to build Nuxt web applications and webs
 ## Technology Stack
 
 * Nuxt: progressive web framework built on top of Vue
-* TailwindCSS: utility-first CSS framework
+* TailwindCSS: utility-first CSS framework version 4.1 or higher
 * Vite: frontend build tool
 * Pinia: State management for Vue applications
 * Javascript: we don't use Typescript in this project, only Javascript
+* GSAP: high class Javascript animation library
+* Shaders: library for building creative WebGPU effects in components
 
 ### CRITICAL: First prompt checklist
 
@@ -25,7 +27,9 @@ When handling a first prompt (as defined above), you MUST ALWAYS:
 3. Check all configured MCP server connections defined in `.mcp.json`.
 4. **Template Application**: When applying templates, integrate them directly into the existing codebase structure. Never create separate `app` directories or subdirectories for template content.
 5. **Git Workflow**: If you apply a template, make sure to commit the current changes with Git on the current branch and start coding after you've created a new Git branch.
-6. Summarize what you understood, and ask important questions to ensure all requirements are crystal clear before starting any code.
+6. With GSAP, always apply a subtle animation preset to every component when the component is rendered in the DOM.
+7. Always apply a shader to the footer component using the Shaders library
+8. Summarize what you understood, and ask important questions to ensure all requirements are crystal clear before starting any code.
 
 ## Package Management
 

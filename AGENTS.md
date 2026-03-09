@@ -13,7 +13,7 @@ Build decentralized Nostr applications rapidly using Vue.js/Nuxt framework with 
 
 ### Technology Stack
 - **Framework**: Nuxt (Vue.js-based)
-- **Styling**: TailwindCSS
+- **Styling**: TailwindCSS v4.1 or higher
 - **State Management**: Pinia
 - **Build Tool**: Vite
 - **Language**: JavaScript (NO TypeScript)
@@ -35,8 +35,9 @@ A prompt is "first" if the app name is still "Nuxtstack" (not yet renamed for sp
 ### 🔧 MCP Server Verification
 Check these configured MCP servers:
 - **js-dev**: JavaScript development tools (`@soapbox.pub/js-dev-mcp`)
-- **nostr**: Nostr protocol tools (`@nostrbook/mcp`)
-- **nuxt**: Nuxt framework tools (`https://nuxt.com/mcp`)
+- **Nostr**: Nostr protocol tools (`@nostrbook/mcp`)
+- **Nuxt**: Nuxt framework tools (`https://nuxt.com/mcp`)
+- **GASP**: JavaScript animation library (`bruzethegreat-gsap-master-mcp-server`)
 
 ### 📦 Package Management
 Always manage packages via the CLI to ensure latest compatible versions are resolved.
@@ -50,8 +51,8 @@ npm update
 
 ```
 nuxtstack/
-├── components/              # Vue components
-│   ├── nostr-web-components/    # Nostr-specific reusable components
+├── components/             # Vue components
+│   ├── nostr-components/   # Nostr-specific reusable components
 │   └── *.vue               # General UI components
 ├── pages/                  # Auto-routing based on file structure
 │   ├── index.vue           # Homepage (/)
@@ -68,8 +69,8 @@ nuxtstack/
 ├── public/                 # Static files served directly
 ├── stores/                 # Pinia stores for state management
 ├── App.vue                 # Root component
-├── nuxt.config.js         # Nuxt configuration
-└── .mcp.json              # MCP server configuration
+├── nuxt.config.js          # Nuxt configuration
+└── .mcp.json               # MCP server configuration
 ```
 
 ## 🛠️ Development Workflows
@@ -84,7 +85,7 @@ nuxtstack/
 3. **Consider these factors**:
    - Design aesthetic compatibility with Nostr apps
    - Component structure (matches our needs)
-   - Technology stack compatibility (Vue 3, Nuxt 4+, TailwindCSS preferred)
+   - Technology stack compatibility (Vue 3, Nuxt 4+, TailwindCSS required)
    - Responsive design quality
    - Performance characteristics
 
@@ -180,7 +181,7 @@ npm update
 - Rename app from template name to project name
 - Update meta tags and SEO
 - Prepare component structure for Nostr features
-- Create `nostr-web-components` directory if not exists
+- Create `nostr-components` directory if not exists
 
 4. **Test Integration**
 ```bash
@@ -247,7 +248,7 @@ export default defineNuxtConfig({
 
 ### Component Development
 1. **Create in `components/`**: Auto-imported, use PascalCase
-2. **Nostr components**: Place in `components/nostr-web-components/`
+2. **Nostr components**: Place in `components/nostr-components/`
 3. **Styling**: Use TailwindCSS utility classes
 4. **Logic**: Vue Composition API with `<script setup>`
 
@@ -276,6 +277,8 @@ export default defineNuxtConfig({
 
 ### Recommended Nostr Libraries
 Consider integrating these in components:
+- `nostr-tools` - Low-level Nostr utilities
+- `nostr-tools` - Low-level Nostr utilities
 - `applesauce-core` - Preferred library to be used which can be extended with
   - `applesauce-content`
   - `applesauce-signer`
@@ -287,8 +290,6 @@ Consider integrating these in components:
   - `applesauce-relays`
   - `applesauce-wallet`
   - Don't use `applesauce-factory` as this project is not the React development framework.
-- `nostr-tools` - Low-level Nostr utilities
-- `@nostr-dev-kit/ndk` - High-level Nostr development kit
 - `@welshman/lib` - Modern Nostr client library
 
 Each of these libraries can be installed with `npm`. Don't install multiple of one of these libraries to avoid conflicts.
@@ -410,6 +411,12 @@ export const useNostrStore = defineStore('nostr', () => {
 - [Nuxt Documentation](https://nuxt.com/docs)
 - [Vue Composition API](https://vuejs.org/guide/extras/composition-api-faq.html)
 - [Pinia Documentation](https://pinia.vuejs.org/)
+
+### GSAP
+ - [GSAP documentation](https://gsap.com/docs/v3/) 
+
+### Shaders
+- [Shaders documentation](https://shaders.com/docs/guide)
 
 ## 🚀 Deployment Considerations
 
