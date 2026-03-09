@@ -13,7 +13,7 @@ Development stack designed for AI agents to build Nuxt web applications and webs
 * Vite: frontend build tool
 * Pinia: State management for Vue applications
 * Javascript: we don't use Typescript in this project, only Javascript
-* GSAP: high class Javascript animation library
+* GSAP: high class JavaScript animation library
 * Shaders: library for building creative WebGPU effects in components
 
 ### CRITICAL: First prompt checklist

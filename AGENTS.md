@@ -18,6 +18,8 @@ Build decentralized Nostr applications rapidly using Vue.js/Nuxt framework with 
 - **Build Tool**: Vite
 - **Language**: JavaScript (NO TypeScript)
 - **Protocol**: Nostr (decentralized social networking protocol)
+- **Animations**: GSAP
+- **WebGPU effects**: Shaders
 
 ## 📋 Critical First Actions
 

@@ -26,6 +26,8 @@ This is a development boilerplate/starter template specifically designed for rap
 - **Pinia**: State management for Vue applications
 - **Vite**: Build tool and development server
 - **JavaScript**: Pure JS implementation (no TypeScript)
+- **GSAP**: high class JavaScript animation library
+- **Shaders**: library for building creative WebGPU effects in components
 
 ## 🚀 Purpose & Target
 
