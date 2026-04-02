@@ -137,20 +137,20 @@ const getAuthorAvatar = () => {
     <!-- Navigation -->
     <div class="mb-8">
       <NuxtLink
-        to="/articles"
-        class="inline-flex items-center text-blue-600 hover:text-blue-800 transition-colors"
+        to="/blog"
+        class="inline-flex items-center"
       >
         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
         </svg>
-        Back to articles
+        Back to blog
       </NuxtLink>
     </div>
 
     <!-- Loading State -->
     <div v-if="loading" class="py-16">
       <div class="flex justify-center">
-        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+        <div class="animate-spin rounded-full h-12 w-12 border-b-2"></div>
       </div>
     </div>
 
@@ -207,7 +207,7 @@ const getAuthorAvatar = () => {
             />
             <div
               v-else
-              class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg"
+              class="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg"
             >
               {{ getAuthorDisplayName().charAt(0).toUpperCase() }}
             </div>
@@ -244,7 +244,7 @@ const getAuthorAvatar = () => {
               <span
                 v-for="topic in article.topics"
                 :key="topic"
-                class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full"
+                class="bg-blue-100 text-xs px-2 py-1 rounded-full"
               >
                 {{ topic }}
               </span>
@@ -276,7 +276,7 @@ const getAuthorAvatar = () => {
 </template>
 
 <style scoped>
-@reference '~/assets/tailwind.css';
+@reference '~/assets/css/tailwind.css';
 /* Custom styles for article content */
 :deep(.article-content) {
   /* Typography */

@@ -1,6 +1,6 @@
 {
-  "name": "Nuxtstack",
-  "description": "Build Nostr apps in minutes with this Nuxt framework powered by Content Wind template",
+  "name": "Nyves.nl",
+  "description": "Nyves, let's bring back Hyves via Nostr",
   "license": "MIT",
   "homepage": "",
   "type": "module",
@@ -20,6 +20,6 @@
     "nostr-tools": "^2.23.3",
     "nuxt": "^4.2.1",
     "shaders": "^2.3.75",
-    "vite": "^7.2.7"
+    "vite": "^8.0.2"
   }
 }

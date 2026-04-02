@@ -144,14 +144,9 @@ watch(() => props.autoRefresh, () => {
 
 <template>
   <section>
-    <div class="text-center my-8">
-      <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
-        Articles
-      </h2>
-      <p class="text-xl text-gray-600">
-        These long-form articles are fetched from different relays.
-      </p>
-    </div>
+    <h1 class="my-3 text-2xl">
+      Blog
+    </h1>
     <div class="w-full mx-auto">
 
       <!-- Error Message -->
@@ -173,7 +168,7 @@ watch(() => props.autoRefresh, () => {
 
       <!-- Empty State -->
       <div v-else-if="!isLoading && !hasArticles" class="text-center py-12">
-        <h3 class="text-lg font-medium text-gray-900 mb-2">No Articles Found</h3>
+        <h3 class="text-lg font-medium text-gray-900 mb-2">Geen artikelen gevonden</h3>
         <p class="text-gray-500">
           <span v-if="selectedTopic">
             No articles found for topic "{{ selectedTopic }}".
@@ -184,9 +179,8 @@ watch(() => props.autoRefresh, () => {
         </p>
         <button
           @click="handleRefresh"
-          class="mt-4 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
-        >
-          Try Again
+          class="mt-4 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2">
+          Zoek opnieuw
         </button>
       </div>
 

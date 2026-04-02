@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@theme {
+  --color-nyves-orange: #f48522;
+  --color-nyves-blue: #3481c9;
+  --color-nyves-blue-secundary: #6699cc;
+  --color-nyves-blue-purple: #8e51ff;
+}
+
+a {
+  @apply text-nyves-blue;
+  &:hover {
+    @apply text-nyves-blue-secundary underline;
+  }
+}
+
+.nyves-bg-gray-header {
+  @apply bg-linear-to-b from-[#f2f2f2] to-[#fcfcfc];
+}

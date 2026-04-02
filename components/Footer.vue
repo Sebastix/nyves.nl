@@ -1,19 +1,47 @@
-<script setup>
-  import { Shader, Blob, CursorRipples } from 'shaders/vue'
-</script>
 <template>
-  <footer class="text-center m-20">
-    <Shader class="rounded-4xl mb-24 overflow-hidden">
-      <Blob colorA="#0099FF" colorB="#C44569" size="0.25" />
-      <CursorRipples />
-    </Shader>
-    <div>
-      Powered by Nuxtstack
-      <br />
-      <a href="https://gitlab.com/sebastix-group/nostr/nuxtstack">repository</a>
+  <footer class="my-3">
+    <div class="nyves-bg-gray-header border border-[#ebebeb] py-3 rounded-sm">
+      <div class="mx-auto px-4 flex justify-between items-center text-xs text-gray-600">
+        <div class="flex items-center">
+          <span class="font-bold text-gray-800 mr-2">N</span>
+          <span class="mr-2">Hyver</span>
+          <span class="mr-5">{{ currentUser }}</span>
+  <!--        <NuxtLink to="/over" class="text-blue-600 hover:underline mr-2">Over Hyves</NuxtLink>-->
+  <!--        <NuxtLink to="/diensten" class="text-blue-600 hover:underline mr-2">Diensten</NuxtLink>-->
+  <!--        <NuxtLink to="/vacatures" class="text-blue-600 hover:underline mr-2">Vacatures</NuxtLink>-->
+  <!--        <NuxtLink to="/adverteerders" class="text-blue-600 hover:underline mr-2">Adverteerders</NuxtLink>-->
+  <!--        <NuxtLink to="/ontwikkelaars" class="text-blue-600 hover:underline mr-2">Ontwikkelaars</NuxtLink>-->
+  <!--        <NuxtLink to="/ouders-onderwijs" class="text-blue-600 hover:underline mr-2">Ouders & Onderwijs</NuxtLink>-->
+  <!--        <NuxtLink to="/pers" class="text-blue-600 hover:underline">Pers</NuxtLink>-->
+        </div>
+      </div>
+    </div>
+    <div class="flex justify-between m-3 text-xs">
+      <div>
+        Nyves is een initiatief van <a href="https://sebastix.nl" target="_blank">Sebastix</a>
+        |
+        <NuxtLink to="/blog">Blog</NuxtLink>
+      </div>
+      <div>
+        Privacy
+        |
+        <a href="https://gitlab.com/sebastix-group/nyves" target="_blank">Code</a>
+      </div>
     </div>
   </footer>
 </template>
-<style scoped>
 
-</style>
+<script setup>
+const props = defineProps({
+  currentUser: {
+    type: String,
+    default: 'Gast'
+  }
+})
+
+const changeLanguage = (event) => {
+  // Handle language change
+  console.log('Language changed to:', event.target.value)
+  // In a real app, you'd implement internationalization here
+}
+</script>
