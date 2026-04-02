@@ -1,15 +1,24 @@
 <script setup>
 // Set page meta
 useSeoMeta({
-  title: `Welkom bij Nyves`,
-  description: ``
+  title: 'Welkom bij Nyves - Jouw toegang tot het Nostr netwerk',
+  description: 'Ontdek Nyves, jouw toegangspoort tot het gedecentraliseerde Nostr netwerk. Volledige controle over je digitale identiteit, censuurbestendigheid en privacy zonder algoritmes.'
 })
 </script>
 
 <template>
-  <section class="my-3">
-    <img src="~assets/nyves-logo.png" class="mx-auto size-64 rounded-2xl shadow-xl/25">
-
-    <NuxtLink to="profile/sebastian">Sebastian</NuxtLink>
-  </section>
+  <div class="relative min-h-screen">
+    <!-- Hero Section -->
+    <HomepageHero />
+    
+    <!-- Tijdelijke link naar Sebastian profiel -->
+    <div class="text-center py-6">
+      <NuxtLink 
+        to="profile/sebastian"
+        class="text-nyves-blue hover:text-nyves-blue/80 underline"
+      >
+        Sebastian's Profiel (development link)
+      </NuxtLink>
+    </div>
+  </div>
 </template>
