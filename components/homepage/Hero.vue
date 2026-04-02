@@ -24,13 +24,13 @@
       <div class="space-y-4 text-lg md:text-xl text-gray-600 leading-relaxed">
 
         <p class="text-2xl">
-          Hyves profielen opnieuw tot leven brengen.
+          Breng jouw Hyves profiel terug tot leven.
         </p>
         
         <p class="text-gray-500 text-base">
           Dankzij <strong class="text-nyves-blue">Nostr</strong>. Een open en simpel protocol waarmee data wordt gedistribueerd via <strong class="text-nyves-blue">relays</strong>.
           <br />
-          Het individu heeft dankzij <strong class="text-nyves-blue">cryptografisch gesigneerde content</strong> alle macht. Iedereen kan verifieren dat dit jouw content is.
+          Het individu heeft dankzij <strong class="text-nyves-blue">cryptografisch gesigneerde content</strong> alle macht. Iedereen kan verifieren wat ieders content is.
         </p>
         <p>
           Nyves is dus geen platform.

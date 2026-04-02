@@ -13,6 +13,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@hcaptcha/vanilla-hcaptcha": "^1.1.4",
     "@pinia/nuxt": "^0.11.3",
     "@tailwindcss/vite": "^4.1.17",
     "gsap": "^3.14.2",
