@@ -7,6 +7,10 @@ const props = defineProps({
     type: [String, Array],
     default: 'freedom'
   },
+  authorFilter: {
+    type: String,
+    default: null
+  },
   relays: {
     type: Array,
     default: () => [
@@ -44,7 +48,7 @@ const props = defineProps({
 const emit = defineEmits(['articleClick', 'articlesLoad', 'error'])
 
 // Composable for Nostr articles functionality
-const { articlesData, fetchArticles, refresh, getAllTopics, clearArticles, close } = useNostrArticles()
+const { articlesData, fetchArticles, fetchArticlesByAuthor, refresh, getAllTopics, clearArticles, close } = useNostrArticles()
 
 // Local state
 const refreshTimer = ref(null)
@@ -74,10 +78,38 @@ const tagFilterDisplay = computed(() => {
   return props.tagFilter
 })
 
+// Computed property to display author filter in user-friendly format
+const authorFilterDisplay = computed(() => {
+  if (!props.authorFilter) return null
+  
+  // If it's an npub, show truncated version
+  if (props.authorFilter.startsWith('npub')) {
+    return props.authorFilter.substring(0, 16) + '...'
+  }
+  
+  // If it's a hex pubkey, show truncated version
+  if (props.authorFilter.length === 64) {
+    return props.authorFilter.substring(0, 16) + '...'
+  }
+  
+  return props.authorFilter
+})
+
+// Computed title based on filters
+const sectionTitle = computed(() => {
+  return 'Blog'
+})
+
 // Methods
 const loadArticles = async () => {
   try {
-    await fetchArticles(props.tagFilter, props.relays, props.limit)
+    // If only author filter is provided, use fetchArticlesByAuthor
+    if (props.authorFilter && (!props.tagFilter || props.tagFilter === '')) {
+      await fetchArticlesByAuthor(props.authorFilter, props.relays, props.limit)
+    } else {
+      // Use regular fetchArticles with optional author filter
+      await fetchArticles(props.tagFilter, props.relays, props.limit, props.authorFilter)
+    }
     
     if (articlesData.value.error) {
       emit('error', articlesData.value.error)
@@ -95,7 +127,13 @@ const loadArticles = async () => {
 }
 
 const handleRefresh = async () => {
-  await refresh(props.tagFilter, props.relays, props.limit)
+  // If only author filter is provided, use fetchArticlesByAuthor
+  if (props.authorFilter && (!props.tagFilter || props.tagFilter === '')) {
+    await fetchArticlesByAuthor(props.authorFilter, props.relays, props.limit)
+  } else {
+    // Use regular refresh with optional author filter
+    await refresh(props.tagFilter, props.relays, props.limit, props.authorFilter)
+  }
 }
 
 const handleTopicFilter = (topic) => {
@@ -136,6 +174,12 @@ watch(() => props.tagFilter, async (newTagFilter) => {
   }
 })
 
+watch(() => props.authorFilter, async (newAuthorFilter) => {
+  // Reload articles when author filter changes
+  clearArticles()
+  await loadArticles()
+})
+
 watch(() => props.autoRefresh, () => {
   clearAutoRefresh()
   setupAutoRefresh()
@@ -145,8 +189,9 @@ watch(() => props.autoRefresh, () => {
 <template>
   <section>
     <h1 class="my-3 text-2xl">
-      Blog
+      {{ sectionTitle }}
     </h1>
+
     <div class="w-full mx-auto">
 
       <!-- Error Message -->
@@ -172,6 +217,9 @@ watch(() => props.autoRefresh, () => {
         <p class="text-gray-500">
           <span v-if="selectedTopic">
             No articles found for topic "{{ selectedTopic }}".
+          </span>
+          <span v-else-if="authorFilter">
+            No articles found for author: {{ authorFilter }}.
           </span>
           <span v-else>
             No articles found with tags: {{ tagFilterDisplay }}.

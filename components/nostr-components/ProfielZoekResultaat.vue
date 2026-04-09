@@ -1,4 +1,6 @@
 <script setup>
+const router = useRouter()
+
 const props = defineProps({
   profiel: {
     type: Object,
@@ -6,10 +8,8 @@ const props = defineProps({
   }
 })
 
-const emit = defineEmits(['selecteer'])
-
 const selecteerProfiel = () => {
-  emit('selecteer', props.profiel)
+  router.push({ path: '/profiel/'+props.profiel.name })
 }
 </script>
 

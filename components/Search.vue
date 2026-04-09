@@ -1,8 +1,23 @@
 <script setup>
-import { ref, onUnmounted, watch, nextTick } from 'vue'
+import { ref, onMounted, onUnmounted, watch, nextTick } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import { useNostrSearch } from '~/composables/useNostrSearch'
 
 const emit = defineEmits(['profielGeselecteerd'])
+const route = useRoute()
+const router = useRouter()
+
+// Props om gedrag te bepalen
+const props = defineProps({
+  showResultsList: {
+    type: Boolean,
+    default: false // Standaard geen lijst tonen
+  },
+  navigateOnSubmit: {
+    type: Boolean,
+    default: true // Standaard navigeren naar /zoek bij submit
+  }
+})
 
 // Zoek functionaliteit
 const { zoekData, zoekProfielen, wisResultaten, sluit } = useNostrSearch()
@@ -57,26 +72,36 @@ const handleBlur = () => {
 const handleSubmit = async (event) => {
   event.preventDefault()
   if (zoekterm.value.trim().length >= 2) {
-    // Sluit dropdown en toon resultatenlijst
+    // Sluit dropdown
     toonDropdown.value = false
-    toonResultatenLijst.value = true
     
-    // Clear debounce timer en zoek direct
-    if (debounceTimer.value) {
-      clearTimeout(debounceTimer.value)
+    // Check of we moeten navigeren naar /zoek pagina
+    if (props.navigateOnSubmit && route.path !== '/zoek') {
+      // Navigeer naar zoek pagina met query parameter
+      await router.push({ path: '/zoek', query: { q: zoekterm.value } })
+      return
     }
     
-    await zoekProfielen(zoekterm.value)
+    // Anders toon resultatenlijst (alleen als showResultsList true is)
+    if (props.showResultsList) {
+      toonResultatenLijst.value = true
+      
+      // Clear debounce timer en zoek direct
+      if (debounceTimer.value) {
+        clearTimeout(debounceTimer.value)
+      }
+      
+      await zoekProfielen(zoekterm.value)
+    }
+    
     zoekInput.value?.blur()
   }
 }
 
 // Profiel selectie
 const selecteerProfiel = (profiel) => {
-  console.log('Profiel geselecteerd:', profiel)
   // Hier kun je navigeren naar profiel pagina
-  // Voor nu emitteren we het event naar parent component
-  emit('profielGeselecteerd', profiel)
+  router.push({ path: '/profiel/'+profiel.name })
   
   // Reset zoekstatus
   zoekterm.value = ''
@@ -93,6 +118,20 @@ const handleKeydown = (event) => {
     zoekInput.value?.blur()
   }
 }
+
+// URL Query parameter support voor /zoek pagina
+const checkUrlQuery = () => {
+  if (props.showResultsList && route.query.q) {
+    zoekterm.value = route.query.q
+    toonResultatenLijst.value = true
+    zoekProfielen(route.query.q)
+  }
+}
+
+// Check query parameter bij mount
+onMounted(() => {
+  checkUrlQuery()
+})
 
 // Cleanup
 onUnmounted(() => {
@@ -175,8 +214,8 @@ onUnmounted(() => {
     </div>
   </div>
 
-  <!-- Resultatenlijst onder formulier (na submit) -->
-  <div v-if="toonResultatenLijst" class="mt-4">
+  <!-- Resultatenlijst onder formulier (na submit) - alleen op zoek pagina -->
+  <div v-if="toonResultatenLijst && showResultsList" class="mt-4">
     <h3 v-if="zoekData.laatsteQuery" class="text-lg font-medium text-gray-900 mb-3">
       Zoekresultaten voor "{{ zoekData.laatsteQuery }}"
     </h3>

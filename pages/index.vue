@@ -2,10 +2,6 @@
 // Set page meta
 import MailingList from '../components/MailingList.vue';
 
-useSeoMeta({
-  title: 'Welkom bij Nyves - breng jouw Hyves profiel terug tot leven',
-  description: ''
-})
 </script>
 
 <template>
@@ -18,6 +14,8 @@ useSeoMeta({
     
     <!-- Build in Public Section -->
     <HomepageBuildInPublic />
+
+    <MailingList />
 
   </div>
 </template>

@@ -2,7 +2,8 @@
 // Set page meta
 useSeoMeta({
   title: `Zoeken - Nyves`,
-  description: `Hier kun je jouw Hyves profiel opzoeken.`
+  description: `Hier kun je jouw Hyves profiel opzoeken.`,
+  ogDescription: `Hier kun je jouw Hyves profiel opzoeken.`,
 })
 </script>
 
@@ -12,7 +13,10 @@ useSeoMeta({
 
     <!-- Zoek Component -->
     <div class="max-w-md mx-auto text-2xl mb-6">
-      <Search />
+      <Search 
+        :show-results-list="true" 
+        :navigate-on-submit="false"
+      />
     </div>
 
     <!-- Relay Health Check -->

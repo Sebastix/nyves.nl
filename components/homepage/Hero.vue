@@ -30,7 +30,7 @@
         <p class="text-gray-500 text-base">
           Dankzij <strong class="text-nyves-blue">Nostr</strong>. Een open en simpel protocol waarmee data wordt gedistribueerd via <strong class="text-nyves-blue">relays</strong>.
           <br />
-          Het individu heeft dankzij <strong class="text-nyves-blue">cryptografisch gesigneerde content</strong> alle macht. Iedereen kan verifieren wat ieders content is.
+          Het individu heeft dankzij <strong class="text-nyves-blue">cryptografisch gesigneerde content</strong> alle macht. Iedereen kan verifiëren wat ieders content is.
         </p>
         <p>
           Nyves is dus geen platform.
@@ -38,7 +38,7 @@
       </div>
 
       <!-- Call to Action buttons -->
-      <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+      <div class="mt-8 flex flex-row justify-center gap-4">
         <NuxtLink 
           to="/zoek" 
           class="inline-flex items-center px-8 py-3 bg-nyves-orange hover:bg-nyves-orange/90 text-white! font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200"
@@ -48,6 +48,7 @@
           </svg>
           Zoek Profielen
         </NuxtLink>
+        <NuxtLink to="/profiel/sebastian" class="text-base/10">of bekijk de mockup</NuxtLink>
       </div>
     </div>
   </section>

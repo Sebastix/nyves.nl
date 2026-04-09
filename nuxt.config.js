@@ -15,7 +15,21 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      title: "Nyves"
+      title: "Welkom bij Nyves - breng jouw Hyves profiel terug tot leven",
+      htmlAttrs: {
+        lang: 'nl',
+      },
+      meta: [
+        { name: 'description', content: 'Nyves heeft als doel om oude Hyves-profielen opnieuw tot leven te brengen met een moderne, open webapplicatie gebaseerd op het Nostr-protocol.' },
+        // Open Graph / Social Media
+        { property: 'og:type', content: 'website' },
+        { property: 'og:title', content: 'Welkom bij Nyves - breng jouw Hyves profiel terug tot leven' },
+        { property: 'og:description', content: 'Nyves heeft als doel om oude Hyves-profielen opnieuw tot leven te brengen met een moderne, open webapplicatie gebaseerd op het Nostr-protocol.' },
+        { property: 'og:image', content: '/ogimage.png' },
+      ],
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      ],
     }
   },
 

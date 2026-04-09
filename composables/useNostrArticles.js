@@ -1,5 +1,6 @@
 import { ref, readonly } from 'vue'
 import { SimplePool } from 'nostr-tools/pool'
+import { nip19 } from 'nostr-tools'
 
 // Default relays to use for fetching articles
 const DEFAULT_RELAYS = [
@@ -20,13 +21,14 @@ export const useNostrArticles = () => {
   })
 
   /**
-   * Fetch long-form articles (kind 30023) with specific tag filter(s)
+   * Fetch long-form articles (kind 30023) with specific tag filter(s) and/or author filter
    * @param {string|string[]} tagFilter - The t tag value(s) to filter by (e.g., "kidstr" or ["kidstr", "travel"])
    * @param {string[]} relays - Optional array of relay URLs
    * @param {number} limit - Maximum number of articles to fetch
+   * @param {string} authorFilter - Optional npub or pubkey to filter articles by author
    * @returns {Promise<void>}
    */
-  const fetchArticles = async (tagFilter = '', relays = DEFAULT_RELAYS, limit = 50) => {
+  const fetchArticles = async (tagFilter = '', relays = DEFAULT_RELAYS, limit = 50, authorFilter = null) => {
     try {
       articlesData.value.loading = true
       articlesData.value.error = null
@@ -42,8 +44,20 @@ export const useNostrArticles = () => {
       // Create filter for long-form content with specific tags
       const filter = {
         kinds: [30023], // Long-form content
-        '#t': tagFilterArray, // Filter by t tags
         limit: limit
+      }
+
+      // Add tag filter if provided
+      if (tagFilterArray.length > 0) {
+        filter['#t'] = tagFilterArray // Filter by t tags
+      }
+
+      // Add author filter if provided (handle both npub and hex pubkey)
+      if (authorFilter) {
+        const authorPubkey = convertToHexPubkey(authorFilter)
+        if (authorPubkey) {
+          filter.authors = [authorPubkey]
+        }
       }
 
       // Fetch articles from relays
@@ -118,6 +132,34 @@ export const useNostrArticles = () => {
   }
 
   /**
+   * Convert npub or hex pubkey to hex format
+   * @param {string} authorIdentifier - npub or hex pubkey
+   * @returns {string|null} Hex pubkey or null if invalid
+   */
+  const convertToHexPubkey = (authorIdentifier) => {
+    try {
+      // If it starts with npub, decode it
+      if (authorIdentifier.startsWith('npub')) {
+        const decoded = nip19.decode(authorIdentifier)
+        if (decoded.type === 'npub') {
+          return decoded.data
+        }
+      }
+      
+      // If it's already a hex pubkey (64 characters, hex), return as-is
+      if (/^[a-fA-F0-9]{64}$/.test(authorIdentifier)) {
+        return authorIdentifier
+      }
+      
+      console.warn('Invalid author identifier format:', authorIdentifier)
+      return null
+    } catch (error) {
+      console.error('Failed to convert author identifier:', error)
+      return null
+    }
+  }
+
+  /**
    * Get value from tags by tag name
    * @param {Array} tags - Array of tag arrays
    * @param {string} tagName - Name of the tag to find
@@ -176,10 +218,11 @@ export const useNostrArticles = () => {
    * @param {string|string[]} tagFilter - The t tag value(s) to filter by (e.g., "kidstr" or ["kidstr", "bitcoin"])
    * @param {string[]} relays - Optional array of relay URLs
    * @param {number} limit - Maximum number of articles to fetch
+   * @param {string} authorFilter - Optional npub or pubkey to filter articles by author
    * @returns {Promise<void>}
    */
-  const refresh = async (tagFilter = 'kidstr', relays = DEFAULT_RELAYS, limit = 50) => {
-    await fetchArticles(tagFilter, relays, limit)
+  const refresh = async (tagFilter = 'kidstr', relays = DEFAULT_RELAYS, limit = 50, authorFilter = null) => {
+    await fetchArticles(tagFilter, relays, limit, authorFilter)
   }
 
   /**
@@ -189,6 +232,50 @@ export const useNostrArticles = () => {
     articlesData.value.articles = []
     articlesData.value.totalCount = 0
     articlesData.value.error = null
+  }
+
+  /**
+   * Fetch articles by author only (without tag filter)
+   * @param {string} authorFilter - npub or hex pubkey of the author
+   * @param {string[]} relays - Optional array of relay URLs
+   * @param {number} limit - Maximum number of articles to fetch
+   * @returns {Promise<void>}
+   */
+  const fetchArticlesByAuthor = async (authorFilter, relays = DEFAULT_RELAYS, limit = 50) => {
+    try {
+      articlesData.value.loading = true
+      articlesData.value.error = null
+
+      // Convert npub to hex if needed
+      const authorPubkey = convertToHexPubkey(authorFilter)
+      if (!authorPubkey) {
+        throw new Error('Invalid author identifier format')
+      }
+
+      // Create filter for long-form content by specific author
+      const filter = {
+        kinds: [30023], // Long-form content
+        authors: [authorPubkey],
+        limit: limit
+      }
+
+      // Fetch articles from relays
+      const events = await pool.querySync(relays, filter)
+
+      // Process and sort articles
+      articlesData.value.articles = events
+        .map(event => parseArticleEvent(event))
+        .filter(article => article !== null) // Filter out failed parsing
+        .sort((a, b) => b.published_at - a.published_at) // Sort by publication date (newest first)
+
+      articlesData.value.totalCount = articlesData.value.articles.length
+
+    } catch (error) {
+      console.error('Failed to fetch articles by author:', error)
+      articlesData.value.error = error.message
+    } finally {
+      articlesData.value.loading = false
+    }
   }
 
   /**
@@ -238,6 +325,7 @@ export const useNostrArticles = () => {
 
     // Methods
     fetchArticles,
+    fetchArticlesByAuthor,
     fetchArticleByIdentifier,
     refresh,
     getArticlesByTopic,

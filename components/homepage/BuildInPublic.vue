@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <section class="py-16 px-4 bg-white">
+  <section class="mb-8">
     <div class="max-w-6xl mx-auto">
       <!-- Sectie Header -->
       <div class="text-center mb-12">
@@ -11,15 +11,15 @@
           Build in <span class="text-nyves-orange">Public</span>
         </h2>
         <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-          Volg de voortgang van het project in real-time.
+          Volg het proces van het project in real-time.
         </p>
       </div>
 
       <!-- Main Content Grid -->
-      <div class="grid md:grid-cols-2 gap-8">
+      <div class="grid md:grid-cols-2">
         
         <!-- GitLab Repository Card -->
-        <div class="bg-gradient-to-br from-orange-50 to-red-50 rounded-xl p-8 shadow-lg">
+        <div class="bg-linear-to-br from-orange-50 to-red-50 p-8">
           <div class="flex items-start justify-between mb-6">
             <div class="flex items-center space-x-3">
               <!-- GitLab Icon -->
@@ -43,7 +43,7 @@
           <div class="space-y-4 mb-6">
             <p class="text-gray-700 leading-relaxed">
               Bekijk de volledige <strong>broncode</strong> van Nyves op GitLab. 
-              Alle commits, features en bugfixes zijn volledig transparant voor ieder.
+              De werking van de applicatie is volledig transparant.
             </p>
             
             <!-- Features -->
@@ -52,7 +52,7 @@
                 <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
                 </svg>
-                <span>Open source Nuxt.js applicatie</span>
+                <span>Nuxt.js web applicatie</span>
               </li>
               <li class="flex items-center space-x-2">
                 <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
@@ -64,7 +64,7 @@
                 <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
                 </svg>
-                <span>Contributions zijn welkom</span>
+                <span>Contributions zijn welkom, AGPLv2</span>
               </li>
             </ul>
           </div>
@@ -80,7 +80,7 @@
         </div>
 
         <!-- Project Management Card -->
-        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-8 shadow-lg">
+        <div class="bg-linear-to-br from-blue-50 to-indigo-50 p-8">
           <div class="flex items-start justify-between mb-6">
             <div class="flex items-center space-x-3">
               <!-- Taiga/Project Management Icon -->
@@ -113,19 +113,19 @@
                 <svg class="w-4 h-4 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
                 </svg>
-                <span>Live project timeline</span>
+                <span>Project timeline</span>
               </li>
               <li class="flex items-center space-x-2">
                 <svg class="w-4 h-4 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
                 </svg>
-                <span>Epics en Kanban bord</span>
+                <span>Epics met een kanban bord</span>
               </li>
               <li class="flex items-center space-x-2">
                 <svg class="w-4 h-4 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
                 </svg>
-                <span>Bekijk alle issues</span>
+                <span>Overzicht met issues</span>
               </li>
             </ul>
           </div>
@@ -142,8 +142,8 @@
       </div>
 
       <!-- Bottom Section -->
-      <div class="mt-12 text-center">
-        <div class="bg-gray-50 rounded-xl p-8">
+      <div class="text-center">
+        <div class="bg-gray-50 p-8">
           <h3 class="text-2xl font-bold text-gray-900 mb-4">
             <span class="text-nyves-orange">Transparantie</span> & <span class="text-nyves-blue">Samenwerking</span>
           </h3>
