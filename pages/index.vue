@@ -19,3 +19,7 @@ import MailingList from '../components/MailingList.vue';
 
   </div>
 </template>
+
+<style scoped>
+
+</style>
