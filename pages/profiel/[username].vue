@@ -110,18 +110,18 @@ onMounted(async () => {
       <!-- Profile Picture Column -->
       <div class="col-span-1 lg:w-[150px]">
         <!-- Profile Section Component -->
-        <ProfilePicture :profile="profile" />
+        <ProfielProfilePicture :profile="profile" />
       </div>
 
       <!-- Profile About Column -->
       <div class="col-span-2 lg:w-[420px]">
-        <ProfileAbout :profile="profile" />
+        <Profiel ProfileAbout :profile="profile" />
       </div>
 
       <!-- Right Column -->
       <div class="col-span-3 md:flex-1">
         <!-- Friends Grid Component -->
-        <FriendsGrid :friends="friends" />
+        <ProfielFriendsGrid :friends="friends" />
       </div>
     </div>
 

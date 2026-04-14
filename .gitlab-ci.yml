@@ -1,0 +1,40 @@
+stages:
+  - build
+  - deploy
+
+site:nuxt-build:
+  image: node:25
+  stage: build
+  script:
+    - npm install
+    - npm run generate
+  artifacts:
+    expire_in: 3 hours
+    paths:
+      - .output/public
+
+deploy:prod:
+  image: alpine
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "master" || $CI_COMMIT_BRANCH == "main"'
+      when: manual
+  stage: deploy
+  environment:
+    name: prod
+    url: https://nyves.nl
+  before_script:
+    - 'which ssh-agent || ( apk add --update openssh )'
+    - apk add --update bash
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | ssh-add -
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+    # Install rsync
+    - apk add rsync
+    - rsync --version
+  script:
+    - rsync -avz --delete --exclude-from='gitlab-ci/rsync-excludes.txt' -e ssh .output/public/. sebastix@ximo1.ximology.com:/var/www/vhosts/sebastix.nl/nyves.nl/httpdocs
+    - echo "Deployment ready, check https://nyves.nl"
+  dependencies:
+    - site:nuxt-build

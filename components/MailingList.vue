@@ -76,7 +76,6 @@ onMounted(async () => {
     document.head.appendChild(script)
     
     script.onload = () => {
-      console.log('hCaptcha script loaded')
       setupHcaptcha()
     }
   } else {
