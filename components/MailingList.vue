@@ -92,7 +92,7 @@ const setupHcaptcha = () => {
 }
 </script>
 <template>
-  <div class="border border-gray-200 bg-[#fcfcfc] rounded-sm text-center pb-12 mb-8">
+  <div class="border border-gray-200 bg-[#fcfcfc] rounded-sm text-center pb-8 mb-8">
     <div class="h-[44px] nyves-bg-gray-header"></div>
     <form method="post" action="https://mailings.sebastix.dev/subscription/form" class="listmonk-form">
       <div>
@@ -110,6 +110,14 @@ const setupHcaptcha = () => {
         <input type="submit" value="Aanmelden" class="mx-auto block mt-2 px-6 py-2 bg-nyves-orange cursor-pointer text-white! font-semibold rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200" />
       </div>
     </form>
+    <div class="mt-8">
+      Of word lid van de Nyves chat groep op Signal.
+      <br />
+      <a href="https://signal.group/#CjQKIIGUFWYny2Io9ZV9nJZh-pphkNNQoS_ZoOKL38BueZz-EhBy14nSfdoW8If9NsJK6Er9" target="_blank" rel="nofollow" class="mt-2 inline-flex items-center break-all font-bold">
+        <img src="~/assets/signal-logo.svg" class="size-8 rounded-sm mx-auto mr-2">
+        https://signal.group/#CjQ...6Er9
+      </a>
+    </div>
   </div>
 </template>
 
