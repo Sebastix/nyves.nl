@@ -1,8 +1,8 @@
 import { ref, readonly } from 'vue'
-import { SimplePool } from 'nostr-tools/pool'
 
 export const useCustomDesign = () => {
-  const pool = new SimplePool()
+  // Use shared relay pool instead of creating new instance
+  const { pool, queryRelays, closeRelays } = useSharedRelayPool()
 
   // Reactive state
   const designData = ref({
@@ -33,8 +33,8 @@ export const useCustomDesign = () => {
         limit: 1
       }
 
-      // Fetch the event from the specified relay
-      const events = await pool.querySync([relay], filter)
+      // Fetch the event from the specified relay using tracked query method
+      const events = await queryRelays([relay], filter)
 
       if (events.length > 0) {
         const designEvent = events[0]
@@ -165,11 +165,11 @@ export const useCustomDesign = () => {
   }
 
   /**
-   * Apply background image to page
+   * Apply background to page
    * @param {string} imageUrl - URL of the background image
    * @param {HTMLElement} element - Element to apply background to (defaults to body)
    */
-  const applyBackgroundImage = (imageUrl, element = null) => {
+  const applyBackground = (imageUrl, element = null) => {
     try {
       const targetElement = element || document.body
       
@@ -181,6 +181,7 @@ export const useCustomDesign = () => {
         targetElement.style.backgroundRepeat = 'no-repeat'
         targetElement.style.backgroundAttachment = 'fixed'
       }
+      document.body.style.backgroundColor = designData.value.themeSettings.colors.background;
     } catch (error) {
       console.error('Failed to apply background image:', error)
     }
@@ -190,7 +191,7 @@ export const useCustomDesign = () => {
    * Remove background image from page
    * @param {HTMLElement} element - Element to remove background from (defaults to body)
    */
-  const removeBackgroundImage = (element = null) => {
+  const removeBackground = (element = null) => {
     try {
       const targetElement = element || document.body
       targetElement.style.backgroundImage = ''
@@ -198,8 +199,142 @@ export const useCustomDesign = () => {
       targetElement.style.backgroundPosition = ''
       targetElement.style.backgroundRepeat = ''
       targetElement.style.backgroundAttachment = ''
+      targetElement.style.backgroundColor = ''
     } catch (error) {
       console.error('Failed to remove background image:', error)
+    }
+  }
+
+  // Fonts
+  const toggleFonts = () => {
+    if (designData.value.custom_design) {
+      // Load and apply font
+      const fontFile = new FontFace(
+        designData.value.themeSettings.font.name,
+        'url("'+designData.value.themeSettings.font.url+'")'
+      )
+      document.fonts.add(fontFile)
+      document.body.style.fontFamily = designData.value.themeSettings.font.name
+    } else {
+      document.body.style.fontFamily = ''
+    }
+  }
+  // Header
+  const toggleHeader = () => {
+    const header = document.querySelector('header')
+    const navigation = header.querySelector('div.navigation')
+    const banner = header.querySelector('div.banner')
+    if (designData.value.custom_design) {
+      navigation.style.backgroundColor = designData.value.themeSettings.colors.text
+      navigation.querySelectorAll('a').forEach((link) => {
+        link.style.color = designData.value.themeSettings.colors.background
+      })
+      banner.style.backgroundColor = designData.value.themeSettings.colors.background
+      banner.style.borderColor = designData.value.themeSettings.colors.background
+      banner.classList.remove('bg-linear-to-b')
+      banner.querySelector('form').style.borderColor = designData.value.themeSettings.colors.background
+    } else {
+      navigation.style.backgroundColor = ''
+      navigation.querySelectorAll('a').forEach((link) => {
+        link.style.color = ''
+      })
+      banner.style.backgroundColor = ''
+      banner.style.borderColor = ''
+      banner.classList.add('bg-linear-to-b')
+      banner.querySelector('form').style.borderColor = ''
+    }
+  }
+  // Heading
+  const toggleHeading = () => {
+    document.querySelector('h1').style.color =
+      designData.value.custom_design ? designData.value.themeSettings.colors.primary : ''
+  }
+  // profileHeader
+  const toggleProfileHeader = () => {
+    const profileHeader = document.querySelector('div.profileHeader')
+    if (designData.value.custom_design) {
+      profileHeader.style.backgroundColor = designData.value.themeSettings.colors.background
+      profileHeader.querySelectorAll('a').forEach((link) => {
+        link.style.color = designData.value.themeSettings.colors.primary
+      })
+    } else {
+      profileHeader.style.backgroundColor = ''
+      profileHeader.querySelectorAll('a').forEach((link) => {
+        link.style.color = ''
+      })
+    }
+  }
+  // Content blocks
+  const toggleContentBlocks = () => {
+    document.querySelectorAll("div.rounded-sm").forEach((el) => {
+      if (el.classList.contains('bg-[#fcfcfc]')) {
+        const heading3 = el.querySelector('h3');
+        if (!heading3) {
+          return
+        }
+        if (heading3 && designData.value.custom_design) {
+          el.querySelector('h3').style.backgroundColor = designData.value.themeSettings.colors.background
+          el.querySelector('h3').style.color = designData.value.themeSettings.colors.primary;
+          el.querySelector('h3').style.removeProperty('background-image')
+          el.querySelector('h3').style.backgroundImage = 'unset'
+        } else {
+          el.querySelector('h3').style.backgroundColor = ''
+          el.querySelector('h3').style.color = '';
+        }
+        const hyperlink = el.querySelectorAll('a')
+        if (!hyperlink) {
+          return
+        }
+        if (hyperlink && designData.value.custom_design) {
+          hyperlink.forEach((link) => {
+            link.style.color = designData.value.themeSettings.colors.primary
+          })
+        } else {
+          hyperlink.forEach((link) => {
+            link.style.color = ''
+          })
+        }
+        if (designData.value.custom_design) {
+          el.style.color = designData.value.themeSettings.colors.text
+          el.style.backgroundColor = designData.value.themeSettings.colors.background
+          el.style.borderColor = designData.value.themeSettings.colors.text
+        } else {
+          el.style.color = ''
+          el.style.backgroundColor = ''
+          el.style.borderColor = ''
+        }
+      }
+      if (el.classList.contains('bg-[#eff6fc]')) {
+        const hyperlink = el.querySelectorAll('a')
+        if (hyperlink && designData.value.custom_design) {
+          hyperlink.forEach((link) => {
+            link.style.color = designData.value.themeSettings.colors.background
+          })
+        } else {
+          hyperlink.forEach((link) => {
+            link.style.color = ''
+          })
+        }
+        el.style.backgroundColor = designData.value.custom_design ? designData.value.themeSettings.colors.text : ''
+        el.style.borderColor = designData.value.custom_design ? designData.value.themeSettings.colors.background : ''
+      }
+    })
+  }
+  // Footer
+  const toggleFooter = () => {
+    const footer = document.querySelector('footer')
+    if (designData.value.custom_design) {
+      footer.style.backgroundColor = designData.value.themeSettings.colors.background
+      footer.querySelector('div.sub').style.color = designData.value.themeSettings.colors.text
+      footer.querySelector('div.sub').querySelectorAll('a').forEach((link) => {
+        link.style.color = designData.value.themeSettings.colors.primary
+      })
+    } else {
+      footer.style.backgroundColor = ''
+      footer.querySelector('div.sub').style.color = ''
+      footer.querySelector('div.sub').querySelectorAll('a').forEach((link) => {
+        link.style.color = ''
+      })
     }
   }
 
@@ -211,27 +346,40 @@ export const useCustomDesign = () => {
       if (designData.value.custom_design) {
         // Disable custom design
         designData.value.custom_design = false
-        removeBackgroundImage()
+        removeBackground(document.body)
         console.log('Custom design disabled')
       } else {
         // Re-enable custom design if we have design data
         if (designData.value.themeSettings && Object.keys(designData.value.themeSettings).length > 0) {
           designData.value.custom_design = true
           if (designData.value.backgroundImage) {
-            applyBackgroundImage(designData.value.backgroundImage)
+            applyBackground(designData.value.backgroundImage, document.body)
           }
           console.log('Custom design enabled')
         } else {
           console.log('No custom design data available to enable')
         }
       }
+      toggleFonts()
+      toggleHeader()
+      toggleHeading()
+      toggleProfileHeader()
+      toggleContentBlocks()
+      toggleFooter()
     } catch (error) {
       console.error('Failed to toggle custom design:', error)
     }
   }
 
+  /*
+   * Set Custom Design boolean
+   */
+  const setCustomDesign = (bool) => {
+    designData.value.custom_design = bool
+  }
+
   /**
-   * Close pool connection
+   * Close relay connection
    */
   const close = () => {
     pool.close(['wss://relay.ditto.pub'])
@@ -243,9 +391,14 @@ export const useCustomDesign = () => {
 
     // Methods
     fetchCustomDesign,
-    applyBackgroundImage,
-    removeBackgroundImage,
+    applyBackground,
+    removeBackground,
+    setCustomDesign,
     toggleCustomDesign,
+    toggleFonts,
+    toggleHeader,
+    toggleHeading,
+    toggleFooter,
     close
   }
 }

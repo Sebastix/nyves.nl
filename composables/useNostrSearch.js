@@ -1,12 +1,11 @@
 import { ref, readonly } from 'vue'
-import { SimplePool } from 'nostr-tools/pool'
 import * as nip19 from 'nostr-tools/nip19'
 
 // Nyves relay voor zoeken
 const SEARCH_RELAY = 'wss://relay.nyves.nl'
 
 export const useNostrSearch = () => {
-  const pool = new SimplePool()
+  const { pool, queryRelays, closeRelays } = useSharedRelayPool()
 
   // Reactieve state
   const zoekData = ref({
@@ -53,8 +52,8 @@ export const useNostrSearch = () => {
       console.log('Zoeken naar profielen:', { zoekterm: schoneZoekterm, relay: SEARCH_RELAY })
 
       // Zoek events op de relay
-      const events = await pool.querySync([SEARCH_RELAY], filter)
-      
+      const events = await queryRelays([SEARCH_RELAY], filter)
+
       console.log('Gevonden events:', events.length)
 
       // Verwerk gevonden events naar bruikbare profieldata

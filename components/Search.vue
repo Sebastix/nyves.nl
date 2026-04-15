@@ -146,6 +146,7 @@ onUnmounted(() => {
   <div class="relative">
     <form
       @submit="handleSubmit"
+      id="search"
       class="bg-white/80 hover:bg-white/95 transition-bg duration-150 border border-nyves-orange rounded-xs shadow-inner/5 focus:outline-none flex justify-between"
     >
       <input

@@ -2,14 +2,12 @@
 // req -k 36767 -a 06639a386c9c1014217622ccbcf40908c4f1a0c33e23f8d6d68f4abf655f8f71 wss://relay.ditto.pub
 
 const PUBKEY = '06639a386c9c1014217622ccbcf40908c4f1a0c33e23f8d6d68f4abf655f8f71';
-const INDEXER_RELAYS = [
-    'profiles.nostrver.se',
-    'purplepag.es',
-    'relay.ditto.pub'
-];
+
+// Modal functionality
+const { openModal } = useModal();
 
 // Custom design composable
-const { designData, fetchCustomDesign, applyBackgroundImage, removeBackgroundImage, toggleCustomDesign, close } = useCustomDesign()
+const { designData, fetchCustomDesign, setCustomDesign, toggleCustomDesign, removeBackground, toggleFonts, toggleHeader, toggleFooter } = useCustomDesign()
 
 // Custom design reactive property
 const custom_design = computed(() => designData.value.custom_design)
@@ -22,16 +20,16 @@ const profile = ref({
   spots:  Math.round((Math.floor(Math.random() * 100 + 50)) / 10)
 })
 
-const friends = ref();
+const friends = ref([]);
 
 const photos = ref({
   albumCount: '3',
   photoCount: '67'
 });
 
-const krabbels = ref();
+const krabbels = ref([]);
 
-const hyvesItems = ref();
+const hyvesItems = ref([]);
 
 // Helper function to format dates
 const formatDate = (date) => {
@@ -46,52 +44,27 @@ const formatDate = (date) => {
 onMounted(async () => {
   // Fetch custom design settings for this profile
   await fetchCustomDesign(PUBKEY, 'wss://relay.ditto.pub')
-  
-  // Apply background image to body if found
-  if (designData.value.backgroundImage) {
-    applyBackgroundImage(designData.value.backgroundImage, document.body)
+
+  if (custom_design.value) {
+    // Apply custom design to profile by setting custom_design to false first
+    setCustomDesign(false)
+    // Will enable the custom design on page load
+    toggleCustomDesign()
   }
-  // Body background color
-  document.body.style.backgroundColor = designData.value.themeSettings.colors.background;
-
-  // Set heading 1 color
-  document.querySelector('h1').style.color = designData.value.themeSettings.colors.primary
-
-  // Set background color of div.bg-[#fcfcfc] elements
-  document.querySelectorAll("div.rounded-sm").forEach((el) => {
-    if (el.classList.contains('bg-[#fcfcfc]') || el.classList.contains('bg-[#eff6fc]')) {
-      const heading3 = el.querySelector('h3');
-      if (heading3) {
-        el.querySelector('h3').style.backgroundColor = designData.value.themeSettings.colors.background
-        el.querySelector('h3').style.color = designData.value.themeSettings.colors.primary;
-        el.querySelector('h3').style.removeProperty('background-image')
-        el.querySelector('h3').style.backgroundImage = 'unset'
-      }
-      const hyperlink = el.querySelectorAll('a')
-      if (hyperlink) {
-        hyperlink.forEach((link) => {
-          console.log(link)
-          link.style.color = designData.value.themeSettings.colors.primary
-        })
-      }
-      el.style.color = designData.value.themeSettings.colors.text
-      el.style.backgroundColor = designData.value.themeSettings.colors.background
-      el.style.borderColor = designData.value.themeSettings.colors.text
-    }
-  })
-
-  // Set links colors
 
   // TODO's:
   // Get read and write relays from pubkey (NIP-65) and find the event kind 10063 on of the indexer relays
   // Get profile metadata (event kind 0) from write relays of pubkey
   // Get following list (event kind 3) of pubkey
-  // Get messages to be displayed as krabbels, events with kind
+  // Get messages to be displayed as krabbels, events with kind 24 (NIP-A4)
 })
 
 onUnmounted(() => {
-  // Clean up background image when leaving page
-  removeBackgroundImage(document.body)
+  setCustomDesign(false)
+  removeBackground()
+  toggleFonts()
+  toggleHeader()
+  toggleFooter()
   close()
 })
 
@@ -99,27 +72,28 @@ onUnmounted(() => {
 
 <template>
   <!-- Main Container -->
-  <div class="min-h-screen mt-3">
+  <div class="mt-3">
 
     <div class="bg-yellow-50 p-2 mb-2 border border-yellow-400 text-sm">
-      Dit is een mockup van een Hyves profielpagina.
+      Dit is een bestaand Nostr profiel (<span class="text-xs font-mono break-all">{{ PUBKEY }}</span>) in een mockup van een Hyves profielpagina.
     </div>
 
     <!-- Profile Header -->
-    <div class="grid grid-cols-1 md:grid-cols-2">
-      <h1 class="col-span-2 text-3xl font-bold mb-1">{{ profile.name }}</h1>
-      <div class="mb-2">
+    <div class="grid grid-cols-1 md:grid-cols-2 profileHeader mb-2">
+      <h1 class="col-span-2 text-3xl font-bold mx-2">{{ profile.name }}</h1>
+      <div class="mx-2">
         <NuxtLink :to="`/profile/${profile.username}`" class="text-orange-600 hover:underline mr-4 text-xs font-bold">Over</NuxtLink>
         <NuxtLink :to="`/profile/${profile.username}/vrienden`" class="mr-4 text-xs">Vrienden</NuxtLink>
         <NuxtLink :to="`/profile/${profile.username}/fotos`" class="mr-4 text-xs">Foto's</NuxtLink>
         <NuxtLink :to="`/profile/${profile.username}/meer`" class="text-xs">Meer</NuxtLink>
       </div>
       <button 
-        @click="toggleCustomDesign" 
-        class="justify-self-end text-xs mb-4 cursor-pointer"
+        @click="toggleCustomDesign"
+        class="p-1 justify-self-end text-xs mx-2 cursor-pointer"
+        :class="[ custom_design ? 'bg-linear-to-b from-[#65d018] to-[#49a811] text-white rounded-sm font-bold border border-[#96e05e] hover:border-[#44a806] text-shadow-xs' : '' ]"
       >
-        <span v-if="custom_design">🎨 Toon standaard design</span>
-        <span v-else>🎨 Toon eigen design</span>
+        <span v-if="custom_design">🛟 Toon in standaard design</span>
+        <span v-else>🛟 Toon eigen design!</span>
       </button>
     </div>
 
@@ -214,7 +188,7 @@ onUnmounted(() => {
     <div class="bg-yellow-100 border border-yellow-400 p-2 mt-3 text-xs">
       Je moet ingelogd zijn om dit onderdeel te bekijken!
       <div class="mt-2">
-        <NuxtLink to="/connect" class="block mb-1">🔑 Klik hier om in te loggen...</NuxtLink>
+        <NuxtLink @click.prevent="openModal('connect')" class="block mb- cursor-pointer">🔑 Klik hier om in te loggen...</NuxtLink>
       </div>
     </div>
 

@@ -87,7 +87,7 @@ onMounted(async () => {
 </script>
 <template>
   <!-- Main Container -->
-  <div class="min-h-screen mt-3">
+  <div class="mt-3">
 
     <div class="bg-yellow-50 p-2 mb-2 border border-yellow-400 text-sm">
       Dit is een mockup van een Hyves profielpagina.
@@ -102,7 +102,7 @@ onMounted(async () => {
         <NuxtLink :to="`/profile/${profile.username}/fotos`" class="mr-4 text-xs">Foto's</NuxtLink>
         <NuxtLink :to="`/profile/${profile.username}/meer`" class="text-xs">Meer</NuxtLink>
       </div>
-      <NuxtLink to="#" class="justify-self-end text-xs mb-4">🎨 Toon eigen design!</NuxtLink>
+      <NuxtLink to="#" class="justify-self-end text-xs mb-4">🛟 Toon eigen design!</NuxtLink>
     </div>
 
     <!-- Main Content -->
@@ -115,7 +115,7 @@ onMounted(async () => {
 
       <!-- Profile About Column -->
       <div class="col-span-2 lg:w-[420px]">
-        <Profiel ProfileAbout :profile="profile" />
+        <ProfielProfileAbout :profile="profile" />
       </div>
 
       <!-- Right Column -->

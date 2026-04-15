@@ -6,7 +6,7 @@
   <section class="mb-8">
     <div class="max-w-6xl mx-auto">
       <!-- Sectie Header -->
-      <div class="text-center mb-12">
+      <div class="text-center mb-4">
         <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
           Build in <span class="text-nyves-orange">Public</span>
         </h2>
@@ -75,7 +75,7 @@
             rel="noopener noreferrer"
             class="inline-flex items-center px-6 py-3 bg-nyves-orange text-white! font-semibold rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200"
           >
-            Bekijk GitLab Repository
+            Bekijk code repository
           </a>
         </div>
 
@@ -90,7 +90,7 @@
                 </svg>
               </div>
               <div>
-                <h3 class="text-xl font-bold text-gray-900">Project Management</h3>
+                <h3 class="text-xl font-bold text-gray-900">Project management</h3>
                 <p class="text-gray-600 text-sm">Live ontwikkelingsdashboard</p>
               </div>
             </div>
@@ -136,7 +136,7 @@
             rel="noopener noreferrer"
             class="inline-flex items-center px-6 py-3 bg-nyves-blue text-white! font-semibold rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200"
           >
-            Bekijk Project Dashboard
+            Bekijk project dashboard
           </a>
         </div>
       </div>

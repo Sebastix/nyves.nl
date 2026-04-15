@@ -101,13 +101,13 @@ const setupHcaptcha = () => {
         </h3>
         <input type="hidden" name="nonce" />
         <p>
-          <input type="email" name="email" required placeholder="E-mail" class="p-2 bg-white border border-nyves-orange rounded-sm" />
+          <input type="email" name="email" autocomplete="on" required placeholder="E-mail" class="p-2 bg-white border border-nyves-orange rounded-sm text-base min-w-[360px]" />
         </p>
         <p>
           <input id="6ef0a" type="checkbox" name="l" checked value="6ef0a7dc-b3b2-4f8e-bb8f-c6f03b327e4c" class="hidden" />
         </p>
         <div class="h-captcha inline-block mx-auto mt-3" data-sitekey="93256e36-e8e2-4268-92d6-08e8376e03a3"></div>
-        <input type="submit" value="Aanmelden" class="bg-nyves-orange text-white! font-bold py-2 px-6 mt-2 rounded-lg block mx-auto" />
+        <input type="submit" value="Aanmelden" class="mx-auto block mt-2 px-6 py-2 bg-nyves-orange cursor-pointer text-white! font-semibold rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200" />
       </div>
     </form>
   </div>

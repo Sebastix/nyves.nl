@@ -315,11 +315,11 @@ export const useRelayHealth = (relayUrl) => {
   const getResponseTimeDisplay = () => {
     if (!healthData.value.responseTime) return null
     
-    if (healthData.value.responseTime < 100) {
+    if (healthData.value.responseTime < 500) {
       return `${healthData.value.responseTime}ms (uitstekend)`
-    } else if (healthData.value.responseTime < 500) {
-      return `${healthData.value.responseTime}ms (goed)`
     } else if (healthData.value.responseTime < 1000) {
+      return `${healthData.value.responseTime}ms (goed)`
+    } else if (healthData.value.responseTime < 3000) {
       return `${healthData.value.responseTime}ms (redelijk)`
     } else {
       return `${healthData.value.responseTime}ms (traag)`

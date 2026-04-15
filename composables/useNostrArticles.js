@@ -1,5 +1,4 @@
 import { ref, readonly } from 'vue'
-import { SimplePool } from 'nostr-tools/pool'
 import { nip19 } from 'nostr-tools'
 
 // Default relays to use for fetching articles
@@ -10,7 +9,7 @@ const DEFAULT_RELAYS = [
 ]
 
 export const useNostrArticles = () => {
-  const pool = new SimplePool()
+  const { pool } = useSharedRelayPool()
 
   // Reactive state
   const articlesData = ref({

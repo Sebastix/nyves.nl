@@ -1,7 +1,7 @@
 <template>
   <footer class="my-3">
     <div class="nyves-bg-gray-header border border-[#ebebeb] py-3 rounded-sm">
-      <div class="mx-auto px-4 flex justify-between items-center text-xs text-gray-600">
+      <div class="mx-auto px-2 flex justify-between items-center text-xs text-gray-600">
         <div class="flex items-center">
           <span class="font-bold text-gray-800 mr-2">N</span>
           <span class="mr-2">Hyver</span>
@@ -14,9 +14,10 @@
   <!--        <NuxtLink to="/ouders-onderwijs" class="text-blue-600 hover:underline mr-2">Ouders & Onderwijs</NuxtLink>-->
   <!--        <NuxtLink to="/pers" class="text-blue-600 hover:underline">Pers</NuxtLink>-->
         </div>
+        <LanguageSelect />
       </div>
     </div>
-    <div class="flex justify-between m-3 text-xs">
+    <div class="sub flex justify-between px-2 py-3 text-xs">
       <div>
         Nyves is een initiatief van <a href="https://sebastix.nl" target="_blank">Sebastix</a>
         |
@@ -32,6 +33,8 @@
 </template>
 
 <script setup>
+import LanguageSelect from './LanguageSelect.vue';
+
 const props = defineProps({
   currentUser: {
     type: String,

@@ -6,7 +6,7 @@
   <section class="mb-8">
     <div class="max-w-5xl mx-auto">
       <!-- Quote sectie -->
-      <div>
+      <div class="px-4">
         <blockquote class="text-xl text-gray-700 italic font-light max-w-3xl mx-auto">
           "Het project ‘Nyves’ heeft als doel om oude Hyves-profielen opnieuw tot leven te brengen met een moderne, open
           webapplicatie gebaseerd op het Nostr-protocol. Gebruikers kunnen hun opgeslagen Hyves-data eenvoudig heractiveren,
@@ -51,19 +51,14 @@
 
             <!-- Link naar SIDNfonds -->
             <div class="mt-8">
-              <a href="#" target="_blank" class="inline-flex items-center">
+              <a href="https://www.sidnfonds.nl/projecten/nyves" target="_blank" class="inline-flex items-center">
                 Projectpagina
                 <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                 </svg>
               </a>
               |
-              <a 
-                href="https://www.sidnfonds.nl" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                class="inline-flex items-center font-medium"
-              >
+              <a href="https://www.sidnfonds.nl" target="_blank" class="inline-flex items-center font-medium">
                 Meer over SIDNfonds
                 <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />

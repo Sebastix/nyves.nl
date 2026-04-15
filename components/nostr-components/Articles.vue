@@ -214,7 +214,7 @@ watch(() => props.autoRefresh, () => {
       <!-- Empty State -->
       <div v-else-if="!isLoading && !hasArticles" class="text-center py-12">
         <h3 class="text-lg font-medium text-gray-900 mb-2">Geen artikelen gevonden</h3>
-        <p class="text-gray-500">
+        <p class="text-gray-500 break-all">
           <span v-if="selectedTopic">
             No articles found for topic "{{ selectedTopic }}".
           </span>

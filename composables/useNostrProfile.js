@@ -1,5 +1,3 @@
-import { ref } from 'vue'
-import { SimplePool } from 'nostr-tools/pool'
 import * as nip19 from 'nostr-tools/nip19'
 
 // Default relays to use for fetching profile data
@@ -10,7 +8,7 @@ const DEFAULT_RELAYS = [
 ]
 
 export const useNostrProfile = () => {
-  const pool = new SimplePool()
+  const { pool, queryRelays } = useSharedRelayPool()
 
   /**
    * Fetch profile metadata for a given npub
@@ -36,7 +34,7 @@ export const useNostrProfile = () => {
       }
 
       // Get the most recent metadata event using the correct API
-      const events = await pool.querySync(relays, filter)
+      const events = await queryRelays(relays, filter)
       
       if (events.length === 0) {
         return null
@@ -99,7 +97,7 @@ export const useNostrProfile = () => {
       }
 
       // Get metadata events
-      const events = await pool.querySync(relays, filter)
+      const events = await queryRelays(relays, filter)
       
       // Group events by author and get the most recent for each
       const profilesByPubkey = {}
@@ -153,7 +151,7 @@ export const useNostrProfile = () => {
       }
 
       // Get the most recent metadata event
-      const events = await pool.querySync(relays, filter)
+      const events = await queryRelays(relays, filter)
       
       if (events.length === 0) {
         return null
