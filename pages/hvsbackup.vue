@@ -141,10 +141,10 @@ const formatFileSize = (bytes) => {
 </script>
 
 <template>
-  <div class="container mx-auto px-4 py-8">
+  <section>
     
     <!-- Page Header -->
-    <div class="mb-8">
+    <div class="my-4">
       <h1 class="text-4xl font-bold text-nyves-blue mb-4">
         HVSbackup
       </h1>
@@ -185,7 +185,11 @@ const formatFileSize = (bytes) => {
         </div>
       </div>
     </div>
-  </div>
+
+    <div class="my-8">
+      <a href="https://web.archive.org/web/20131119232322/http://hvsbackup.nl/">Bekijk hvsbackup.nl op 19 november 2023</a>
+    </div>
+  </section>
 </template>
 
 <style scoped>
