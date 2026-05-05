@@ -158,7 +158,7 @@ onUnmounted(() => {
         @blur="handleBlur"
         @keydown="handleKeydown"
         class="px-2 text-sm/7 focus:outline-none flex-1"
-        placeholder="Zoek profielen..."
+        :placeholder="$t('zoek_profielen')"
       />
       <button type="submit" class="px-1 border-l border-l-gray-300">
         <!-- Loading spinner -->

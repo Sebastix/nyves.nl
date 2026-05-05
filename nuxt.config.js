@@ -40,8 +40,27 @@ export default defineNuxtConfig({
   ],
 
   modules: [
-    "@pinia/nuxt"
+    '@pinia/nuxt',
+    '@nuxtjs/i18n',
   ],
+
+  i18n: {
+    // i18n module options
+    baseUrl: 'https://nyves.nl',
+    strategy: 'prefix_except_default',
+    defaultLocale: 'nl',
+    locales: [
+      { code: 'nl', language: 'nl-NL', icon: '🇳🇱', name: 'Nederlands', file: 'nl.json' },
+      { code: 'en', language: 'en-US', icon: '🇬🇧', name: 'English', file: 'en.json' }
+    ],
+    customRoutes: 'config',
+    pages: {
+      zoek: {
+        nl: '/zoek',
+        en: '/search'
+      }
+    }
+  },
 
   nitro: {
     // https://nuxt.com/docs/4.x/getting-started/prerendering

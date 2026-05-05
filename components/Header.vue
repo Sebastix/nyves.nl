@@ -1,9 +1,13 @@
+<script setup>
+const localePath = useLocalePath()
+
+</script>
 <template>
   <header>
     <!-- Header Navigation -->
     <div class="navigation rounded-sm my-1 px-2 py-1 flex gap-6 text-sm">
       <NuxtLink to="/">Home</NuxtLink>
-      <NuxtLink to="/zoek">Zoeken</NuxtLink>
+      <NuxtLink :to="localePath('zoek')">{{ $t('zoeken') }}</NuxtLink>
     </div>
 
     <!-- Hyves Banner -->

@@ -14,12 +14,13 @@
   },
   "dependencies": {
     "@hcaptcha/vanilla-hcaptcha": "^1.1.4",
+    "@nuxtjs/i18n": "^10.3.0",
     "@pinia/nuxt": "^0.11.3",
     "@tailwindcss/vite": "^4.1.17",
     "gsap": "^3.14.2",
     "marked": "^17.0.4",
     "nostr-tools": "^2.23.3",
-    "nuxt": "^4.2.1",
+    "nuxt": "4.4.2",
     "shaders": "^2.3.75",
     "vite": "^8.0.2"
   }
