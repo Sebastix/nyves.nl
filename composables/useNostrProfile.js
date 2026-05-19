@@ -2,9 +2,7 @@ import * as nip19 from 'nostr-tools/nip19'
 
 // Default relays to use for fetching profile data
 const DEFAULT_RELAYS = [
-  'wss://relay.damus.io',
-  'wss://nos.lol',
-  'wss://relay.primal.net',
+  'wss://relay.nyves.nl'
 ]
 
 export const useNostrProfile = () => {
@@ -33,10 +31,11 @@ export const useNostrProfile = () => {
         limit: 1
       }
 
-      // Get the most recent metadata event using the correct API
+      // Get the most recent metadata event
       const events = await queryRelays(relays, filter)
-      
+
       if (events.length === 0) {
+        console.error('No profile event found for pubkey:', pubkey)
         return null
       }
 

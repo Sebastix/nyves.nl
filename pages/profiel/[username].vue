@@ -74,9 +74,9 @@ const formatDate = (date) => {
 onMounted(async () => {
   try {
     // Fetch the profile by username from the relay
-    const nProfile = await fetchProfile(npub, ['wss://relay.nyves.nl'])
+    const nProfile = await fetchProfile(npub)
 
-    if (nProfile.tags.length) {
+    if (nProfile && nProfile.tags.length) {
       for (const tag of nProfile.tags) {
         // Get warc file tag from profile event, so we can construct an URL to the Wayback Machine to visit your archived profile there.
         if (tag[0] === 'warc_file') {
@@ -86,6 +86,8 @@ onMounted(async () => {
           profile.value.urlWaybackMachine = 'https://web.archive.org/web/'+date+time+'/http://'+username+'.hyves.nl'
         }
       }
+    } else {
+      throw 'No profile could be fetched'
     }
 
     profile.value.name = username.charAt(0).toUpperCase() + username.slice(1)

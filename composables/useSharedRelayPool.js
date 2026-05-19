@@ -44,7 +44,70 @@ export const useSharedRelayPool = () => {
   }
 
   /**
-   * Enhanced pool query that tracks relay URLs
+   * Check WebSocket connection status for a relay
+   * @param {string} relayUrl - Relay URL to check
+   * @returns {string} Connection status: 'open', 'connecting', 'closing', 'closed'
+   */
+  const getRelayConnectionStatus = (relayUrl) => {
+    if (!sharedPoolInstance || !sharedPoolInstance.relays) {
+      return 'closed'
+    }
+
+    const relay = sharedPoolInstance.relays[relayUrl]
+    if (!relay || !relay.ws) {
+      return 'closed'
+    }
+
+    // WebSocket readyState constants
+    // 0: CONNECTING, 1: OPEN, 2: CLOSING, 3: CLOSED
+    const readyState = relay.ws.readyState
+    switch (readyState) {
+      case 0: return 'connecting'
+      case 1: return 'open' 
+      case 2: return 'closing'
+      case 3: return 'closed'
+      default: return 'unknown'
+    }
+  }
+
+  /**
+   * Ensure relay connections are open before querying
+   * @param {string[]} relays - Array of relay URLs
+   * @returns {Promise<void>} Promise that resolves when connections are ready
+   */
+  const ensureRelayConnections = async (relays) => {
+    if (!sharedPoolInstance) {
+      throw new Error('Shared pool not available')
+    }
+
+    const connectionPromises = relays.map(async (relay) => {
+      const normalizedUrl = relay.startsWith('wss://') || relay.startsWith('ws://') ? relay : `wss://${relay}`
+      const status = getRelayConnectionStatus(normalizedUrl)
+      
+      console.log(`🔍 Checking relay ${normalizedUrl}: ${status}`)
+      
+      if (status === 'closed' || status === 'closing') {
+        console.log(`🔄 Reconnecting to ${normalizedUrl}...`)
+        
+        // Force cleanup of closed connection
+        if (sharedPoolInstance.relays[normalizedUrl]) {
+          delete sharedPoolInstance.relays[normalizedUrl]
+        }
+        
+        // Wait a bit for connection to establish
+        await new Promise(resolve => setTimeout(resolve, 100))
+      } else if (status === 'connecting') {
+        // Wait for connection to open
+        console.log(`⏳ Waiting for ${normalizedUrl} to connect...`)
+        await new Promise(resolve => setTimeout(resolve, 200))
+      }
+    })
+
+    await Promise.all(connectionPromises)
+  }
+
+  /**
+   * Enhanced pool query that tracks relay URLs and manages connections
    * @param {string[]} relays - Array of relay URLs
    * @param {Object} filter - Nostr filter object
    * @returns {Promise} Query promise
@@ -54,37 +117,45 @@ export const useSharedRelayPool = () => {
       throw new Error('Shared pool not available')
     }
 
-    // Track the relay URLs we're using
-    relays.forEach(relay => {
+    // Normalize and track relay URLs
+    const normalizedRelays = relays.map(relay => {
       const normalizedUrl = relay.startsWith('wss://') || relay.startsWith('ws://') ? relay : `wss://${relay}`
       trackedRelays.add(normalizedUrl)
+      return normalizedUrl
     })
 
-    console.log(`📡 Querying ${relays.length} relays, total tracked: ${trackedRelays.size}`)
+    console.log(`📡 Querying ${normalizedRelays.length} relays, total tracked: ${trackedRelays.size}`)
     
-    return sharedPoolInstance.querySync(relays, filter)
+    // Ensure all relay connections are open before querying
+    await ensureRelayConnections(normalizedRelays)
+    
+    return sharedPoolInstance.querySync(normalizedRelays, filter)
   }
 
   /**
-   * Enhanced pool subscription that tracks relay URLs
+   * Enhanced pool subscription that tracks relay URLs and manages connections
    * @param {string[]} relays - Array of relay URLs  
    * @param {Object} filter - Nostr filter object
-   * @returns {Object} Subscription object
+   * @returns {Promise<Object>} Subscription object promise
    */
-  const subscribeToRelays = (relays, filter) => {
+  const subscribeToRelays = async (relays, filter) => {
     if (!sharedPoolInstance) {
       throw new Error('Shared pool not available')
     }
 
-    // Track the relay URLs we're using
-    relays.forEach(relay => {
+    // Normalize and track relay URLs
+    const normalizedRelays = relays.map(relay => {
       const normalizedUrl = relay.startsWith('wss://') || relay.startsWith('ws://') ? relay : `wss://${relay}`
       trackedRelays.add(normalizedUrl)
+      return normalizedUrl
     })
 
-    console.log(`🔔 Subscribing to ${relays.length} relays, total tracked: ${trackedRelays.size}`)
+    console.log(`🔔 Subscribing to ${normalizedRelays.length} relays, total tracked: ${trackedRelays.size}`)
     
-    return sharedPoolInstance.subscribeMany(relays, [filter], {})
+    // Ensure all relay connections are open before subscribing
+    await ensureRelayConnections(normalizedRelays)
+    
+    return sharedPoolInstance.subscribeMany(normalizedRelays, [filter], {})
   }
 
   /**
@@ -102,6 +173,31 @@ export const useSharedRelayPool = () => {
       })
       
       console.log(`🔌 Closed ${relays.length} relays, remaining tracked: ${trackedRelays.size}`)
+    }
+  }
+
+  /**
+   * Get detailed connection status for all tracked relays
+   * @returns {Object} Detailed connection status
+   */
+  const getConnectionStatus = () => {
+    const relayStatuses = {}
+    
+    trackedRelays.forEach(relay => {
+      relayStatuses[relay] = getRelayConnectionStatus(relay)
+    })
+
+    return {
+      connections: connectionCount,
+      poolExists: !!sharedPoolInstance,
+      relayStatuses,
+      summary: {
+        total: trackedRelays.size,
+        open: Object.values(relayStatuses).filter(s => s === 'open').length,
+        closed: Object.values(relayStatuses).filter(s => s === 'closed').length,
+        connecting: Object.values(relayStatuses).filter(s => s === 'connecting').length,
+        closing: Object.values(relayStatuses).filter(s => s === 'closing').length
+      }
     }
   }
 
@@ -160,6 +256,9 @@ export const useSharedRelayPool = () => {
     subscribeToRelays,
     closeRelays,
     getStats,
+    getConnectionStatus,
+    getRelayConnectionStatus,
+    ensureRelayConnections,
     forceClosePool
   }
 }

@@ -143,7 +143,6 @@ onUnmounted(() => {
   if (debounceTimer.value) {
     clearTimeout(debounceTimer.value)
   }
-  sluit()
 })
 </script>
 
