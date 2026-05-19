@@ -63,6 +63,8 @@ export const useNostrSearch = () => {
         try {
           // Parse de content (JSON metadata)
           const metadata = JSON.parse(event.content)
+          // Tags
+          const tags = event.tags
           
           // We zijn alleen geïnteresseerd in profielen met een naam
           if (metadata.name) {
@@ -74,7 +76,8 @@ export const useNostrSearch = () => {
               npub: npub,
               name: metadata.name,
               display_name: metadata.display_name || metadata.name,
-              created_at: event.created_at
+              created_at: event.created_at,
+              tags: tags
             })
           }
         } catch (parseError) {

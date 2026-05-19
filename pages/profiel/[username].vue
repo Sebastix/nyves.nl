@@ -1,7 +1,11 @@
 <script setup>
+
+const { fetchProfile } = useNostrProfile()
+
 // Get the username from the route
 const route = useRoute()
 const username = route.params.username
+const npub = route.hash.substring(1);
 
 // Set page meta
 useSeoMeta({
@@ -15,7 +19,8 @@ const profile = ref({
   username: 'sebastix',
   joinDate: '01-09-2005',
   brands: ['PHP', 'Honda'],
-  spots:  Math.round((Math.floor(Math.random() * 100 + 50)) / 10)
+  spots:  Math.round((Math.floor(Math.random() * 100 + 50)) / 10),
+  urlWaybackMachine: ''
 })
 
 const friends = ref([
@@ -66,19 +71,26 @@ const formatDate = (date) => {
   return date.toLocaleDateString('nl-NL', options)
 }
 
-// In a real application, you would fetch the profile data based on the username
-// For now, we'll use the mock data for any username
 onMounted(async () => {
-  // Mock API call
   try {
-    // const profileData = await $fetch(`/api/profile/${username}`)
-    // profile.value = profileData
+    // Fetch the profile by username from the relay
+    const nProfile = await fetchProfile(npub, ['wss://relay.nyves.nl'])
 
-    // For demo purposes, update the profile name to match the route
-    if (username !== 'anne') {
-      profile.value.name = username.charAt(0).toUpperCase() + username.slice(1)
-      profile.value.username = username
+    if (nProfile.tags.length) {
+      for (const tag of nProfile.tags) {
+        // Get warc file tag from profile event, so we can construct an URL to the Wayback Machine to visit your archived profile there.
+        if (tag[0] === 'warc_file') {
+          const filename = tag[1].split('/')[1]
+          const date = filename.split('-').at(-1).split('.')[0]
+          const time = filename.split('-').at(-2)
+          profile.value.urlWaybackMachine = 'https://web.archive.org/web/'+date+time+'/http://'+username+'.hyves.nl'
+        }
+      }
     }
+
+    profile.value.name = username.charAt(0).toUpperCase() + username.slice(1)
+    profile.value.username = username
+
   } catch (error) {
     console.error('Error loading profile:', error)
     // Handle error - maybe show 404 page
@@ -95,7 +107,7 @@ onMounted(async () => {
 
     <!-- Profile Header -->
     <div class="grid grid-cols-1 md:grid-cols-2">
-      <h1 class="col-span-2 text-3xl font-bold mb-1">{{ profile.name }}</h1>
+      <h1 class="col-span-2 text-3xl font-bold mb-1">{{ profile.name }} <a :href="profile.urlWaybackMachine" target="_blank" class="text-xs" v-if="profile.urlWaybackMachine">{{ profile.urlWaybackMachine }}</a></h1>
       <div class="mb-2">
         <NuxtLink :to="`/profile/${profile.username}`" class="text-orange-600 hover:underline mr-4 text-xs font-bold">Over</NuxtLink>
         <NuxtLink :to="`/profile/${profile.username}/vrienden`" class="mr-4 text-xs">Vrienden</NuxtLink>

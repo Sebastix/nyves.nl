@@ -48,7 +48,8 @@ export const useNostrProfile = () => {
           ...metadata,
           pubkey,
           npub,
-          created_at: event.created_at
+          created_at: event.created_at,
+          tags: event.tags
         }
       } catch (parseError) {
         console.error('Failed to parse profile metadata JSON:', parseError)
@@ -120,7 +121,8 @@ export const useNostrProfile = () => {
             ...metadata,
             pubkey: event.pubkey,
             npub,
-            created_at: event.created_at
+            created_at: event.created_at,
+            tags: event.tags
           }
         } catch (parseError) {
           console.error('Failed to parse profile metadata JSON for pubkey:', event.pubkey, parseError)
@@ -169,7 +171,8 @@ export const useNostrProfile = () => {
           ...metadata,
           pubkey,
           npub,
-          created_at: event.created_at
+          created_at: event.created_at,
+          tags: event.tags
         }
       } catch (parseError) {
         console.error('Failed to parse profile metadata JSON:', parseError)

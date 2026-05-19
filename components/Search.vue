@@ -101,9 +101,14 @@ const handleSubmit = async (event) => {
 // Profiel selectie
 const selecteerProfiel = (profiel) => {
   // Hier kun je navigeren naar profiel pagina
-  router.push({ path: '/profiel/'+profiel.name })
-  
-  // Reset zoekstatus
+  router.push(
+      {
+        path: '/profiel/' + profiel.name,
+        hash: '#' + profiel.npub
+      }
+  )
+
+      // Reset zoekstatus
   zoekterm.value = ''
   toonDropdown.value = false
   toonResultatenLijst.value = false
