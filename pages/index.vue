@@ -12,9 +12,9 @@ import MailingList from '../components/MailingList.vue';
     <!-- SIDNfonds Support Section -->
     <HomepageSidnFondsSupport />
 
-    <HomepageSebastixHVSbackup class="hidden" />
-
     <HomepageProtocolsNotPlatforms />
+
+    <HomepageInternetArchiveEurope />
 
     <!-- Build in Public Section -->
     <HomepageBuildInPublic />

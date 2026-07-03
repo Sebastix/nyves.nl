@@ -142,14 +142,17 @@ const formatFileSize = (bytes) => {
 
 <template>
   <section>
-    
-    <!-- Page Header -->
-    <div class="my-4">
-      <h1 class="text-4xl font-bold text-nyves-blue mb-4">
-        HVSbackup
-      </h1>
-      <p class="text-gray-600 text-lg">
-        HVSbackup video opname (Flash video) uit 2011, afgespeeld met de Ruffle emulator.
+
+    <h1 class="my-3 text-3xl font-bold text-center text-nyves-blue mb-4">
+      HVSbackup
+    </h1>
+
+    <div class="my-4 lg:max-w-2/3 lg:mx-auto">
+      <p class="text-gray-600 text-lg lg:text-xl leading-6">
+        In de periode 2010-2013 ontwikkelde Sebastian Hagens een applicatie genaamd HVSbackup waarmee je verschillende Hyves content van jouw profiel kon downloaden.
+        <br />
+        <br />
+        Hieronder vind je video opname (Flash video die wordt afgespeeld met de Ruffle emulator) uit 2011 die een beeld geeft hoe de applicatie werkte.
       </p>
     </div>
 
@@ -185,9 +188,38 @@ const formatFileSize = (bytes) => {
         </div>
       </div>
     </div>
-
-    <div class="my-8">
-      <a href="https://web.archive.org/web/20131119232322/http://hvsbackup.nl/">Bekijk hvsbackup.nl op 19 november 2023</a>
+    <div class="my-8 flex flex-col lg:flex-row gap-x-2">
+      <div class="grow lg:max-w-1/2 testimonials">
+        <h2 class="text-2xl font-bold mb-2">Wat anderen zeiden over HVSbackup</h2>
+        <blockquote>Werkt top en die ene euro is het meer dan waard om al mijn oude foto's van mijn al jaren niet meer gebruikte hyves-account te downloaden!
+          <small>Ron Evers, <a href="https://web.archive.org/web/20131119232322/https://www.facebook.com/hvsbackup/posts/603935849652915?comment_id=5986671&amp;offset=0&amp;total_comments=1¬if_t=share_comment">Facebook</a></small>
+        </blockquote>
+        <blockquote>Ideaal: back-up maken van al je Hyves gegevens zoals foto's, krabbels etc. Opzegging gaat voor mij dan toch wel dichtbij komen!
+          <small>@Marketim, <a href="https://web.archive.org/web/20131119232322/http://twitter.com/Marketim/statuses/162241837178945536" target="_blank">Twitter</a></small>
+        </blockquote>
+        <blockquote>Echt bedankt, ik wist niet hoe ik anders al die foto's moest backuppen! Een 5 euro goed gespendeerd! ;)
+          <small>@XonaTanoX, <a href="https://web.archive.org/web/20131119232322/http://twitter.com/XonaTanoX/statuses/120962322893242368" target="_blank">Twitter</a></small>
+        </blockquote>
+        <blockquote>Met één druk op de knop de inhoud van uw Hyves-profiel downloaden, zeer gebruiksvriendelijk, alles opgeslagen als handige HTML-bestanden
+          <small>Martin Gijzemijter, <a href="https://web.archive.org/web/20131119232322/http://computertotaal.nl/" target="_blank">ComputerTotaal!</a></small>
+        </blockquote>
+        <blockquote>Werkt super simpel die backup! Als ik het zelf kan, dan moet het voor anderen ook niet zo moeilijk in gebruik zijn ;-)
+          <small>Marloes Hentzen</small>
+        </blockquote>
+        <blockquote>Met hun applicatie kun je in één keer downloaden wat je zelf ooit op je eigen Hyves hebt achtergelaten, en veilig stellen.
+          <small>Leon Krijnen, <a href="https://web.archive.org/web/20131119232322/http://www.dutchcowboys.nl/" target="_blank">Dutchcowboys</a></small>
+        </blockquote>
+        <blockquote>Mooi programma ook, zeker de moeite waard.
+          <small>Sebastiaan Jacobs</small>
+        </blockquote>
+        <blockquote>Geweldig programma om een backup te maken van al mijn Hyves bestanden. Dankzij dit programma waren toch niet al mijn foto's verloren...
+          <small>Chantal Pruim, <a href="https://web.archive.org/web/20131119232322/http://www.facebook.com/permalink.php?story_fbid=266069983439505&amp;id=150183405028164" target="_blank">HVSbackup's Facebook prikbord</a></small>
+        </blockquote>
+        <a href="https://web.archive.org/web/20131119232322/http://hvsbackup.nl/" class="block text-sm my-4">Bekijk hier de hvsbackup.nl website op 19 november 2013 in de Wayback machine.</a>
+      </div>
+      <div class="grow lg:max-w-1/2">
+        <img src="/2012-hvsbackup_bndestem.jpg" class="rounded-sm" />
+      </div>
     </div>
   </section>
 </template>

@@ -97,11 +97,11 @@ const setupHcaptcha = () => {
     <form method="post" action="https://mailings.sebastix.dev/subscription/form" class="listmonk-form">
       <div>
         <h3 class="text-xl font-bold mb-2">
-          Blijf op de hoogte
+          Meld je aan voor de nieuwsbrief
         </h3>
         <input type="hidden" name="nonce" />
         <p>
-          <input type="email" name="email" autocomplete="on" required placeholder="E-mail" class="p-2 bg-white border border-nyves-orange rounded-sm text-base min-w-[360px]" />
+          <input type="email" name="email" autocomplete="on" required placeholder="Type hier jouw e-mailadres" class="p-2 bg-white border border-nyves-orange rounded-sm text-base min-w-[360px]" />
         </p>
         <p>
           <input id="6ef0a" type="checkbox" name="l" checked value="6ef0a7dc-b3b2-4f8e-bb8f-c6f03b327e4c" class="hidden" />
@@ -111,7 +111,7 @@ const setupHcaptcha = () => {
       </div>
     </form>
     <div class="mt-8">
-      Of word lid van de Nyves chat groep op Signal.
+      Of word lid van de Nyves chat groep op Signal:
       <br />
       <a href="https://signal.group/#CjQKIIGUFWYny2Io9ZV9nJZh-pphkNNQoS_ZoOKL38BueZz-EhBy14nSfdoW8If9NsJK6Er9" target="_blank" rel="nofollow" class="mt-2 inline-flex items-center break-all font-bold">
         <img src="~/assets/signal-logo.svg" class="size-8 rounded-sm mx-auto mr-2">

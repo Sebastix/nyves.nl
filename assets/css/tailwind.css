@@ -17,3 +17,12 @@ a {
 .nyves-bg-gray-header {
   @apply bg-linear-to-b from-[#f2f2f2] to-[#fcfcfc];
 }
+
+.testimonials {
+  blockquote {
+    @apply border-l-4 border-gray-200 pl-3 mb-4 font-serif text-lg;
+    small {
+      @apply block italic;
+    }
+  }
+}

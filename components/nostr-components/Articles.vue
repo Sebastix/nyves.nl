@@ -188,7 +188,7 @@ watch(() => props.autoRefresh, () => {
 
 <template>
   <section>
-    <h1 class="my-3 text-2xl">
+    <h1 class="my-3 text-4xl text-nyves-blue text-center font-bold">
       {{ sectionTitle }}
     </h1>
 

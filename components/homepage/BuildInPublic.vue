@@ -68,14 +68,21 @@
               </li>
             </ul>
           </div>
-
+          <a
+              href="https://gitworkshop.dev/relay.nyves.nl"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center px-6 py-3 bg-nyves-orange text-white! font-semibold rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200"
+          >
+            Grasp
+          </a>
           <a 
             href="https://gitlab.com/sebastix-group/nyves" 
             target="_blank" 
             rel="noopener noreferrer"
-            class="inline-flex items-center px-6 py-3 bg-nyves-orange text-white! font-semibold rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200"
+            class="inline-flex items-center ml-2 px-6 py-3 bg-nyves-orange text-white! font-semibold rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200"
           >
-            Bekijk code repository
+            GitLab
           </a>
         </div>
 
@@ -91,7 +98,7 @@
               </div>
               <div>
                 <h3 class="text-xl font-bold text-gray-900">Project management</h3>
-                <p class="text-gray-600 text-sm">Live ontwikkelingsdashboard</p>
+                <p class="text-gray-600 text-sm">Live te volgen via ons Taiga board</p>
               </div>
             </div>
             
@@ -103,7 +110,7 @@
 
           <div class="space-y-4 mb-6">
             <p class="text-gray-700 leading-relaxed">
-              Volg de <strong>ontwikkelingsvoortgang</strong> live via ons Taiga dashboard. 
+              Bekijk de <strong>voortgang</strong> live via ons Taiga dashboard.
               Zie welke features in ontwikkeling zijn en wat er op de roadmap staat.
             </p>
             
@@ -149,7 +156,7 @@
           </h3>
           <p class="text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Door <strong>build in public</strong> te werken, delen we niet alleen onze code, maar ook ons proces. 
-            Dit zorgt voor vertrouwen, leert de community en nodigt uit tot samenwerking. 
+            Dit zorgt voor vertrouwen, kan iedereen ervan leren en nodigt anderen uit tot samenwerking.
           </p>
         </div>
       </div>

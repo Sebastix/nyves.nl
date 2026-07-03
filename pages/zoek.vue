@@ -9,7 +9,7 @@ useSeoMeta({
 
 <template>
   <section>
-    <h1 class="text-2xl my-3 text-center">Zoeken</h1>
+    <h1 class="text-3xl text-nyves-blue my-3 text-center font-bold">Zoeken</h1>
 
     <!-- Zoek Component -->
     <div class="max-w-md mx-auto text-2xl mb-6">

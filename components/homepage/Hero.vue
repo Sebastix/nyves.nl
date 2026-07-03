@@ -28,9 +28,9 @@
         </p>
         
         <p class="text-gray-500 text-base">
-          Dankzij <strong class="text-nyves-blue">Nostr</strong>. Een open en simpel protocol waarmee data wordt gedistribueerd via <strong class="text-nyves-blue">relays</strong>.
+          Dankzij <strong class="text-nyves-blue-purple">Nostr</strong>. Een open en simpel protocol waarmee data wordt gedistribueerd via <strong class="text-nyves-blue-purple">relays</strong>.
           <br />
-          Het individu heeft dankzij <strong class="text-nyves-blue">cryptografisch gesigneerde content</strong> alle macht. Iedereen kan verifiëren wat ieders content is.
+          Het individu heeft dankzij <strong class="text-nyves-blue-purple">cryptografisch gesigneerde content</strong> alle macht. Iedereen kan verifiëren wat ieders content is.
         </p>
         <p>
           Nyves is dus geen platform.
