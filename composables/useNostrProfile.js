@@ -2,7 +2,9 @@ import * as nip19 from 'nostr-tools/nip19'
 
 // Default relays to use for fetching profile data
 const DEFAULT_RELAYS = [
-  'wss://relay.nyves.nl'
+  'wss://relay.nyves.nl',
+  'wss://indexer.coracle.social',
+  'wss://purplepag.es'
 ]
 
 export const useNostrProfile = () => {
@@ -16,14 +18,15 @@ export const useNostrProfile = () => {
    */
   const fetchProfile = async (npub, relays = DEFAULT_RELAYS) => {
     try {
+      let pubkey = npub;
       // Decode npub to get hex pubkey
-      const decoded = nip19.decode(npub)
-      if (decoded.type !== 'npub') {
-        throw new Error('Invalid npub format')
+      if (npub.startsWith('npub1')) {
+        const decoded = nip19.decode(npub)
+        if (decoded.type !== 'npub') {
+          throw new Error('Invalid npub format')
+        }
+        pubkey = decoded.data
       }
-      
-      const pubkey = decoded.data
-
       // Create filter for kind 0 (metadata) events
       const filter = {
         kinds: [0],

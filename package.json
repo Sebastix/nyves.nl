@@ -9,7 +9,7 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "serve": "npx serve ./.output/public",
+    "serve": "node ./.output/server/index.mjs",
     "postinstall": "nuxt prepare"
   },
   "dependencies": {

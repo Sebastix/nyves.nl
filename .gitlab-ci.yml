@@ -7,11 +7,13 @@ site:nuxt-build:
   stage: build
   script:
     - npm install
+    #- npm run build
     - npm run generate
   artifacts:
     expire_in: 3 hours
     paths:
       - .output/public
+      - .output/server
 
 deploy:prod:
   image: alpine
@@ -38,3 +40,6 @@ deploy:prod:
     - echo "Deployment ready, check https://nyves.nl"
   dependencies:
     - site:nuxt-build
+
+# @todo - deploy the application with ssr / universal rendering - https://next.nyves.nl
+# deploy:prod-ssr:
