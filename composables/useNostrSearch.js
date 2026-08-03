@@ -46,7 +46,7 @@ export const useNostrSearch = () => {
       const filter = {
         kinds: [0],              // Kind 0 = gebruikersmetadata
         search: schoneZoekterm,  // NIP-50 zoekveld
-        limit: 20                // Redelijke limiet voor UI
+        limit: 50                // Redelijke limiet voor UI
       }
 
       console.log('Zoeken naar profielen:', { zoekterm: schoneZoekterm, relay: SEARCH_RELAY })

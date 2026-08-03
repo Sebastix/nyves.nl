@@ -1,32 +1,32 @@
 <script setup>
 import { ref, onMounted, nextTick } from 'vue'
 
-// State voor hCaptcha
-const hcaptchaResponse = ref('')
+// State voor Altcha Captcha
+const CaptchaResponse = ref('')
 const isSubmitting = ref(false)
 const submitMessage = ref('')
 
 // hCaptcha callback functies
-const onHcaptchaSuccess = (token) => {
-  console.log('hCaptcha success:', token)
-  hcaptchaResponse.value = token
+const onAltchaSuccess = (token) => {
+  console.log('Altcha success:', token)
+  CaptchaResponse.value = token
 }
 
-const onHcaptchaError = (error) => {
-  console.error('hCaptcha error:', error)
-  hcaptchaResponse.value = ''
+const onAltchaError = (error) => {
+  console.error('Altcha error:', error)
+  CaptchaResponse.value = ''
 }
 
-const onHcaptchaExpired = () => {
-  console.log('hCaptcha expired')
-  hcaptchaResponse.value = ''
+const onAltchaExpired = () => {
+  console.log('Altcha expired')
+  CaptchaResponse.value = ''
 }
 
 // Form submit handler
 const handleSubmit = async (event) => {
   event.preventDefault()
   
-  if (!hcaptchaResponse.value) {
+  if (!CaptchaResponse.value) {
     submitMessage.value = 'Voltooi eerst de CAPTCHA verificatie.'
     return
   }
@@ -36,7 +36,7 @@ const handleSubmit = async (event) => {
   
   try {
     const formData = new FormData(event.target)
-    formData.append('h-captcha-response', hcaptchaResponse.value)
+    formData.append('h-captcha-response', CaptchaResponse.value)
     
     const response = await fetch('https://mailings.sebastix.dev/subscription/form', {
       method: 'POST',
@@ -50,7 +50,7 @@ const handleSubmit = async (event) => {
       if (window.hcaptcha) {
         window.hcaptcha.reset()
       }
-      hcaptchaResponse.value = ''
+      CaptchaResponse.value = ''
     } else {
       submitMessage.value = 'Er ging iets mis. Probeer het opnieuw.'
     }
@@ -70,25 +70,25 @@ onMounted(async () => {
   // Check if hCaptcha script already loaded
   if (!document.querySelector('script[src*="hcaptcha.com"]')) {
     const script = document.createElement('script')
-    script.src = 'https://js.hcaptcha.com/1/api.js'
+    script.src = 'https://mailings.sebastix.dev/public/static/altcha.umd.js'
     script.async = true
     script.defer = true
     document.head.appendChild(script)
     
     script.onload = () => {
-      setupHcaptcha()
+      setupAltcha()
     }
   } else {
     // Script already loaded
-    setupHcaptcha()
+    setupAltcha()
   }
 })
 
-const setupHcaptcha = () => {
+const setupAltcha = () => {
   // Make callback functions globally available
-  window.onHcaptchaSuccess = onHcaptchaSuccess
-  window.onHcaptchaError = onHcaptchaError  
-  window.onHcaptchaExpired = onHcaptchaExpired
+  window.onAltchaSuccess = onAltchaSuccess
+  window.onAltchaError = onAltchaError
+  window.onAltchaExpired = onAltchaExpired
 }
 </script>
 <template>
@@ -106,7 +106,9 @@ const setupHcaptcha = () => {
         <p>
           <input id="6ef0a" type="checkbox" name="l" checked value="6ef0a7dc-b3b2-4f8e-bb8f-c6f03b327e4c" class="hidden" />
         </p>
-        <div class="h-captcha inline-block mx-auto mt-3" data-sitekey="93256e36-e8e2-4268-92d6-08e8376e03a3"></div>
+        <div class="inline-block mx-auto mt-3">
+          <altcha-widget challengeurl="https://mailings.sebastix.dev/api/public/captcha/altcha"></altcha-widget>
+        </div>
         <input type="submit" value="Aanmelden" class="mx-auto block mt-2 px-6 py-2 bg-nyves-orange cursor-pointer text-white! font-semibold rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200" />
       </div>
     </form>

@@ -32,7 +32,7 @@ export default defineNuxtConfig({
 
   devtools: { enabled: true },
 
-  ssr: false,
+  ssr: true,
 
   css: [
     '~/assets/css/tailwind.css',
@@ -42,6 +42,7 @@ export default defineNuxtConfig({
   modules: [
     '@pinia/nuxt',
     '@nuxtjs/i18n',
+    '@openmost/nuxt-matomo'
   ],
 
   i18n: {
@@ -62,6 +63,14 @@ export default defineNuxtConfig({
     }
   },
 
+  matomo: {
+    host: 'https://matomo.sebastix.nl/',
+    containerId: '17',
+    // Optional. Defaults to 'dataLayer' (GTM-style queue).
+    // Set to '_mtm' to push directly into Matomo's own queue.
+    dataLayerName: 'dataLayer',
+  },
+
   nitro: {
     // https://nuxt.com/docs/4.x/getting-started/prerendering
     prerender: {
@@ -71,4 +80,10 @@ export default defineNuxtConfig({
       ],
     },
   },
+
+  vue: {
+    compilerOptions: {
+      isCustomElement: (tag) => tag.includes('altcha-widget')
+    }
+  }
 })

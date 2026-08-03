@@ -37,7 +37,7 @@ const debouncedZoek = (term) => {
   
   debounceTimer.value = setTimeout(() => {
     zoekProfielen(term)
-  }, 300)
+  }, 10000)
 }
 
 // Watch zoekterm voor real-time zoeken (alleen voor dropdown)
@@ -221,8 +221,8 @@ onUnmounted(() => {
 
   <!-- Resultatenlijst onder formulier (na submit) - alleen op zoek pagina -->
   <div v-if="toonResultatenLijst && showResultsList" class="mt-4">
-    <h3 v-if="zoekData.laatsteQuery" class="text-lg font-medium text-gray-900 mb-3">
-      Zoekresultaten voor "{{ zoekData.laatsteQuery }}"
+    <h3 v-if="zoekData.laatsteQuery" class="text-sm text-center font-medium text-gray-900 mb-3">
+      {{ zoekData.resultaten.length }} resultaten gevonden voor "{{ zoekData.laatsteQuery }}"
     </h3>
 
     <!-- Error state -->
@@ -245,8 +245,7 @@ onUnmounted(() => {
         <svg class="mx-auto size-12 text-gray-400 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
         </svg>
-        <h3 class="text-lg font-medium text-gray-900 mb-1">Geen profielen gevonden</h3>
-        <p class="text-gray-500">Er zijn geen profielen gevonden voor "{{ zoekData.laatsteQuery }}"</p>
+        <p class="text-gray-500">Er zijn geen profielen gevonden met de zoekterm "{{ zoekData.laatsteQuery }}"</p>
       </div>
     </div>
 
@@ -274,13 +273,6 @@ onUnmounted(() => {
             </p>
           </div>
         </div>
-      </div>
-
-      <!-- Resultaten teller -->
-      <div class="mt-4 pt-3 border-t border-gray-200">
-        <p class="text-sm text-gray-500 text-center">
-          {{ zoekData.resultaten.length }} profiel{{ zoekData.resultaten.length !== 1 ? 'en' : '' }} gevonden
-        </p>
       </div>
     </div>
   </div>
