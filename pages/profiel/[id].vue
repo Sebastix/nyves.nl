@@ -306,6 +306,14 @@ useSeoMeta({
             </div>
           </div>
 
+          <!-- Login Box -->
+          <div class="bg-yellow-100 border border-yellow-400 p-2 mb-3 text-xs">
+            Je moet ingelogd zijn om dit onderdeel te bekijken!
+            <div class="mt-2">
+              <NuxtLink to="/connect" class="block mb-1">🔑 Klik hier om in te loggen...</NuxtLink>
+            </div>
+          </div>
+
           <!-- Krabbels Section -->
           <div class="border border-gray-200 bg-[#fcfcfc] rounded-sm">
             <h3 class="nyves-bg-gray-header p-2 text-nyves-blue font-bold">Krabbels</h3>
@@ -340,14 +348,22 @@ useSeoMeta({
               </div>
             </div>
           </div>
-        </div>
-      </div>
 
-      <!-- Login Box -->
-      <div class="bg-yellow-100 border border-yellow-400 p-2 mt-3 text-xs">
-        Je moet ingelogd zijn om dit onderdeel te bekijken!
-        <div class="mt-2">
-          <NuxtLink to="/connect" class="block mb-1">🔑 Klik hier om in te loggen...</NuxtLink>
+          <!-- WWW section -->
+          <div class="border border-gray-200 bg-[#fcfcfc] rounded-sm mb-3">
+            <h3 class="nyves-bg-gray-header p-2 text-nyves-blue font-bold">WieWatWaar</h3>
+            <div class="my-1">
+              <NuxtLink to="#" class="text-xs mx-2">› Meer</NuxtLink>
+            </div>
+          </div>
+
+          <!-- Blogs section -->
+          <div class="border border-gray-200 bg-[#fcfcfc] rounded-sm mb-3">
+            <h3 class="nyves-bg-gray-header p-2 text-nyves-blue font-bold">Blog</h3>
+            <p class="p-2 text-sm">
+              Geen items gevonden
+            </p>
+          </div>
         </div>
       </div>
     </div>
