@@ -29,7 +29,6 @@ onMounted(async () => {
 
       ws.onmessage = (event) => {
         try {
-          console.log(event)
           const data = JSON.parse(event.data)
           if (data[0] === 'COUNT' && data[1] === countId) {
             if (data[2]) {
