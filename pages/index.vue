@@ -1,6 +1,5 @@
 <script setup>
 // Set page meta
-import MailingList from '../components/MailingList.vue';
 
 </script>
 
@@ -18,6 +17,8 @@ import MailingList from '../components/MailingList.vue';
 
     <!-- Build in Public Section -->
     <HomepageBuildInPublic />
+
+    <HomepageStatistics />
 
     <MailingList />
 

@@ -16,7 +16,7 @@
       </div>
 
       <!-- Main Content Grid -->
-      <div class="grid md:grid-cols-2">
+      <div class="grid md:grid-cols-2 rounded-sm border-gray-200 border">
         
         <!-- GitLab Repository Card -->
         <div class="bg-linear-to-br from-orange-50 to-red-50 p-8">
@@ -150,7 +150,7 @@
 
       <!-- Bottom Section -->
       <div class="text-center">
-        <div class="bg-gray-50 p-8">
+        <div class="bg-white p-8">
           <h3 class="text-2xl font-bold text-gray-900 mb-4">
             <span class="text-nyves-orange">Transparantie</span> & <span class="text-nyves-blue">Samenwerking</span>
           </h3>

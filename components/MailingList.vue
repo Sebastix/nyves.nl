@@ -101,7 +101,7 @@ const setupAltcha = () => {
         </h3>
         <input type="hidden" name="nonce" />
         <p>
-          <input type="email" name="email" autocomplete="on" required placeholder="Type hier jouw e-mailadres" class="p-2 bg-white border border-nyves-orange rounded-sm text-base min-w-[360px]" />
+          <input type="email" name="email" autocomplete="on" required placeholder="Jouw e-mailadres" class="p-2 bg-white border border-nyves-orange rounded-sm text-base min-w-[360px]" />
         </p>
         <p>
           <input id="6ef0a" type="checkbox" name="l" checked value="6ef0a7dc-b3b2-4f8e-bb8f-c6f03b327e4c" class="hidden" />

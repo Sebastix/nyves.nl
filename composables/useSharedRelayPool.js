@@ -95,11 +95,11 @@ export const useSharedRelayPool = () => {
         }
         
         // Wait a bit for connection to establish
-        await new Promise(resolve => setTimeout(resolve, 100))
+        await new Promise(resolve => setTimeout(resolve, 800))
       } else if (status === 'connecting') {
         // Wait for connection to open
         console.log(`⏳ Waiting for ${normalizedUrl} to connect...`)
-        await new Promise(resolve => setTimeout(resolve, 200))
+        await new Promise(resolve => setTimeout(resolve, 2500))
       }
     })
 
