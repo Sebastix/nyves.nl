@@ -67,6 +67,12 @@ onMounted(async () => {
       <div>0 wiewatwaar's</div>
       <div>0 blogs</div>
     </div>
+    <p class="my-8 text-lg">
+      Hoeveel profielen zijn er actief?
+    </p>
+    <div class="text-center text-xl">
+      <span class="font-bold">0</span> profielen
+    </div>
   </div>
 </template>
 

@@ -19,8 +19,16 @@ const props = defineProps({
   }
 })
 
-// Zoek functionaliteit
-const { zoekData, zoekProfielen, wisResultaten, sluit } = useNostrSearch()
+// Zoek functionaliteit met paginatie
+const { 
+  zoekData, 
+  paginatieInfo,
+  zoekProfielen, 
+  laadMeerResultaten,
+  gaNaarPagina,
+  wisResultaten, 
+  sluit 
+} = useNostrSearch()
 
 // Local reactive state
 const zoekterm = ref('')
@@ -138,11 +146,25 @@ onMounted(() => {
   checkUrlQuery()
 })
 
+// Paginatie helper functies
+const gaNaarVorigePagina = () => {
+  if (paginatieInfo.value.kanVorige) {
+    gaNaarPagina(paginatieInfo.value.huidigePagina - 1)
+  }
+}
+
+const gaNaarVolgendePagina = () => {
+  if (paginatieInfo.value.kanVolgende && paginatieInfo.value.huidigePagina < paginatieInfo.value.gelaafdePaginas) {
+    gaNaarPagina(paginatieInfo.value.huidigePagina + 1)
+  }
+}
+
 // Cleanup
 onUnmounted(() => {
   if (debounceTimer.value) {
     clearTimeout(debounceTimer.value)
   }
+  sluit()
 })
 </script>
 
@@ -251,6 +273,19 @@ onUnmounted(() => {
 
     <!-- Resultatenlijst -->
     <div v-else class="space-y-2">
+      <!-- Resultaten header -->
+      <div class="flex justify-between items-center mb-4">
+        <p class="text-sm text-gray-600">
+          {{ paginatieInfo.totaalGeladen }} profielen gevonden
+          <span v-if="zoekData.heeftMeer" class="text-nyves-blue">(meer beschikbaar)</span>
+        </p>
+        <div class="text-xs text-gray-500">
+          Pagina {{ paginatieInfo.huidigePagina }} 
+          ({{ paginatieInfo.startIndex }}-{{ paginatieInfo.endIndex }})
+        </div>
+      </div>
+
+      <!-- Profile cards -->
       <div
         v-for="profiel in zoekData.resultaten"
         :key="profiel.pubkey"
@@ -266,12 +301,78 @@ onUnmounted(() => {
           <!-- Profiel info -->
           <div class="flex-1">
             <h4 class="text-base font-medium text-gray-900">
-              {{ profiel.display_name }}
+              <NuxtLink :to="`profiel/${profiel.display_name }#${profiel.npub}`">
+                {{ profiel.display_name }}
+              </NuxtLink>
             </h4>
             <p v-if="profiel.display_name !== profiel.name" class="text-sm text-gray-500">
               @{{ profiel.name }}
             </p>
           </div>
+        </div>
+      </div>
+
+      <!-- Paginatie controls -->
+      <div class="flex justify-between items-center mt-6 pt-4 border-t border-gray-200">
+        <!-- Vorige pagina -->
+        <button
+          @click="gaNaarVorigePagina"
+          :disabled="!paginatieInfo.kanVorige"
+          class="flex items-center space-x-2 px-3 py-2 text-sm text-gray-600 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+          </svg>
+          <span>Vorige</span>
+        </button>
+
+        <!-- Pagina nummers (alleen voor geladen pagina's) -->
+        <div class="flex space-x-1">
+          <button
+            v-for="pagina in Array.from({length: paginatieInfo.gelaafdePaginas}, (_, i) => i + 1)"
+            :key="pagina"
+            @click="gaNaarPagina(pagina)"
+            :class="[
+              'px-3 py-2 text-sm rounded-md',
+              pagina === paginatieInfo.huidigePagina 
+                ? 'bg-nyves-blue text-white' 
+                : 'bg-white text-gray-600 border border-gray-300 hover:bg-gray-50'
+            ]"
+          >
+            {{ pagina }}
+          </button>
+          <span v-if="zoekData.heeftMeer" class="px-3 py-2 text-sm text-gray-400">...</span>
+        </div>
+
+        <!-- Volgende pagina / Meer laden -->
+        <div class="flex space-x-2">
+          <!-- Volgende pagina (binnen geladen resultaten) -->
+          <button
+            v-if="paginatieInfo.kanVolgende && paginatieInfo.huidigePagina < paginatieInfo.gelaafdePaginas"
+            @click="gaNaarVolgendePagina"
+            class="flex items-center space-x-2 px-3 py-2 text-sm text-gray-600 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
+          >
+            <span>Volgende</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </button>
+
+          <!-- Meer laden van relay -->
+          <button
+            v-if="zoekData.heeftMeer"
+            @click="laadMeerResultaten"
+            :disabled="zoekData.laadtMeer"
+            class="flex items-center space-x-2 px-4 py-2 text-sm text-white bg-nyves-blue rounded-md hover:bg-nyves-blue/90 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <svg v-if="zoekData.laadtMeer" class="animate-spin w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+            </svg>
+            <svg v-else class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+            </svg>
+            <span>{{ zoekData.laadtMeer ? 'Laden...' : 'Meer laden' }}</span>
+          </button>
         </div>
       </div>
     </div>
