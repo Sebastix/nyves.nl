@@ -2,7 +2,7 @@ import { ref, readonly, computed } from 'vue'
 import * as nip19 from 'nostr-tools/nip19'
 
 // Nyves relay voor zoeken
-const SEARCH_RELAY = 'wss://relay.nyves.nl'
+const SEARCH_RELAY = 'wss://rely.nyves.nl'
 
 export const useNostrSearch = () => {
   const { pool, queryRelays, closeRelays } = useSharedRelayPool()

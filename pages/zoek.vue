@@ -22,9 +22,9 @@ useSeoMeta({
     <!-- Relay Health Check -->
     <div class="max-w-md mx-auto">
       <p class="bg-nyves-blue-purple/10 rounded-sm p-2 text-sm mb-2">
-        Nyves maakt gebruik van <a href="https://nips.nostr.com/50" target="_blank">NIP-50 Search Capability</a> om informatie te doorzoeken op de relay <a href="https://relay.nyves.nl" target="_blank">https://relay.nyves.nl</a>.
+        Nyves maakt gebruik van <a href="https://nips.nostr.com/50" target="_blank">NIP-50 Search Capability</a> om informatie te doorzoeken op de relay <a href="https://rely.nyves.nl" target="_blank">https://rely.nyves.nl</a>.
       </p>
-      <RelayHealthCheck relay-url="wss://relay.nyves.nl" />
+      <RelayHealthCheck relay-url="wss://rely.nyves.nl" />
     </div>
 
   </section>
