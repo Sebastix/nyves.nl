@@ -48,7 +48,7 @@
           </svg>
           Zoek Profielen
         </NuxtLink>
-        <NuxtLink to="/profiel/sebastian" class="text-base/10">of bekijk de mockup</NuxtLink>
+        <NuxtLink to="/profiel/npub1qe3e5wrvnsgpggtkytxteaqfprz0rgxr8c3l34kk3a9t7e2l3acslezefe" class="text-base/10">of bekijk de mockup</NuxtLink>
       </div>
     </div>
   </section>

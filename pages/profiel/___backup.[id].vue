@@ -13,14 +13,18 @@ const { designData, fetchCustomDesign, setCustomDesign, toggleCustomDesign, remo
 // Custom design reactive property
 const custom_design = computed(() => designData.value.custom_design)
 
-// Profile data
-const profile = ref({
+// Nyves profile data
+const nyvesProfile = ref({
   name: '',
   username: '',
   joinDate: '',
   brands: ['Hyves'],
   spots:  Math.round((Math.floor(Math.random() * 100 + 50)) / 10),
   urlWaybackMachine: ''
+})
+// Nostr profile data
+const profile = ref({
+
 })
 const friends = ref([
   { id: 1, name: 'Christina', username: 'christina' },
@@ -33,9 +37,9 @@ const friends = ref([
   { id: 8, name: 'Josien', username: 'josien' },
   { id: 9, name: 'Frits', username: 'frminits' }
 ])
-const photos = ref({
-  albumCount: '3',
-  photoCount: '67'
+const media = ref({
+  albumCount: 2,
+  photoCount: 5
 })
 const krabbels = ref([
   {
@@ -61,7 +65,7 @@ const hyvesItems = ref([
   { id: 2, caption: 'Civic Club Holland', link: '#' },
   { id: 3, caption: 'HVSbackup', link: '#' },
   { id: 4, caption: 'Power Unlimited', link: '#' },
-  { id: 5, caption: 'MTV', link: '#' }
+  // { id: 5, caption: 'MTV', link: '#' }
 ])
 const loading = ref(true)
 const error = ref(null)
@@ -207,6 +211,13 @@ useSeoMeta({
   title: 'Profiel - Nyves',
   description: 'Bekijk Nostr profiel op Nyves'
 })
+// Validate route
+definePageMeta({
+  validate (route) {
+     // todo
+     return true
+  }
+})
 </script>
 
 <template>
@@ -241,10 +252,10 @@ useSeoMeta({
       <div class="grid grid-cols-1 md:grid-cols-2 profileHeader">
         <h1 class="col-span-2 text-3xl font-bold mb-1">{{ profile.name }} <a :href="profile.urlWaybackMachine" target="_blank" class="text-xs" v-if="profile.urlWaybackMachine">{{ profile.urlWaybackMachine }}</a></h1>
         <div class="mb-2">
-          <NuxtLink :to="`/profiel/${profile.username}/over`" class="text-orange-600 hover:underline mr-4 text-xs font-bold">Over</NuxtLink>
-          <NuxtLink :to="`/profiel/${profile.username}/vrienden`" class="mr-4 text-xs">Vrienden</NuxtLink>
-          <NuxtLink :to="`/profiel/${profile.username}/fotos`" class="mr-4 text-xs">Foto's</NuxtLink>
-          <NuxtLink :to="`/profiel/${profile.username}/meer`" class="text-xs">Meer</NuxtLink>
+          <NuxtLink :to="`/profiel/${profile.username}#over`" class="text-orange-600 hover:underline mr-4 text-xs font-bold">Over</NuxtLink>
+          <NuxtLink :to="`/profiel/${profile.npub}/vrienden`" class="mr-4 text-xs">Vrienden</NuxtLink>
+          <NuxtLink :to="`/profiel/${profile.username}#fotos`" class="mr-4 text-xs">Foto's</NuxtLink>
+          <NuxtLink :to="`/profiel/${profile.username}#meer`" class="text-xs">Meer</NuxtLink>
         </div>
         <button
             @click="toggleCustomDesign"
@@ -261,18 +272,18 @@ useSeoMeta({
         <!-- Profile Picture Column -->
         <div class="col-span-1 lg:w-[150px]">
           <!-- Profile Section Component -->
-          <ProfielProfilePicture :profile="profile" />
+          <ProfielProfilePicture :profile="profile" :nyvesProfile="nyvesProfile" />
         </div>
 
         <!-- Profile About Column -->
         <div class="col-span-2 lg:w-[420px]">
-          <ProfielProfileAbout :profile="profile" />
+          <ProfielProfileAbout :profile="profile" :nyvesProfile="nyvesProfile" />
         </div>
 
         <!-- Right Column -->
         <div class="col-span-3 md:flex-1">
           <!-- Friends Grid Component -->
-          <ProfielFriendsGrid :friends="friends" />
+          <ProfielFriendsGrid :profile="profile" :friends="friends" />
         </div>
       </div>
 
@@ -280,39 +291,8 @@ useSeoMeta({
       <div class="flex flex-col md:flex-row gap-2 mt-3">
         <!-- Bottom Left -->
         <div class="basis-1/2">
-          <!-- Foto's & Video's Section -->
-          <div class="border border-gray-200 bg-[#fcfcfc] rounded-sm mb-3">
-            <h3 class="nyves-bg-gray-header p-2 text-nyves-blue font-bold flex justify-between">
-              <span>Foto's & video's</span>
-              <NuxtLink to="#" class="text-xs/5 font-normal">Gespot! ({{ profile.spots }})</NuxtLink>
-            </h3>
-            <div class="grid grid-cols-4 lg:grid-cols-5 gap-2 p-2">
-              <div class="min-h-[80px] aspect-square bg-gray-200 border border-gray-300 hover:border-gray-600 transition-border duration-150 shadow-md/5"></div>
-              <div class="bg-gray-200 border border-gray-300 hover:border-gray-600 transition-border duration-150 shadow-md/5"></div>
-              <div class="bg-gray-200 border border-gray-300 hover:border-gray-600 transition-border duration-150 shadow-md/5"></div>
-              <div class="bg-gray-200 border border-gray-300 hover:border-gray-600 transition-border duration-150 shadow-md/5"></div>
-              <div class="bg-gray-200 border border-gray-300 hover:border-gray-600 transition-border duration-150 shadow-md/5"></div>
-              <div class="bg-gray-200 border border-gray-300 hover:border-gray-600 transition-border duration-150 shadow-md/5"></div>
-              <div class="min-h-[80px] aspect-square bg-gray-200 border border-gray-300 hover:border-gray-600 transition-border duration-150 shadow-md/5"></div>
-              <div class="bg-gray-200 border border-gray-300 hover:border-gray-600 transition-border duration-150 shadow-md/5"></div>
-              <div class="bg-gray-200 border border-gray-300 hover:border-gray-600 transition-border duration-150 shadow-md/5"></div>
-              <div class="bg-gray-200 border border-gray-300 hover:border-gray-600 transition-border duration-150 shadow-md/5"></div>
-              <div class="min-h-[80px] aspect-square bg-gray-200 border border-gray-300 hover:border-gray-600 transition-border duration-150 shadow-md/5"></div>
-              <div class="bg-gray-200 border border-gray-300 hover:border-gray-600 transition-border duration-150 shadow-md/5"></div>
-              <div class="min-h-[80px] aspect-square bg-gray-200 border border-gray-300 hover:border-gray-600 transition-border duration-150 shadow-md/5"></div>
-            </div>
-            <div class="my-1">
-              <NuxtLink to="#" class="text-xs mx-2">› Bekijk alle foto's ({{ photos.albumCount }} albums, {{ photos.photoCount }} foto's)</NuxtLink>
-            </div>
-          </div>
 
-          <!-- Login Box -->
-          <div class="bg-yellow-100 border border-yellow-400 p-2 mb-3 text-xs">
-            Je moet ingelogd zijn om dit onderdeel te bekijken!
-            <div class="mt-2">
-              <NuxtLink to="/connect" class="block mb-1">🔑 Klik hier om in te loggen...</NuxtLink>
-            </div>
-          </div>
+          <ProfielMedia :profile="profile" :nyvesProfile="nyvesProfile" :media="media" />
 
           <!-- Krabbels Section -->
           <div class="border border-gray-200 bg-[#fcfcfc] rounded-sm">
@@ -341,7 +321,7 @@ useSeoMeta({
             <h3 class="nyves-bg-gray-header p-2 text-nyves-blue font-bold">Hyves</h3>
             <div class="grid grid-cols-4 gap-2 p-2">
               <div v-for="item in hyvesItems" :key="item.id" class="text-center">
-                <NuxtLink :to="item.link" class="text-xs">
+                <NuxtLink :to="`${item.link}${item.caption}`" class="text-xs">
                   <div class="min-h-[80px] aspect-square bg-gray-200 border border-gray-300 hover:border-gray-600 transition-border duration-150 shadow-md/5 mx-auto mb-1"></div>
                   {{ item.caption }}
                 </NuxtLink>
@@ -364,10 +344,19 @@ useSeoMeta({
               Geen items gevonden
             </p>
           </div>
+
+          <!-- Login Box -->
+          <div class="bg-yellow-100 border border-yellow-400 p-2 mb-3 text-xs">
+            Je moet ingelogd zijn om dit onderdeel te bekijken!
+            <div class="mt-2">
+              <NuxtLink to="/connect" class="block mb-1">🔑 Klik hier om in te loggen...</NuxtLink>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
-  </div>
+  </div> <!-- End of main profile content -->
 </template>
 
 <style scoped>

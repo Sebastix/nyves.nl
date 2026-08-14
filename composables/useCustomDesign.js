@@ -26,9 +26,9 @@ export const useCustomDesign = () => {
 
       console.log(`Fetching custom design for pubkey: ${pubkey} from ${relay}`)
 
-      // Create filter for custom design event (kind 36767)
+      // Create filter for custom design event (kind 16767) for this pubkey.
       const filter = {
-        kinds: [36767],
+        kinds: [16767],
         authors: [pubkey],
         limit: 1
       }
