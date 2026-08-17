@@ -388,15 +388,7 @@ useSeoMeta({
                 class="flex items-center justify-between p-2 bg-white rounded border text-sm"
               >
                 <div class="flex-1 min-w-0">
-                  <p v-if="contact.petname" class="font-medium text-gray-900 truncate">
-                    {{ contact.petname }}
-                  </p>
-                  <p class="text-xs text-gray-500 font-mono">
-                    {{ contact.npub.substring(0, 20) }}...
-                  </p>
-                  <p v-if="contact.relay" class="text-xs text-blue-600">
-                    📡 {{ contact.relay }}
-                  </p>
+                  <NostrComponentsPubkeyToName :pubkey="contact.pubkey" />
                 </div>
                 
                 <NuxtLink 
@@ -414,7 +406,7 @@ useSeoMeta({
     </div>
 
     <!-- Technical Info -->
-    <div v-if="profile" class="max-w-4xl mx-auto px-4 pb-8">
+    <div v-if="profile" class="max-w-4xl mx-auto px-4 pb-8 hidden">
       <div class="mt-6 bg-gray-50 border border-gray-200 rounded-lg p-4">
         <h4 class="font-semibold text-gray-900 mb-2">🔧 Kind 3 Event Informatie</h4>
         <div class="text-sm text-gray-600 space-y-1">

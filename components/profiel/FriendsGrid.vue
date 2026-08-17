@@ -1,13 +1,71 @@
 <script setup>
+import { nip19 } from 'nostr-tools'
+
+const { queryRelays } = useSharedRelayPool()
+
+const contactListEvent = ref(null)
+const contactsData = ref([])
+const loading = ref(true)
+const error = ref(null)
+
 const props = defineProps({
   profile: {
     type: Object,
     required: true
-  },
-  friends: {
-    type: Array,
-    required: true
   }
+})
+
+const fetchContactList = async (pubkey) => {
+  loading.value = true
+  error.value = null
+  console.log('🔍 Fetching Kind 3 contact list for:', pubkey)
+  try {
+    const relays = [
+      'wss://relay.damus.io',
+      'wss://nos.lol',
+      'wss://relay.snort.social',
+      'wss://relay.primal.net'
+    ]
+
+    const filter = {
+      kinds: [3], // Kind 3 = Contact List
+      authors: [pubkey],
+      limit: 3 // Get recent contact lists
+    }
+
+    const events = await queryRelays(relays, filter)
+
+    console.log(`📥 Found ${events.length} Kind 3 events:`, events)
+
+    if (events.length > 0) {
+      const sortedEvents = events.sort((a, b) => b.created_at - a.created_at)
+      const latestEvent = sortedEvents[0]
+      contactListEvent.value = latestEvent
+      // Parse p tags (pubkeys being followed)
+      const contacts = latestEvent.tags
+        .filter(tag => tag[0] === 'p' && tag[1]) // Filter for 'p' tags with pubkey
+        .map(tag => ({
+          pubkey: tag[1], // hex pubkey
+          npub: nip19.npubEncode(tag[1]), // convert to npub
+          relay: tag[2] || null, // optional relay URL
+          name: tag[3] || null // optional name
+        }))
+      contactsData.value = contacts
+      loading.value = false
+    } else {
+      console.log('No Kind 3 contact list found for this user')
+      contactsData.value = []
+      loading.value = false
+    }
+
+  } catch (e) {
+    console.error('Error fetching contact list:', error)
+    throw error
+  }
+}
+
+onMounted(async () => {
+  await fetchContactList(props.profile.pubkey)
 })
 </script>
 
@@ -16,16 +74,24 @@ const props = defineProps({
     <!-- Friends Section -->
     <h3 class="nyves-bg-gray-header h-10 font-bold text-nyves-blue mb-2 p-2">
       <NuxtLink :to="`/profiel/${profile.npub}/vrienden`">
-        Vrienden ({{ Math.round((Math.floor(Math.random() * 200 + 150)) / 10) }})
+        Vrienden ({{ contactsData.length }})
       </NuxtLink>
     </h3>
-    <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-3 gap-1 mb-4">
-      <div v-for="friend in friends" :key="friend.id" class="text-center">
-        <NuxtLink :to="`/profiel/${friend.username}`" class="text-xs">
-          <div class="size-25 bg-gray-200 border border-gray-300 hover:border-gray-600 transition-border duration-150 shadow-md/5 mx-auto mb-1"></div>
-          {{ friend.name }}
-        </NuxtLink>
+    <!-- Loading State -->
+    <div v-if="loading">
+      <div class="text-center">
+        <div class="animate-spin rounded-full size-16 border-b-2 border-nyves-blue mx-auto my-16"></div>
       </div>
+    </div>
+    <div v-else class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-3 gap-1 mb-4">
+      <template v-for="(contact, index) in contactsData" :key="contact.id">
+        <div v-if="index < 9" class="text-center">
+          <NuxtLink :to="`/profiel/${contact.npub}`" class="text-xs">
+            <NostrComponentsProfilePicture :pubkey="contact.pubkey" />
+            <NostrComponentsPubkeyToName :pubkey="contact.pubkey" />
+          </NuxtLink>
+        </div>
+      </template>
     </div>
     <div class="my-1">
       <NuxtLink :to="`/profiel/${profile.npub}/vrienden`" class="text-xs mx-2">› Bekijk alle vrienden</NuxtLink>

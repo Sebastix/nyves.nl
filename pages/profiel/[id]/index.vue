@@ -17,20 +17,7 @@ const nyvesProfile = ref({
   urlWaybackMachine: ''
 })
 // Nostr profile data
-const profile = ref({
-
-})
-const friends = ref([
-  { id: 1, name: 'Christina', username: 'christina' },
-  { id: 2, name: 'Elise', username: 'elise' },
-  { id: 3, name: 'Monique', username: 'monique' },
-  { id: 4, name: 'Bart', username: 'bart' },
-  { id: 5, name: 'Hanneke', username: 'hanneke' },
-  { id: 6, name: 'Isabeen', username: 'isabeen' },
-  { id: 7, name: 'Bianca', username: 'bianca' },
-  { id: 8, name: 'Josien', username: 'josien' },
-  { id: 9, name: 'Frits', username: 'frminits' }
-])
+const profile = ref({})
 const media = ref({
   albumCount: 2,
   photoCount: 5
@@ -283,7 +270,7 @@ console.log('[id]/index.vue loaded:', {
         <!-- Right Column -->
         <div class="col-span-3 md:flex-1">
           <!-- Friends Grid Component -->
-          <ProfielFriendsGrid :profile="profile" :friends="friends" />
+          <ProfielFriendsGrid :profile="profile" />
         </div>
       </div>
 

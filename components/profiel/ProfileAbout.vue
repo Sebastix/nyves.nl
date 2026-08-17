@@ -9,6 +9,10 @@ const props = defineProps({
     required: true
   },
 })
+
+onMounted(() => {
+  console.log(props.nyvesProfile)
+})
 </script>
 <template>
   <div class="border border-gray-200 bg-[#fcfcfc] rounded-sm">
@@ -22,18 +26,24 @@ const props = defineProps({
     <div class="p-2">
       <div class="text-xs leading-normal">
         <strong>Naam:</strong> {{ profile.name }}<br>
-        Hyver sinds {{ nyvesProfile.joinDate }}
+        <template v-if="nyvesProfile.joinDate">
+          Hyver sinds {{ nyvesProfile.joinDate }}
+        </template>
       </div>
       <div class="mt-2 clear-both text-xs">
-        <strong>Mijn merken: </strong>
-        <template v-for="(brand, index) in nyvesProfile.brands" :key="brand">
-          <NuxtLink :to="`#${brand.toLowerCase()}`">{{ brand }}</NuxtLink>
-          <span v-if="index < nyvesProfile.brands.length - 1">, </span>
+        <template v-if="nyvesProfile.username">
+          <strong>Mijn merken: </strong>
+          <template v-for="(brand, index) in nyvesProfile.brands" :key="brand">
+            <NuxtLink :to="`#${brand.toLowerCase()}`">{{ brand }}</NuxtLink>
+            <span v-if="index < nyvesProfile.brands.length - 1">, </span>
+          </template>
+          <br />
+          <strong>Spots:</strong> ({{ nyvesProfile.spots }})
+          <br />
         </template>
-        <br />
-        <strong>Spots:</strong> ({{ nyvesProfile.spots }})
-        <br />
-        <strong>Website:</strong> <a :href="profile.website" v-if="profile.website" target="_blank">{{ profile.website }}</a>
+        <template v-if="profile.website">
+          <strong>Website:</strong> <a :href="profile.website" v-if="profile.website" target="_blank">{{ profile.website }}</a>
+        </template>
       </div>
       <NuxtLink to="#" class="text-xs">› Bekijk volledig profiel</NuxtLink>
     </div>

@@ -25,7 +25,9 @@ onUnmounted(() => {
       <div class="min-h-24 md:size-33 aspect-square border border-[#dfdfdf] bg-white mx-auto mb-2">
         <img :src="profile.picture" v-if="profile.picture" />
       </div>
-      <NuxtLink to="#" class="text-xs">Gespot! ({{ nyvesProfile.spots }})</NuxtLink>
+      <template v-if="nyvesProfile.username">
+        <NuxtLink to="#" class="text-xs">Gespot! ({{ nyvesProfile.spots }})</NuxtLink>
+      </template>
     </div>
   </div>
 </template>
