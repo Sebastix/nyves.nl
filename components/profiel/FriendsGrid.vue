@@ -19,6 +19,7 @@ const fetchContactList = async (pubkey) => {
   loading.value = true
   error.value = null
   try {
+    // todo - get read relay from this pubkey
     const relays = [
       'wss://relay.damus.io',
       'wss://nos.lol',
@@ -55,7 +56,7 @@ const fetchContactList = async (pubkey) => {
       //contactsData.value = contacts
       loading.value = false
     } else {
-      console.log('No Kind 3 contact list found for this user')
+      console.log('No Kind 3 contact list found for this profile')
       contactsData.value = []
       loading.value = false
     }

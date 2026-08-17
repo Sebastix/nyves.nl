@@ -24,7 +24,7 @@ export const useCustomDesign = () => {
       designData.value.loading = true
       designData.value.error = null
 
-      console.log(`Fetching custom design for pubkey: ${pubkey} from ${relay}`)
+      //console.log(`Fetching custom design for pubkey: ${pubkey} from ${relay}`)
 
       // Create filter for custom design event (kind 16767) for this pubkey.
       const filter = {
@@ -49,7 +49,7 @@ export const useCustomDesign = () => {
         // Extract background image if bg tag exists
         if (themeSettings.bg) {
           designData.value.backgroundImage = themeSettings.bg
-          console.log('Background image found:', themeSettings.bg)
+          //console.log('Background image found:', themeSettings.bg)
         }
 
       } else {
@@ -86,14 +86,14 @@ export const useCustomDesign = () => {
         
         // Basic URL validation
         if (url.startsWith('http://') || url.startsWith('https://')) {
-          console.log('Extracted background URL:', url)
+          //console.log('Extracted background URL:', url)
           return url
         }
       }
 
       // If no "url " prefix, check if it's directly a URL
       if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) {
-        console.log('Direct background URL:', trimmed)
+        //console.log('Direct background URL:', trimmed)
         return trimmed
       }
 
@@ -155,7 +155,7 @@ export const useCustomDesign = () => {
         }
       }
 
-      console.log('Parsed theme settings:', themeSettings)
+      //console.log('Parsed theme settings:', themeSettings)
       return themeSettings
 
     } catch (error) {
@@ -166,29 +166,28 @@ export const useCustomDesign = () => {
 
   /**
    * Apply background to page
+   * @param {string} color - background color
    * @param {string} imageUrl - URL of the background image
    * @param {HTMLElement} element - Element to apply background to (defaults to body)
    */
-  const applyBackground = (imageUrl, element = null) => {
+  const applyBackground = (color,imageUrl= '', element = null) => {
     try {
       const targetElement = element || document.body
-      
-      if (imageUrl) {
-        console.log('Applying background image:', imageUrl)
+      targetElement.style.backgroundColor = color
+      if (imageUrl !== '') {
         targetElement.style.backgroundImage = `url(${imageUrl})`
         targetElement.style.backgroundSize = 'cover'
         targetElement.style.backgroundPosition = 'center'
         targetElement.style.backgroundRepeat = 'no-repeat'
         targetElement.style.backgroundAttachment = 'fixed'
       }
-      document.body.style.backgroundColor = designData.value.themeSettings.colors.background;
     } catch (error) {
-      console.error('Failed to apply background image:', error)
+      console.error('Failed to apply background:', error)
     }
   }
 
   /**
-   * Remove background image from page
+   * Remove background from page
    * @param {HTMLElement} element - Element to remove background from (defaults to body)
    */
   const removeBackground = (element = null) => {
@@ -201,7 +200,7 @@ export const useCustomDesign = () => {
       targetElement.style.backgroundAttachment = ''
       targetElement.style.backgroundColor = ''
     } catch (error) {
-      console.error('Failed to remove background image:', error)
+      console.error('Failed to remove background:', error)
     }
   }
 
@@ -352,9 +351,7 @@ export const useCustomDesign = () => {
         // Re-enable custom design if we have design data
         if (designData.value.themeSettings && Object.keys(designData.value.themeSettings).length > 0) {
           designData.value.custom_design = true
-          if (designData.value.backgroundImage) {
-            applyBackground(designData.value.backgroundImage, document.body)
-          }
+          applyBackground(designData.value.themeSettings.colors.background, designData.value.backgroundImage ?? '', document.body)
           console.log('Custom design enabled')
         } else {
           console.log('No custom design data available to enable')

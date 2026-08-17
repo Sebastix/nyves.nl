@@ -18,10 +18,6 @@ const nyvesProfile = ref({
 })
 // Nostr profile data
 const profile = ref({})
-const media = ref({
-  albumCount: 2,
-  photoCount: 5
-})
 const krabbels = ref([
   {
     author: {
@@ -36,18 +32,11 @@ const krabbels = ref([
       name: 'HVSbackup',
       username: 'hvsbackup'
     },
-    content: `Versie 1.1.3 van HVSbackup staat live!<br><br>
-    Bekijk hier een video hoe de applicatie werkte: <a href="https://nyves.nl/hvsbackup">https://nyves.nl/hvsbackup</a>`,
+    content: `Bekijk hier een video hoe de HVSbackup applicatie werkte: <a href="https://nyves.nl/hvsbackup">https://nyves.nl/hvsbackup</a>`,
     createdAt: new Date('2013-11-21')
   },
 ])
-const hyvesItems = ref([
-  { id: 1, caption: 'helleen rust zach...', link: '#' },
-  { id: 2, caption: 'Civic Club Holland', link: '#' },
-  { id: 3, caption: 'HVSbackup', link: '#' },
-  { id: 4, caption: 'Power Unlimited', link: '#' },
-  // { id: 5, caption: 'MTV', link: '#' }
-])
+const hyvesItems = ref([])
 const loading = ref(true)
 const error = ref(null)
 
@@ -239,10 +228,10 @@ console.log('[id]/index.vue loaded:', {
       <div class="grid grid-cols-1 md:grid-cols-2 profileHeader">
         <h1 class="col-span-2 text-3xl font-bold mb-1">{{ profile.name }} <a :href="profile.urlWaybackMachine" target="_blank" class="text-xs" v-if="profile.urlWaybackMachine">{{ profile.urlWaybackMachine }}</a></h1>
         <div class="mb-2">
-          <NuxtLink :to="`/profiel/${profile.username}#over`" class="text-orange-600 hover:underline mr-4 text-xs font-bold">Over</NuxtLink>
+          <NuxtLink :to="`/profiel/${profile.npub}/over`" class="text-orange-600 hover:underline mr-4 text-xs font-bold">Over</NuxtLink>
           <NuxtLink :to="`/profiel/${profile.npub}/vrienden`" class="mr-4 text-xs">Vrienden</NuxtLink>
-          <NuxtLink :to="`/profiel/${profile.username}#fotos`" class="mr-4 text-xs">Foto's</NuxtLink>
-          <NuxtLink :to="`/profiel/${profile.username}#meer`" class="text-xs">Meer</NuxtLink>
+          <NuxtLink :to="`/profiel/${profile.npub}/media`" class="mr-4 text-xs">Foto's</NuxtLink>
+          <NuxtLink :to="`/profiel/${profile.npub}/meer`" class="text-xs">Meer</NuxtLink>
         </div>
         <button
             @click="toggleCustomDesign"
@@ -279,7 +268,7 @@ console.log('[id]/index.vue loaded:', {
         <!-- Bottom Left -->
         <div class="basis-1/2">
 
-          <ProfielMedia :profile="profile" :nyvesProfile="nyvesProfile" :media="media" />
+          <ProfielMedia :profile="profile" :nyvesProfile="nyvesProfile" />
 
           <!-- Krabbels Section -->
           <div class="border border-gray-200 bg-[#fcfcfc] rounded-sm">
@@ -306,7 +295,10 @@ console.log('[id]/index.vue loaded:', {
           <!-- Hyves Section -->
           <div class="border border-gray-200 bg-[#fcfcfc] rounded-sm mb-3">
             <h3 class="nyves-bg-gray-header p-2 text-nyves-blue font-bold">Hyves</h3>
-            <div class="grid grid-cols-4 gap-2 p-2">
+            <p v-if="!hyvesItems.length" class="p-2 text-sm">
+              Geen items gevonden
+            </p>
+            <div v-else class="grid grid-cols-4 gap-2 p-2">
               <div v-for="item in hyvesItems" :key="item.id" class="text-center">
                 <NuxtLink :to="`${item.link}${item.caption}`" class="text-xs">
                   <div class="min-h-[80px] aspect-square bg-gray-200 border border-gray-300 hover:border-gray-600 transition-border duration-150 shadow-md/5 mx-auto mb-1"></div>
@@ -319,8 +311,11 @@ console.log('[id]/index.vue loaded:', {
           <!-- WWW section -->
           <div class="border border-gray-200 bg-[#fcfcfc] rounded-sm mb-3">
             <h3 class="nyves-bg-gray-header p-2 text-nyves-blue font-bold">WieWatWaar</h3>
+            <p class="p-2 text-sm">
+              Geen items gevonden
+            </p>
             <div class="my-1">
-              <NuxtLink to="#" class="text-xs mx-2">› Meer</NuxtLink>
+              <NuxtLink :to="`${profile.npub}/wie-wat-waar`" class="text-xs mx-2">› Meer</NuxtLink>
             </div>
           </div>
 
