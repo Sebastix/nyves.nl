@@ -36,7 +36,7 @@ onMounted(async() => {
     <img
         :src="picture"
         :alt="name"
-        class="size-25 bg-gray-200 border border-gray-300 hover:border-gray-600 transition-border duration-150 shadow-md/5 mx-auto mb-1"
+        class="max-h-25 bg-gray-200 border border-gray-300 hover:border-gray-600 transition-border duration-150 shadow-md/5 mx-auto mb-1"
     />
   </div>
 </template>

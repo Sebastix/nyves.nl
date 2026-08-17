@@ -18,7 +18,6 @@ const props = defineProps({
 const fetchContactList = async (pubkey) => {
   loading.value = true
   error.value = null
-  console.log('🔍 Fetching Kind 3 contact list for:', pubkey)
   try {
     const relays = [
       'wss://relay.damus.io',
@@ -35,8 +34,6 @@ const fetchContactList = async (pubkey) => {
 
     const events = await queryRelays(relays, filter)
 
-    console.log(`📥 Found ${events.length} Kind 3 events:`, events)
-
     if (events.length > 0) {
       const sortedEvents = events.sort((a, b) => b.created_at - a.created_at)
       const latestEvent = sortedEvents[0]
@@ -50,7 +47,14 @@ const fetchContactList = async (pubkey) => {
           relay: tag[2] || null, // optional relay URL
           name: tag[3] || null // optional name
         }))
-      contactsData.value = contacts
+      // todo - sort the list of contacts and show last added one
+
+      console.log(contacts)
+      // Random sort list of contacts
+      contactsData.value = contacts.map(value => ({ value, sort: Math.random() }))
+          .sort((a, b) => a.sort - b.sort)
+          .map(({ value }) => value)
+      //contactsData.value = contacts
       loading.value = false
     } else {
       console.log('No Kind 3 contact list found for this user')

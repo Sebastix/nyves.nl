@@ -11,7 +11,7 @@ const props = defineProps({
 })
 
 onMounted(() => {
-  console.log(props.nyvesProfile)
+  //console.log(props.nyvesProfile)
 })
 </script>
 <template>

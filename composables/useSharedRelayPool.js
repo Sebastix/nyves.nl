@@ -24,7 +24,7 @@ export const useSharedRelayPool = () => {
 
   // Increment connection count
   connectionCount++
-  console.log(`📊 Shared pool connections: ${connectionCount}`)
+  //console.log(`📊 Shared pool connections: ${connectionCount}`)
 
   // Connection stats (reactive)
   const stats = ref({
@@ -84,10 +84,10 @@ export const useSharedRelayPool = () => {
       const normalizedUrl = relay.startsWith('wss://') || relay.startsWith('ws://') ? relay : `wss://${relay}`
       const status = getRelayConnectionStatus(normalizedUrl)
       
-      console.log(`🔍 Checking relay ${normalizedUrl}: ${status}`)
+      //console.log(`🔍 Checking relay ${normalizedUrl}: ${status}`)
       
       if (status === 'closed' || status === 'closing') {
-        console.log(`🔄 Reconnecting to ${normalizedUrl}...`)
+        //console.log(`🔄 Reconnecting to ${normalizedUrl}...`)
         
         // Force cleanup of closed connection
         if (sharedPoolInstance.relays[normalizedUrl]) {
@@ -124,7 +124,7 @@ export const useSharedRelayPool = () => {
       return normalizedUrl
     })
 
-    console.log(`📡 Querying ${normalizedRelays.length} relays, total tracked: ${trackedRelays.size}`)
+    //console.log(`📡 Querying ${normalizedRelays.length} relays, total tracked: ${trackedRelays.size}`)
     
     // Ensure all relay connections are open before querying
     await ensureRelayConnections(normalizedRelays)
@@ -150,7 +150,7 @@ export const useSharedRelayPool = () => {
       return normalizedUrl
     })
 
-    console.log(`🔔 Subscribing to ${normalizedRelays.length} relays, total tracked: ${trackedRelays.size}`)
+    //console.log(`🔔 Subscribing to ${normalizedRelays.length} relays, total tracked: ${trackedRelays.size}`)
     
     // Ensure all relay connections are open before subscribing
     await ensureRelayConnections(normalizedRelays)
@@ -172,7 +172,7 @@ export const useSharedRelayPool = () => {
         trackedRelays.delete(normalizedUrl)
       })
       
-      console.log(`🔌 Closed ${relays.length} relays, remaining tracked: ${trackedRelays.size}`)
+      //console.log(`🔌 Closed ${relays.length} relays, remaining tracked: ${trackedRelays.size}`)
     }
   }
 
