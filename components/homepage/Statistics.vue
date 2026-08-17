@@ -70,7 +70,7 @@ onMounted(async () => {
     <p class="my-8 text-lg">
       Hoeveel profielen zijn er actief?
     </p>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-xl">
+    <div class="grid grid-cols-1 gap-4 text-xl">
       <div>
         <span class="font-bold">0</span> profielen uit het archief
       </div>

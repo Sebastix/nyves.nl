@@ -20,6 +20,12 @@
 
     <HomepageStatistics />
 
+    <div class="border border-gray-200 bg-[#fcfcfc] rounded-sm text-center mb-8">
+      <div class="h-[44px] nyves-bg-gray-header"></div>
+      <h2 class="text-2xl font-bold mb-8">Uitgelichte profielen met een eigen design</h2>
+      <NostrComponentsHighlightProfiles :filters="[]" :limit="27" />
+    </div>
+
     <MailingList />
 
   </div>

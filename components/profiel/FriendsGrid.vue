@@ -47,11 +47,9 @@ const fetchContactList = async (pubkey) => {
           relay: tag[2] || null, // optional relay URL
           name: tag[3] || null // optional name
         }))
-      // todo - sort the list of contacts and show last added one
-
-      console.log(contacts)
       // Random sort list of contacts
-      contactsData.value = contacts.map(value => ({ value, sort: Math.random() }))
+      contactsData.value = contacts
+          .map(value => ({ value, sort: Math.random() }))
           .sort((a, b) => a.sort - b.sort)
           .map(({ value }) => value)
       //contactsData.value = contacts
