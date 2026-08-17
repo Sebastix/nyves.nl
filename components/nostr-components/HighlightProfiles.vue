@@ -26,9 +26,7 @@ onMounted(async () => {
     }
     const events = await queryRelays(relays, filter)
     if (events.length > 0) {
-      console.log(events)
       events.forEach((event, index) => {
-        console.log(event.tags[2])
         if (
             event.tags[2] && event.tags[2][0] === 'c'
         ) {

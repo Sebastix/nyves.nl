@@ -7,8 +7,8 @@ site:nuxt-build:
   stage: build
   script:
     - npm install
-    #- npm run build
-    - npm run generate
+    - npm run build
+    #- npm run generate
   artifacts:
     expire_in: 3 hours
     paths:
@@ -36,7 +36,7 @@ deploy:prod:
     - apk add rsync
     - rsync --version
   script:
-    - rsync -avz --delete --exclude-from='gitlab-ci/rsync-excludes.txt' -e ssh .output/public/. sebastix@ximo1.ximology.com:/var/www/vhosts/sebastix.nl/nyves.nl/httpdocs
+    - rsync -avz --delete --exclude-from='gitlab-ci/rsync-excludes.txt' -e ssh .output/. sebastix@ximo1.ximology.com:/var/www/vhosts/sebastix.nl/nyves.nl/httpdocs/.output
     - echo "Deployment ready, check https://nyves.nl"
   dependencies:
     - site:nuxt-build
