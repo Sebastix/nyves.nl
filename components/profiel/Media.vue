@@ -3,6 +3,7 @@ const { queryRelays } = useSharedRelayPool()
 
 const loading = ref(true)
 const mediaData = ref([])
+const { openModal } = useModal();
 
 const props = defineProps({
   profile: {
@@ -24,7 +25,7 @@ const fetchMedia = async (pubkey) => {
     'wss://relay.primal.net'
   ]
   const filter = {
-    kinds: [20], // Kind 20 = picture (NIP-68)
+    kinds: [20, 21], // Kind 20 = picture, kind 21 = video (NIP-68)
     // todo - add NIP-71 with kinds 21, 22, 34235 and 34236
     authors: [pubkey],
     limit: 20
@@ -42,6 +43,7 @@ const fetchMedia = async (pubkey) => {
 onMounted(async () => {
   try {
     await fetchMedia(props.profile.pubkey)
+    // todo - add a composeable to fetch media from notes (event kind 1s)
   } catch (e) {
     loading.value = false
     console.error(e)
@@ -68,7 +70,7 @@ onUnmounted(async () => {
     </p>
     <div v-else class="grid grid-cols-4 lg:grid-cols-5 gap-2 p-2 text-xs text-black">
       <div v-for="item in mediaData" :key="item.id">
-        <NuxtLink :to="`${item.tags[0][1].split(' ')[1]}`" target="_blank">
+        <NuxtLink @click="openModal('media', item.tags[0][1].split(' ')[1])">
           <img :src="`${item.tags[0][1].split(' ')[1]}`" class="bg-gray-200 border border-gray-300 hover:border-gray-600 transition-border duration-150 shadow-md/5" :alt="`${item.content}`" />
         </NuxtLink>
       </div>

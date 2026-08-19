@@ -1,4 +1,6 @@
 <script setup>
+const picture = ref('')
+
 const props = defineProps({
   profile: {
     type: Object,
@@ -11,7 +13,7 @@ const props = defineProps({
 })
 
 onMounted(() => {
-
+  picture.value = props.profile?.picture ? props.profile.picture : '/jan-paparazzi.webp'
 })
 
 onUnmounted(() => {
@@ -22,8 +24,8 @@ onUnmounted(() => {
 <template>
   <div class="bg-[#eff6fc] border border-[#dfdfdf] rounded-sm">
     <div class="p-2 text-center">
-      <div class="min-h-24 size-33 border border-[#dfdfdf] bg-white mx-auto">
-        <img :src="profile.picture" v-if="profile.picture" class="max-h-33 mx-auto" />
+      <div class="min-h-24 md:size-33 bg-white mx-auto">
+        <img :src="picture" class="max-h-33 mx-auto" />
       </div>
       <template v-if="nyvesProfile.username">
         <NuxtLink to="#" class="text-xs mt-2">Gespot! ({{ nyvesProfile.spots }})</NuxtLink>

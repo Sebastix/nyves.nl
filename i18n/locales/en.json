@@ -1,6 +1,16 @@
 {
   "head_title": "Nyves - bring back Hyves profiles with Nostr",
   "welcome": "Welcome",
+  "welkom_bij": "Welcome at",
+  "bring_back_your_hyves_profile": "Bring back your Hyves profile",
+  "hero_intro": "Thanks to {0}. This is an open and simple protocol where data is distributed via {1}. Every profile has the power thanks to {2}. Everyone can verify who owns every piece of content.",
+  "cryptografisch gesigneerde content": "cryptographically signed content",
+  "nyves_is_not_a_platform": "So Nyves is not a platform.",
   "zoeken": "Search",
-  "zoek_profielen": "Search profiles..."
+  "zoek_profielen": "Search profiles...",
+  "zoek_profielen_btn": "Search profiles",
+  "of_bekijk_dit_voorbeeld": "or open this example",
+  "soapbox_collab": "{0} is a technology company building free and open-source software for decentralized social media. Their mission is to empower communities online through tools that prioritize user freedom, data sovereignty, and censorship resistance. They're the creators of Ditto, MKStack, Shakespeare, and other innovative platforms that are reshaping how people connect and communicate on the internet. ",
+  "ditto_collab": "{0} is a social platform build by Soapbox for people who want to have fun, not feed the Big Tech machine. Open source, decentralized, and entirely yours to customize and build upon. {1} {2} With both Nyves and Ditto you can customize your profile and theme with color palettes, background images, fonts, and more.",
+  "highlight_profiles_with_themes": "Profiles with a customized theme"
 }

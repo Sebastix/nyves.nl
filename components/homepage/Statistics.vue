@@ -4,7 +4,7 @@ import { ref, readonly, onUnmounted, onMounted } from 'vue';
 
 const { pool, queryRelays, closeRelays } = useSharedRelayPool()
 
-const STATS_RELAY = 'wss://relay.nyves.nl'
+const STATS_RELAY = 'wss://rely.nyves.nl'
 
 const count = ref({
   usernames: 0
@@ -13,7 +13,7 @@ const count = ref({
 onMounted(async () => {
   try {
     const filter = {
-      "kinds": [0]
+      "kinds": [8000]
     }
 
     const ws = new WebSocket(STATS_RELAY)
@@ -54,20 +54,30 @@ onMounted(async () => {
   <div class="border border-gray-200 bg-[#fcfcfc] rounded-sm text-center pb-8 mb-8">
     <div class="h-[44px] nyves-bg-gray-header"></div>
     <h2 class="text-center text-4xl font-bold mb-4">Statistieken</h2>
-    <p class="mb-8 text-lg">
+    <p class="mb-8 text-2xl">
       Hoeveel content hebben al terug kunnen zetten?
     </p>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-xl">
       <div>
         <span class="usernames font-bold">{{ count.usernames }}</span> gebruikersnamen
       </div>
-      <div>0 profielfoto's</div>
-      <div>0 albums met 0 foto's</div>
-      <div>0 krabbels</div>
-      <div>0 wiewatwaar's</div>
-      <div>0 blogs</div>
+      <div>
+        <span class="usernames font-bold">0</span> profielfoto's
+      </div>
+      <div>
+        <span class="usernames font-bold">0</span> albums met <span class="usernames font-bold">0</span> foto's
+      </div>
+      <div>
+        <span class="usernames font-bold">0</span> krabbels
+      </div>
+      <div>
+        <span class="usernames font-bold">0</span> wiewatwaar's
+      </div>
+      <div>
+        <span class="usernames font-bold">0</span> blogs
+      </div>
     </div>
-    <p class="my-8 text-lg">
+    <p class="my-8 text-2xl">
       Hoeveel profielen zijn er actief?
     </p>
     <div class="grid grid-cols-1 gap-4 text-xl">

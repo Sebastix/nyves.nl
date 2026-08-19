@@ -232,8 +232,7 @@ export const useSharedRelayPool = () => {
   onScopeDispose(() => {
     connectionCount = Math.max(0, connectionCount - 1)
     stats.value.connections = connectionCount
-    console.log(`📉 Composable disposed. Remaining connections: ${connectionCount}`)
-    
+
     // If no more connections, close the pool after a delay
     // This prevents immediate recreation if another component mounts quickly
     if (connectionCount === 0) {

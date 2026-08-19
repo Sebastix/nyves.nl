@@ -1,6 +1,15 @@
 {
   "head_title": "Welkom bij Nyves - breng jouw Hyves profiel terug tot leven",
   "welcome": "Welkom",
+  "welkom_bij": "Welkom bij",
+  "bring_back_your_hyves_profile": "Breng jouw Hyves profiel terug tot leven.",
+  "hero_intro": "Dankzij {0} Dit is een open en simpel protocol waarmee data gedistribueerd wordt via {1}. Ieder profiel heeft dankzij {2} alle macht. Iedereen kan verifiëren wat ieders content is.",
+  "nyves_is_not_a_platform": "Nyves is dus geen platform.",
   "zoeken": "Zoeken",
-  "zoek_profielen": "Zoek profielen..."
+  "zoek_profielen": "Zoek profielen...",
+  "zoek_profielen_btn": "Zoek profielen",
+  "of_bekijk_dit_voorbeeld": "of bekijk dit voorbeeld",
+  "soapbox_collab": "{0} is een bedrijf met hacktivisten die free and open-source software ontwikkelen voor gedecentraliseerde social media. Ze hebben als missie om online communities te versterken met tools die de keuzevrijheid, digitale soevereiniteit en individuele autonomie vergroten. Zij zijn de makers van Ditto, MKStack, Sharespeare en andere innovatieve platformen. Via die platformen hervormen zij de manier waarop mensen met elkaar verbinden en communiceren via het internet.",
+  "ditto_collab": "{0} is een sociaal gebouwd door Soapbox voor mensen die plezier willen beleven, in plaats van de Big-Tech machine te voeden. Open-source, gedecentraliseerd en het platform is volledig aan te passen aan jouw wensen en op voort te bouwen. {1} {2} Met zowel Nyves als Ditto kun je je profiel en het design aanpassen met kleuren, achtergrondafbeeldingen, lettertypes en meer.",
+  "highlight_profiles_with_themes": "Profielen met een eigen design"
 }

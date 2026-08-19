@@ -26,9 +26,11 @@
         <NuxtLink to="/hvsbackup">HVSbackup</NuxtLink>
       </div>
       <div>
-        Voorwaarden
+        <NuxtLink to="veelgestelde-vragen">Veelgestelde vragen</NuxtLink>
         |
-        Privacy
+        <NuxtLink to="voorwaarden">Voorwaarden</NuxtLink>
+        |
+        <NuxtLink to="privacy">Privacy</NuxtLink>
         |
         <a href="https://gitlab.com/sebastix-group/nyves" target="_blank">Code</a>
       </div>

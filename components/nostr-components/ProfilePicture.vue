@@ -14,10 +14,33 @@ const props = defineProps({
   }
 })
 
+let imageHealthCheck = async (image_url) => {
+  // Check if the image is available, otherwise return default placeholder
+  if (!image_url) {
+    return '/jan-paparazzi.webp';
+  }
+  const xhr = new XMLHttpRequest();
+  // create a `HEAD` request
+  xhr.open('HEAD', image_url);
+  // listen for `onload` event
+  xhr.onload = () => {
+    if (xhr.status === 404) {
+      console.log('404 for ' + image_url);
+      return '/jan-paparazzi.webp';
+    } else {
+      console.log(xhr.responseURL);
+      console.log('return - ' + image_url);
+      return xhr.responseURL;
+    }
+  };
+  // send request
+  xhr.send();
+};
+
 onMounted(async() => {
   try {
     const profile = await fetchProfileByPubkey(props.pubkey)
-    picture.value = profile?.picture || ''
+    picture.value = profile?.picture ? profile.picture : '/jan-paparazzi.webp'
     name.value = profile?.name || profile?.display_name || profile?.displayName || props.pubkey
     loading.value = false
   } catch (e) {
@@ -36,7 +59,7 @@ onMounted(async() => {
     <img
         :src="picture"
         :alt="name"
-        class="max-h-25 bg-gray-200 border border-gray-300 hover:border-gray-600 transition-border duration-150 shadow-md/5 mx-auto mb-1"
+        class="max-h-25 bg-gray-200 shadow-md/5 mx-auto"
     />
   </div>
 </template>

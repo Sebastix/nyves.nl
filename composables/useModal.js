@@ -1,14 +1,15 @@
 import { ref, readonly } from 'vue'
-
 /**
  * Composable for managing modal state across the application
  */
 
 const isModalOpen = ref(false)
-const modalContent = ref(null)
+const modalType = ref(null)
+const modalContent = ref('')
 
 export const useModal = () => {
-  const openModal = (content = null) => {
+  const openModal = (type = null, content = '') => {
+    modalType.value = type
     modalContent.value = content
     isModalOpen.value = true
     
@@ -20,7 +21,8 @@ export const useModal = () => {
 
   const closeModal = () => {
     isModalOpen.value = false
-    modalContent.value = null
+    modalType.value = null
+    modalContent.value = ''
     
     // Re-enable body scroll
     if (process.client) {
@@ -38,6 +40,7 @@ export const useModal = () => {
 
   return {
     isModalOpen: readonly(isModalOpen),
+    modalType: readonly(modalType),
     modalContent: readonly(modalContent),
     openModal,
     closeModal,

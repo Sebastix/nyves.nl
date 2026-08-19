@@ -1,5 +1,7 @@
 <script setup>
-const { isModalOpen, modalContent, closeModal } = useModal()
+import Modal from '../components/Modal.vue';
+
+const { isModalOpen, modalType, closeModal } = useModal()
 </script>
 
 <template>
@@ -21,11 +23,13 @@ const { isModalOpen, modalContent, closeModal } = useModal()
         </svg>
       </button>
       <!-- Connect modal content -->
-      <ModalNostrConnect v-if="modalContent === 'connect'" @close="closeModal" />
-      <ModalEventJson v-else-if="modalContent === 'event-json'" @close="closeModal" />
+      <ModalNostrConnect v-if="modalType === 'connect'" @close="closeModal" />
+      <ModalEventJson v-else-if="modalType === 'event-json'" @close="closeModal" />
+      <ModalMedia v-else-if="modalType === 'media'" @close="closeModal" />
+      <ModalRelayConnections v-else-if="modalType === 'RelayConnections'" @close="closeModal" />
       <!-- Other modal content types can be added here -->
       <div v-else>
-        <component :is="modalContent" @close="closeModal" />
+        <component :is="modalType" @close="closeModal" />
       </div>
     </div>
   </Modal>

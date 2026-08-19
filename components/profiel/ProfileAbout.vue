@@ -45,7 +45,7 @@ onMounted(() => {
           <strong>Website:</strong> <a :href="profile.website" v-if="profile.website" target="_blank">{{ profile.website }}</a>
         </template>
       </div>
-      <NuxtLink to="#" class="text-xs">› Bekijk volledig profiel</NuxtLink>
+      <NuxtLink :to="`${profile.npub}/meer`" class="text-xs">› Bekijk volledig profiel</NuxtLink>
     </div>
   </div>
 </template>

@@ -4,7 +4,7 @@
   <section class="mb-8">
     <div class="border border-gray-200 bg-[#fcfcfc] rounded-sm overflow-hidden">
       <div class="h-[44px] nyves-bg-gray-header"></div>
-      <div class="grid md:grid-cols-2 gap-8 items-center px-12 pb-[44px]">
+      <div class="grid md:grid-cols-2 gap-8 items-center px-8 pb-[44px]">
         <div>
           <img src="~/assets/IAE_LOGO_FULL_BLACK.webp" class="max-w-xs" alt="Internet Archive Europe" />
           <img src="~/assets/Wayback_Machine_logo_2010.svg" class="max-w-xs" alt="Wayback Machine "/>

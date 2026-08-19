@@ -84,9 +84,6 @@ export default defineNuxtRouteMiddleware((to, from) => {
   }
 
   // Handle other subpaths (future routes like /profiel/npub.../posts, etc.)
-  console.log('Unknown subpath for profile:', subPath)
-  throw createError({
-    statusCode: 404,
-    statusMessage: 'Pagina niet gevonden'
-  })
+  //console.log('Unknown subpath for profile:', subPath)
+  //return
 })
