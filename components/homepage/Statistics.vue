@@ -13,7 +13,7 @@ const count = ref({
 onMounted(async () => {
   try {
     const filter = {
-      "kinds": [8000]
+      "kinds": [0]
     }
 
     const ws = new WebSocket(STATS_RELAY)
@@ -42,7 +42,6 @@ onMounted(async () => {
       ws.onerror = () => {
 
       }
-
     }
   } catch (error) {
     console.error('Fout bij NIP-45 COUNT:', error)
@@ -82,7 +81,7 @@ onMounted(async () => {
     </p>
     <div class="grid grid-cols-1 gap-4 text-xl">
       <div>
-        <span class="font-bold">0</span> profielen uit het archief
+        <span class="font-bold">{{ count.usernames }}</span> profielen uit het archief
       </div>
       <div>
         <span class="font-bold">0</span> profielen vanuit de nostrverse

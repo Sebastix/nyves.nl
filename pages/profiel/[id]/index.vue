@@ -123,9 +123,9 @@ const loadProfile = async () => {
         for (const tag of fetchedProfile.tags) {
           // Get warc file tag from profile event, so we can construct an URL to the Wayback Machine to visit your archived profile there.
           if (tag[0] === 'warc_file') {
-            const filename = tag[1].split('/')[1]
-            const date = filename.split('-').at(-1).split('.')[0]
-            const time = filename.split('-').at(-2)
+            const warc_filename = tag[1].split('/').at(-1)
+            const date = warc_filename.split('-').at(-1).split('.')[0]
+            const time = warc_filename.split('-').at(-2)
             profile.value.urlWaybackMachine = 'https://web.archive.org/web/'+date+time+'/http://'+profile.value.username+'.hyves.nl'
           }
         }

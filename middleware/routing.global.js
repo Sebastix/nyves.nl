@@ -31,7 +31,7 @@ export default defineNuxtRouteMiddleware((to, from) => {
     
     // Validate that profileId looks like npub
     if (profileId.startsWith('npub1')) {
-      // Let the [id]/vrienden.vue handle this - no redirect needed
+      // Let the pages/profiel/[id]/vrienden.vue handle this - no redirect needed
       return
     } else {
       // Invalid npub format for vrienden page
@@ -48,30 +48,30 @@ export default defineNuxtRouteMiddleware((to, from) => {
     console.log('Main profile route for:', profileId)
     
     // Check if this looks like a username#pubkey format
-    if (profileId.includes('#')) {
-      console.log('Legacy username#pubkey format detected:', profileId)
-      // Let [username].vue handle this via redirect to [id].vue
+    if (profileId.includes('#') || to.hash !== '') {
+      console.log('username#pubkey format for migrated Hyves profile detected:', profileId, 'with pubkey', to.hash)
+      // pages/profiel/[id]/index.vue handle this
       return
     }
     
     // Check if this is an npub
     if (profileId.startsWith('npub1')) {
       console.log('NPub format detected:', profileId)
-      // Let [id].vue handle this
+      // pages/profiel/[id]/index.vue handle this
       return
     }
     
     // Check if this is hex pubkey (64 chars)
     if (/^[a-fA-F0-9]{64}$/.test(profileId)) {
       console.log('Hex pubkey format detected:', profileId)
-      // Let [id].vue handle this
+      // pages/profiel/[id]/index.vue handle this
       return
     }
     
     // Check if this is a username (no # or special format)
     if (profileId.match(/^[a-zA-Z0-9_-]+$/)) {
       console.log('Username format detected:', profileId)
-      // This should go to [username].vue, but we need to ensure routing
+      // pages/profiel/[id]/index.vue handle this
       return
     }
     

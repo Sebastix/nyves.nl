@@ -38,7 +38,7 @@ onMounted(async () => {
       // NIP-71 with kinds 21, 34235 and 34236
       kinds: [20, 21, 34235, 34236],
       authors: [pubkey],
-      limit: 50
+      limit: 100
     }
     const events = await queryRelays(relays, filter)
     if (events.length > 0) {
@@ -67,7 +67,7 @@ onMounted(async () => {
         Foto's en video's van {{ profile.name || profile.display_name || '...' }}
       </h1>
 
-      <section class="grid grid-cols-2 md:grid-cols-5 gap-x-2 gap-y-6 p-2 text-xs text-black">
+      <section class="grid grid-cols-3 md:grid-cols-5 gap-1 text-xs text-black">
         <div v-if="loading" class="text-center">
           <div class="animate-spin rounded-full size-16 border-b-2 border-nyves-blue mx-auto my-16"></div>
         </div>
@@ -90,18 +90,27 @@ onMounted(async () => {
               <img :src="`${item.tags[0][1].split(' ')[1]}`" class="bg-gray-200 border border-gray-300 hover:border-gray-600 transition-border duration-150 shadow-md/5" :alt="`${item.content}`" />
             </NuxtLink>
           </template>
-          <template v-if="item.tags[0][1] && item.tags[0][1].includes('mp4')">
-            <video controls>
-              <source :src="`${item.tags[0][1].split(' ')[1]}`" :type="`${item.tags[0][2].split(' ')[1]}`" />
-            </video>
+
+          <template v-if="item.tags" v-for="(tag, key) in item.tags" :key="tag[0]">
+            <template v-if="tag[0] === 'imeta'">
+              <template v-if="item.tags[key][2].split(' ')[1] === 'video/mp4'">
+                <video controls muted loop>
+                  <source :src="`${item.tags[key][1].split(' ')[1]}`" type="video/mp4" />
+                  <img :src="`${item.tags[key][3].split(' ')[1]}`" />
+                </video>
+              </template>
+            </template>
           </template>
-          <!-- todo check if item.tags[0][1] value is a blossom hash of a file -->
-          Kind: {{ item.kind }}
-          Created: {{ item.created_at }}
-          <br />
-          <p class="truncate">
-            {{ item.content }}
-          </p>
+
+          <div>
+            <!-- todo check if item.tags[0][1] value is a blossom hash of a file -->
+            Kind: {{ item.kind }}
+            Created: {{ item.created_at }}
+            <br />
+            <p class="truncate">
+              {{ item.content }}
+            </p>
+          </div>
         </div>
       </section>
 

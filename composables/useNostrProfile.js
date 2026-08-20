@@ -2,7 +2,7 @@ import * as nip19 from 'nostr-tools/nip19'
 
 // Default relays to use for fetching profile data
 const DEFAULT_RELAYS = [
-  'wss://relay.nyves.nl',
+  'wss://rely.nyves.nl',
   'wss://indexer.coracle.social',
   'wss://purplepag.es'
 ]

@@ -52,10 +52,10 @@ const debouncedZoek = (term) => {
 watch(zoekterm, (nieuweWaarde) => {
   if (nieuweWaarde.trim().length >= 2) {
     debouncedZoek(nieuweWaarde)
-    toonDropdown.value = true
+    //toonDropdown.value = true
   } else {
-    wisResultaten()
-    toonDropdown.value = false
+    //wisResultaten()
+    //toonDropdown.value = false
   }
 })
 
@@ -66,7 +66,7 @@ const handleInput = (event) => {
 
 const handleFocus = () => {
   if (zoekterm.value.trim().length >= 2) {
-    toonDropdown.value = true
+    toonDropdown.value = false
   }
 }
 
@@ -116,7 +116,7 @@ const selecteerProfiel = (profiel) => {
       }
   )
 
-      // Reset zoekstatus
+  // Reset zoekstatus
   zoekterm.value = ''
   toonDropdown.value = false
   toonResultatenLijst.value = false
@@ -173,7 +173,7 @@ onUnmounted(() => {
     <form
       @submit="handleSubmit"
       id="search"
-      class="bg-white/80 hover:bg-white/95 transition-bg duration-150 border border-nyves-orange rounded-xs shadow-inner/5 focus:outline-none flex justify-between"
+      class="bg-white/90 hover:bg-white transition-bg duration-150 border border-nyves-orange rounded-xs shadow-inner/5 focus:outline-none flex justify-between"
     >
       <input
         ref="zoekInput"
@@ -290,24 +290,23 @@ onUnmounted(() => {
         v-for="profiel in zoekData.resultaten"
         :key="profiel.pubkey"
         @click="selecteerProfiel(profiel)"
-        class="p-4 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors duration-150"
+        class="p-2 bg-white border border-gray-200 rounded-sm hover:bg-gray-100 cursor-pointer transition-colors duration-150"
       >
-        <div class="flex items-center space-x-3">
+        <div class="flex items-center space-x-2">
           <!-- Avatar placeholder -->
-          <div class="w-10 h-10 bg-nyves-blue text-white rounded-full flex items-center justify-center text-lg font-medium">
-            {{ profiel.name.charAt(0).toUpperCase() }}
-          </div>
-
+<!--          <div class="w-10 h-10 bg-nyves-blue text-white flex items-center justify-center text-lg font-medium">-->
+<!--            {{ profiel.name.charAt(0).toUpperCase() }}-->
+<!--          </div>-->
+          <NostrComponentsProfilePicture :pubkey="profiel.pubkey" class="flex items-center" />
           <!-- Profiel info -->
           <div class="flex-1">
-            <h4 class="text-base font-medium text-gray-900">
-              <NuxtLink :to="`profiel/${profiel.display_name }#${profiel.npub}`">
-                {{ profiel.display_name }}
-              </NuxtLink>
-            </h4>
-            <p v-if="profiel.display_name !== profiel.name" class="text-sm text-gray-500">
-              @{{ profiel.name }}
-            </p>
+            <NuxtLink :to="`profiel/${profiel.display_name }#${profiel.npub}`" class="text-xl font-bold">
+              <div v-if="profiel.name">
+                {{ profiel.name }}
+              </div>
+              <NostrComponentsPubkeyToName v-else :pubkey="profiel.pubkey" />
+              <code class="text-xs font-normal">{{ profiel.npub.substr(0, 8) }}...{{ profiel.npub.substr(profiel.npub.length - 6) }}</code>
+            </NuxtLink>
           </div>
         </div>
       </div>

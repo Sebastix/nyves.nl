@@ -16,7 +16,7 @@ export const useNostrSearch = () => {
     heeftGezocht: false,   // Of er überhaupt is gezocht
     // Paginatie state
     huidigePagina: 1,      // Huidige pagina nummer
-    perPagina: 20,         // Resultaten per pagina
+    perPagina: 50,         // Resultaten per pagina
     totaalGevonden: 0,     // Totaal aantal gevonden (estimate)
     heeftMeer: false,      // Of er meer resultaten beschikbaar zijn
     alleResultaten: [],    // Alle geladen resultaten
