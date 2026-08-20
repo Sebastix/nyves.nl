@@ -2,6 +2,11 @@
 import Modal from '../components/Modal.vue';
 
 const { isModalOpen, modalType, closeModal } = useModal()
+
+useScriptMatomoAnalytics({
+  matomoUrl: 'https://matomo.sebastix.nl',
+  siteId: 17,
+})
 </script>
 
 <template>
