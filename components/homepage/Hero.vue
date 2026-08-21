@@ -42,7 +42,7 @@
       <div class="mt-8 flex flex-row justify-center gap-4">
         <NuxtLink 
           to="/zoek" 
-          class="inline-flex items-center px-8 py-3 bg-nyves-orange hover:bg-nyves-orange/90 text-white! font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200"
+          class="inline-flex items-center px-8 py-3 bg-nyves-orange text-white! font-semibold rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200"
         >
           <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />

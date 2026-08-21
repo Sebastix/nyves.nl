@@ -109,7 +109,7 @@ const setupAltcha = () => {
         <div class="inline-block mx-auto mt-3">
           <altcha-widget challengeurl="https://mailings.sebastix.dev/api/public/captcha/altcha"></altcha-widget>
         </div>
-        <input type="submit" value="Aanmelden" class="mx-auto block mt-2 px-6 py-2 bg-nyves-orange cursor-pointer text-white! font-semibold rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200" />
+        <input type="submit" value="Aanmelden" class="mx-auto block mt-2 px-6 py-3 bg-nyves-orange cursor-pointer text-white! font-semibold rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200" />
       </div>
     </form>
     <div class="mt-8">
