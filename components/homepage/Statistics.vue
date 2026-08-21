@@ -7,8 +7,50 @@ const { pool, queryRelays, closeRelays } = useSharedRelayPool()
 const STATS_RELAY = 'wss://rely.nyves.nl'
 
 const count = ref({
-  usernames: 0
+  usernames: 0,
+  nostrverse: 0
 })
+
+const nostrverseCounts = async () => {
+  // Use NIP-45 count with distinct:author to get YAU numbers from 1 relay with a kind 0 (profile metadata)
+  const relays = ['wss://relay.ditto.pub']
+  // Source for inspiration: https://gitlab.com/soapbox-pub/ditto-metrics/-/blob/main/src/hooks/useCount.ts
+  // const dau = useCount([{ kinds: [1], since: now24h, search: DISTINCT }]);
+  const filter = {
+    "kinds": [0],
+    "since": Math.floor(Date.now() / 1000) - (86400 * 365), // 1 year
+    "search": "distinct:author"
+  }
+  const ws = new WebSocket(relays[0])
+  ws.onopen = () => {
+    const countId = 'count_' + Math.random().toString(36).substr(2, 9)
+    const countMessage = JSON.stringify([
+      "COUNT",
+      countId,
+      filter
+    ])
+
+    ws.send(countMessage)
+
+    ws.onmessage = (event) => {
+      try {
+        const data = JSON.parse(event.data)
+        if (data[0] === 'COUNT' && data[1] === countId) {
+          if (data[2]) {
+            count.value.nostrverse = data[2].count.toLocaleString('nl-NL')
+          }
+        }
+      } catch (e) {
+
+      }
+    }
+    ws.onerror = () => {
+
+    }
+  }
+  // @todo how do we get this number using multiple relays as a source?
+  // @todo get total active unique authors from last year
+}
 
 onMounted(async () => {
   try {
@@ -43,6 +85,7 @@ onMounted(async () => {
 
       }
     }
+    await nostrverseCounts()
   } catch (error) {
     console.error('Fout bij NIP-45 COUNT:', error)
   }
@@ -81,10 +124,10 @@ onMounted(async () => {
     </p>
     <div class="grid grid-cols-1 gap-4 text-xl">
       <div>
-        <span class="font-bold">{{ count.usernames }}</span> profielen uit het archief
+        <span class="font-bold">{{ count.usernames }}</span> Nyves profielen uit het archief
       </div>
       <div>
-        <span class="font-bold">0</span> profielen vanuit de nostrverse
+        <span class="font-bold">{{ count.nostrverse }}</span> profielen uit de nostrverse
       </div>
     </div>
   </div>
