@@ -1,5 +1,6 @@
 <script setup>
 import { nip19 } from 'nostr-tools'
+import LoadingSpinner from '../../../components/LoadingSpinner.vue';
 
 const route = useRoute()
 const { fetchProfile } = useNostrProfile()
@@ -67,9 +68,10 @@ onMounted(async () => {
         Foto's en video's van {{ profile.name || profile.display_name || '...' }}
       </h1>
 
-      <section class="grid grid-cols-3 md:grid-cols-5 gap-1 text-xs text-black">
-        <div v-if="loading" class="text-center">
-          <div class="animate-spin rounded-full size-16 border-b-2 border-nyves-blue mx-auto my-16"></div>
+      <section class="columns-3 md:columns-5 gap-1 text-black">
+        <div v-if="loading" class="text-center col-span-3 md:col-span-5">
+          <LoadingSpinner class="size-12 mx-auto my-12" />
+          <p class="text-gray-600">Media wordt geladen...</p>
         </div>
         <div v-else-if="mediaData.length === 0">
           Geen items gevonden
@@ -102,7 +104,7 @@ onMounted(async () => {
             </template>
           </template>
 
-          <div>
+          <div class="text-xs">
             <!-- todo check if item.tags[0][1] value is a blossom hash of a file -->
             Kind: {{ item.kind }}
             Created: {{ item.created_at }}

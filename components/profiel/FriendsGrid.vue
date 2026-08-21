@@ -1,5 +1,6 @@
 <script setup>
 import { nip19 } from 'nostr-tools'
+import LoadingSpinner from '../LoadingSpinner.vue';
 
 const { queryRelays } = useSharedRelayPool()
 
@@ -83,7 +84,7 @@ onMounted(async () => {
     <!-- Loading State -->
     <div v-if="loading">
       <div class="text-center">
-        <div class="animate-spin rounded-full size-16 border-b-2 border-nyves-blue mx-auto my-16"></div>
+        <LoadingSpinner class="mx-auto my-16" />
       </div>
     </div>
     <div v-else class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-3 gap-1 mb-4">

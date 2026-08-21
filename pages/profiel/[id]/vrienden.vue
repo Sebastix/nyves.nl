@@ -1,5 +1,6 @@
 <script setup>
 import { nip19 } from 'nostr-tools'
+import LoadingSpinner from '../../../components/LoadingSpinner.vue';
 
 const route = useRoute()
 const { fetchProfile } = useNostrProfile()
@@ -252,7 +253,7 @@ useSeoMeta({
     <!-- Loading State -->
     <div v-if="loading" class="flex justify-center items-center min-h-64">
       <div class="text-center">
-        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-nyves-blue mx-auto mb-4"></div>
+        <LoadingSpinner class="size-12 mx-auto mb-12" />
         <p class="text-gray-600">Vrienden worden geladen...</p>
       </div>
     </div>

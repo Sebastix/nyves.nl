@@ -1,5 +1,6 @@
 <script setup>
 import { nip19 } from 'nostr-tools'
+import LoadingSpinner from '../../../components/LoadingSpinner.vue';
 const { fetchProfile } = useNostrProfile()
 const { } = useSharedRelayPool() // Ensure shared pool is available
 const route = useRoute()
@@ -201,7 +202,7 @@ console.log('[id]/index.vue loaded:', {
     <!-- Loading State -->
     <div v-if="loading" class="flex justify-center items-center min-h-64">
       <div class="text-center">
-        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-nyves-blue mx-auto mb-4"></div>
+        <LoadingSpinner class="size-12 mx-auto mb-12" />
         <p class="text-gray-600">Profiel wordt geladen...</p>
       </div>
     </div>

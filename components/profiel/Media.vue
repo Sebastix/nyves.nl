@@ -1,4 +1,6 @@
 <script setup>
+import LoadingSpinner from '../LoadingSpinner.vue';
+
 const { queryRelays } = useSharedRelayPool()
 
 const loading = ref(true)
@@ -63,7 +65,7 @@ onUnmounted(async () => {
       <NuxtLink to="#gespot" class="text-xs/5 font-normal">Gespot! ({{ nyvesProfile.spots }})</NuxtLink>
     </h3>
     <div v-if="loading">
-      <div class="animate-spin rounded-full size-16 border-b-2 border-nyves-blue mx-auto my-16"></div>
+      <LoadingSpinner class="size-12 mx-auto my-12" />
     </div>
     <p class="p-2 text-sm" v-else-if="!mediaData.length">
       Geen items gevonden
