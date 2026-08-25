@@ -7,7 +7,7 @@ let connectionCount = 0
 let trackedRelays = new Set() // Track relay URLs manually
 
 const default_relays = [
-  'wss://relay.nyves.nl'
+  'wss://rely.nyves.nl'
 ]
 
 /**

@@ -4,6 +4,7 @@ import LoadingSpinner from '../../../components/LoadingSpinner.vue';
 const { fetchProfile } = useNostrProfile()
 const { } = useSharedRelayPool() // Ensure shared pool is available
 const route = useRoute()
+const { formatDate} = useDateHelpers()
 // Custom design composable
 const { designData, fetchCustomDesign, setCustomDesign, toggleCustomDesign, removeBackground, toggleFonts, toggleHeader, toggleFooter } = useCustomDesign()
 // Custom design reactive property
@@ -40,16 +41,6 @@ const krabbels = ref([
 const hyvesItems = ref([])
 const loading = ref(true)
 const error = ref(null)
-
-// Helper function to format dates
-const formatDate = (date) => {
-  const options = {
-    weekday: 'long',
-    day: 'numeric',
-    month: 'numeric'
-  }
-  return date.toLocaleDateString('nl-NL', options)
-}
 
 // Parse route parameter to determine format
 const parseProfileId = (id, hash) => {
@@ -274,20 +265,23 @@ console.log('[id]/index.vue loaded:', {
           <!-- Krabbels Section -->
           <div class="border border-gray-200 bg-[#fcfcfc] rounded-sm">
             <h3 class="nyves-bg-gray-header p-2 text-nyves-blue font-bold">Krabbels</h3>
-            <div v-for="krabbel in krabbels" :key="krabbel.id" class="border-b border-gray-200 p-2">
-              <div class="flex gap-2">
-                <div>
-                  <div class="size-12 bg-gray-200 border border-gray-300 hover:border-gray-600 transition-border duration-150"></div>
-                </div>
-                <div>
-                  <NuxtLink :to="`/profiel/${krabbel.author.username}`" class="font-bold text-xs">{{ krabbel.author.name }}</NuxtLink>
-                  <div class="text-xs leading-normal mb-1 krabbel-content" v-html="krabbel.content"></div>
-                  <div class="text-xs text-[#a9a9a9]">
-                    {{ formatDate(krabbel.createdAt) }}, <NuxtLink to="#">Reageer</NuxtLink>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <ProfielKrabbels :profile="profile" />
+
+<!--            <div v-for="krabbel in krabbels" :key="krabbel.id" class="border-b border-gray-200 p-2">-->
+<!--              <div class="flex gap-2">-->
+<!--                <div>-->
+<!--                  <div class="size-12 bg-gray-200 border border-gray-300 hover:border-gray-600 transition-border duration-150"></div>-->
+<!--                </div>-->
+<!--                <div>-->
+<!--                  <NuxtLink :to="`/profiel/${krabbel.author.username}`" class="font-bold text-xs">{{ krabbel.author.name }}</NuxtLink>-->
+<!--                  <div class="text-xs leading-normal mb-1 krabbel-content" v-html="krabbel.content"></div>-->
+<!--                  <div class="text-xs text-[#a9a9a9]">-->
+<!--                    {{ formatDate(krabbel.createdAt) }}, <NuxtLink to="#">Reageer</NuxtLink>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+
           </div>
         </div>
 
@@ -323,9 +317,10 @@ console.log('[id]/index.vue loaded:', {
           <!-- Blogs section -->
           <div class="border border-gray-200 bg-[#fcfcfc] rounded-sm mb-3">
             <h3 class="nyves-bg-gray-header p-2 text-nyves-blue font-bold">Blog</h3>
-            <p class="p-2 text-sm">
-              Geen items gevonden
-            </p>
+            <ProfielBlog :profile="profile" />
+            <div class="my-1">
+              <NuxtLink :to="`${profile.npub}/blog`" class="text-xs mx-2">› Meer</NuxtLink>
+            </div>
           </div>
 
           <!-- Login Box -->

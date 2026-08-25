@@ -8,8 +8,77 @@ const STATS_RELAY = 'wss://rely.nyves.nl'
 
 const count = ref({
   usernames: 0,
+  profiles: 0,
   nostrverse: 0
 })
+
+const nyvesUsernameCounts = async () => {
+  const filter = {
+    "kinds": [8000]
+  }
+
+  const ws = new WebSocket(STATS_RELAY)
+  ws.onopen = () => {
+    const countId = 'count_' + Math.random().toString(36).substr(2, 9)
+    const countMessage = JSON.stringify([
+      "COUNT",
+      countId,
+      filter
+    ])
+
+    ws.send(countMessage)
+
+    ws.onmessage = (event) => {
+      try {
+        const data = JSON.parse(event.data)
+        if (data[0] === 'COUNT' && data[1] === countId) {
+          if (data[2]) {
+            count.value.usernames = data[2].count.toLocaleString('nl-NL')
+          }
+        }
+      } catch (e) {
+
+      }
+    }
+    ws.onerror = () => {
+
+    }
+  }
+}
+
+const nyvesProfileCounts = async () => {
+  const filter = {
+    "kinds": [0]
+  }
+
+  const ws = new WebSocket(STATS_RELAY)
+  ws.onopen = () => {
+    const countId = 'count_' + Math.random().toString(36).substr(2, 9)
+    const countMessage = JSON.stringify([
+      "COUNT",
+      countId,
+      filter
+    ])
+
+    ws.send(countMessage)
+
+    ws.onmessage = (event) => {
+      try {
+        const data = JSON.parse(event.data)
+        if (data[0] === 'COUNT' && data[1] === countId) {
+          if (data[2]) {
+            count.value.profiles = data[2].count.toLocaleString('nl-NL')
+          }
+        }
+      } catch (e) {
+
+      }
+    }
+    ws.onerror = () => {
+
+    }
+  }
+}
 
 const nostrverseCounts = async () => {
   // Use NIP-45 count with distinct:author to get YAU numbers from 1 relay with a kind 0 (profile metadata)
@@ -54,37 +123,8 @@ const nostrverseCounts = async () => {
 
 onMounted(async () => {
   try {
-    const filter = {
-      "kinds": [0]
-    }
-
-    const ws = new WebSocket(STATS_RELAY)
-    ws.onopen = () => {
-      const countId = 'count_' + Math.random().toString(36).substr(2, 9)
-      const countMessage = JSON.stringify([
-        "COUNT",
-        countId,
-        filter
-      ])
-
-      ws.send(countMessage)
-
-      ws.onmessage = (event) => {
-        try {
-          const data = JSON.parse(event.data)
-          if (data[0] === 'COUNT' && data[1] === countId) {
-            if (data[2]) {
-              count.value.usernames = data[2].count.toLocaleString('nl-NL')
-            }
-          }
-        } catch (e) {
-
-        }
-      }
-      ws.onerror = () => {
-
-      }
-    }
+    await nyvesUsernameCounts()
+    await nyvesProfileCounts()
     await nostrverseCounts()
   } catch (error) {
     console.error('Fout bij NIP-45 COUNT:', error)
@@ -124,7 +164,7 @@ onMounted(async () => {
     </p>
     <div class="grid grid-cols-1 gap-4 text-xl">
       <div>
-        <span class="font-bold">{{ count.usernames }}</span> Nyves profielen uit het archief
+        <span class="font-bold">{{ count.profiles }}</span> Nyves profielen uit het archief
       </div>
       <div>
         <span class="font-bold">{{ count.nostrverse }}</span> profielen uit de nostrverse
