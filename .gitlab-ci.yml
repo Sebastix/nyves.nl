@@ -1,9 +1,16 @@
+variables:
+  URL: "https://nyves.nl"
+  PROJECT_ROOT: "/var/www/vhosts/sebastix.nl/nyves.nl"
+  SSH_USER: "sebastix"
+  SSH_HOST: "nyves.nl"
+  SSH_LOGIN: "sebastix@ximo1.ximology.com"
+
 stages:
   - build
   - deploy
 
 site:nuxt-build:
-  image: node:25
+  image: node:24
   stage: build
   script:
     - npm install
@@ -23,7 +30,7 @@ deploy:prod:
   stage: deploy
   environment:
     name: prod
-    url: https://nyves.nl
+    url: $URL
   before_script:
     - 'which ssh-agent || ( apk add --update openssh )'
     - apk add --update bash
@@ -36,8 +43,10 @@ deploy:prod:
     - apk add rsync
     - rsync --version
   script:
-    - rsync -avz --delete --exclude-from='gitlab-ci/rsync-excludes.txt' -e ssh .output/. sebastix@ximo1.ximology.com:/var/www/vhosts/sebastix.nl/nyves.nl/httpdocs/.output
-    - echo "Deployment ready, check https://nyves.nl"
+    - rsync -avz --delete --exclude-from='gitlab-ci/rsync-excludes.txt' -e ssh .nuxt/. $SSH_USER@ximo1.ximology.com:$PROJECT_ROOT/httpdocs/.nuxt
+    - rsync -avz --delete --exclude-from='gitlab-ci/rsync-excludes.txt' -e ssh .output/. $SSH_USER@ximo1.ximology.com:$PROJECT_ROOT/httpdocs/.output
+    - $SSH_LOGIN "cd $PROJECT_ROOT/httpdocs && npm serve"
+    - echo "Deployment ready, check $URL"
   dependencies:
     - site:nuxt-build
 
