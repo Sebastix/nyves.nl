@@ -8,8 +8,10 @@ const DEFAULT_RELAYS = [
   'wss://profiles.nostr1.com',
   'wss://profiles.nostrver.se',
   'wss://relay.ditto.pub',
-  'wss://relaypage.es',
-  'wss://index.hzrd149.com'
+  //'wss://relaypage.es',
+  //'wss://index.hzrd149.com',
+  'wss://relay.vertexlab.io',
+  'wss://user.kindpag.es'
 ]
 
 export const useNostrProfile = () => {

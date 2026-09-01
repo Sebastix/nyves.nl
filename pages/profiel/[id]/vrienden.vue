@@ -42,8 +42,9 @@ const fetchContactList = async (pubkey) => {
     const relays = [
       'wss://relay.damus.io',
       'wss://nos.lol', 
-      'wss://relay.snort.social',
-      'wss://relay.primal.net'
+      'wss://relay.primal.net',
+      'wss://relay.vertexlab.io',
+      'wss://relay.ditto.pub'
     ]
     
     const filter = {
@@ -276,33 +277,32 @@ useSeoMeta({
     <!-- Content -->
     <div v-else-if="profile">
       <!-- Header -->
-      <div class="mb-6">
-        <NuxtLink
-          :to="`/profiel/${npub}`"
-          class="hover:text-nyves-blue"
-        >
-          {{ profile.display_name || profile.name || 'Profiel' }}
+      <div class="flex flex-row gap-x-2 profileHeader mb-2">
+        <NuxtLink :to="`/profiel/${profile.npub}`">
+          <NostrComponentsProfilePicture :pubkey="profile.pubkey" class="size-12" />
         </NuxtLink>
-        
-        <h1 class="text-3xl font-bold text-gray-900 mb-2">
-          Vrienden van {{ profile.display_name || profile.name || 'dit profiel' }} ({{ rawContactData.length }})
-        </h1>
-        
-        <!-- Quick Stats -->
-        <div class="flex flex-wrap gap-4 text-sm text-gray-600 mb-6">
-          <div class="bg-white px-3 py-1 rounded-sm border">
-            <span class="font-medium">{{ rawContactData.length }}</span> pubkeys in de followlist
-          </div>
-          <div class="bg-white px-3 py-1 rounded-sm border">
-            <span class="font-medium">{{ vrienden.length }}</span> pubkeys met metadata geladen
-          </div>
-          <div v-if="loadingFriends" class="bg-blue-50 px-3 py-1 rounded-sm border border-blue-200 text-blue-700">
-            ⏳ Profielen worden geladen...
-          </div>
-          <div v-if="contactListEvent" class="bg-green-50 px-3 py-1 rounded-sm border border-green-200 text-green-700">
-            Kind 3 event gevonden
+        <div class="grid grid-cols-2">
+          <h1 class="col-span-2 text-3xl font-bold mb-1">
+            <NuxtLink :to="`/profiel/${profile.npub}`">
+              {{ profile.name }}
+            </NuxtLink>
+            <a :href="`${profile.urlWaybackMachine}/vrienden`" target="_blank" class="text-xs" v-if="profile.urlWaybackMachine">{{ profile.urlWaybackMachine }}</a>
+          </h1>
+          <div class="mb-2">
+            <NuxtLink :to="`/profiel/${profile.npub}/over`" class="mr-4 text-xs">Over</NuxtLink>
+            <NuxtLink :to="`/profiel/${profile.npub}/vrienden`" class="mr-4 text-xs font-bold !text-black">Vrienden</NuxtLink>
+            <NuxtLink :to="`/profiel/${profile.npub}/media`" class="mr-4 text-xs">Foto's</NuxtLink>
+            <NuxtLink :to="`/profiel/${profile.npub}/meer`" class="text-xs">Meer</NuxtLink>
           </div>
         </div>
+        <button
+            @click="toggleCustomDesign"
+            class="justify-self-end text-xs mb-1 cursor-pointer px-1 hidden"
+            :class="[ custom_design ? 'bg-linear-to-b from-[#65d018] to-[#49a811] text-white rounded-sm font-bold border border-[#96e05e] hover:border-[#44a806] text-shadow-xs' : '' ]"
+        >
+          <span class="text-white font-sans" v-if="custom_design">🛟 Toon in standaard design</span>
+          <span class="text-nyves-blue" v-else>🛟 Toon eigen design!</span>
+        </button>
       </div>
 
       <!-- Friends list -->
@@ -348,61 +348,57 @@ useSeoMeta({
         
         <!-- Loaded Profiles -->
         <div v-if="vrienden.length > 0" class="border border-gray-200 bg-[#fcfcfc] rounded-sm">
-          <h2 class="nyves-bg-gray-header h-10 font-bold text-nyves-blue mb-2 p-2">
-            Profielen ({{ vrienden.length }})
+          <h2 class="nyves-bg-gray-header font-bold text-nyves-blue mb-0 p-2">
+            Vrienden ({{ rawContactData.length }})
           </h2>
 
-          <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-1 mb-4">
+          <form class="px-2 mb-4">
+            <label>
+              <input type="text" class="p-1 bg-white rounded-sm border border-gray-500 text-sm min-w-96" placeholder="Tik (de eerste letter van) de naam in:" />
+            </label>
+          </form>
+
+          <div class="grid grid-cols-3 md:grid-cols-5 gap-1 mb-4 border-b border-b-gray-200 pb-2">
             <div
                 v-for="vriend in vrienden"
                 :key="vriend.npub"
                 class="text-center"
             >
               <NuxtLink :to="`/profiel/${vriend.npub}`" class="text-xs">
-                <img
-                    v-if="vriend.profile?.picture"
-                    :src="vriend.profile.picture"
-                    :alt="vriend.profile.display_name || vriend.profile.name"
-                    class="size-25 bg-gray-200 border border-gray-300 hover:border-gray-600 transition-border duration-150 shadow-md/5 mx-auto mb-1"
-                >
-                {{ vriend.profile?.display_name || vriend.profile?.name || 'Naamloos' }}
-                <br />
+                <NostrComponentsProfilePicture :pubkey="vriend.pubkey" />
+                <NostrComponentsPubkeyToName :pubkey="vriend.pubkey" />
                 <span class="font-mono">{{ vriend.npub.substring(0, 8) }}...</span>
               </NuxtLink>
             </div>
           </div>
-        </div>
 
-        <!-- Raw Contact Data (without profiles) -->
-        <div v-if="rawContactData.length > vrienden.length">
-          <h3 class="text-lg font-semibold text-gray-900 mb-2">
-            Pubkeys ({{ rawContactData.length - vrienden.length }})
-          </h3>
-          <div>
-            <p class="text-sm text-gray-600 bg-yellow-100 p-2 mb-3">
-              💡 Profielen voor deze contacten worden (nog) niet automatisch geladen om performance redenen.
+          <template v-if="rawContactData.length > vrienden.length">
+            <h3 class="text-lg font-semibold text-nyves-blue mb-2 p-2">
+              Pubkeys ({{ rawContactData.length - vrienden.length }})
+            </h3>
+            <p class="text-center text-sm text-gray-600 bg-yellow-100 p-2 mb-3">
+              💡 Profielen voor onderstaande contacten worden (nog) niet automatisch geladen om performance redenen.
             </p>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-2 p-2">
               <div
-                v-for="contact in rawContactData.slice(vrienden.length)"
-                :key="contact.npub"
-                class="flex items-center justify-between p-2 bg-white rounded border text-sm"
+                  v-for="contact in rawContactData.slice(vrienden.length)"
+                  :key="contact.npub"
+                  class="flex items-center justify-between p-2 bg-white rounded border text-sm"
               >
-                <div class="flex-1 min-w-0">
+                <div class="flex-1 min-w-0 text-xs">
                   <NostrComponentsPubkeyToName :pubkey="contact.pubkey" />
                 </div>
-                
-                <NuxtLink 
-                  :to="`/profiel/${contact.npub}`"
-                  class="text-nyves-blue hover:text-nyves-blue/80 text-xs underline"
+
+                <NuxtLink
+                    :to="`/profiel/${contact.npub}`"
+                    class="text-nyves-blue hover:text-nyves-blue/80 text-xs underline"
                 >
                   Bekijk
                 </NuxtLink>
               </div>
             </div>
-          </div>
+          </template>
         </div>
-        
       </div>
     </div>
 

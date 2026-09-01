@@ -51,7 +51,7 @@ onMounted(async () => {
 })
 // Set page meta
 useSeoMeta({
-  title: `Zoeken - Nyves`,
+  title: $t('zoeken') + ` - Nyves`,
   description: `Hier kun je jouw Hyves profiel opzoeken.`,
   ogDescription: `Hier kun je jouw Hyves profiel opzoeken.`,
 })
@@ -62,7 +62,7 @@ useSeoMeta({
     <h1 class="text-3xl text-nyves-blue my-3 text-center font-bold">{{ $t('zoeken') }}</h1>
 
     <p class="leading-relaxed text-center text-xl mb-2">
-      Vind jouw Hyves profiel in een lijst met <div class="animate-spin rounded-full size-3 border-b-2 border-nyves-blue inline-block" v-if="loading"></div> <strong>{{ count.names }}</strong> namen.
+      Vind jouw Hyves profiel in een lijst met <LoadingSpinner class="scale-25 align-middle mx-1 inline-block" v-if="loading && count.names === 0" /> <strong>{{ count.names }}</strong> namen.
     </p>
 
     <p class="bg-orange-100 border border-orange-300 max-w-2xl mx-auto text-xs text-center leading-relaxed mb-12 p-2">

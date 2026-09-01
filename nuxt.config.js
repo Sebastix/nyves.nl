@@ -56,9 +56,29 @@ export default defineNuxtConfig({
     ],
     customRoutes: 'config',
     pages: {
+      index: {
+        nl: '/',
+        en: '/'
+      },
       zoek: {
         nl: '/zoek',
         en: '/search'
+      },
+      nieuws: {
+        nl: '/nieuws',
+        en: '/news'
+      },
+      'veelgestelde-vragen': {
+        nl: '/veelgestelde-vragen',
+        en: '/faq'
+      },
+      'over-nyves': {
+        nl: '/over-nyves',
+        en: '/about-nyves'
+      },
+      voorwaarden : {
+        nl: '/voorwaarden',
+        en: '/terms'
       }
     }
   },

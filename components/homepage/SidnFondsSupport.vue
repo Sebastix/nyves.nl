@@ -5,19 +5,6 @@
 <template>
   <section class="mb-8">
     <div class="max-w-5xl mx-auto">
-      <!-- Quote sectie -->
-      <div class="px-4">
-        <blockquote class="text-xl text-gray-700 italic font-light max-w-3xl mx-auto">
-          "Het project ‘Nyves’ heeft als doel om oude Hyves-profielen opnieuw tot leven te brengen met een moderne, open
-          webapplicatie gebaseerd op het Nostr-protocol. Gebruikers kunnen hun opgeslagen Hyves-data eenvoudig heractiveren,
-          delen en doorzoeken. Nyves behoudt digitaal erfgoed, versterkt data-autonomie en toont hoe open protocollen het sociale
-          web toekomstbestendig maken. Het sluit hiermee aan bij doelstelling 1 van SIDN fonds: Sterk internet."
-        </blockquote>
-        <div class="max-w-3xl mx-auto my-4 text-gray-500 text-right">
-          - SIDNfonds over Nyves
-        </div>
-      </div>
-
       <!-- Main Content -->
       <div class="border border-gray-200 bg-[#fcfcfc] rounded-sm overflow-hidden">
         <div class="h-[44px] nyves-bg-gray-header"></div>
@@ -69,6 +56,18 @@
         </div>
       </div>
 
+      <!-- Quote sectie -->
+      <div class="mt-4 px-4">
+        <blockquote class="text-xl text-gray-700 italic font-light max-w-3xl mx-auto">
+          "Het project ‘Nyves’ heeft als doel om oude Hyves-profielen opnieuw tot leven te brengen met een moderne, open
+          webapplicatie gebaseerd op het Nostr-protocol. Gebruikers kunnen hun opgeslagen Hyves-data eenvoudig heractiveren,
+          delen en doorzoeken. Nyves behoudt digitaal erfgoed, versterkt data-autonomie en toont hoe open protocollen het sociale
+          web toekomstbestendig maken. Het sluit hiermee aan bij doelstelling 1 van SIDN fonds: Sterk internet."
+        </blockquote>
+        <div class="max-w-3xl mx-auto my-4 text-gray-500 text-right">
+          - SIDNfonds over Nyves
+        </div>
+      </div>
 
     </div>
   </section>

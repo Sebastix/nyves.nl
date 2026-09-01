@@ -16,7 +16,22 @@ const render = (content) => {
    * 5. URL's
    * 6. Linebreaks \n to <br />
    */
+  content = renderVideo(content)
+  content = renderImages(content)
+  content = renderEmojis(content)
+  return content;
+}
 
+const renderImages = (content) => {
+  const regex = new RegExp(`(https?:\\/\\/.*\\.(?:png|jpg|jpeg|webp|gif))`, 'g')
+  content = content.replace(regex, `<img src="$1" />`)
+  return content
+}
+
+const renderVideo = (content) => {
+  const regex = new RegExp(`(https?:\\/\\/.*\\.(?:mp4))`, 'g')
+  content = content.replace(regex, `<video controls><source src="$1"></source></video>`)
+  return content
 }
 
 const renderEmojis = (content) => {
@@ -38,7 +53,7 @@ const renderEmojis = (content) => {
 </script>
 
 <template>
-  <div class="text-xs leading-normal mb-1 break-all" v-html="renderEmojis(event.content)">
+  <div class="text-xs leading-normal mb-1 break-all" v-html="render(event.content)">
 
   </div>
 </template>

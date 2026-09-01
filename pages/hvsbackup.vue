@@ -149,7 +149,7 @@ const formatFileSize = (bytes) => {
 
     <div class="my-4 lg:max-w-2/3 lg:mx-auto">
       <p class="text-gray-600 text-lg lg:text-xl leading-6">
-        In de periode 2010-2013 ontwikkelde Sebastian Hagens een applicatie genaamd HVSbackup waarmee je verschillende Hyves content van jouw profiel kon downloaden.
+        In de periode 2010-2013 ontwikkelde Sebastian Hagens een applicatie genaamd HVSbackup waarmee je verschillende content van jouw Hyves profiel kon downloaden.
         <br />
         <br />
         Hieronder vind je video opname (Flash video die wordt afgespeeld met de Ruffle emulator) uit 2011 die een beeld geeft hoe de applicatie werkte.

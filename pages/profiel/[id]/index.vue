@@ -167,18 +167,23 @@ onUnmounted(() => {
   toggleFooter()
   close()
 })
-
-// Set default SEO
-useSeoMeta({
-  title: 'Profiel - Nyves',
-  description: 'Bekijk Nostr profiel op Nyves'
-})
-// Validate route
 definePageMeta({
+  i18n: {
+    paths: {
+      nl: '/profiel/[id]',
+      en: '/profile/[id]'
+    }
+  },
+  // Validate route
   validate (route) {
     // todo
     return true
   }
+})
+// Set default SEO
+useSeoMeta({
+  title: 'Profiel - Nyves',
+  description: 'Bekijk Nostr profiel op Nyves'
 })
 // Debug routing
 console.log('[id]/index.vue loaded:', {
@@ -220,7 +225,7 @@ console.log('[id]/index.vue loaded:', {
       <div class="grid grid-cols-1 md:grid-cols-2 profileHeader">
         <h1 class="col-span-2 text-3xl font-bold mb-1">{{ profile.name }} <a :href="profile.urlWaybackMachine" target="_blank" class="text-xs" v-if="profile.urlWaybackMachine">{{ profile.urlWaybackMachine }}</a></h1>
         <div class="mb-2">
-          <NuxtLink :to="`/profiel/${profile.npub}/over`" class="text-orange-600 hover:underline mr-4 text-xs font-bold">Over</NuxtLink>
+          <NuxtLink :to="`/profiel/${profile.npub}/over`" class="mr-4 text-xs font-bold">Over</NuxtLink>
           <NuxtLink :to="`/profiel/${profile.npub}/vrienden`" class="mr-4 text-xs">Vrienden</NuxtLink>
           <NuxtLink :to="`/profiel/${profile.npub}/media`" class="mr-4 text-xs">Foto's</NuxtLink>
           <NuxtLink :to="`/profiel/${profile.npub}/meer`" class="text-xs">Meer</NuxtLink>

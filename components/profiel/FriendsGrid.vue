@@ -24,8 +24,8 @@ const fetchContactList = async (pubkey) => {
     const relays = [
       'wss://relay.damus.io',
       'wss://nos.lol',
-      'wss://relay.snort.social',
-      'wss://relay.primal.net'
+      'wss://relay.primal.net',
+      'wss://relay.ditto.pub'
     ]
 
     const filter = {

@@ -5,6 +5,7 @@
 <template>
   <div class="border border-gray-200 bg-[#fcfcfc] rounded-sm mb-8">
     <div class="h-[44px] nyves-bg-gray-header"></div>
+    <h2 class="text-2xl font-bold mb-8 text-center">We doen het niet alleen</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 items-center gap-x-8 gap-y-4 px-8">
       <a href="https://soapbox.pub" target="_blank" class="text-center bg-blue-50 py-8 rounded-sm">
         <img src="~/assets/soapbox-logo-icon.svg" class="size-24 mx-auto mb-2" alt="Soapbox" />

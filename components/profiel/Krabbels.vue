@@ -28,7 +28,6 @@ const fetchKrabbels = async (pubkey) => {
   }
   const events = await queryRelays(relays, filter)
   if (events.length > 0) {
-    console.log(events)
     krabbelsData.value = events
     loading.value = false
   }
@@ -76,7 +75,7 @@ onUnmounted(async () => {
         </NuxtLink>
         <NostrComponentsNoteContent :event="krabbel" />
         <div class="text-xs text-[#a9a9a9]">
-          {{ formatDate(krabbel.created_at) }} {{ getDateObject(krabbel.created_at).getHours() }}:{{ getDateObject(krabbel.created_at).getMinutes() }} <NuxtLink to="#">Reageer</NuxtLink>
+          {{ formatDate(krabbel.created_at) }}, {{ getDateObject(krabbel.created_at).getHours() }}:{{ getDateObject(krabbel.created_at).getMinutes() }} <NuxtLink to="#">Reageer</NuxtLink>
         </div>
       </div>
     </div>

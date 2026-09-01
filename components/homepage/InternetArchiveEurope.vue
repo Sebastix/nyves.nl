@@ -4,6 +4,7 @@
   <section class="mb-8">
     <div class="border border-gray-200 bg-[#fcfcfc] rounded-sm overflow-hidden">
       <div class="h-[44px] nyves-bg-gray-header"></div>
+      <h2 class="text-2xl font-bold mb-8 text-center">Het publieke Hyves archief</h2>
       <div class="grid md:grid-cols-2 gap-8 items-center px-8 pb-[44px]">
         <div>
           <img src="~/assets/IAE_LOGO_FULL_BLACK.webp" class="max-w-xs mx-auto" alt="Internet Archive Europe" />
@@ -16,7 +17,7 @@
           </p>
           <a href="https://wiki.archiveteam.org/index.php/Hyves" target="_blank" class="inline-flex items-center mt-2">
             https://wiki.archiveteam.org/index.php/Hyves
-            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="size-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
             </svg>
           </a>

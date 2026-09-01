@@ -1,5 +1,55 @@
 <script setup>
-// Hero component voor Nyves homepage
+const { pool, queryRelays } = useSharedRelayPool()
+
+const RELAY = 'wss://rely.nyves.nl'
+
+import { onMounted, ref } from 'vue';
+import LoadingSpinner from '../LoadingSpinner.vue';
+
+const loading = ref(true);
+const count = ref({
+  names: 0
+})
+
+onMounted(async () => {
+  try {
+    const filter = {
+      "kinds": [0]
+    }
+    const ws = new WebSocket(RELAY)
+    ws.onopen = () => {
+      const countId = 'count_' + Math.random().toString(36).substr(2, 9)
+      const countMessage = JSON.stringify([
+        "COUNT",
+        countId,
+        filter
+      ])
+
+      ws.send(countMessage)
+
+      ws.onmessage = (event) => {
+        try {
+          const data = JSON.parse(event.data)
+          if (data[0] === 'COUNT' && data[1] === countId) {
+            if (data[2]) {
+              count.value.names = data[2].count.toLocaleString('nl-NL')
+            }
+          }
+          loading.value = false
+        } catch (e) {
+          loading.value = false
+          console.error(e)
+        }
+      }
+      ws.onerror = () => {
+
+      }
+    }
+  } catch (e) {
+    loading.value = false
+    console.error(e)
+  }
+})
 </script>
 
 <template>
@@ -17,7 +67,7 @@
     <div class="max-w-3xl mx-auto">
       <!-- Hoofdtitel -->
       <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-        {{ $t('welkom_bij') }} <span class="text-nyves-orange">Nyves</span>
+        {{ $t('welkom_bij') }} <span class="text-nyves-blue">Nyves</span>
       </h1>
 
       <!-- Beschrijving -->
@@ -28,9 +78,9 @@
         </p>
 
         <i18n-t keypath="hero_intro" tag="p" class="text-gray-500 text-base">
-          <strong class="text-nyves-blue-purple">{{ $t('Nostr') }}</strong>
-          <strong class="text-nyves-blue-purple">{{ $t('relays') }}</strong>
-          <strong class="text-nyves-blue-purple">{{ $t('cryptografisch gesigneerde content') }}</strong>
+          <strong class="text-nyves-blue">{{ $t('Nostr') }}</strong>
+          <strong class="text-nyves-blue">{{ $t('relays') }}</strong>
+          <strong class="text-nyves-blue">{{ $t('cryptografisch_gesigneerde_content') }}</strong>
         </i18n-t>
 
         <p>
@@ -53,6 +103,10 @@
           {{ $t('of_bekijk_dit_voorbeeld') }}
         </NuxtLink>
       </div>
+      <i18n-t keypath="hero_intro_search_count" tag="p" class="text-gray-500 text-base mt-4">
+        <LoadingSpinner class="scale-25 align-middle mx-1 inline-block" v-if="loading && count.names === 0" />
+        <strong>{{ count.names }}</strong>
+      </i18n-t>
     </div>
   </section>
 </template>

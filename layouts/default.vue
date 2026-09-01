@@ -1,5 +1,5 @@
 <script setup>
-import Modal from '../components/Modal.vue';
+import * as Sentry from "@sentry/vue";
 
 const { isModalOpen, modalType, closeModal } = useModal()
 
@@ -7,6 +7,15 @@ useScriptMatomoAnalytics({
   matomoUrl: 'https://matomo.sebastix.nl',
   siteId: 17,
 })
+
+Sentry.init({
+  dsn: "https://d83509cf6b2c47ffb572463b0417dced@logs.sebastix.dev/12",
+  autoSessionTracking: false, // GlitchTip does not support sessions
+});
+
+// Sentry.logger.error("homepage loaded - test");
+// throw new Error('this is an error')
+
 </script>
 
 <template>

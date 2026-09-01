@@ -1,5 +1,8 @@
 <script setup>
-
+useSeoMeta({
+  title: `Veelgestelde vragen - Nyves`,
+  description: ``
+})
 </script>
 
 <template>
