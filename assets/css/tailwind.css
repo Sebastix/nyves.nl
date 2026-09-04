@@ -26,3 +26,22 @@ a {
     }
   }
 }
+
+.connect-options {
+  @apply flex flex-col gap-y-4;
+  details {
+    @apply px-4 rounded-sm border-2 border-nyves-blue/10 hover:border-nyves-blue relative;
+    sup {
+      @apply absolute -top-2 -right-1;
+    }
+    summary {
+      @apply text-xl leading-16 cursor-pointer;
+    }
+    p {
+      @apply mb-4;
+    }
+    > a {
+      @apply block bg-nyves-orange text-white p-2 mb-4 text-center text-lg;
+    }
+  }
+}
