@@ -83,7 +83,7 @@ useSeoMeta({
     />
 
     <!-- Relay Health Check -->
-    <div class="max-w-md mx-auto">
+    <div class="max-w-lg mx-auto mt-8">
       <RelayHealthCheck relay-url="wss://rely.nyves.nl" />
     </div>
 

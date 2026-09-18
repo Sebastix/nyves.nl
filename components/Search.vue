@@ -175,7 +175,7 @@ onUnmounted(() => {
     <form
       @submit="handleSubmit"
       id="search"
-      class="max-w-lg mx-auto mb-8 bg-white/90 hover:bg-white transition-bg duration-150 border border-nyves-orange rounded-xs shadow-inner/5 focus:outline-none flex justify-between"
+      class="max-w-lg mx-auto bg-white/90 hover:bg-white transition-bg duration-150 border border-nyves-orange rounded-xs shadow-inner/5 focus:outline-none flex justify-between"
     >
       <input
         ref="zoekInput"
@@ -247,7 +247,7 @@ onUnmounted(() => {
   <div v-if="toonResultatenLijst && showResultsList">
 
     <!-- Error state -->
-    <div v-if="zoekData.fout" class="p-4 bg-red-50 border border-red-200 rounded-lg">
+    <div v-if="zoekData.fout" class="p-4 my-20 bg-red-50 border border-red-200 rounded-lg">
       <p class="text-sm text-red-600">{{ zoekData.fout }}</p>
     </div>
 
@@ -257,13 +257,13 @@ onUnmounted(() => {
     </div>
 
     <!-- Geen resultaten -->
-    <div v-else-if="zoekData.heeftGezocht && zoekData.resultaten.length === 0" class="text-center">
+    <div v-else-if="zoekData.heeftGezocht && zoekData.resultaten.length === 0" class="text-center mt-8">
       <p class="text-gray-500 mb-12 text-xl">Helaas, er zijn geen profielen gevonden met de zoekterm "{{ zoekData.laatsteQuery }}"</p>
       <MailingList heading='<strong class="block mb-4">Wil je een bericht ontvangen zodra alle profielen zijn beschikbaar zijn?</strong> Meld je dan aan voor de nieuwsbrief.' />
     </div>
 
     <!-- Resultatenlijst -->
-    <div v-else class="space-y-2 mb-8 max-w-2xl mx-auto">
+    <div v-else class="space-y-2 my-8 max-w-2xl mx-auto">
       <!-- Resultaten header -->
       <div class="flex justify-between items-center mb-4">
         <p class="text-xl text-gray-600 font-bold">
