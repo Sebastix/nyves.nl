@@ -1,6 +1,13 @@
 <script setup>
 import { ref, onMounted, nextTick } from 'vue'
 
+const props = defineProps({
+  heading: {
+    type: String,
+    default: '<span class="text-nyves-blue font-bold">Nyves volgen?</span> Blijf op de hoogte via onze nieuwsbrief.'
+  }
+})
+
 // State voor Altcha Captcha
 const CaptchaResponse = ref('')
 const isSubmitting = ref(false)
@@ -96,9 +103,7 @@ const setupAltcha = () => {
     <div class="h-[44px] nyves-bg-gray-header"></div>
     <form method="post" action="https://mailings.sebastix.dev/subscription/form" class="listmonk-form">
       <div>
-        <h3 class="text-xl font-medium mb-2">
-          <span class="text-nyves-blue font-bold">Nyves volgen?</span> Blijf op de hoogte via onze nieuwsbrief.
-        </h3>
+        <h3 class="text-xl font-medium mb-2" v-html="heading"></h3>
         <input type="hidden" name="nonce" />
         <p>
           <input type="email" name="email" autocomplete="on" required placeholder="Jouw e-mailadres" class="p-2 bg-white border border-nyves-blue focus:outline-nyves-orange rounded-sm text-base min-w-[360px]" />

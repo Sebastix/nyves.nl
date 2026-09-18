@@ -3,6 +3,7 @@ import { ref, onMounted, onUnmounted, watch, nextTick } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useNostrSearch } from '~/composables/useNostrSearch'
 import LoadingSpinner from './LoadingSpinner.vue';
+import MailingList from './MailingList.vue';
 
 const emit = defineEmits(['profielGeselecteerd'])
 const route = useRoute()
@@ -174,7 +175,7 @@ onUnmounted(() => {
     <form
       @submit="handleSubmit"
       id="search"
-      class="bg-white/90 hover:bg-white transition-bg duration-150 border border-nyves-orange rounded-xs shadow-inner/5 focus:outline-none flex justify-between"
+      class="max-w-lg mx-auto mb-8 bg-white/90 hover:bg-white transition-bg duration-150 border border-nyves-orange rounded-xs shadow-inner/5 focus:outline-none flex justify-between"
     >
       <input
         ref="zoekInput"
@@ -243,10 +244,7 @@ onUnmounted(() => {
   </div>
 
   <!-- Resultatenlijst onder formulier (na submit) - alleen op zoek pagina -->
-  <div v-if="toonResultatenLijst && showResultsList" class="mt-4">
-    <h3 v-if="zoekData.laatsteQuery" class="text-sm text-center font-medium text-gray-900 mb-3">
-      {{ zoekData.resultaten.length }} resultaten gevonden voor "{{ zoekData.laatsteQuery }}"
-    </h3>
+  <div v-if="toonResultatenLijst && showResultsList">
 
     <!-- Error state -->
     <div v-if="zoekData.fout" class="p-4 bg-red-50 border border-red-200 rounded-lg">
@@ -254,31 +252,27 @@ onUnmounted(() => {
     </div>
 
     <!-- Loading state -->
-    <div v-else-if="zoekData.laden" class="flex items-center justify-center py-8">
+    <div v-else-if="zoekData.laden" class="flex items-center justify-center my-20">
       <LoadingSpinner class="size-6" />
     </div>
 
     <!-- Geen resultaten -->
-    <div v-else-if="zoekData.heeftGezocht && zoekData.resultaten.length === 0" class="text-center py-8">
-      <div class="text-gray-500">
-        <svg class="mx-auto size-12 text-gray-400 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-        </svg>
-        <p class="text-gray-500">Er zijn geen profielen gevonden met de zoekterm "{{ zoekData.laatsteQuery }}"</p>
-      </div>
+    <div v-else-if="zoekData.heeftGezocht && zoekData.resultaten.length === 0" class="text-center">
+      <p class="text-gray-500 mb-12 text-xl">Helaas, er zijn geen profielen gevonden met de zoekterm "{{ zoekData.laatsteQuery }}"</p>
+      <MailingList heading='<strong class="block mb-4">Wil je een bericht ontvangen zodra alle profielen zijn beschikbaar zijn?</strong> Meld je dan aan voor de nieuwsbrief.' />
     </div>
 
     <!-- Resultatenlijst -->
-    <div v-else class="space-y-2">
+    <div v-else class="space-y-2 mb-8 max-w-2xl mx-auto">
       <!-- Resultaten header -->
       <div class="flex justify-between items-center mb-4">
-        <p class="text-sm text-gray-600">
-          {{ paginatieInfo.totaalGeladen }} profielen gevonden
-          <span v-if="zoekData.heeftMeer" class="text-nyves-blue">(meer beschikbaar)</span>
+        <p class="text-xl text-gray-600 font-bold">
+          {{ paginatieInfo.totaalGeladen }} profielen gevonden voor "{{ zoekData.laatsteQuery }}"
+          <span v-if="zoekData.heeftMeer">(meer beschikbaar)</span>
         </p>
-        <div class="text-xs text-gray-500">
+        <div class="text-sm text-gray-500">
           Pagina {{ paginatieInfo.huidigePagina }} 
-          ({{ paginatieInfo.startIndex }}-{{ paginatieInfo.endIndex }})
+          ({{ paginatieInfo.startIndex }}-{{ paginatieInfo.endIndex }} profielen)
         </div>
       </div>
 
@@ -287,29 +281,27 @@ onUnmounted(() => {
         v-for="profiel in zoekData.resultaten"
         :key="profiel.pubkey"
         @click="selecteerProfiel(profiel)"
+        :title="`${profiel.name ?? profiel.npub}`"
         class="p-2 bg-white border border-gray-200 rounded-sm hover:bg-gray-100 cursor-pointer transition-colors duration-150"
       >
         <div class="flex items-center space-x-2">
-          <!-- Avatar placeholder -->
-<!--          <div class="w-10 h-10 bg-nyves-blue text-white flex items-center justify-center text-lg font-medium">-->
-<!--            {{ profiel.name.charAt(0).toUpperCase() }}-->
-<!--          </div>-->
-          <NostrComponentsProfilePicture :pubkey="profiel.pubkey" class="flex items-center" />
+          <NostrComponentsProfilePicture :pubkey="profiel.pubkey" class="min-w-[120px] flex items-center" />
           <!-- Profiel info -->
-          <div class="flex-1">
-            <NuxtLink :to="`profiel/${profiel.display_name }#${profiel.npub}`" class="text-xl font-bold">
-              <div v-if="profiel.name">
+          <div class="flex-1 break-all">
+            <NuxtLink :to="`profiel/${profiel.name }#${profiel.npub}`" :title="`${profiel.name ?? profiel.npub}`" :alt="`${profiel.name ?? profiel.npub}`" class="text-xl font-bold">
+              <template v-if="profiel.name">
                 {{ profiel.name }}
-              </div>
+              </template>
               <NostrComponentsPubkeyToName v-else :pubkey="profiel.pubkey" />
+              <br />
               <code class="text-xs font-normal">{{ profiel.npub.substr(0, 8) }}...{{ profiel.npub.substr(profiel.npub.length - 6) }}</code>
             </NuxtLink>
           </div>
         </div>
       </div>
 
-      <!-- Paginatie controls -->
-      <div class="flex justify-between items-center mt-6 pt-4 border-t border-gray-200">
+      <!-- Paginator controls -->
+      <div class="flex justify-between items-center mt-8">
         <!-- Vorige pagina -->
         <button
           @click="gaNaarVorigePagina"

@@ -180,6 +180,10 @@ const getLimitations = () => {
 
     <!-- Detailed Info (uitklapbaar) -->
     <div v-if="showDetails" class="border-t border-gray-100 p-4 bg-gray-50">
+
+      <p class="text-xs mb-4">
+        Nyves maakt gebruik van <a href="https://nips.nostr.com/50" target="_blank">NIP-50 Search Capability</a> om informatie te doorzoeken op de relay <a href="https://rely.nyves.nl" target="_blank">https://rely.nyves.nl</a>.
+      </p>
       
       <!-- Basic Connection Info -->
       <div class="mb-6">
