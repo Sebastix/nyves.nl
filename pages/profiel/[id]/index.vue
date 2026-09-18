@@ -271,22 +271,6 @@ console.log('[id]/index.vue loaded:', {
           <div class="border border-gray-200 bg-[#fcfcfc] rounded-sm">
             <h3 class="nyves-bg-gray-header p-2 text-nyves-blue font-bold">Krabbels</h3>
             <ProfielKrabbels :profile="profile" />
-
-<!--            <div v-for="krabbel in krabbels" :key="krabbel.id" class="border-b border-gray-200 p-2">-->
-<!--              <div class="flex gap-2">-->
-<!--                <div>-->
-<!--                  <div class="size-12 bg-gray-200 border border-gray-300 hover:border-gray-600 transition-border duration-150"></div>-->
-<!--                </div>-->
-<!--                <div>-->
-<!--                  <NuxtLink :to="`/profiel/${krabbel.author.username}`" class="font-bold text-xs">{{ krabbel.author.name }}</NuxtLink>-->
-<!--                  <div class="text-xs leading-normal mb-1 krabbel-content" v-html="krabbel.content"></div>-->
-<!--                  <div class="text-xs text-[#a9a9a9]">-->
-<!--                    {{ formatDate(krabbel.createdAt) }}, <NuxtLink to="#">Reageer</NuxtLink>-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--            </div>-->
-
           </div>
         </div>
 

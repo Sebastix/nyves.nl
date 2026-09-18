@@ -57,7 +57,7 @@ onMounted(() => {
     
     <!-- Modal content -->
     <div class="flex min-h-full items-center justify-center p-4">
-      <div class="relative w-full max-w-md transform rounded-sm border border-white/10 bg-black backdrop-blur-lg shadow-xl transition-all">
+      <div class="relative max-w-11/12 transform rounded-sm border border-white/10 bg-black backdrop-blur-lg shadow-xl transition-all">
         <slot :close="close" />
       </div>
     </div>

@@ -1,9 +1,14 @@
 <script setup>
-
+const props = defineProps({
+  media: {
+    type: String,
+    default: 'default media string'
+  }
+});
 </script>
 
 <template>
-  media hier
+  <img :src="`${media}`" />
 </template>
 
 <style scoped>
