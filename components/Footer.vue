@@ -38,6 +38,8 @@ const changeLanguage = (event) => {
         <NuxtLink to="/blog">{{ $t('Blog') }}</NuxtLink>
         |
         <NuxtLink to="/hvsbackup">HVSbackup</NuxtLink>
+        |
+        <NuxtLink :to="localePath('doneer')">{{ $t('Doneer') }}</NuxtLink>
       </div>
       <div class="text-right">
         <NuxtLink :to="localePath('veelgestelde-vragen')">{{ $t('Veelgestelde_vragen') }}</NuxtLink>

@@ -1,6 +1,4 @@
 <script setup>
-import LoadingSpinner from '../LoadingSpinner.vue';
-
 const { queryRelays } = useSharedRelayPool()
 
 const loading = ref(true)

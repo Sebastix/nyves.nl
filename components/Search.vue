@@ -47,7 +47,7 @@ const debouncedZoek = (term) => {
   
   debounceTimer.value = setTimeout(() => {
     zoekProfielen(term)
-  }, 10000)
+  }, 30000)
 }
 
 // Watch zoekterm voor real-time zoeken (alleen voor dropdown)

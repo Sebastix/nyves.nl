@@ -5,10 +5,19 @@ const props = defineProps({
   modelValue: {
     type: Boolean,
     default: false
+  },
+  modelContent: {
+    type: String,
+    default: 'modelContent from Modal.vue'
   }
 });
 
-const emit = defineEmits(['update:modelValue']);
+const emit = defineEmits(
+    [
+        'update:modelValue',
+        'update:modelContent'
+    ]
+);
 
 const close = () => {
   emit('update:modelValue', false);

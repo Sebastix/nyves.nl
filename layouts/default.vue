@@ -1,7 +1,7 @@
 <script setup>
 import * as Sentry from "@sentry/vue";
 
-const { isModalOpen, modalType, closeModal } = useModal()
+const { isModalOpen, modalType, modalContent, closeModal } = useModal()
 
 useScriptMatomoAnalytics({
   matomoUrl: 'https://matomo.sebastix.nl',
@@ -31,7 +31,7 @@ Sentry.init({
   <!-- Modal with dynamic content -->
   <Modal v-model="isModalOpen" @update:modelValue="closeModal">
     <div class="relative p-6">
-      <button @click="closeModal" class="absolute top-2 right-2 text-gray-400 hover:text-white">
+      <button @click="closeModal" class="absolute top-2 right-2 text-gray-400 hover:text-white cursor-pointer">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
         </svg>
@@ -39,8 +39,9 @@ Sentry.init({
       <!-- Connect modal content -->
       <ModalNostrConnect v-if="modalType === 'connect'" @close="closeModal" />
       <ModalEventJson v-else-if="modalType === 'event-json'" @close="closeModal" />
-      <ModalMedia v-else-if="modalType === 'media'" @close="closeModal" />
+      <ModalMedia v-else-if="modalType === 'media'" @close="closeModal" :media="modalContent" />
       <ModalRelayConnections v-else-if="modalType === 'RelayConnections'" @close="closeModal" />
+      <ModalInvoice v-else-if="modalType === 'Invoice'" @close="closeModal" :lightningInvoice="modalContent" />
       <!-- Other modal content types can be added here -->
       <div v-else>
         <component :is="modalType" @close="closeModal" />

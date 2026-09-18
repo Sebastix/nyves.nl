@@ -3,6 +3,9 @@ export default defineNuxtConfig({
   title: "Nyves.nl",
 
   compatibilityDate: "2025-12-01",
+  future: {
+    compatibilityVersion: 5,
+  },
 
   vite: {
     plugins: [
@@ -67,6 +70,10 @@ export default defineNuxtConfig({
       nieuws: {
         nl: '/nieuws',
         en: '/news'
+      },
+      doneer: {
+        nl: '/doneer',
+        en: '/donate'
       },
       'veelgestelde-vragen': {
         nl: '/veelgestelde-vragen',

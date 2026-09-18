@@ -12,6 +12,10 @@ useSeoMeta({
       Het verhaal achter Nyves
     </p>
 
+    <!-- @todo: visie + missie uitleggen van Nyves -->
+
+    <!-- @todo: uitleggen hoe we dit doen -->
+
     <section class="border border-gray-200 bg-[#fcfcfc] rounded-sm mb-8 pb-8">
       <div class="h-[44px] nyves-bg-gray-header"></div>
       <div class="grid md:grid-cols-2 gap-8 items-center px-8 pb-[44px]">
@@ -40,6 +44,10 @@ useSeoMeta({
             <br />
             <br />
             Dat is wat Nyves aan het worden is.
+          </p>
+          <h2 class="text-lg mt-4 mb-2 font-bold">Waarom?</h2>
+          <p class="text-gray-600 leading-relaxed">
+            We willen Hyves behouden als een stukje cultureel digitaal erfgoed. Daarnaast is Nyves een applicatie die gebruik maakt van een open netwerk waar je als individu volledige autonomie hebt over je data.
           </p>
         </div>
         <div>
