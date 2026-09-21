@@ -26,7 +26,9 @@ onMounted(async () => {
         filter
       ])
 
-      ws.send(countMessage)
+      setInterval(() => {
+        ws.send(countMessage)
+      }, 1000)
 
       ws.onmessage = (event) => {
         try {
