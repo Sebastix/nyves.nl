@@ -29,7 +29,7 @@
             Notes and other Stuff Transmitted by Relays
           </p>
           <p class="text-gray-600 leading-relaxed mt-2">
-            Een open protocol waar iedereen via zogenoemde events (data) kan distribueren via een netwerk van relays. Geen verificatie restricties, geen API's, grassroots project zonder een centrale tussenpartij die alle tandjes in handen heeft.
+            Een open protocol waar iedereen via zogenoemde events (data) kan distribueren via een netwerk van relays. Geen verificatie restricties en geen API's. Het is een grassroots project zonder een centrale tussenpartij die alle touwtjes in handen heeft.
             Alle data kan door iedereen worden opgevraagd en worden geverifieerd. Elk event is voorzien van een digitale handtekening. Deze handtekening is gemaakt met een cryptografische privé sleutel.
           </p>
           <a href="https://nostr.org" target="_blank" class="inline-flex items-center mt-2">

@@ -45,7 +45,7 @@ const handleSubmit = async (event) => {
     const formData = new FormData(event.target)
     formData.append('h-captcha-response', CaptchaResponse.value)
     
-    const response = await fetch('https://mailings.sebastix.dev/subscription/form', {
+    const response = await fetch('https://mail.nyves.nl/subscription/form', {
       method: 'POST',
       body: formData
     })
@@ -77,7 +77,7 @@ onMounted(async () => {
   // Check if hCaptcha script already loaded
   if (!document.querySelector('script[src*="hcaptcha.com"]')) {
     const script = document.createElement('script')
-    script.src = 'https://mailings.sebastix.dev/public/static/altcha.umd.js'
+    script.src = 'https://mail.nyves.nl/public/static/altcha.umd.js'
     script.async = true
     script.defer = true
     document.head.appendChild(script)
@@ -101,7 +101,7 @@ const setupAltcha = () => {
 <template>
   <div class="border border-gray-200 bg-[#fcfcfc] rounded-sm text-center pb-8 mb-8">
     <div class="h-[44px] nyves-bg-gray-header"></div>
-    <form method="post" action="https://mailings.sebastix.dev/subscription/form" class="listmonk-form">
+    <form method="post" action="https://mail.nyves.nl/subscription/form" class="listmonk-form">
       <div>
         <h3 class="text-xl font-medium mb-2" v-html="heading"></h3>
         <input type="hidden" name="nonce" />
@@ -109,10 +109,10 @@ const setupAltcha = () => {
           <input type="email" name="email" autocomplete="on" required placeholder="Jouw e-mailadres" class="p-2 bg-white border border-nyves-blue focus:outline-nyves-orange rounded-sm text-base min-w-[360px]" />
         </p>
         <p>
-          <input id="6ef0a" type="checkbox" name="l" checked value="6ef0a7dc-b3b2-4f8e-bb8f-c6f03b327e4c" class="hidden" />
+          <input id="e1cfa" type="checkbox" name="l" checked value="e1cfa5a7-26e8-428b-92ef-d4337c2843a0" class="hidden" />
         </p>
         <div class="inline-block mx-auto mt-3">
-          <altcha-widget challengeurl="https://mailings.sebastix.dev/api/public/captcha/altcha"></altcha-widget>
+          <altcha-widget challengeurl="https://mail.nyves.nl/api/public/captcha/altcha"></altcha-widget>
         </div>
         <input type="submit" :value="$t('MailingList.Aanmelden')" class="mx-auto block mt-2 px-6 py-3 bg-nyves-blue cursor-pointer text-white! font-semibold rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200" />
       </div>
