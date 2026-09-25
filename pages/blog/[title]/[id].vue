@@ -12,16 +12,14 @@ const error = ref(null)
 const renderedContent = ref('')
 
 // Get the identifier from the route
-const identifier = computed(() => route.params.identifier)
+const identifier = computed(() => route.params.id)
 
 // Fetch article data
 const fetchArticle = async () => {
   try {
     loading.value = true
     error.value = null
-    
-    console.log('Fetching article with identifier:', identifier.value)
-    
+
     const fetchedArticle = await fetchArticleByIdentifier(identifier.value)
     
     if (!fetchedArticle) {
@@ -39,10 +37,8 @@ const fetchArticle = async () => {
     // Fetch author profile
     if (fetchedArticle.authorPubkey) {
       try {
-        console.log('Fetching author profile for:', fetchedArticle.authorPubkey)
         const profile = await fetchProfileByPubkey(fetchedArticle.authorPubkey)
         authorProfile.value = profile
-        console.log('Author profile fetched:', profile)
       } catch (profileError) {
         console.error('Error fetching author profile:', profileError)
         // Don't fail the whole page if profile fetch fails
@@ -81,10 +77,6 @@ watchEffect(() => {
       ogDescription: article.value.summary || stripMarkdown(article.value.content).substring(0, 160),
       ogImage: article.value.image,
       ogType: 'article',
-      twitterCard: 'summary_large_image',
-      twitterTitle: article.value.title,
-      twitterDescription: article.value.summary || stripMarkdown(article.value.content).substring(0, 160),
-      twitterImage: article.value.image,
     })
   }
 })
@@ -133,7 +125,7 @@ const getAuthorAvatar = () => {
 </script>
 
 <template>
-  <div class="max-w-4xl mx-auto my-5 px-5">
+  <section class="max-w-2xl mx-auto my-5 px-5 blogArticle">
     <!-- Navigation -->
     <div class="mb-8">
       <NuxtLink
@@ -148,10 +140,8 @@ const getAuthorAvatar = () => {
     </div>
 
     <!-- Loading State -->
-    <div v-if="loading" class="py-16">
-      <div class="flex justify-center">
-        <div class="animate-spin rounded-full h-12 w-12 border-b-2"></div>
-      </div>
+    <div v-if="loading" class="flex justify-center items-center">
+      <LoadingSpinner class="mx-auto my-12" />
     </div>
 
     <!-- Error State -->
@@ -179,7 +169,7 @@ const getAuthorAvatar = () => {
           <img
             :src="article.image"
             :alt="article.title"
-            class="w-full h-64 sm:h-80 lg:h-96 object-cover rounded-lg shadow-lg"
+            class="w-full h-64 sm:h-80 lg:h-96 object-cover rounded-sm shadow-lg"
             @error="$event.target.style.display='none'"
           />
         </div>
@@ -221,9 +211,6 @@ const getAuthorAvatar = () => {
             <div class="text-gray-400 text-xs my-1 break-all" :title="article.authorPubkey">
               Public key: {{ `${authorProfile?.npub}` }}
             </div>
-            <div class="text-gray-500 text-sm">
-              {{ authorProfile?.about || 'Nostr Author' }}
-            </div>
           </div>
         </div>
 
@@ -262,96 +249,20 @@ const getAuthorAvatar = () => {
       </div>
 
       <!-- Footer -->
-      <footer class="mt-12 pt-8 border-t border-gray-200">
+      <footer class="my-12 pt-4 border-t border-gray-200">
         <div class="text-sm text-gray-500">
           <p>
-            Published via Nostr •
-            Event ID: <code class="bg-gray-100 px-1 py-0.5 rounded text-xs">{{ article.id.substring(0, 16) }}...</code> •
-            Identifier: <code class="bg-gray-100 px-1 py-0.5 rounded text-xs">{{ article.identifier }}</code>
+            Published via Nostr
+            |
+            Event ID: <code class="bg-gray-100 px-1 py-0.5 rounded text-xs">{{ article.id.substring(0, 8) }}...</code>
+            |
+            Article ID: <code class="bg-gray-100 px-1 py-0.5 rounded text-xs">{{ article.identifier }}</code>
           </p>
         </div>
       </footer>
     </article>
-  </div>
+  </section>
 </template>
 
 <style scoped>
-@reference '~/assets/css/tailwind.css';
-/* Custom styles for article content */
-:deep(.article-content) {
-  /* Typography */
-  @apply text-gray-800 leading-relaxed;
-}
-
-:deep(.article-content h1),
-:deep(.article-content h2),
-:deep(.article-content h3),
-:deep(.article-content h4),
-:deep(.article-content h5),
-:deep(.article-content h6) {
-  @apply font-bold text-gray-900 mt-8 mb-4 leading-tight;
-}
-
-:deep(.article-content h1) { @apply text-3xl; }
-:deep(.article-content h2) { @apply text-2xl; }
-:deep(.article-content h3) { @apply text-xl; }
-:deep(.article-content h4) { @apply text-lg; }
-
-:deep(.article-content p) {
-  @apply mb-4;
-}
-
-:deep(.article-content a) {
-  @apply text-blue-600 hover:text-blue-800 underline;
-}
-
-:deep(.article-content ul),
-:deep(.article-content ol) {
-  @apply mb-4 ml-6;
-}
-
-:deep(.article-content ul) {
-  @apply list-disc;
-}
-
-:deep(.article-content ol) {
-  @apply list-decimal;
-}
-
-:deep(.article-content li) {
-  @apply mb-2;
-}
-
-:deep(.article-content blockquote) {
-  @apply border-l-4 border-gray-300 pl-4 italic text-gray-600 my-4;
-}
-
-:deep(.article-content code) {
-  @apply bg-gray-100 px-1 py-0.5 rounded text-sm font-mono;
-}
-
-:deep(.article-content pre) {
-  @apply bg-gray-100 p-4 rounded-lg overflow-x-auto my-4;
-}
-
-:deep(.article-content pre code) {
-  @apply bg-transparent p-0;
-}
-
-:deep(.article-content img) {
-  @apply max-w-full h-auto rounded-lg shadow-md my-6;
-}
-
-:deep(.article-content table) {
-  @apply w-full border-collapse border border-gray-300 my-4;
-}
-
-:deep(.article-content th),
-:deep(.article-content td) {
-  @apply border border-gray-300 px-4 py-2 text-left;
-}
-
-:deep(.article-content th) {
-  @apply bg-gray-100 font-semibold;
-}
 </style>

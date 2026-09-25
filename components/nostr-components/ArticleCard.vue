@@ -61,7 +61,7 @@ const hasImage = computed(() => {
 })
 
 const articleUrl = () => {
-  return '/articles/'
+  return '/blog/'
       + props.article.title
       .toLowerCase()
       .trim()
@@ -75,15 +75,15 @@ const articleUrl = () => {
 
 <template>
   <article 
-    class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-lg/25 transition-all duration-200 group"
+    class="bg-white rounded-sm border hover:border-nyves-blue border-gray-200 overflow-hidden group"
   >
-    <NuxtLink :to="`${articleUrl()}`" class="no-underline! hover:underline!">
+    <NuxtLink :to="`${articleUrl()}`" class="no-underline!">
       <!-- Article Image -->
       <div v-if="hasImage" class="aspect-w-16 aspect-h-9 overflow-hidden">
         <img
           :src="article.image"
           :alt="article.title"
-          class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-200"
+          class="w-full h-48 object-cover group-hover:scale-115 transition-transform duration-300"
           loading="lazy"
           @error="$event.target.style.display = 'none'"
         />
@@ -130,36 +130,5 @@ const articleUrl = () => {
 </template>
 
 <style scoped>
-/* Line clamp utilities */
-.line-clamp-2 {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
 
-.line-clamp-3 {
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-/* Aspect ratio utilities for consistent image sizing */
-.aspect-w-16 {
-  position: relative;
-  width: 100%;
-}
-
-.aspect-h-9 {
-  padding-bottom: 56.25%; /* 16:9 aspect ratio */
-}
-
-.aspect-w-16 > img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
 </style>

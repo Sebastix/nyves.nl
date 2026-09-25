@@ -42,7 +42,7 @@ definePageMeta({
 
 useSeoMeta({
   title: $t('Nieuws') + ` - Nyves`,
-  description: ``
+  description: `De laatste updates rondom Nyves`
 })
 </script>
 
@@ -50,7 +50,7 @@ useSeoMeta({
   <section>
     <h1 class="text-3xl text-nyves-blue my-3 text-center font-bold">{{ $t('Nieuws') }}</h1>
     <p class="text-xl text-center mb-4">
-      Hier lees je de laatste updates over Nyves
+      Hier lees je de laatste updates rondom Nyves
     </p>
 
     <section class="border border-gray-200 bg-[#fcfcfc] rounded-sm mb-8 pb-8">
@@ -60,13 +60,13 @@ useSeoMeta({
       </div>
       <div v-else class="grid grid-cols-1 md:grid-cols-3 gap-2 px-2">
         <div v-for="item in newsData" :key="item.id" class="bg-white rounded-sm p-2 border border-nyves-blue/25">
-          <p class="text-gray-500 font-light mb-2">
+          <p class="text-gray-500 font-light mb-2 text-sm">
             {{ formatDate(item.created_at) }}, {{ formatTime(item.created_at) }},
             <NuxtLink :to="`/profiel/${nip19.npubEncode(item.pubkey)}`" class="inline-block">
               <NostrComponentsPubkeyToName :pubkey="item.pubkey" class="font-bold text-xs" />
             </NuxtLink>
           </p>
-          <NostrComponentsNoteContent :event="item" class="text-sm/6! font-relaxed tracking-tight" />
+          <NostrComponentsNoteContent :event="item" class="text-base/6! lg:text-sm/6! font-relaxed tracking-tight" />
           <NuxtLink :to="`https://nostrver.se/e/${nip19.neventEncode(item)}`" target="_blank" class="text-xs mt-2">
             {{ nip19.neventEncode(item).substring(0, 8) + '.....' + nip19.neventEncode(item).substring(nip19.neventEncode(item).length - 6) }}
             <svg class="size-3 inline align-text-top" fill="none" stroke="currentColor" viewBox="0 0 24 24">

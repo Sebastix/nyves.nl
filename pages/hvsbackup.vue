@@ -1,7 +1,7 @@
 <script setup>
 // SEO Meta tags
 useSeoMeta({
-  title: 'HVSbackup',
+  title: 'HVSbackup - Nyves',
   description: ''
 })
 

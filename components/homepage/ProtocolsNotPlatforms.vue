@@ -14,7 +14,7 @@
           </p>
           <p class="text-gray-600 leading-relaxed mt-2">
             Als je het artikel `protocols, not platforms` van Mike Masnick hebt gelezen dan heb je wellicht het inzicht gekregen dat we sociale media minder gecentraliseerd kunnen maken.
-            Diverse protocollen bieden ons namelijk de optie om gedecentraliseerd sociale netwerken te creeren. In zo'n ecosysteem verdwijnen namelijk de belangen die vandaag de dag al onze aandacht opeisen en ons digitaal welzijn doen verminderen.
+            Diverse protocollen bieden ons namelijk de optie om gedecentraliseerd sociale netwerken te creeren. In zo'n ecosysteem verdwijnen namelijk de belangen die vandaag de dag al onze aandacht opeisen en ons digitaal welzijn afbreken.
           </p>
           <a href="https://knightcolumbia.org/content/protocols-not-platforms-a-technological-approach-to-free-speech" target="_blank" class="inline-flex items-center mt-2">
             Protocols, not platforms

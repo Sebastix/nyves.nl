@@ -1,7 +1,7 @@
 <script setup>
 useSeoMeta({
   title: `Over Nyves - Nyves`,
-  description: ``
+  description: `Het verhaal achter Nyves`
 })
 </script>
 
@@ -65,7 +65,9 @@ useSeoMeta({
             The internet has changed radically in the last decade and that change is not serving our interests. It's fair to say the web is broken in many ways. With Nostr we can fix this.
           </p>
           <p class="text-gray-600 leading-relaxed">
-            Sebastix is active in the nostr community since 2023. He believes any contribution to Nostr can have in potential an exponential benefit for all people and the web in general.
+            Sebastix is active in the nostr community since 2023.
+            <br />
+            He believes any contribution to <NuxtLink to="/nostr" class="font-bold">Nostr</NuxtLink> can have in <strong>potential</strong> an <strong>exponential benefit for all people</strong> and <strong>the web</strong> in general.
           </p>
           <NuxtLink to="https://nostrver.se" class="text-sm my-4 inline-block">> More contributions can be found here <svg class="size-3 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />

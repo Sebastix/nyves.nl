@@ -45,3 +45,9 @@ a {
     }
   }
 }
+
+.blogArticle {
+  h2 {
+    @apply text-xl font-bold my-2;
+  }
+}

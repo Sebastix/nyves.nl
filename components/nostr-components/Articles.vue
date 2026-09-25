@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted, onUnmounted, computed, watch } from 'vue'
 import { useNostrArticles } from '~/composables/useNostrArticles'
+import LoadingSpinner from '../LoadingSpinner.vue';
 
 const props = defineProps({
   tagFilter: {
@@ -199,10 +200,8 @@ watch(() => props.autoRefresh, () => {
     </div>
 
     <!-- Loading State -->
-    <div v-if="isLoading && !hasArticles" class="flex justify-center items-center h-64">
-      <div class="text-center">
-        <p class="text-gray-500">Loading articles...</p>
-      </div>
+    <div v-if="isLoading && !hasArticles" class="flex justify-center items-center">
+      <LoadingSpinner class="mx-auto my-12" />
     </div>
 
     <!-- Empty State -->
@@ -227,7 +226,7 @@ watch(() => props.autoRefresh, () => {
     </div>
 
     <!-- Articles Grid -->
-    <div v-else class="grid gap-6" :class="gridCols">
+    <div v-else class="grid gap-6 mx-6" :class="gridCols">
       <NostrComponentsArticleCard
         v-for="article in filteredArticles"
         :key="article.id"

@@ -3,9 +3,8 @@ import { nip19 } from 'nostr-tools'
 
 // Default relays to use for fetching articles
 const DEFAULT_RELAYS = [
-  'wss://relay.damus.io',
-  'wss://nos.lol',
-  'wss://relay.primal.net',
+  'wss://relay.ditto.pub',
+  'wss://relay.nyves.nl',
 ]
 
 export const useNostrArticles = () => {
