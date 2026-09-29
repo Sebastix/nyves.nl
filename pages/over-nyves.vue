@@ -12,10 +12,6 @@ useSeoMeta({
       Het verhaal achter Nyves
     </p>
 
-    <!-- @todo: visie + missie uitleggen van Nyves -->
-
-    <!-- @todo: uitleggen hoe we dit doen -->
-
     <section class="border border-gray-200 bg-[#fcfcfc] rounded-sm mb-8 pb-8">
       <div class="h-[44px] nyves-bg-gray-header"></div>
       <div class="grid md:grid-cols-2 gap-8 items-center px-8 pb-[44px]">
@@ -65,7 +61,7 @@ useSeoMeta({
             The internet has changed radically in the last decade and that change is not serving our interests. It's fair to say the web is broken in many ways. With Nostr we can fix this.
           </p>
           <p class="text-gray-600 leading-relaxed">
-            Sebastix is active in the nostr community since 2023.
+            Sebastian is active in the nostr community since 2023.
             <br />
             He believes any contribution to <NuxtLink to="/nostr" class="font-bold">Nostr</NuxtLink> can have in <strong>potential</strong> an <strong>exponential benefit for all people</strong> and <strong>the web</strong> in general.
           </p>
@@ -75,6 +71,8 @@ useSeoMeta({
         </div>
       </div>
     </section>
+
+    <HomepageBringBackHyvesVideo />
 
     <!-- SIDNfonds Support Section -->
     <HomepageSidnFondsSupport />

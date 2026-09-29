@@ -34,6 +34,12 @@ const generateLightningInvoice = async () => {
       {{ $t('Hoe je het project Nyves kunt steunen met geld') }}
     </p>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+      <div class="border border-gray-200 bg-[#fcfcfc] rounded-sm pb-8 md:col-span-2">
+        <div class="h-[44px] nyves-bg-gray-header"></div>
+        <div class="px-8">
+          <h2 class="text-2xl mb-4">{{ $t('Start donating') }}</h2>
+        </div>
+      </div>
       <div class="border border-gray-200 bg-[#fcfcfc] rounded-sm pb-8">
         <div class="h-[44px] nyves-bg-gray-header"></div>
         <div class="px-8">
