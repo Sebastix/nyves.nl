@@ -20,10 +20,42 @@ const loadNews = async () => {
     const filter = {
       kinds: [1],
       authors: [pubkey],
-      limit: 25
+      limit: 100
     }
     const events = await queryRelays(relays, filter)
-    newsData.value = events
+    
+    // Filter out replies (events with e-tags that reference root events)
+    const filteredEvents = events.filter(event => {
+      // Check if event has any e-tags
+      const eTags = event.tags.filter(tag => tag[0] === 'e')
+      
+      // If no e-tags, it's not a reply
+      if (eTags.length === 0) return true
+      
+      // If it has e-tags, check if any of them are root references
+      // A reply typically has e-tags with markers like 'root' or 'reply'
+      // or follows the positional format where first e-tag is root
+      const hasRootReference = eTags.some(tag => {
+        // Check for explicit 'root' marker in 4th position
+        if (tag[3] === 'root') return true
+        
+        // Check for 'reply' marker - if there's a reply marker, 
+        // there should also be a root reference
+        const hasReplyMarker = eTags.some(t => t[3] === 'reply')
+        if (hasReplyMarker) return true
+        
+        // For older clients without markers, if there are multiple e-tags,
+        // the first one is typically the root
+        if (eTags.length > 1 && eTags[0] === tag) return true
+        
+        return false
+      })
+      
+      // Return false if it has root references (is a reply)
+      return !hasRootReference
+    })
+    
+    newsData.value = filteredEvents
     // Construct Nevents for encoding a nevent... identifier
 
     loading.value = false
