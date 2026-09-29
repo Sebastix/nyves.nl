@@ -144,19 +144,28 @@ onMounted(async () => {
         <span class="usernames font-bold">{{ count.usernames }}</span> gebruikersnamen
       </div>
       <div>
-        <span class="usernames font-bold">0</span> profielfoto's
+        <span class="font-bold">0</span> profielfoto's
       </div>
       <div>
-        <span class="usernames font-bold">0</span> albums met <span class="usernames font-bold">0</span> foto's
+        <span class="font-bold">0</span> vriendschappen
       </div>
       <div>
-        <span class="usernames font-bold">0</span> krabbels
+        <span class="font-bold">0</span> designs
       </div>
       <div>
-        <span class="usernames font-bold">0</span> wiewatwaar's
+        <span class="font-bold">0</span> albums met <span class="usernames font-bold">0</span> foto's
       </div>
       <div>
-        <span class="usernames font-bold">0</span> blogs
+        <span class="font-bold">0</span> krabbels
+      </div>
+      <div>
+        <span class="font-bold">0</span> wiewatwaar's
+      </div>
+      <div>
+        <span class="font-bold">0</span> blogs
+      </div>
+      <div>
+        <span class="font-bold">0</span> gadgets
       </div>
     </div>
     <p class="my-8 text-2xl">

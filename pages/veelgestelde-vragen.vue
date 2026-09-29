@@ -78,10 +78,32 @@ useSeoMeta({
       Dat is een hele goed vraag. Content kan namelijk van verschillende relays worden opgehaald die getoond wordt in de applicatie.
     </details>
     <details>
+      <summary>Wat is Hyves?</summary>
+      Hyves was een social media platform die in Nederland actief was vanaf 2004 tot 2013. Hierbij enkele feiten van het platform uit die tijd:
+      <ul class="list-disc pl-8">
+        <li>850 million krabbels were sent.</li>
+        <li>8% of all Dutch people online were spent on Hyves.</li>
+        <li>The Partysquad was the most played band: more than 8 million times in one year.</li>
+        <li>Gerard Joling was most popular with more than 290.000 friends.</li>
+        <li>All the hosted data was around 2 petabytes big. That was insane for a small country such as the Netherlands.</li>
+        <li>At some days, more than 2 million pictures were uploaded in a single day.</li>
+      </ul>
+    </details>
+    <details>
       <summary>Waar zijn alle Hyves gegevens gebleven?</summary>
       Antwoorden vind je in dit artikel waar VPNgids in 2019 al onderzoek naar deed:
       <br />
-      https://www.vpngids.nl/nieuws/hyves-waar-zijn-onze-gegevens-gebleven/
+      <a
+          href="https://www.vpngids.nl/nieuws/hyves-waar-zijn-onze-gegevens-gebleven/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center align-top"
+      >
+        https://www.vpngids.nl/nieuws/hyves-waar-zijn-onze-gegevens-gebleven/
+        <svg class="size-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg>
+      </a>
     </details>
     <details>
       <summary>Wat is het verschil tussen Nyves en Hyves?</summary>
