@@ -74,8 +74,9 @@ useSeoMeta({
 
     <HomepageBringBackHyvesVideo />
 
-    <!-- SIDNfonds Support Section -->
     <HomepageSidnFondsSupport />
+
+    <HomepageAOSCollectiveSupport />
 
     <HomepageProtocolsNotPlatforms />
 

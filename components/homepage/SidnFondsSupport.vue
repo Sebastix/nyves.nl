@@ -33,6 +33,8 @@
                 <strong class="text-gray-800">Nyves</strong> is in maart 2026 geselecteerd als pioniersproject door
                 <strong class="text-gray-800">SIDNfonds</strong>, de Nederlandse organisatie die innovatieve 
                 internetprojecten ondersteunt die bijdragen aan een sterker internet.
+                <br />
+                Hiervoor ontvangt het project een subsidie van € 10.000. Met deze financiële steun kan het idee van Nyves uitgewerkt worden tot een proof-of-concept applicatie.
               </p>
             </div>
 
