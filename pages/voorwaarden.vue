@@ -47,6 +47,11 @@ const sections = computed(() =>
   }))
 )
 
+// Short "in a nutshell" summary shown before the numbered sections. Only the
+// array structure is taken from tm(); each item's text is rendered through
+// i18n-t by keypath (see note above about precompiled messages).
+const shortVersionItems = computed(() => tm('voorwaarden.short_version.items') || [])
+
 useSeoMeta({
   title: () => `${t('Voorwaarden')} - Nyves`,
   description: () => t('voorwaarden.meta_description'),
@@ -60,9 +65,27 @@ useSeoMeta({
       {{ $t('voorwaarden.last_updated') }}
     </small>
 
-    <p class="text-center max-w-2xl mx-auto mb-8">
+    <p class="text-center max-w-xl mx-auto mb-8">
       {{ $t('voorwaarden.intro') }}
     </p>
+
+    <!-- Short version (summary to orient the reader, before the full agreement) -->
+    <section class="max-w-2xl mx-auto border border-gray-200 bg-[#fcfcfc] rounded-sm mb-8">
+      <div class="h-[44px] nyves-bg-gray-header"></div>
+      <div class="px-8 pb-8">
+        <h2 class="text-lg font-bold mb-2">{{ $t('voorwaarden.short_version.title') }}</h2>
+        <ul class="list-disc ml-5 space-y-1">
+          <i18n-t
+              v-for="(item, i) in shortVersionItems"
+              :key="i"
+              scope="global"
+              :keypath="`voorwaarden.short_version.items.${i}`"
+              tag="li"
+          />
+        </ul>
+        <p class="mt-3 text-sm text-gray-600">{{ $t('voorwaarden.short_version.note') }}</p>
+      </div>
+    </section>
 
     <section class="flex flex-col md:flex-row gap-x-8 gap-y-4 px-2">
       <!-- Table of contents -->
@@ -118,7 +141,7 @@ useSeoMeta({
               <li v-for="(item, ii) in block.defs" :key="ii">
                 <i18n-t scope="global"
                   :keypath="`voorwaarden.sections.${section.id}.content.${bi}.defs.${ii}.term`"
-                  tag="strong"
+                  tag="strong" class="mr-2"
                 />
                 <i18n-t scope="global"
                   :keypath="`voorwaarden.sections.${section.id}.content.${bi}.defs.${ii}.text`"

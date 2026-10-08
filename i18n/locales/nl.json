@@ -121,6 +121,19 @@
   "meta_description": "De gebruiksvoorwaarden van Nyves.",
   "intro": "Deze gebruiksvoorwaarden zijn van toepassing op je toegang tot en gebruik van Nyves. Lees ze zorgvuldig door.",
   "privacy_policy_link": "privacybeleid",
+  "short_version": {
+  "title": "In het kort",
+  "items": [
+    "Je houdt eigendom van je content; je geeft Nyves een licentie om die te hosten, op te slaan en te tonen om de Dienst te kunnen runnen en verbeteren.",
+    "Nyves is een non-custodiale interface op het open Nostr-protocol, dus je profiel en berichten leven op relays in plaats van in een gesloten platform.",
+    "Nyves herstelt en indexeert profielen van legacyplatforms zoals Hyves. Merknamen zoals \"Hyves\" blijven eigendom van hun eigenaren; Nyves is niet verbonden aan Hyves of Mediahuis.",
+    "Plaats geen illegale of schadelijke content. Nyves kan content en toegang modereren, beperken of verwijderen, en je kunt content rapporteren.",
+    "Omdat Nostr gedecentraliseerd is, kan content die je publiceert door anderen worden gekopieerd of gecached en moeilijk volledig te verwijderen zijn. Je kunt op elk moment stoppen en verwijdering van gegevens op door Nyves beheerde infrastructuur aanvragen.",
+    "De Dienst wordt geleverd \"as is\", valt onder Nederlands recht en de broncode is open source (AGPL). Vragen? Mail naar info{'@'}nyves.nl."
+  ],
+  "note": "Deze samenvatting helpt je op weg. De genummerde secties hieronder vormen de daadwerkelijke overeenkomst en zijn bepalend als ze met deze samenvatting in strijd lijken te zijn."
+  },
+
   "sections": {
     "acceptance": {
       "title": "Acceptatie van de voorwaarden",

@@ -123,6 +123,19 @@
   "meta_description": "The terms of service of Nyves.",
   "intro": "These Terms of Service govern your access to and use of Nyves. Please read them carefully.",
   "privacy_policy_link": "Privacy Policy",
+  "short_version": {
+  "title": "The short version",
+  "items": [
+    "You keep ownership of your content; you grant Nyves a license to host, store and display it in order to run and improve the Service.",
+    "Nyves is a non-custodial interface on the open Nostr protocol, so your profile and notes live on relays rather than in a closed platform.",
+    "Nyves restores and indexes profiles from legacy platforms such as Hyves. Trademarks like \"Hyves\" belong to their owners; Nyves is not affiliated with Hyves or Mediahuis.",
+    "Do not post illegal or harmful content. Nyves may moderate, restrict or remove content and access, and you can report content.",
+    "Because Nostr is decentralized, content you publish may be copied or cached by others and may be hard to remove completely. You can stop at any time and request deletion of data on Nyves-controlled infrastructure.",
+    "The Service is provided \"as is\", is governed by Dutch law, and the source code is open source (AGPL). Questions? Email info{'@'}nyves.nl."
+  ],
+  "note": "This summary is there to orient you. The numbered sections below are the actual agreement and are what count if the two ever seem to disagree."
+  },
+
   "sections": {
     "acceptance": {
       "title": "Acceptance of Terms",
