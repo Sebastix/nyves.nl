@@ -126,12 +126,12 @@
   "short_version": {
   "title": "The short version",
   "items": [
-    "You keep ownership of your content; you grant Nyves a license to host, store and display it in order to run and improve the Service.",
-    "Nyves is a non-custodial interface on the open Nostr protocol, so your profile and notes live on relays rather than in a closed platform.",
-    "Nyves restores and indexes profiles from legacy platforms such as Hyves. Trademarks like \"Hyves\" belong to their owners; Nyves is not affiliated with Hyves or Mediahuis.",
+    "You keep ownership of your content; you grant Nyves a license to host, store and display it in order to run and improve the Web Application.",
+    "Nyves is a web application that runs locally in your browser, on top of the open Nostr protocol, so your profile and notes live on relays rather than in a closed platform.",
+    "Nyves restores and indexes profiles from legacy-platform Hyves. Trademarks like \"Hyves\" belong to their owners; Nyves is not affiliated with Hyves or Mediahuis.",
     "Do not post illegal or harmful content. Nyves may moderate, restrict or remove content and access, and you can report content.",
     "Because Nostr is decentralized, content you publish may be copied or cached by others and may be hard to remove completely. You can stop at any time and request deletion of data on Nyves-controlled infrastructure.",
-    "The Service is provided \"as is\", is governed by Dutch law, and the source code is open source (AGPL). Questions? Email info{'@'}nyves.nl."
+    "The Web Application is provided \"as is\", is governed by Dutch law, and the source code is open-source (AGPLv3). Questions? Email info{'@'}nyves.nl."
   ],
   "note": "This summary is there to orient you. The numbered sections below are the actual agreement and are what count if the two ever seem to disagree."
   },
@@ -140,10 +140,10 @@
     "acceptance": {
       "title": "Acceptance of Terms",
       "content": [
-        "By accessing or using Nyves (the \"Service\"), you agree to these Terms of Service (\"Terms\"). If you do not agree, do not use the Service.",
-        "The Service is provided by Sebastian Hagens (\"Nyves\", \"Sebastix\", \"we\", \"us\" or \"our\"), based in the Netherlands. These Terms form a binding agreement between you and Nyves.",
+        "By accessing or using Nyves (the \"Web Application\"), you agree to these Terms of Service (\"Terms\"). If you do not agree, do not use the Web Application.",
+        "The Web Application is provided by Sebastian Hagens (\"Nyves\", \"Sebastix\", \"we\", \"us\" or \"our\"), based in the Netherlands. These Terms form a binding agreement between you and Nyves.",
         {
-          "p": "By using the Service you also agree to our {privacyPolicy}, which is incorporated by reference. If there is a conflict between these Terms and that policy, these Terms control to the extent of the conflict."
+          "p": "By using the Web Application you also agree to our {privacyPolicy}, which is incorporated by reference. If there is a conflict between these Terms and that policy, these Terms control to the extent of the conflict."
         }
       ]
     },
@@ -152,6 +152,10 @@
       "content": [
         {
           "defs": [
+            {
+              "term": "the Web Application",
+              "text": "means the client-side web application known as Nyves, available at https://nyves.nl. It runs locally in your web browser on your own device and processes data locally; Nyves does not operate it as a hosted service on your behalf. Nyves is not a platform."
+            },
             {
               "term": "Nyves-controlled infrastructure",
               "text": "means websites, apps, relays, media storage, APIs and other systems owned or controlled by Nyves."
@@ -178,7 +182,7 @@
             },
             {
               "term": "User content",
-              "text": "means any Nostr event, media, metadata, username, profile information or other material submitted, published, uploaded, linked or otherwise made available by a user through the Service, whether hosted by Nyves or externally."
+              "text": "means any Nostr event, media, metadata, username, profile information or other material submitted, published, uploaded, linked or otherwise made available by a user through the Web Application, whether hosted by Nyves or externally."
             },
             {
               "term": "Archive content",
@@ -189,17 +193,17 @@
       ]
     },
     "nature-of-service": {
-      "title": "Nature of the Service",
+      "title": "Nature of the Web Application",
       "content": [
-        "Nyves primarily operates as a non-custodial interface for reading, writing and interacting with Nostr events, although certain optional authentication, signing, backup or recovery features may involve server-side key management.",
-        "Nyves restores and indexes profiles and related content from legacy platforms (such as Hyves) and publishes them as Nostr events so that they can be discovered again. The Service may index, display, surface, cache, transmit or host Nostr events and related media, and may display or link to externally hosted content. Unless expressly stated otherwise, Nyves does not own or control independent relays, third-party storage providers, archives or external hosts.",
-        "All third-party trademarks, logos and brand names that appear through the Service, including \"Hyves\", remain the property of their respective owners. Nyves is not affiliated with, endorsed by or sponsored by Hyves, Mediahuis or any other third party. Any historical or legacy content surfaced through the Service may include both user-submitted material and content accessed from external archival or legacy sources, and is not content created, owned or endorsed by Nyves."
+        "Nyves is a client-side web application (the Web Application) that runs locally in your web browser on your own device. You can use it to read, write and interact with Nostr events. The Web Application is non-custodial: unless expressly stated otherwise, it does not take custody of your Nostr keys or content. Certain optional features, such as authentication, signing, backup, recovery or a relay operated by Nyves, may involve servers operated by Nyves or by third parties; in that case, data may leave your device.",
+        "Nyves restores and indexes profiles and related content from legacy platforms (such as Hyves) and publishes them as Nostr events so that they can be discovered again. The Web Application may index, display, surface, cache, transmit or host Nostr events and related media, and may display or link to externally hosted content. Unless expressly stated otherwise, Nyves does not own or control independent relays, third-party storage providers, archives or external hosts.",
+        "All third-party trademarks, logos and brand names that appear through the Web Application, including \"Hyves\", remain the property of their respective owners. Nyves is not affiliated with, endorsed by or sponsored by Hyves, Mediahuis or any other third party. Any historical or legacy content surfaced through the Web Application may include both user-submitted material and content accessed from external archival or legacy sources, and is not content created, owned or endorsed by Nyves."
       ]
     },
     "eligibility": {
       "title": "Eligibility, Accounts, and Authentication",
       "content": [
-        "You must be at least 16 years old to use the Service without verifiable parental consent. If you are under 16, you may use the Service only with the involvement and consent of a parent or legal guardian, where permitted by applicable law. If we become aware that a user under 16 is using the Service without such consent where required by law, we may restrict or terminate access and delete associated data as required or permitted by applicable law.",
+        "You must be at least 13 years old to use the Web Application without verifiable parental consent. If you are under 13, you may use the Web Application only with the involvement and consent of a parent or legal guardian, where permitted by applicable law. If we become aware that a user under 13 is using the Web Application without such consent where required by law, we may restrict or terminate access and delete associated data as required or permitted by applicable law.",
         "Some content may be hidden by default or restricted to adults using age-screening or age-restriction tools. You may access age-restricted content only if you are at least 18 years old, and you are responsible for complying with all applicable age restrictions. Nyves may rely on user-provided information and available signals to enforce such restrictions but does not guarantee that all age-restricted content will be inaccessible to underage users.",
         "Your Nostr identity is tied to your Nostr keypair. If you use your own key, you are solely responsible for safeguarding your private key and any related credentials. Some features, such as restored archive usernames, may involve keypairs generated and managed by Nyves on behalf of the archive.",
         "Any Nostr event published or signed with your key, or through credentials or signing flows you authorize, may be treated as authorized by you. If your key, login credentials or recovery methods are lost, compromised or misused, Nyves may be unable to restore access or undo associated actions."
@@ -209,16 +213,16 @@
       "title": "User Content, Representations, and License",
       "content": [
         "You retain ownership of your user content. Nothing in these Terms transfers ownership of your user content to Nyves.",
-        "By posting, uploading, submitting or making user content available through the Service, you grant Nyves a worldwide, non-exclusive, royalty-free, sublicensable and transferable license to host, store, reproduce, process, adapt, publish, display, transmit, distribute and create derivative works from that content as reasonably necessary to operate, secure, improve, promote and provide the Service.",
-        "You represent and warrant that: (a) you have all rights, licenses, consents and permissions necessary to submit and use the content; (b) the content and its publication do not infringe, misappropriate or violate any third-party rights, laws or contractual restrictions; (c) any metadata, links, descriptions and tags you provide are accurate and not misleading; and (d) any externally hosted content you reference is lawful and that you have the right to make it available through the Service.",
+        "By posting, uploading, submitting or making user content available through the Web Application, you grant Nyves a worldwide, non-exclusive, royalty-free, sublicensable and transferable license to host, store, reproduce, process, adapt, publish, display, transmit, distribute and create derivative works from that content as reasonably necessary to operate, secure, improve, promote and provide the Web Application.",
+        "You represent and warrant that: (a) you have all rights, licenses, consents and permissions necessary to submit and use the content; (b) the content and its publication do not infringe, misappropriate or violate any third-party rights, laws or contractual restrictions; (c) any metadata, links, descriptions and tags you provide are accurate and not misleading; and (d) any externally hosted content you reference is lawful and that you have the right to make it available through the Web Application.",
         "You are responsible for the content you upload, publish or reference, whether it is stored on Nyves-controlled infrastructure or on third-party systems. Nyves does not act as your agent, fiduciary or legal representative in enforcing your rights against others, and you remain responsible for protecting your own rights."
       ]
     },
     "prohibited": {
       "title": "Prohibited Content and Conduct",
       "content": [
-        "You may not use the Service to create, upload, publish, distribute, solicit, promote or facilitate: (a) child sexual abuse material (CSAM), child sexual exploitation or any sexualized content involving minors; (b) illegal content or unlawful activity; (c) copyright, trademark, trade secret, privacy, publicity or other rights violations; (d) violence, credible threats, graphic gore or content intended to incite physical harm; (e) harassment, bullying, abuse, stalking or hateful conduct targeting individuals or groups; (f) non-consensual intimate imagery, doxxing or disclosure of private, confidential or sensitive information without authorization; (g) pornographic content, except that certain non-pornographic mature content may be restricted or age-gated; (h) spam, scams, fraud, phishing, malware or harmful code; (i) impersonation or deceptive conduct that is likely to mislead others about identity, affiliation, endorsement or authority; or (j) synthetic, manipulated or AI-generated media used to deceive, exploit, impersonate or otherwise violate these Terms.",
-        "You also may not: (A) create multiple accounts or identities for deceptive, evasive or disruptive purposes; (B) reserve usernames for resale, misuse or to block legitimate use, or buy, sell, transfer or trade accounts, Nyves-issued usernames, likes, reposts, follows or similar engagement signals; (C) engage in bulk, automated or coordinated posting, commenting, messaging or tagging schemes that encourage objectionable behavior unless expressly authorized by Nyves; (D) scrape, crawl, probe, scan, reverse engineer, bypass or otherwise interfere with the Service or any non-public system, API or security control; (E) circumvent rate limits, moderation tools, access controls or safety systems; (F) overload, degrade or disrupt the Service, Nyves-controlled infrastructure or connected systems; or (G) use the Service in violation of applicable law.",
+        "You may not use the Web Application to create, upload, publish, distribute, solicit, promote or facilitate: (a) child sexual abuse material (CSAM), child sexual exploitation or any sexualized content involving minors; (b) illegal content or unlawful activity; (c) copyright, trademark, trade secret, privacy, publicity or other rights violations; (d) violence, credible threats, graphic gore or content intended to incite physical harm; (e) harassment, bullying, abuse, stalking or hateful conduct targeting individuals or groups; (f) non-consensual intimate imagery, doxxing or disclosure of private, confidential or sensitive information without authorization; (g) pornographic content, except that certain non-pornographic mature content may be restricted or age-gated; (h) spam, scams, fraud, phishing, malware or harmful code; (i) impersonation or deceptive conduct that is likely to mislead others about identity, affiliation, endorsement or authority; or (j) synthetic, manipulated or AI-generated media used to deceive, exploit, impersonate or otherwise violate these Terms.",
+        "You also may not: (A) create multiple accounts or identities for deceptive, evasive or disruptive purposes; (B) reserve usernames for resale, misuse or to block legitimate use, or buy, sell, transfer or trade accounts, Nyves-issued usernames, likes, reposts, follows or similar engagement signals; (C) engage in bulk, automated or coordinated posting, commenting, messaging or tagging schemes that encourage objectionable behavior unless expressly authorized by Nyves; (D) scrape, crawl, probe, scan, reverse engineer, bypass or otherwise interfere with the Web Application or any non-public system, API or security control; (E) circumvent rate limits, moderation tools, access controls or safety systems; (F) overload, degrade or disrupt the Web Application, Nyves-controlled infrastructure or connected systems; or (G) use the Web Application in violation of applicable law.",
         "Nyves has a zero-tolerance policy for CSAM and other illegal child sexual exploitation. We may remove or block content from Nyves-controlled infrastructure, suspend or terminate access, preserve evidence and report matters to the appropriate authorities where required or appropriate, and cooperate with law enforcement."
       ]
     },
@@ -226,7 +230,7 @@
       "title": "Moderation, Reporting, and User Controls",
       "content": [
         "Nyves may use automated tools, hash-matching, third-party detection systems, human review and other moderation measures to identify and limit objectionable content. These systems are not perfect and may not identify all prohibited or synthetic content before it appears.",
-        "Users may report content or accounts through the tools made available in the Service. Nyves may also support Nostr-compatible reporting mechanisms, including NIP-56 or similar standards. Reports may be visible to other users or clients depending on how the relevant protocol or client implements them.",
+        "Users may report content or accounts through the tools made available in the Web Application. Nyves may also support Nostr-compatible reporting mechanisms, including NIP-56 or similar standards. Reports may be visible to other users or clients depending on how the relevant protocol or client implements them.",
         "We aim to review reports of objectionable content promptly and generally within 24 hours, although response times may vary based on volume, severity and available information. For suspected CSAM or other urgent illegal content, we may act immediately when appropriate.",
         "Nyves may also provide user controls such as blocking, muting, hidden-content settings, age-gating and community moderation lists, including lists that may follow NIP-51 or similar standards. These controls apply within Nyves-operated interfaces as implemented by Nyves. Because Nostr is decentralized, blocking, muting or removing content in Nyves does not guarantee that the same content or account will be hidden, removed or inaccessible through other clients, relays, archives or hosts."
       ]
@@ -250,68 +254,68 @@
       ]
     },
     "nyves-ip": {
-      "title": "Nyves Intellectual Property and Service License",
+      "title": "Nyves Intellectual Property and Web Application License",
       "content": [
-        "Except for user content and third-party content, Nyves and its licensors own the Service and its associated intellectual property. The Service may include open-source components that are licensed under separate open-source licenses, including the AGPL. Your rights in those components are governed by the applicable open-source licenses, not by these Terms.",
-        "Subject to your compliance with these Terms, Nyves grants you a limited, personal, non-exclusive, non-transferable, revocable license to access and use the hosted Service. This license does not grant you any right to use the Nyves name, logo or other marks except as necessary to use the Service, and it does not extend to independent deployments, forks, relays or self-hosted instances operated by third parties."
+        "Except for user content and third-party content, Nyves and its licensors own the Web Application and its associated intellectual property. The Web Application may include open-source components that are licensed under separate open-source licenses, including the AGPLv3. Your rights in those components are governed by the applicable open-source licenses, not by these Terms.",
+        "Subject to your compliance with these Terms, Nyves grants you a limited, personal, non-exclusive, non-transferable, revocable license to access and use the hosted Web Application. This license does not grant you any right to use the Nyves name, logo or other marks except as necessary to use the Web Application, and it does not extend to independent deployments, forks, relays or self-hosted instances operated by third parties."
       ]
     },
     "operations": {
-      "title": "Service Operations and Platform Rights",
+      "title": "Web Application Operations and Platform Rights",
       "content": [
-        "Nyves may remove content, restrict features, suspend or terminate access, investigate violations, cooperate with law enforcement and take other actions reasonably necessary to protect users, comply with law, enforce these Terms or maintain the integrity of the Service.",
-        "Nyves may implement rate limits, throttling, queueing, circuit breakers, access restrictions, geographic limitations or other protective measures to maintain stability, security and performance. The Service may be unavailable, degraded or delayed due to maintenance, scaling constraints, traffic surges, network conditions, relay outages, third-party host failures or other factors. Nyves does not guarantee uninterrupted availability, storage, delivery or performance.",
-        "Nyves has no obligation to host, store, retain or preserve any user content or any storage location referenced through the Service. Nyves may display, cache or cease displaying or caching content, at its discretion, subject to applicable law and its policies."
+        "Nyves may remove content, restrict features, suspend or terminate access to Nyves-operated infrastructure, investigate violations, cooperate with law enforcement and take other actions reasonably necessary to protect users, comply with law, enforce these Terms or maintain the integrity of the Web Application and the infrastructure Nyves operates.",
+        "Nyves may implement rate limits, throttling, queueing, circuit breakers, access restrictions, geographic limitations or other protective measures to maintain stability, security and performance. Nyves-operated infrastructure and features used by the Web Application may be unavailable, degraded or delayed due to maintenance, scaling constraints, traffic surges, network conditions, relay outages, third-party host failures or other factors. Nyves does not guarantee uninterrupted availability, storage, delivery or performance.",
+        "Nyves has no obligation to host, store, retain or preserve any user content or any storage location referenced through the Web Application. Nyves may display, cache or cease displaying or caching content, at its discretion, subject to applicable law and its policies."
       ]
     },
     "termination": {
       "title": "Termination and Deletion Requests",
       "content": [
-        "You may stop using the Service at any time. You may also request deletion of content or account data stored on Nyves-controlled infrastructure, subject to applicable law, safety requirements, backup retention, dispute preservation and technical limitations.",
-        "Nyves may suspend, restrict or terminate your access to the Service at any time for violations of these Terms, safety or legal concerns, technical risk or other reasonable operational needs.",
-        "Because the Service interacts with decentralized systems, termination or deletion by Nyves may remove access or visibility within Nyves-controlled infrastructure without removing content from independent relays, external hosts, archives, caches, backups, search results or third-party clients. Sections that by their nature should survive termination will survive, including Sections 5, 13, 14, 15, 16, 17 and 18."
+        "You may stop using the Web Application at any time. You may also request deletion of content or account data stored on Nyves-controlled infrastructure, subject to applicable law, safety requirements, backup retention, dispute preservation and technical limitations.",
+        "Nyves may suspend, restrict or terminate your access to Nyves-operated infrastructure, relays and features at any time for violations of these Terms, safety or legal concerns, technical risk or other reasonable operational needs. Because the Web Application runs locally in your browser, Nyves cannot technically stop you from running it, but Nyves may block or restrict your access to Nyves-operated infrastructure.",
+        "Because the Web Application interacts with decentralized systems, termination or deletion by Nyves may remove access or visibility within Nyves-controlled infrastructure without removing content from independent relays, external hosts, archives, caches, backups, search results or third-party clients. Sections that by their nature should survive termination will survive, including Sections 5, 13, 14, 15, 16, 17 and 18."
       ]
     },
     "decentralization": {
       "title": "Decentralization and Content Persistence",
       "content": [
-        "Nyves operates on or interacts with the decentralized Nostr protocol. As a result: (a) the Service may connect to multiple relays, storage layers or servers across the internet; (b) content you publish may be copied, indexed, cached, mirrored or archived by independent relays, clients, hosts or third parties; (c) content removed from Nyves-controlled interfaces may remain available elsewhere; (d) other Nostr clients may apply different moderation or display rules; and (e) once content is published, complete removal may be difficult or impossible.",
+        "Nyves operates on or interacts with the decentralized Nostr protocol. As a result: (a) the Web Application may connect to multiple relays, storage layers or servers across the internet; (b) content you publish may be copied, indexed, cached, mirrored or archived by independent relays, clients, hosts or third parties; (c) content removed from Nyves-controlled interfaces may remain available elsewhere; (d) other Nostr clients may apply different moderation or display rules; and (e) once content is published, complete removal may be difficult or impossible.",
         "If you want different moderation or storage rules, you may be able to use or operate your own compatible relays, media servers or other infrastructure. Nyves does not control how independent operators handle content, and cannot require a third party to delete or modify content it controls."
       ]
     },
     "third-party": {
       "title": "Third-Party Systems and External Links",
       "content": [
-        "The Service may display, preview, retrieve, cache or link to content stored on third-party servers, storage networks, relays, archives or websites. Nyves does not own or control those systems and is not responsible for their availability, security, legality, accuracy, retention or compliance with law.",
+        "The Web Application may display, preview, retrieve, cache or link to content stored on third-party servers, storage networks, relays, archives or websites. Nyves does not own or control those systems and is not responsible for their availability, security, legality, accuracy, retention or compliance with law.",
         "Accessing externally hosted content may expose you to risks, including malware, scams, phishing, offensive material or broken links. You assume the risks associated with interacting with third-party content and services. Nyves may stop displaying or linking to any external content at any time."
       ]
     },
     "disclaimers": {
       "title": "Disclaimers About User Content and Monitoring",
       "content": [
-        "User content is the responsibility of the user who created, uploaded or referenced it. The fact that content appears through the Service does not mean that Nyves endorses, verifies or approves it.",
+        "User content is the responsibility of the user who created, uploaded or referenced it. The fact that content appears through the Web Application does not mean that Nyves endorses, verifies or approves it.",
         "Nyves may moderate content, but Nyves has no general obligation to monitor all content, proactively detect every violation or enforce these Terms in every instance. Subject to applicable law, Nyves disclaims liability arising from user-generated content and from content stored or served by third parties."
       ]
     },
     "indemnification": {
       "title": "Indemnification",
       "content": [
-        "You agree to indemnify, defend and hold harmless Nyves and its officers, directors, employees, contractors, service providers and affiliates from and against any claims, liabilities, damages, judgments, losses, costs and expenses, including reasonable legal fees, arising out of or related to: (a) your user content; (b) your use of the Service; (c) your violation of these Terms; or (d) your violation of any law or third-party right."
+        "You agree to indemnify, defend and hold harmless Nyves and its officers, directors, employees, contractors, service providers and affiliates from and against any claims, liabilities, damages, judgments, losses, costs and expenses, including reasonable legal fees, arising out of or related to: (a) your user content; (b) your use of the Web Application; (c) your violation of these Terms; or (d) your violation of any law or third-party right."
       ]
     },
     "liability": {
       "title": "Disclaimer of Warranties and Limitation of Liability",
       "content": [
-        "The Service is provided \"as is\" and \"as available\". To the maximum extent permitted by law, Nyves disclaims all warranties, express, implied, statutory or otherwise, including any warranties of merchantability, fitness for a particular purpose, title, non-infringement, accuracy, quiet enjoyment, or that the Service will be uninterrupted, secure or error-free.",
+        "The Web Application is provided \"as is\" and \"as available\". To the maximum extent permitted by law, Nyves disclaims all warranties, express, implied, statutory or otherwise, including any warranties of merchantability, fitness for a particular purpose, title, non-infringement, accuracy, quiet enjoyment, or that the Web Application will be uninterrupted, secure or error-free.",
         "Nyves does not guarantee the authenticity, legality, accuracy, safety or availability of any user content, Nostr event, relay or externally hosted file. Nyves does not guarantee that content can be removed, corrected or made unavailable across decentralized networks or third-party systems.",
-        "To the maximum extent permitted by law, Nyves will not be liable for any indirect, incidental, special, consequential or punitive damages arising out of or related to your use of or inability to use the Service, including data loss, failures of relays or third-party hosts, or any inability to remove decentralized content, even if Nyves has been advised of the possibility of such damages. Nothing in these Terms excludes or limits liability that cannot be excluded or limited under applicable law."
+        "To the maximum extent permitted by law, Nyves will not be liable for any indirect, incidental, special, consequential or punitive damages arising out of or related to your use of or inability to use the Web Application, including data loss, failures of relays or third-party hosts, or any inability to remove decentralized content, even if Nyves has been advised of the possibility of such damages. Nothing in these Terms excludes or limits liability that cannot be excluded or limited under applicable law."
       ]
     },
     "disputes": {
       "title": "Dispute Resolution and Governing Law",
       "content": [
         {
-          "p": "Before filing a legal claim relating to the Service or these Terms, you agree to first contact Nyves in writing and give us at least 30 days to try to resolve the dispute informally, for example by emailing {email}."
+          "p": "Before filing a legal claim relating to the Web Application or these Terms, you agree to first contact Nyves in writing and give us at least 30 days to try to resolve the dispute informally, for example by emailing {email}."
         },
         "If a dispute cannot be resolved informally, either party may pursue any remedy available under applicable law in a court of competent jurisdiction. These Terms are governed by the laws of the Netherlands, without regard to conflict-of-law principles.",
         "To the maximum extent permitted by law, each party may bring claims only in its individual capacity and not as a plaintiff or class member in any purported class, collective, consolidated or representative action."
@@ -320,14 +324,14 @@
     "changes": {
       "title": "Changes to These Terms",
       "content": [
-        "We may modify these Terms from time to time. When we do, we will post the updated version and revise the \"Last updated\" date above. Unless a different effective date is stated, changes will become effective 30 days after posting. Your continued use of the Service after the effective date of updated Terms constitutes your acceptance of the revised Terms."
+        "We may modify these Terms from time to time. When we do, we will post the updated version and revise the \"Last updated\" date above. Unless a different effective date is stated, changes will become effective 30 days after posting. Your continued use of the Web Application after the effective date of updated Terms constitutes your acceptance of the revised Terms."
       ]
     },
     "contact": {
       "title": "Entire Agreement; Severability; Contact Information",
       "content": [
         {
-          "p": "These Terms, together with the {privacyPolicy}, constitute the entire agreement between you and Nyves regarding the Service and supersede prior or contemporaneous agreements on that subject."
+          "p": "These Terms, together with the {privacyPolicy}, constitute the entire agreement between you and Nyves regarding the Web Application and supersede prior or contemporaneous agreements on that subject."
         },
         "If any provision of these Terms is held invalid, unlawful or unenforceable, that provision will be enforced to the maximum extent permitted and the remaining provisions will remain in full force and effect.",
         {
@@ -336,6 +340,292 @@
       ]
     }
   }
+  },
+  "privacy": {
+    "meta_description": "The privacy policy of Nyves.",
+    "last_updated": "Last updated: 08-10-2026",
+    "effective_date": "Effective from: 08-10-2026",
+    "short_version":                      {
+                       "title": "The short version",
+                       "items": [
+                         "Who is responsible for your data and which terms we use in this policy.",
+                         "What information we process: what stays locally in your browser and what goes to Nyves-controlled infrastructure.",
+                         "For which purposes we process data and on which GDPR legal basis (Article 6).",
+                         "How long we keep data: content on relays can be stored indefinitely, and you can set an expiration date per event; other data we keep for as long as necessary.",
+                         "Your rights under the GDPR and how to exercise them, including the right to lodge a complaint with the Dutch Data Protection Authority.",
+                         "Which cookies and local storage are used, and that we do not transfer data outside the EU.",
+                         "How we secure your data and what we do if a data breach occurs.",
+                         "That the Web Application is not directed at children under 13.",
+                         "That content in a decentralized network may persist even after you delete it in the Web Application.",
+                         "How we make changes to this policy and how to contact us."
+                       ],
+                       "note": "This summary is there to orient you, but it does not replace the full policy. Where this summary and the text below differ, the full text applies."
+                     },
+    "blocks": [
+      {
+        "h3": "Who is responsible for your data"
+      },
+      {
+        "p": "The controller responsible for the data processed through Nyves-controlled infrastructure is Sebastian Hagens, the publisher of Nyves, based in the Netherlands. He determines which data is processed, why and how. For questions about this Privacy Policy or about how your data is processed, you can contact us at info{'@'}sebastix.nl."
+      },
+      {
+        "p": "Nyves is a Web Application that runs locally in your browser. Data you publish to third-party relays is processed by the operators of those relays; they are responsible for that processing. Nyves is not the controller for that data, except for content on the Nyves-controlled relay (https://rely.nyves.nl)."
+      },
+      {
+        "p": "Nyves is free, open-source software (AGPLv3 LICENSE) which runs as a web application. It is not a service. The profiles are not accounts. There are no Nyves accounts stored in a database. The developer has no access to data stored on your device while browsing the website."
+      },
+      {
+        "p": "Nyves lets you also browse content from third-party Nostr relays. Those relays host the content. They are independent of Nyves, with their own operators and their own policies."
+      },
+      {
+        "h3": "Definitions"
+      },
+      {
+        "dl": [
+          {
+            "term": "Web Application",
+            "text": "means the client-side web application known as Nyves, available at https://nyves.nl. It runs locally in your web browser on your own device and processes data locally; Nyves does not operate it as a hosted service on your behalf. Nyves is not a platform."
+          },
+          {
+            "term": "Nyves-controlled infrastructure",
+            "text": "means websites, apps, relays, media storage, APIs, and other systems owned or controlled by Nyves."
+          },
+          {
+            "term": "Externally hosted content",
+            "text": "means any video, image, audio file, or other media referenced within a Nostr event that is stored on third-party infrastructure."
+          },
+          {
+            "term": "Nostr",
+            "text": "means the decentralized protocol known as “Notes and Other Stuff Transmitted by Relays,” which enables users to publish, retrieve, and verify content using cryptographic keypairs and signed messages."
+          },
+          {
+            "term": "Nostr event",
+            "text": "means a cryptographically signed data object published using the Nostr protocol. A Nostr event may include a public key, timestamp, event kind, content, tags, metadata, and a digital signature. Once broadcast, Nostr events may be stored or replicated across multiple independent relays, including relays Nyves does not own or control."
+          },
+          {
+            "term": "Nostr keypair",
+            "text": "means the cryptographic public/private keypair used to create, sign, and authenticate Nostr events. The public key functions as a user identifier across the Nostr protocol, and the private key is required to sign events and prove authorship."
+          },
+          {
+            "term": "Relay",
+            "text": "means any independently operated server implementing the Nostr protocol for receiving, storing, indexing, or redistributing Nostr events. Unless expressly stated otherwise, relays are not operated by Nyves."
+          },
+          {
+            "term": "User content",
+            "text": "means any Nostr event, media, metadata, username, profile information, or other material submitted, published, uploaded, linked, or otherwise made available by a user through the Web Application, whether hosted by Nyves or externally."
+          }
+        ]
+      },
+      {
+        "h3": "Privacy"
+      },
+      {
+        "h4": "Public content is effectively permanent"
+      },
+      {
+        "p": "Anything you publish to a relay can be copied to other relays or clients. Once published, you should assume it cannot be reliably deleted from the network."
+      },
+      {
+        "h4": "Connecting with a Google Account"
+      },
+      {
+        "p": "If you choose to sign in with Google, authentication is handled through the Nyves Pomegranate login flow. Nyves receives only the authentication token issued by Pomegranate's central server and your email address from Google. No other Google profile data is received. On first sign-in, a Nostr key pair is generated for you."
+      },
+      {
+        "h3": "Addressing illegal content"
+      },
+      {
+        "p": "The web application Nyves does not host content, so the app cannot remove illegal content. Only relays hosting the content can remove it. If the content is on the Nyves relay (https://rely.nyves.nl), we can delete it."
+      },
+      {
+        "h3": "Information being collected"
+      },
+      {
+        "p": "Nyves may collect and process information in several categories. The categories of personal information collected may include identifiers (such as public keys or IP addresses), internet or network activity information, and user-generated content. We collect information you provide directly, including Nostr events, profile metadata, communications with Nyves, and reports submitted through the Web Application."
+      },
+      {
+        "p": "Configuration, cached events, keys, drafts, and other operational data live in the web application's local storage. Other applications cannot read it. You can wipe it by clearing the app's storage in your browser."
+      },
+      {
+        "h3": "How we use information and on what legal basis"
+      },
+      {
+        "p": "We process the data described above only for the purposes set out below. Every processing operation relies on one of the legal bases in Article 6 of the GDPR."
+      },
+      {
+        "dl": [
+          {
+            "term": "Running the Web Application",
+            "text": "To load your profile, display and publish events and let the app run locally. Legal basis: performance of the agreement and your request (Art. 6(1)(b))."
+          },
+          {
+            "term": "Contact and support",
+            "text": "To answer your questions about using Nyves. Send your question to info{'@'}nyves.nl. Legal basis: performance of the agreement (Art. 6(1)(b)) and our legitimate interest in providing good support (Art. 6(1)(f))."
+          },
+          {
+            "term": "Security and abuse prevention",
+            "text": "To protect the Nyves-controlled infrastructure against spam, attacks and abuse. Legal basis: legitimate interest (Art. 6(1)(f))."
+          },
+          {
+            "term": "Analytics",
+            "text": "To understand how the Web Application is used and to improve it, via the self-hosted Matomo instance (matomo.sebastix.nl). Legal basis: legitimate interest (Art. 6(1)(f)); you can object to this."
+          },
+          {
+            "term": "Error reporting",
+            "text": "To detect and fix errors and crashes in the Web Application, via the self-hosted GlitchTip instance (logs.sebastix.dev). Legal basis: legitimate interest (Art. 6(1)(f))."
+          },
+          {
+            "term": "Email and mailing list sign-ups",
+            "text": "To send you the emails you have signed up for, via the self-hosted ListMonk instance (mail.nyves.nl). Legal basis: your consent (Art. 6(1)(a)), which you can withdraw at any time."
+          },
+          {
+            "term": "Optional Google login",
+            "text": "If you choose it, to authenticate you and generate a Nostr keypair for you. Legal basis: your consent (Art. 6(1)(a)) and performance of your request (Art. 6(1)(b))."
+          },
+          {
+            "term": "Legal obligations",
+            "text": "To comply with legal obligations, such as removing illegal content on the Nyves-controlled relay. Legal basis: legal obligation (Art. 6(1)(c))."
+          }
+        ]
+      },
+      {
+        "p": "Where we rely on a legitimate interest, you can object to that processing. Where we rely on your consent, you can withdraw it at any time by emailing info{'@'}sebastix.nl. Withdrawing consent does not affect the lawfulness of processing carried out before that moment."
+      },
+      {
+        "h3": "Data retention"
+      },
+      {
+        "p": "Nyves retains information for as long as reasonably necessary to operate the Web Application, comply with legal obligations, enforce its Terms and and prevent abuse."
+      },
+      {
+        "p": "Retention periods may vary depending on the nature of the data, including logs, moderation records, reports, and backup data. Some information may be retained for longer periods where required for legal, safety, or dispute-resolution purposes."
+      },
+      {
+        "p": "Nyves has no obligation to retain user content and may remove or cease storing or displaying content at its discretion, subject to applicable law."
+      },
+      {
+        "h3": "Retention periods"
+      },
+      {
+        "p": "Content you publish is sent to relays as a Nostr event and can be stored there indefinitely, even if you delete the event in the Web Application or close your account. Each relay manages its own storage and deletion policy. You can set an expiration date per event (the expiration field from NIP-40); relays that support it can delete the event after that date. We cannot guarantee that any given relay will honour it."
+      },
+      {
+        "p": "For all other data stored within Nyves-controlled infrastructure, such as server and error-tracking logs, analytics and mailing list sign-ups, we keep it for as long as necessary for the purpose for which it was collected, and delete it afterwards. We keep your email address for a mailing list sign-up until you unsubscribe. We do not store data in your browser's local storage; it stays on your own device until you clear it yourself."
+      },
+      {
+        "h3": "Your rights"
+      },
+      {
+        "p": "Under the GDPR you have a number of rights regarding your personal data. Because Nyves runs largely locally in your browser and keeps no accounts, you can also exercise some of them yourself, for example by clearing the app's local storage."
+      },
+      {
+        "dl": [
+          {
+            "term": "Right of access",
+            "text": "You can request which personal data we process about you and receive a copy. Much of the data is visible directly in the Web Application itself, since it runs locally."
+          },
+          {
+            "term": "Right to rectification",
+            "text": "You can have incorrect or incomplete data corrected. You can edit and republish the profile metadata in your Nostr events yourself."
+          },
+          {
+            "term": "Right to erasure",
+            "text": "You can request deletion of your data. You can clear the app's local storage yourself through your browser. Content you have published to relays can be deleted with a deletion request (NIP-09); we cannot guarantee that a given relay will honour it."
+          },
+          {
+            "term": "Right to restriction of processing",
+            "text": "You can ask us to temporarily restrict processing, for example while a request or an objection is being handled."
+          },
+          {
+            "term": "Right to object",
+            "text": "You can object to processing that we base on a legitimate interest, such as analytics and error reporting."
+          },
+          {
+            "term": "Right to data portability",
+            "text": "You can request your data in a structured, commonly used and machine-readable format, or have it transferred."
+          },
+          {
+            "term": "Right to withdraw consent",
+            "text": "Where processing is based on your consent (such as mailing list sign-ups or optional Google login), you can withdraw that consent at any time. This does not affect the lawfulness of processing carried out before that moment."
+          },
+          {
+            "term": "Right to lodge a complaint",
+            "text": "You can lodge a complaint with the Dutch Data Protection Authority (autoriteitpersoonsgegevens.nl) if you believe we process your data unlawfully."
+          }
+        ]
+      },
+      {
+        "p": "You can submit a request or an objection by emailing info{'@'}sebastix.nl. We respond within one month. Because Nyves keeps no accounts, we cannot always link a request to a person; in that case we will let you know what we can do. Content that you or others have copied to third-party relays cannot be deleted by us; please contact that relay's operator instead."
+      },
+      {
+        "h3": "Cookies, local storage and data transfers"
+      },
+      {
+        "h4": "Cookies and local storage"
+      },
+      {
+        "p": "The Web Application uses your browser's local storage (localStorage) to keep your settings, keys, drafts and cached events. That data stays on your own device. In addition, the self-hosted Matomo instance (matomo.sebastix.nl) may set functional cookies to distinguish visits and to improve the Web Application. We do not set third-party advertising or tracking cookies."
+      },
+      {
+        "p": "You can refuse analytics by blocking cookies in your browser or using an ad blocker; the Web Application will keep working. You can clear the local storage at any time through your browser settings."
+      },
+      {
+        "h4": "Data transfers"
+      },
+      {
+        "p": "All services that Nyves uses, namely Matomo, GlitchTip and ListMonk, run on self-hosted servers in the Netherlands. No personal data is transferred to countries outside the EU/EEA. The only data that leaves our own infrastructure is the events you publish to relays yourself. The operators of those relays are responsible for that themselves; see also the definitions of Nostr and relay."
+      },
+      {
+        "h4": "Automated decision-making"
+      },
+      {
+        "p": "Nyves does not use automated decision-making or profiling that produces legal effects for you or otherwise significantly affects you."
+      },
+      {
+        "h3": "Security"
+      },
+      {
+        "p": "Nyves implements reasonable technical and organizational measures to protect information processed on Nyves-controlled infrastructure. However, no system is completely secure, and Nyves does not guarantee that information will be free from unauthorized access, loss, or alteration."
+      },
+      {
+        "p": "If a data breach occurs involving personal data processed under our responsibility, we assess the risk and take appropriate measures to limit the consequences. If the breach is likely to pose a risk to your rights and freedoms, we report it to the Dutch Data Protection Authority and, where necessary, also inform you. Because Nyves keeps no accounts and most data stays in your browser, a breach can only affect Nyves-controlled infrastructure, such as server and error-tracking logs and mailing list sign-ups."
+      },
+      {
+        "h3": "Children"
+      },
+      {
+        "p": "The Web Application does not address anyone under the age of 13. Nyves does not knowingly collect personal data from anyone under 13. If you are a parent or guardian aware that your child has provided the Nyves-controlled infrastructure with personal data, please contact us so it can be removed."
+      },
+      {
+        "h3": "Decentralized system notice"
+      },
+      {
+        "p": "Because the Web Application interacts within a decentralized network connecting to relays, content may persist on independent relays, archives, or third-party systems even after it is removed from Nyves-controlled infrastructure. Nyves cannot guarantee deletion or control of such content."
+      },
+      {
+        "h3": "Changes to this policy"
+      },
+      {
+        "p": "We may update this Privacy Policy from time to time. The current version is always on this page; the version number and the 'Last updated' date above are revised accordingly."
+      },
+      {
+        "p": "A new version takes effect 30 days after it is posted on this page, unless the law or an urgent security matter requires a shorter period. Until then the previous version continues to apply to data already collected."
+      },
+      {
+        "p": "Because Nyves keeps no accounts and does not collect visitors' email addresses, we cannot inform you directly about changes. For material changes we therefore post a clear notice on the homepage and on this page."
+      },
+      {
+        "h3": "Contact"
+      },
+      {
+        "lines": [
+          "Publisher: Sebastian Hagens",
+          "Privacy and GDPR: info{'@'}sebastix.nl - for questions about this policy and for your GDPR requests, such as access, correction or erasure",
+          "Support: info{'@'}nyves.nl - for questions about using the Web Application",
+          "More contact details can be found at https://sebastix.nl/contact"
+        ]
+      }
+    ]
   },
   "footer": {
     "initiatief": "An initiative of"

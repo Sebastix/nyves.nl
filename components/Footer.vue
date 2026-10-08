@@ -46,7 +46,7 @@ const changeLanguage = (event) => {
         |
         <NuxtLink :to="localePath('voorwaarden')">{{ $t('Voorwaarden') }}</NuxtLink>
         |
-        <NuxtLink to="/privacy">{{ $t('Privacy') }}</NuxtLink>
+        <NuxtLink :to="localePath('/privacy')">{{ $t('Privacy') }}</NuxtLink>
         |
         <a href="https://gitlab.com/sebastix-group/nyves" target="_blank">
           Code<svg class="size-3 inline align-text-top" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -3,6 +3,7 @@
 // i18n locale files (voorwaarden.sections.<id>) so both the Dutch and English
 // versions stay in sync. See i18n/locales/{nl,en}.json.
 const { t, tm } = useI18n()
+const localePath = useLocalePath()
 
 const sectionIds = [
   'acceptance',
@@ -113,7 +114,7 @@ useSeoMeta({
               class="mb-3"
             >
               <template #privacyPolicy>
-                <NuxtLink to="/privacy">{{ $t('voorwaarden.privacy_policy_link') }}</NuxtLink>
+                <NuxtLink :to="localePath('/privacy')">{{ $t('voorwaarden.privacy_policy_link') }}</NuxtLink>
               </template>
               <template #email>
                 <a href="mailto:info@nyves.nl">info@nyves.nl</a>

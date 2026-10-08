@@ -124,12 +124,12 @@
   "short_version": {
   "title": "In het kort",
   "items": [
-    "Je houdt eigendom van je content; je geeft Nyves een licentie om die te hosten, op te slaan en te tonen om de Dienst te kunnen runnen en verbeteren.",
-    "Nyves is een non-custodiale interface op het open Nostr-protocol, dus je profiel en berichten leven op relays in plaats van in een gesloten platform.",
-    "Nyves herstelt en indexeert profielen van legacyplatforms zoals Hyves. Merknamen zoals \"Hyves\" blijven eigendom van hun eigenaren; Nyves is niet verbonden aan Hyves of Mediahuis.",
+    "Je houdt eigendom van je content; je geeft Nyves een licentie om die te hosten, op te slaan en te tonen om de Web Applicatie te kunnen runnen en verbeteren.",
+    "Nyves is een webapplicatie die lokaal in je browser draait, bovenop het open Nostr-protocol, dus je profiel en berichten leven op relays in plaats van in een gesloten platform.",
+    "Nyves herstelt en indexeert profielen van het legacy-platform Hyves. Merknamen zoals \"Hyves\" blijven eigendom van hun eigenaren; Nyves is niet verbonden aan Hyves of Mediahuis.",
     "Plaats geen illegale of schadelijke content. Nyves kan content en toegang modereren, beperken of verwijderen, en je kunt content rapporteren.",
     "Omdat Nostr gedecentraliseerd is, kan content die je publiceert door anderen worden gekopieerd of gecached en moeilijk volledig te verwijderen zijn. Je kunt op elk moment stoppen en verwijdering van gegevens op door Nyves beheerde infrastructuur aanvragen.",
-    "De Dienst wordt geleverd \"as is\", valt onder Nederlands recht en de broncode is open source (AGPL). Vragen? Mail naar info{'@'}nyves.nl."
+    "De Web Applicatie wordt geleverd \"as is\", valt onder Nederlands recht en de broncode is open-source (AGPLv3). Vragen? Mail naar info{'@'}nyves.nl."
   ],
   "note": "Deze samenvatting helpt je op weg. De genummerde secties hieronder vormen de daadwerkelijke overeenkomst en zijn bepalend als ze met deze samenvatting in strijd lijken te zijn."
   },
@@ -138,10 +138,10 @@
     "acceptance": {
       "title": "Acceptatie van de voorwaarden",
       "content": [
-        "Door Nyves (de \"Dienst\") te bezoeken of te gebruiken, ga je akkoord met deze gebruiksvoorwaarden (\"Voorwaarden\"). Als je niet akkoord gaat, gebruik de Dienst dan niet.",
-        "De Dienst wordt aangeboden door Sebastian Hagens (\"Nyves\", \"Sebastix\", \"wij\", \"ons\" of \"onze\"), gevestigd in Nederland. Deze Voorwaarden vormen een bindende overeenkomst tussen jou en Nyves.",
+        "Door Nyves (de \"Web Applicatie\") te bezoeken of te gebruiken, ga je akkoord met deze gebruiksvoorwaarden (\"Voorwaarden\"). Als je niet akkoord gaat, gebruik de Web Applicatie dan niet.",
+        "De Web Applicatie wordt aangeboden door Sebastian Hagens (\"Nyves\", \"Sebastix\", \"wij\", \"ons\" of \"onze\"), gevestigd in Nederland. Deze Voorwaarden vormen een bindende overeenkomst tussen jou en Nyves.",
         {
-          "p": "Door de Dienst te gebruiken ga je ook akkoord met ons {privacyPolicy}, dat door middel van verwijzing onderdeel is van deze Voorwaarden. Bij tegenstrijdigheid tussen deze Voorwaarden en dat beleid prevaleren deze Voorwaarden voor zover het de tegenstrijdigheid betreft."
+          "p": "Door de Web Applicatie te gebruiken ga je ook akkoord met ons {privacyPolicy}, dat door middel van verwijzing onderdeel is van deze Voorwaarden. Bij tegenstrijdigheid tussen deze Voorwaarden en dat beleid prevaleren deze Voorwaarden voor zover het de tegenstrijdigheid betreft."
         }
       ]
     },
@@ -150,6 +150,10 @@
       "content": [
         {
           "defs": [
+            {
+              "term": "de Web Applicatie",
+              "text": "betekent de client-side webapplicatie die bekendstaat als Nyves en beschikbaar is op https://nyves.nl. De Web Applicatie draait lokaal in je webbrowser op je eigen apparaat en verwerkt gegevens lokaal; Nyves beheert haar niet als een gehoste dienst namens jou. Nyves is geen platform."
+            },
             {
               "term": "Infrastructuur die door Nyves wordt beheerd",
               "text": "betekent websites, apps, relays, mediaopslag, API's en andere systemen die eigendom zijn van of worden beheerd door Nyves."
@@ -176,7 +180,7 @@
             },
             {
               "term": "Gebruikerscontent",
-              "text": "betekent elk Nostr-event, media, metadata, gebruikersnaam, profielinformatie of ander materiaal dat door een gebruiker via de Dienst wordt ingediend, gepubliceerd, geüpload, gelinkt of anderszins beschikbaar gesteld, ongeacht of dit door Nyves of extern wordt gehost."
+              "text": "betekent elk Nostr-event, media, metadata, gebruikersnaam, profielinformatie of ander materiaal dat door een gebruiker via de Web Applicatie wordt ingediend, gepubliceerd, geüpload, gelinkt of anderszins beschikbaar gesteld, ongeacht of dit door Nyves of extern wordt gehost."
             },
             {
               "term": "Archiefcontent",
@@ -187,17 +191,17 @@
       ]
     },
     "nature-of-service": {
-      "title": "Aard van de dienst",
+      "title": "Aard van de Web Applicatie",
       "content": [
-        "Nyves opereert in de eerste plaats als een niet-bewaarderende interface voor het lezen, schrijven en interactief gebruiken van Nostr-events, al kunnen bepaalde optionele functies voor authenticatie, ondertekening, back-up of herstel server-side sleutelbeheer met zich meebrengen.",
-        "Nyves herstelt en indexeert profielen en gerelateerde content van legacyplatformen (zoals Hyves) en publiceert deze als Nostr-events, zodat ze opnieuw vindbaar worden. De Dienst kan Nostr-events en gerelateerde media indexeren, weergeven, tonen, cachen, verzenden of hosten, en kan extern gehoste content weergeven of ernaar linken. Tenzij uitdrukkelijk anders vermeld, is Nyves geen eigenaar van en heeft Nyves geen controle over onafhankelijke relays, opslagproviders van derden, archieven of externe hosts.",
-        "Alle handelsmerken, logo's en merknamen van derden die via de Dienst zichtbaar zijn, waaronder \"Hyves\", blijven eigendom van hun respectieve eigenaren. Nyves is niet verbonden aan, wordt niet onderschreven door en wordt niet gesponsord door Hyves, Mediahuis of enige andere derde partij. Historische of legacy-content die via de Dienst zichtbaar wordt gemaakt, kan zowel door gebruikers ingediend materiaal als content uit externe archief- of legacybronnen bevatten, en betreft geen content die door Nyves is gemaakt, bezeten of onderschreven."
+        "Nyves is een client-side webapplicatie (de Web Applicatie) die lokaal in je webbrowser op je eigen apparaat draait. Je kunt haar gebruiken om Nostr-events te lezen, te schrijven en er interactief mee om te gaan. De Web Applicatie is niet-bewaarderend: tenzij uitdrukkelijk anders vermeld, neemt zij je Nostr-sleutels of content niet onder zich. Bepaalde optionele functies, zoals authenticatie, ondertekening, back-up, herstel of een door Nyves beheerde relay, kunnen gebruikmaken van servers die door Nyves of door derden worden beheerd; in dat geval kunnen gegevens je apparaat verlaten.",
+        "Nyves herstelt en indexeert profielen en gerelateerde content van legacyplatformen (zoals Hyves) en publiceert deze als Nostr-events, zodat ze opnieuw vindbaar worden. De Web Applicatie kan Nostr-events en gerelateerde media indexeren, weergeven, tonen, cachen, verzenden of hosten, en kan extern gehoste content weergeven of ernaar linken. Tenzij uitdrukkelijk anders vermeld, is Nyves geen eigenaar van en heeft Nyves geen controle over onafhankelijke relays, opslagproviders van derden, archieven of externe hosts.",
+        "Alle handelsmerken, logo's en merknamen van derden die via de Web Applicatie zichtbaar zijn, waaronder \"Hyves\", blijven eigendom van hun respectieve eigenaren. Nyves is niet verbonden aan, wordt niet onderschreven door en wordt niet gesponsord door Hyves, Mediahuis of enige andere derde partij. Historische of legacy-content die via de Web Applicatie zichtbaar wordt gemaakt, kan zowel door gebruikers ingediend materiaal als content uit externe archief- of legacybronnen bevatten, en betreft geen content die door Nyves is gemaakt, bezeten of onderschreven."
       ]
     },
     "eligibility": {
       "title": "Geschiktheid, accounts en authenticatie",
       "content": [
-        "Je moet ten minste 16 jaar oud zijn om de Dienst te gebruiken zonder verifieerbare ouderlijke toestemming. Ben je jonger dan 16, dan mag je de Dienst alleen gebruiken met betrokkenheid en toestemming van een ouder of wettelijke voogd, voor zover het toepasselijke recht dit toestaat. Als ons bekend wordt dat een gebruiker onder de 16 de Dienst gebruikt zonder de vereiste toestemming, kunnen wij de toegang beperken of beëindigen en bijbehorende gegevens verwijderen, voor zover het toepasselijke recht dit vereist of toestaat.",
+        "Je moet ten minste 13 jaar oud zijn om de Web Applicatie te gebruiken zonder verifieerbare ouderlijke toestemming. Ben je jonger dan 13, dan mag je de Web Applicatie alleen gebruiken met betrokkenheid en toestemming van een ouder of wettelijke voogd, voor zover het toepasselijke recht dit toestaat. Als ons bekend wordt dat een gebruiker onder de 13 de Web Applicatie gebruikt zonder de vereiste toestemming, kunnen wij de toegang beperken of beëindigen en bijbehorende gegevens verwijderen, voor zover het toepasselijke recht dit vereist of toestaat.",
         "Sommige content kan standaard verborgen zijn of worden beperkt tot volwassenen met behulp van leeftijdscontrole of leeftijdsbeperking. Je mag content met een leeftijdsbeperking alleen bekijken als je ten minste 18 jaar oud bent, en je bent zelf verantwoordelijk voor het naleven van alle geldende leeftijdsbeperkingen. Nyves kan vertrouwen op door gebruikers verstrekte informatie en beschikbare signalen om dergelijke beperkingen te handhaven, maar garandeert niet dat alle content met een leeftijdsbeperking ontoegankelijk zal zijn voor minderjarige gebruikers.",
         "Je Nostr-identiteit is verbonden met je Nostr-sleutelpaar. Gebruik je je eigen sleutel, dan ben je zelf volledig verantwoordelijk voor het beveiligen van je private sleutel en eventuele gerelateerde inloggegevens. Sommige functies, zoals herstelde archiefgebruikersnamen, kunnen sleutelparen met zich meebrengen die door Nyves namens het archief worden aangemaakt en beheerd.",
         "Elk Nostr-event dat met jouw sleutel wordt gepubliceerd of ondertekend, of via inloggegevens of ondertekeningsprocessen die jij autoriseert, kan worden beschouwd als door jou geautoriseerd. Als je sleutel, inloggegevens of herstelmethoden verloren gaan, gecompromitteerd raken of worden misbruikt, is Nyves mogelijk niet in staat de toegang te herstellen of bijbehorende handelingen ongedaan te maken."
@@ -207,16 +211,16 @@
       "title": "Gebruikerscontent, verklaringen en licentie",
       "content": [
         "Je behoudt het eigendom van je gebruikerscontent. Niets in deze Voorwaarden draagt het eigendom van je gebruikerscontent over aan Nyves.",
-        "Door gebruikerscontent te plaatsen, te uploaden, in te dienen of via de Dienst beschikbaar te maken, verleen je Nyves een wereldwijde, niet-exclusieve, royaltyvrije, sublicentieerbare en overdraagbare licentie om die content te hosten, op te slaan, te reproduceren, te verwerken, aan te passen, te publiceren, weer te geven, te verzenden, te distribueren en er afgeleide werken van te maken, voor zover dat redelijkerwijs nodig is om de Dienst te exploiteren, te beveiligen, te verbeteren, te promoten en te leveren.",
-        "Je verklaart en garandeert dat: (a) je over alle rechten, licenties, toestemmingen en vergunningen beschikt die nodig zijn om de content in te dienen en te gebruiken; (b) de content en de publicatie ervan geen inbreuk maken op, geen afbreuk doen aan en geen schending vormen van rechten van derden, wetgeving of contractuele beperkingen; (c) alle metadata, links, beschrijvingen en tags die je verstrekt juist en niet misleidend zijn; en (d) alle extern gehoste content waarnaar je verwijst rechtmatig is en dat je het recht hebt deze via de Dienst beschikbaar te maken.",
+        "Door gebruikerscontent te plaatsen, te uploaden, in te dienen of via de Web Applicatie beschikbaar te maken, verleen je Nyves een wereldwijde, niet-exclusieve, royaltyvrije, sublicentieerbare en overdraagbare licentie om die content te hosten, op te slaan, te reproduceren, te verwerken, aan te passen, te publiceren, weer te geven, te verzenden, te distribueren en er afgeleide werken van te maken, voor zover dat redelijkerwijs nodig is om de Web Applicatie te exploiteren, te beveiligen, te verbeteren, te promoten en te leveren.",
+        "Je verklaart en garandeert dat: (a) je over alle rechten, licenties, toestemmingen en vergunningen beschikt die nodig zijn om de content in te dienen en te gebruiken; (b) de content en de publicatie ervan geen inbreuk maken op, geen afbreuk doen aan en geen schending vormen van rechten van derden, wetgeving of contractuele beperkingen; (c) alle metadata, links, beschrijvingen en tags die je verstrekt juist en niet misleidend zijn; en (d) alle extern gehoste content waarnaar je verwijst rechtmatig is en dat je het recht hebt deze via de Web Applicatie beschikbaar te maken.",
         "Je bent verantwoordelijk voor de content die je uploadt, publiceert of waarnaar je verwijst, ongeacht of deze is opgeslagen op infrastructuur die door Nyves wordt beheerd of op systemen van derden. Nyves treedt niet op als jouw agent, vertrouwenspersoon of wettelijke vertegenwoordiger bij het handhaven van jouw rechten tegenover anderen, en je blijft zelf verantwoordelijk voor het beschermen van je eigen rechten."
       ]
     },
     "prohibited": {
       "title": "Verboden content en gedrag",
       "content": [
-        "Je mag de Dienst niet gebruiken om het volgende te creëren, uploaden, publiceren, verspreiden, uitlokken, promoten of faciliteren: (a) materiaal van seksueel misbruik van kinderen (CSAM), seksuele uitbuiting van kinderen of enige gesekstualiseerde content met minderjarigen; (b) illegale content of onwettige activiteiten; (c) inbreuk op auteursrechten, handelsmerken, bedrijfsgeheimen, privacy, portretrecht of andere rechten; (d) geweld, geloofwaardige bedreigingen, expliciet bloederig materiaal of content die bedoeld is om lichamelijk letsel aan te zetten; (e) intimidatie, pesten, misbruik, stalken of haatdragend gedrag gericht tegen personen of groepen; (f) niet-consensueel intiem beeldmateriaal, doxxing of het zonder toestemming openbaren van private, vertrouwelijke of gevoelige informatie; (g) pornografische content, met dien verstande dat bepaalde niet-pornografische content voor volwassenen kan worden beperkt of van een leeftijdsgrens kan worden voorzien; (h) spam, oplichting, fraude, phishing, malware of schadelijke code; (i) imitatie of misleidend gedrag dat anderen waarschijnlijk misleidt over identiteit, verbondenheid, onderschrijving of bevoegdheid; of (j) synthetische, gemanipuleerde of door AI gegenereerde media die worden gebruikt om te misleiden, uit te buiten, zich voor te doen als iemand anders of anderszins deze Voorwaarden te schenden.",
-        "Je mag ook niet: (A) meerdere accounts of identiteiten aanmaken voor misleidende, ontwijkende of verstorende doeleinden; (B) gebruikersnamen reserveren voor doorverkoop, misbruik of om legitiem gebruik te blokkeren, of accounts, door Nyves verstrekte gebruikersnamen, likes, reposts, volgers of vergelijkbare betrokkenheidssignalen kopen, verkopen, overdragen of verhandelen; (C) je bezighouden met bulk-, geautomatiseerde of gecoördineerde berichten-, reactie-, messaging- of taggingschema's die ongewenst gedrag aanmoedigen, tenzij Nyves dit uitdrukkelijk toestaat; (D) de Dienst of enig niet-openbaar systeem, API of beveiligingsmechanisme scrapen, crawlen, aftasten, scannen, reverse-engineeren, omzeilen of anderszins verstoren; (E) snelheidslimieten, moderatietools, toegangscontroles of veiligheidssystemen omzeilen; (F) de Dienst, de door Nyves beheerde infrastructuur of verbonden systemen overbelasten, verslechteren of verstoren; of (G) de Dienst gebruiken in strijd met het toepasselijke recht.",
+        "Je mag de Web Applicatie niet gebruiken om het volgende te creëren, uploaden, publiceren, verspreiden, uitlokken, promoten of faciliteren: (a) materiaal van seksueel misbruik van kinderen (CSAM), seksuele uitbuiting van kinderen of enige gesekstualiseerde content met minderjarigen; (b) illegale content of onwettige activiteiten; (c) inbreuk op auteursrechten, handelsmerken, bedrijfsgeheimen, privacy, portretrecht of andere rechten; (d) geweld, geloofwaardige bedreigingen, expliciet bloederig materiaal of content die bedoeld is om lichamelijk letsel aan te zetten; (e) intimidatie, pesten, misbruik, stalken of haatdragend gedrag gericht tegen personen of groepen; (f) niet-consensueel intiem beeldmateriaal, doxxing of het zonder toestemming openbaren van private, vertrouwelijke of gevoelige informatie; (g) pornografische content, met dien verstande dat bepaalde niet-pornografische content voor volwassenen kan worden beperkt of van een leeftijdsgrens kan worden voorzien; (h) spam, oplichting, fraude, phishing, malware of schadelijke code; (i) imitatie of misleidend gedrag dat anderen waarschijnlijk misleidt over identiteit, verbondenheid, onderschrijving of bevoegdheid; of (j) synthetische, gemanipuleerde of door AI gegenereerde media die worden gebruikt om te misleiden, uit te buiten, zich voor te doen als iemand anders of anderszins deze Voorwaarden te schenden.",
+        "Je mag ook niet: (A) meerdere accounts of identiteiten aanmaken voor misleidende, ontwijkende of verstorende doeleinden; (B) gebruikersnamen reserveren voor doorverkoop, misbruik of om legitiem gebruik te blokkeren, of accounts, door Nyves verstrekte gebruikersnamen, likes, reposts, volgers of vergelijkbare betrokkenheidssignalen kopen, verkopen, overdragen of verhandelen; (C) je bezighouden met bulk-, geautomatiseerde of gecoördineerde berichten-, reactie-, messaging- of taggingschema's die ongewenst gedrag aanmoedigen, tenzij Nyves dit uitdrukkelijk toestaat; (D) de Web Applicatie of enig niet-openbaar systeem, API of beveiligingsmechanisme scrapen, crawlen, aftasten, scannen, reverse-engineeren, omzeilen of anderszins verstoren; (E) snelheidslimieten, moderatietools, toegangscontroles of veiligheidssystemen omzeilen; (F) de Web Applicatie, de door Nyves beheerde infrastructuur of verbonden systemen overbelasten, verslechteren of verstoren; of (G) de Web Applicatie gebruiken in strijd met het toepasselijke recht.",
         "Nyves voert een zerotolerancebeleid voor CSAM en andere illegale seksuele uitbuiting van kinderen. Wij kunnen content verwijderen of blokkeren op infrastructuur die door Nyves wordt beheerd, de toegang opschorten of beëindigen, bewijs veiligstellen en zaken melden bij de bevoegde autoriteiten waar dat vereist of gepast is, en samenwerken met wetshandhaving."
       ]
     },
@@ -224,7 +228,7 @@
       "title": "Moderatie, meldingen en gebruikersinstellingen",
       "content": [
         "Nyves kan geautomatiseerde tools, hash-matching, detectiesystemen van derden, menselijke beoordeling en andere moderatiemaatregelen gebruiken om ongewenste content te identificeren en te beperken. Deze systemen zijn niet perfect en identificeren mogelijk niet alle verboden of synthetische content voordat deze verschijnt.",
-        "Gebruikers kunnen content of accounts melden via de tools die in de Dienst beschikbaar zijn. Nyves kan ook Nostr-compatibele meldingsmechanismen ondersteunen, waaronder NIP-56 of vergelijkbare standaarden. Meldingen kunnen zichtbaar zijn voor andere gebruikers of clients, afhankelijk van hoe het betreffende protocol of de client deze implementeert.",
+        "Gebruikers kunnen content of accounts melden via de tools die in de Web Applicatie beschikbaar zijn. Nyves kan ook Nostr-compatibele meldingsmechanismen ondersteunen, waaronder NIP-56 of vergelijkbare standaarden. Meldingen kunnen zichtbaar zijn voor andere gebruikers of clients, afhankelijk van hoe het betreffende protocol of de client deze implementeert.",
         "Wij streven ernaar meldingen van ongewenste content snel en doorgaans binnen 24 uur te beoordelen, al kunnen reactietijden variëren op basis van volume, ernst en beschikbare informatie. Bij vermoedelijke CSAM of andere dringende illegale content kunnen wij waar gepast onmiddellijk handelen.",
         "Nyves kan ook gebruikersinstellingen bieden, zoals blokkeren, dempen, instellingen voor verborgen content, leeftijdsbeperking en communitymoderatielijsten, waaronder lijsten die NIP-51 of vergelijkbare standaarden kunnen volgen. Deze instellingen gelden binnen de door Nyves beheerde interfaces, zoals door Nyves geïmplementeerd. Omdat Nostr gedecentraliseerd is, garandeert het blokkeren, dempen of verwijderen van content in Nyves niet dat dezelfde content of hetzelfde account verborgen, verwijderd of ontoegankelijk is via andere clients, relays, archieven of hosts."
       ]
@@ -248,68 +252,68 @@
       ]
     },
     "nyves-ip": {
-      "title": "Intellectuele eigendom van Nyves en licenties voor de dienst",
+      "title": "Intellectuele eigendom van Nyves en licenties voor de Web Applicatie",
       "content": [
-        "Met uitzondering van gebruikerscontent en content van derden zijn Nyves en haar licentiegevers eigenaar van de Dienst en de daaraan verbonden intellectuele eigendom. De Dienst kan opensourcecomponenten bevatten die onder afzonderlijke opensourcelicenties zijn gelicentieerd, waaronder de AGPL. Jouw rechten op die componenten worden beheerst door de toepasselijke opensourcelicenties en niet door deze Voorwaarden.",
-        "Op voorwaarde dat je deze Voorwaarden naleeft, verleent Nyves je een beperkte, persoonlijke, niet-exclusieve, niet-overdraagbare en herroepelijke licentie om de gehoste Dienst te bezoeken en te gebruiken. Deze licentie geeft je geen enkel recht om de naam Nyves, het logo of andere merken te gebruiken, behalve voor zover dat nodig is om de Dienst te gebruiken, en strekt zich niet uit tot onafhankelijke implementaties, forks, relays of zelfgehoste instanties die door derden worden beheerd."
+        "Met uitzondering van gebruikerscontent en content van derden zijn Nyves en haar licentiegevers eigenaar van de Web Applicatie en de daaraan verbonden intellectuele eigendom. De Web Applicatie kan opensourcecomponenten bevatten die onder afzonderlijke opensourcelicenties zijn gelicentieerd, waaronder de AGPLv3. Jouw rechten op die componenten worden beheerst door de toepasselijke opensourcelicenties en niet door deze Voorwaarden.",
+        "Op voorwaarde dat je deze Voorwaarden naleeft, verleent Nyves je een beperkte, persoonlijke, niet-exclusieve, niet-overdraagbare en herroepelijke licentie om de gehoste Web Applicatie te bezoeken en te gebruiken. Deze licentie geeft je geen enkel recht om de naam Nyves, het logo of andere merken te gebruiken, behalve voor zover dat nodig is om de Web Applicatie te gebruiken, en strekt zich niet uit tot onafhankelijke implementaties, forks, relays of zelfgehoste instanties die door derden worden beheerd."
       ]
     },
     "operations": {
-      "title": "Uitvoering van de dienst en rechten van het platform",
+      "title": "Uitvoering van de Web Applicatie en rechten van het platform",
       "content": [
-        "Nyves kan content verwijderen, functies beperken, de toegang opschorten of beëindigen, schendingen onderzoeken, samenwerken met wetshandhaving en andere acties ondernemen die redelijkerwijs nodig zijn om gebruikers te beschermen, de wet na te leven, deze Voorwaarden te handhaven of de integriteit van de Dienst te bewaren.",
-        "Nyves kan snelheidslimieten, throttling, wachtrijen, circuit breakers, toegangsbeperkingen, geografische beperkingen of andere beschermende maatregelen invoeren om stabiliteit, veiligheid en prestaties te behouden. De Dienst kan niet beschikbaar, verminderd of vertraagd zijn als gevolg van onderhoud, schaalbeperkingen, pieken in verkeer, netwerkomstandigheden, relaystoringen, storingen bij hosts van derden of andere factoren. Nyves garandeert geen ononderbroken beschikbaarheid, opslag, levering of prestaties.",
-        "Nyves is niet verplicht om gebruikerscontent of enige opslaglocatie waarnaar via de Dienst wordt verwezen te hosten, op te slaan, te bewaren of te behouden. Nyves kan content naar eigen goeddunken weergeven, cachen of niet langer weergeven of cachen, met inachtneming van het toepasselijke recht en haar beleid."
+        "Nyves kan content verwijderen, functies beperken, de toegang tot door Nyves beheerde infrastructuur opschorten of beëindigen, schendingen onderzoeken, samenwerken met wetshandhaving en andere acties ondernemen die redelijkerwijs nodig zijn om gebruikers te beschermen, de wet na te leven, deze Voorwaarden te handhaven of de integriteit van de Web Applicatie en de door Nyves beheerde infrastructuur te bewaren.",
+        "Nyves kan snelheidslimieten, throttling, wachtrijen, circuit breakers, toegangsbeperkingen, geografische beperkingen of andere beschermende maatregelen invoeren om stabiliteit, veiligheid en prestaties te behouden. Door Nyves beheerde infrastructuur en functies die de Web Applicatie gebruikt, kunnen niet beschikbaar, verminderd of vertraagd zijn als gevolg van onderhoud, schaalbeperkingen, pieken in verkeer, netwerkomstandigheden, relaystoringen, storingen bij hosts van derden of andere factoren. Nyves garandeert geen ononderbroken beschikbaarheid, opslag, levering of prestaties.",
+        "Nyves is niet verplicht om gebruikerscontent of enige opslaglocatie waarnaar via de Web Applicatie wordt verwezen te hosten, op te slaan, te bewaren of te behouden. Nyves kan content naar eigen goeddunken weergeven, cachen of niet langer weergeven of cachen, met inachtneming van het toepasselijke recht en haar beleid."
       ]
     },
     "termination": {
       "title": "Beëindiging en verzoeken tot verwijdering",
       "content": [
-        "Je kunt op elk moment stoppen met het gebruik van de Dienst. Je kunt ook verzoeken om verwijdering van content of accountgegevens die op door Nyves beheerde infrastructuur zijn opgeslagen, met inachtneming van het toepasselijke recht, veiligheidsvereisten, back-upretentie, behoud in het kader van geschillen en technische beperkingen.",
-        "Nyves kan je toegang tot de Dienst op elk moment opschorten, beperken of beëindigen bij schending van deze Voorwaarden, zorgen over veiligheid of juridische kwesties, technisch risico of andere redelijke operationele behoeften.",
-        "Omdat de Dienst interactie heeft met gedecentraliseerde systemen, kan beëindiging of verwijdering door Nyves de toegang of zichtbaarheid binnen door Nyves beheerde infrastructuur wegnemen zonder de content te verwijderen van onafhankelijke relays, externe hosts, archieven, caches, back-ups, zoekresultaten of clients van derden. Bepalingen die naar hun aard na beëindiging van kracht moeten blijven, blijven van kracht, waaronder de artikelen 5, 13, 14, 15, 16, 17 en 18."
+        "Je kunt op elk moment stoppen met het gebruik van de Web Applicatie. Je kunt ook verzoeken om verwijdering van content of accountgegevens die op door Nyves beheerde infrastructuur zijn opgeslagen, met inachtneming van het toepasselijke recht, veiligheidsvereisten, back-upretentie, behoud in het kader van geschillen en technische beperkingen.",
+        "Nyves kan je toegang tot door Nyves beheerde infrastructuur, relays en functies op elk moment opschorten, beperken of beëindigen bij schending van deze Voorwaarden, zorgen over veiligheid of juridische kwesties, technisch risico of andere redelijke operationele behoeften. Omdat de Web Applicatie lokaal in je browser draait, kan Nyves je er technisch niet van weerhouden haar te gebruiken, maar kan Nyves je toegang tot door Nyves beheerde infrastructuur blokkeren of beperken.",
+        "Omdat de Web Applicatie interactie heeft met gedecentraliseerde systemen, kan beëindiging of verwijdering door Nyves de toegang of zichtbaarheid binnen door Nyves beheerde infrastructuur wegnemen zonder de content te verwijderen van onafhankelijke relays, externe hosts, archieven, caches, back-ups, zoekresultaten of clients van derden. Bepalingen die naar hun aard na beëindiging van kracht moeten blijven, blijven van kracht, waaronder de artikelen 5, 13, 14, 15, 16, 17 en 18."
       ]
     },
     "decentralization": {
       "title": "Decentralisatie en persistentie van content",
       "content": [
-        "Nyves werkt op of heeft interactie met het gedecentraliseerde Nostr-protocol. Als gevolg daarvan: (a) kan de Dienst verbinding maken met meerdere relays, opslaglagen of servers op het internet; (b) kan content die je publiceert worden gekopieerd, geïndexeerd, gecachet, gespiegeld of gearchiveerd door onafhankelijke relays, clients, hosts of derden; (c) kan content die uit door Nyves beheerde interfaces is verwijderd elders beschikbaar blijven; (d) kunnen andere Nostr-clients andere moderatie- of weergaveregels toepassen; en (e) kan volledige verwijdering, zodra content is gepubliceerd, moeilijk of onmogelijk zijn.",
+        "Nyves werkt op of heeft interactie met het gedecentraliseerde Nostr-protocol. Als gevolg daarvan: (a) kan de Web Applicatie verbinding maken met meerdere relays, opslaglagen of servers op het internet; (b) kan content die je publiceert worden gekopieerd, geïndexeerd, gecachet, gespiegeld of gearchiveerd door onafhankelijke relays, clients, hosts of derden; (c) kan content die uit door Nyves beheerde interfaces is verwijderd elders beschikbaar blijven; (d) kunnen andere Nostr-clients andere moderatie- of weergaveregels toepassen; en (e) kan volledige verwijdering, zodra content is gepubliceerd, moeilijk of onmogelijk zijn.",
         "Wil je andere moderatie- of opslagregels, dan kun je mogelijk je eigen compatibele relays, mediaservers of andere infrastructuur gebruiken of beheren. Nyves heeft geen controle over hoe onafhankelijke beheerders met content omgaan en kan een derde partij niet verplichten content die zij beheert te verwijderen of te wijzigen."
       ]
     },
     "third-party": {
       "title": "Systemen van derden en externe links",
       "content": [
-        "De Dienst kan content die is opgeslagen op servers, opslagnetwerken, relays, archieven of websites van derden weergeven, voorvertonen, ophalen, cachen of ernaar linken. Nyves is geen eigenaar van en heeft geen controle over die systemen en is niet verantwoordelijk voor hun beschikbaarheid, veiligheid, rechtmatigheid, juistheid, retentie of naleving van de wet.",
+        "De Web Applicatie kan content die is opgeslagen op servers, opslagnetwerken, relays, archieven of websites van derden weergeven, voorvertonen, ophalen, cachen of ernaar linken. Nyves is geen eigenaar van en heeft geen controle over die systemen en is niet verantwoordelijk voor hun beschikbaarheid, veiligheid, rechtmatigheid, juistheid, retentie of naleving van de wet.",
         "Toegang tot extern gehoste content kan je blootstellen aan risico's, waaronder malware, oplichting, phishing, aanstootgevend materiaal of gebroken links. Je aanvaardt de risico's die samenhangen met interactie met content en diensten van derden. Nyves kan op elk moment stoppen met het weergeven van of linken naar externe content."
       ]
     },
     "disclaimers": {
       "title": "Disclaimers over gebruikerscontent en toezicht",
       "content": [
-        "Gebruikerscontent is de verantwoordelijkheid van de gebruiker die deze heeft gemaakt, geüpload of waarnaar is verwezen. Het feit dat content via de Dienst verschijnt, betekent niet dat Nyves deze onderschrijft, verifieert of goedkeurt.",
+        "Gebruikerscontent is de verantwoordelijkheid van de gebruiker die deze heeft gemaakt, geüpload of waarnaar is verwezen. Het feit dat content via de Web Applicatie verschijnt, betekent niet dat Nyves deze onderschrijft, verifieert of goedkeurt.",
         "Nyves kan content modereren, maar Nyves heeft geen algemene verplichting om alle content te controleren, elke schending proactief op te sporen of deze Voorwaarden in elk geval te handhaven. Met inachtneming van het toepasselijke recht wijst Nyves aansprakelijkheid af die voortvloeit uit door gebruikers gegenereerde content en uit content die door derden wordt opgeslagen of geleverd."
       ]
     },
     "indemnification": {
       "title": "Vrijwaring",
       "content": [
-        "Je stemt ermee in Nyves en haar bestuurders, directeuren, werknemers, contractanten, dienstverleners en gelieerde partijen te vrijwaren, te verdedigen en schadeloos te stellen tegen alle claims, aansprakelijkheden, schade, uitspraken, verliezen, kosten en uitgaven, waaronder redelijke juridische kosten, die voortvloeien uit of verband houden met: (a) jouw gebruikerscontent; (b) jouw gebruik van de Dienst; (c) jouw schending van deze Voorwaarden; of (d) jouw schending van enige wet of recht van een derde."
+        "Je stemt ermee in Nyves en haar bestuurders, directeuren, werknemers, contractanten, dienstverleners en gelieerde partijen te vrijwaren, te verdedigen en schadeloos te stellen tegen alle claims, aansprakelijkheden, schade, uitspraken, verliezen, kosten en uitgaven, waaronder redelijke juridische kosten, die voortvloeien uit of verband houden met: (a) jouw gebruikerscontent; (b) jouw gebruik van de Web Applicatie; (c) jouw schending van deze Voorwaarden; of (d) jouw schending van enige wet of recht van een derde."
       ]
     },
     "liability": {
       "title": "Uitsluiting van garanties en beperking van aansprakelijkheid",
       "content": [
-        "De Dienst wordt geleverd \"zoals deze is\" en \"zoals beschikbaar\". Voor zover maximaal toegestaan door de wet wijst Nyves alle garanties af, uitdrukkelijk, impliciet, wettelijk of anderszins, waaronder garanties van verkoopbaarheid, geschiktheid voor een bepaald doel, eigendom, niet-inbreuk, juistheid, ongestoord genot, of dat de Dienst ononderbroken, veilig of foutloos zal zijn.",
+        "De Web Applicatie wordt geleverd \"zoals deze is\" en \"zoals beschikbaar\". Voor zover maximaal toegestaan door de wet wijst Nyves alle garanties af, uitdrukkelijk, impliciet, wettelijk of anderszins, waaronder garanties van verkoopbaarheid, geschiktheid voor een bepaald doel, eigendom, niet-inbreuk, juistheid, ongestoord genot, of dat de Web Applicatie ononderbroken, veilig of foutloos zal zijn.",
         "Nyves garandeert niet de authenticiteit, rechtmatigheid, juistheid, veiligheid of beschikbaarheid van enige gebruikerscontent, enig Nostr-event, enige relay of enig extern gehost bestand. Nyves garandeert niet dat content kan worden verwijderd, gecorrigeerd of ontoegankelijk gemaakt op gedecentraliseerde netwerken of systemen van derden.",
-        "Voor zover maximaal toegestaan door de wet is Nyves niet aansprakelijk voor enige indirecte, incidentele, bijzondere, gevolg- of punitieve schade die voortvloeit uit of verband houdt met jouw gebruik van of onvermogen om de Dienst te gebruiken, waaronder gegevensverlies, storingen van relays of hosts van derden, of enig onvermogen om gedecentraliseerde content te verwijderen, zelfs als Nyves op de mogelijkheid van dergelijke schade is gewezen. Niets in deze Voorwaarden sluit aansprakelijkheid uit of beperkt deze die op grond van het toepasselijke recht niet kan worden uitgesloten of beperkt."
+        "Voor zover maximaal toegestaan door de wet is Nyves niet aansprakelijk voor enige indirecte, incidentele, bijzondere, gevolg- of punitieve schade die voortvloeit uit of verband houdt met jouw gebruik van of onvermogen om de Web Applicatie te gebruiken, waaronder gegevensverlies, storingen van relays of hosts van derden, of enig onvermogen om gedecentraliseerde content te verwijderen, zelfs als Nyves op de mogelijkheid van dergelijke schade is gewezen. Niets in deze Voorwaarden sluit aansprakelijkheid uit of beperkt deze die op grond van het toepasselijke recht niet kan worden uitgesloten of beperkt."
       ]
     },
     "disputes": {
       "title": "Geschillenbeslechting en toepasselijk recht",
       "content": [
         {
-          "p": "Voordat je een juridische claim indient met betrekking tot de Dienst of deze Voorwaarden, stem je ermee in eerst schriftelijk contact op te nemen met Nyves en ons ten minste 30 dagen de tijd te geven om het geschil informeel te proberen op te lossen, bijvoorbeeld door een e-mail te sturen naar {email}."
+          "p": "Voordat je een juridische claim indient met betrekking tot de Web Applicatie of deze Voorwaarden, stem je ermee in eerst schriftelijk contact op te nemen met Nyves en ons ten minste 30 dagen de tijd te geven om het geschil informeel te proberen op te lossen, bijvoorbeeld door een e-mail te sturen naar {email}."
         },
         "Als een geschil niet informeel kan worden opgelost, kan elke partij elk rechtsmiddel aanwenden dat het toepasselijke recht biedt bij een bevoegde rechter. Deze Voorwaarden worden beheerst door het recht van Nederland, zonder toepassing van regels inzake wetsconflicten.",
         "Voor zover maximaal toegestaan door de wet kan elke partij claims alleen in eigen naam indienen en niet als eiser of lid van een groep in enige beweerde collectieve, gebundelde of representatieve actie."
@@ -318,14 +322,14 @@
     "changes": {
       "title": "Wijzigingen van deze voorwaarden",
       "content": [
-        "Wij kunnen deze Voorwaarden van tijd tot tijd wijzigen. Wanneer wij dat doen, plaatsen wij de bijgewerkte versie en passen wij de datum \"Laatst bijgewerkt\" hierboven aan. Tenzij een andere ingangsdatum wordt vermeld, worden wijzigingen 30 dagen na plaatsing van kracht. Je voortgezette gebruik van de Dienst na de ingangsdatum van bijgewerkte Voorwaarden geldt als je aanvaarding van de herziene Voorwaarden."
+        "Wij kunnen deze Voorwaarden van tijd tot tijd wijzigen. Wanneer wij dat doen, plaatsen wij de bijgewerkte versie en passen wij de datum \"Laatst bijgewerkt\" hierboven aan. Tenzij een andere ingangsdatum wordt vermeld, worden wijzigingen 30 dagen na plaatsing van kracht. Je voortgezette gebruik van de Web Applicatie na de ingangsdatum van bijgewerkte Voorwaarden geldt als je aanvaarding van de herziene Voorwaarden."
       ]
     },
     "contact": {
       "title": "Volledige overeenkomst; scheidbaarheid; contactgegevens",
       "content": [
         {
-          "p": "Deze Voorwaarden vormen, samen met het {privacyPolicy}, de volledige overeenkomst tussen jou en Nyves met betrekking tot de Dienst en vervangen eerdere of gelijktijdige overeenkomsten over dat onderwerp."
+          "p": "Deze Voorwaarden vormen, samen met het {privacyPolicy}, de volledige overeenkomst tussen jou en Nyves met betrekking tot de Web Applicatie en vervangen eerdere of gelijktijdige overeenkomsten over dat onderwerp."
         },
         "Als een bepaling van deze Voorwaarden ongeldig, onwettig of niet-afdwingbaar wordt geacht, wordt die bepaling afgedwongen voor zover maximaal toegestaan en blijven de overige bepalingen volledig van kracht.",
         {
@@ -334,6 +338,292 @@
       ]
     }
   }
+  },
+  "privacy": {
+    "meta_description": "Het privacybeleid van Nyves.",
+    "last_updated": "Laatst bijgewerkt: 08-10-2026",
+    "effective_date": "Van kracht vanaf: 08-10-2026",
+    "short_version":                      {
+                       "title": "In het kort",
+                       "items": [
+                         "Wie verantwoordelijk is voor je gegevens en welke begrippen we in dit beleid gebruiken.",
+                         "Welke informatie we verwerken: wat lokaal in je browser blijft en wat naar de door Nyves beheerde infrastructuur gaat.",
+                         "Voor welke doeleinden we gegevens verwerken en op welke grondslag uit de AVG (artikel 6).",
+                         "Hoe lang we gegevens bewaren: content op relays kan onbeperkt bewaard blijven, waarbij je per event een vervaldatum kunt instellen; overige gegevens bewaren we zo lang als nodig.",
+                         "Je rechten onder de AVG en hoe je die uitoefent, inclusief het recht om een klacht in te dienen bij de Autoriteit Persoonsgegevens.",
+                         "Welke cookies en lokale opslag worden gebruikt, en dat we geen gegevens buiten de EU doorgeven.",
+                         "Hoe we je gegevens beveiligen en wat we doen als zich een datalek voordoet.",
+                         "Dat de Web Applicatie niet gericht is op kinderen onder de 13 jaar.",
+                         "Dat content in een gedecentraliseerd netwerk kan blijven bestaan, ook nadat je die in de Web Applicatie verwijdert.",
+                         "Hoe we wijzigingen aan dit beleid doorvoeren en hoe je contact met ons opneemt."
+                       ],
+                       "note": "Deze samenvatting helpt je op weg, maar is geen vervanging van het volledige beleid. Bij verschil tussen deze samenvatting en de tekst hieronder geldt de volledige tekst."
+                     },
+    "blocks": [
+      {
+        "h3": "Wie is verantwoordelijk voor je gegevens"
+      },
+      {
+        "p": "De verwerkingsverantwoordelijke voor de gegevens die via de door Nyves beheerde infrastructuur worden verwerkt, is Sebastian Hagens, de uitgever van Nyves, gevestigd in Nederland. Hij bepaalt welke gegevens worden verwerkt, waarom en hoe. Voor vragen over dit privacybeleid of over de verwerking van je gegevens kun je contact opnemen via info{'@'}sebastix.nl."
+      },
+      {
+        "p": "Nyves is een Web Applicatie die lokaal in je browser draait. Gegevens die je op relays van derden publiceert, worden verwerkt door de beheerders van die relays; zij zijn daarvoor zelf verantwoordelijk. Nyves is geen verwerkingsverantwoordelijke voor die gegevens, met uitzondering van content op de door Nyves beheerde relays (https://rely.nyves.nl, https://relay.nyves.nl)."
+      },
+      {
+        "p": "Nyves is gratis, open-source software (AGPLv3-LICENTIE) die als Web Applicatie draait. Het is geen dienst. De profielen zijn geen accounts. Er worden geen Nyves-accounts in een database opgeslagen. De ontwikkelaar heeft geen toegang tot gegevens die tijdens het browsen op de website op je apparaat zijn opgeslagen."
+      },
+      {
+        "p": "Met Nyves kun je ook content van Nostr-relays van derden bekijken. Die relays hosten de content. Ze zijn onafhankelijk van Nyves, met hun eigen beheerders en hun eigen beleid."
+      },
+      {
+        "h3": "Definities"
+      },
+      {
+        "dl": [
+          {
+            "term": "Web Applicatie",
+            "text": "betekent de client-side webapplicatie die bekendstaat als Nyves en beschikbaar is op https://nyves.nl. Ze draait lokaal in je webbrowser op je eigen apparaat en verwerkt gegevens lokaal; Nyves beheert haar niet als een gehoste dienst namens jou. Nyves is geen platform."
+          },
+          {
+            "term": "Door Nyves beheerde infrastructuur",
+            "text": "betekent websites, apps, relays, mediaopslag, API's en andere systemen die eigendom zijn van of worden beheerd door Nyves."
+          },
+          {
+            "term": "Extern gehoste content",
+            "text": "betekent elke video, afbeelding, audiobestand of andere media die binnen een Nostr-event wordt aangeduid en op infrastructuur van derden is opgeslagen."
+          },
+          {
+            "term": "Nostr",
+            "text": "betekent het gedecentraliseerde protocol dat bekendstaat als “Notes and Other Stuff Transmitted by Relays”, waarmee gebruikers content kunnen publiceren, ophalen en verifiëren met behulp van cryptografische sleutelparen en ondertekende berichten."
+          },
+          {
+            "term": "Nostr-event",
+            "text": "betekent een cryptografisch ondertekend dataobject dat via het Nostr-protocol is gepubliceerd. Een Nostr-event kan een publieke sleutel, tijdstempel, event-type, content, tags, metadata en een digitale handtekening bevatten. Zodra een Nostr-event is uitgezonden, kan het op meerdere onafhankelijke relays worden opgeslagen of gerepliceerd, waaronder relays die geen eigendom zijn van of worden beheerd door Nyves."
+          },
+          {
+            "term": "Nostr-sleutelpaar",
+            "text": "betekent het cryptografische openbare/private sleutelpaar dat wordt gebruikt om Nostr-events te maken, te ondertekenen en te authenticeren. De publieke sleutel fungeert als gebruikersidentificatie binnen het Nostr-protocol, en de private sleutel is nodig om events te ondertekenen en het auteurschap te bewijzen."
+          },
+          {
+            "term": "Relay",
+            "text": "betekent elke onafhankelijk beheerde server die het Nostr-protocol implementeert voor het ontvangen, opslaan, indexeren of herverdelen van Nostr-events. Tenzij uitdrukkelijk anders vermeld, worden relays niet beheerd door Nyves."
+          },
+          {
+            "term": "Gebruikerscontent",
+            "text": "betekent elk Nostr-event, media, metadata, gebruikersnaam, profielinformatie of ander materiaal dat door een gebruiker via de Web Applicatie wordt ingediend, gepubliceerd, geüpload, gelinkt of anderszins beschikbaar gemaakt, ongeacht of dit door Nyves of extern wordt gehost."
+          }
+        ]
+      },
+      {
+        "h3": "Privacy"
+      },
+      {
+        "h4": "Openbare content is in feite permanent"
+      },
+      {
+        "p": "Alles wat je op een relay publiceert, kan naar andere relays of clients worden gekopieerd. Ga er na publicatie van uit dat het niet betrouwbaar van het netwerk kan worden verwijderd."
+      },
+      {
+        "h4": "Inloggen met een Google-account"
+      },
+      {
+        "p": "Als je ervoor kiest om met Google in te loggen, verloopt de authenticatie via de Nyves Pomegranate-loginflow. Nyves ontvangt alleen het authenticatietoken dat door de centrale server van Pomegranate is uitgegeven en je e-mailadres van Google. Er worden geen andere Google-profielgegevens ontvangen. Bij de eerste keer inloggen wordt een Nostr-sleutelpaar voor je gegenereerd."
+      },
+      {
+        "h3": "Illegale content aanpakken"
+      },
+      {
+        "p": "De webapplicatie Nyves host geen content, dus de app kan illegale content niet verwijderen. Alleen relays die de content hosten kunnen die verwijderen. Staat de content op de Nyves-relay (https://rely.nyves.nl), dan kunnen wij die verwijderen."
+      },
+      {
+        "h3": "Verzamelde informatie"
+      },
+      {
+        "p": "Nyves kan informatie in verschillende categorieën verzamelen en verwerken. De categorieën persoonsgegevens die worden verzameld, kunnen identificatoren (zoals publieke sleutels of IP-adressen), informatie over internet- of netwerkactiviteit en door gebruikers gegenereerde content omvatten. We verzamelen informatie die je direct verstrekt, waaronder Nostr-events, profielmetadata, communicatie met Nyves en meldingen die via de Web Applicatie worden ingediend."
+      },
+      {
+        "p": "Configuratie, gecachte events, sleutels, concepten en andere operationele gegevens staan in de lokale opslag van de webapplicatie. Andere applicaties kunnen die niet lezen. Je kunt ze wissen door de opslag van de app in je browser te leegmaken."
+      },
+      {
+        "h3": "Hoe we informatie gebruiken en op welke grondslag"
+      },
+      {
+        "p": "We verwerken de gegevens die we hierboven beschrijven uitsluitend voor de doeleinden hieronder. Voor elke verwerking geldt een van de grondslagen uit artikel 6 van de AVG (de Algemene verordening gegevensbescherming)."
+      },
+      {
+        "dl": [
+          {
+            "term": "De Web Applicatie laten werken",
+            "text": "Om je profiel op te halen, events te tonen en te publiceren en de app lokaal te laten draaien. Grondslag: uitvoering van de overeenkomst en je verzoek (art. 6 lid 1 sub b)."
+          },
+          {
+            "term": "Contact en support",
+            "text": "Om je vragen over het gebruik van Nyves te beantwoorden. Stuur je vraag naar info{'@'}nyves.nl. Grondslag: uitvoering van de overeenkomst (art. 6 lid 1 sub b) en ons gerechtvaardigd belang bij goede ondersteuning (art. 6 lid 1 sub f)."
+          },
+          {
+            "term": "Beveiliging en misbruikpreventie",
+            "text": "Om de door Nyves beheerde infrastructuur te beschermen tegen spam, aanvallen en misbruik. Grondslag: gerechtvaardigd belang (art. 6 lid 1 sub f)."
+          },
+          {
+            "term": "Analytics",
+            "text": "Om te begrijpen hoe de Web Applicatie wordt gebruikt en die te verbeteren, via de zelfgehoste Matomo-instantie (matomo.sebastix.nl). Grondslag: gerechtvaardigd belang (art. 6 lid 1 sub f); je kunt hier bezwaar tegen maken."
+          },
+          {
+            "term": "Foutopsporing",
+            "text": "Om fouten en crashes in de Web Applicatie op te sporen en op te lossen, via de zelfgehoste GlitchTip-instantie (logs.sebastix.dev). Grondslag: gerechtvaardigd belang (art. 6 lid 1 sub f)."
+          },
+          {
+            "term": "E-mail en mailingaanmeldingen",
+            "text": "Om je e-mails te sturen waarvoor je je hebt aangemeld, via de zelfgehoste ListMonk-instantie (mail.nyves.nl). Grondslag: je toestemming (art. 6 lid 1 sub a), die je op elk moment kunt intrekken."
+          },
+          {
+            "term": "Optioneel inloggen met Google",
+            "text": "Als je hiervoor kiest, om je te authenticeren en een Nostr-sleutelpaar voor je te genereren. Grondslag: je toestemming (art. 6 lid 1 sub a) en uitvoering van je verzoek (art. 6 lid 1 sub b)."
+          },
+          {
+            "term": "Wettelijke verplichtingen",
+            "text": "Om te voldoen aan wettelijke verplichtingen, zoals het verwijderen van illegale content op de door Nyves beheerde relay. Grondslag: wettelijke verplichting (art. 6 lid 1 sub c)."
+          }
+        ]
+      },
+      {
+        "p": "Waar we ons beroepen op een gerechtvaardigd belang kun je bezwaar maken tegen die verwerking. Waar we ons beroepen op je toestemming kun je die op elk moment intrekken via info{'@'}sebastix.nl. Het intrekken van toestemming laat de rechtmatigheid van de verwerking vóór dat moment onveranderd."
+      },
+      {
+        "h3": "Bewaring van gegevens"
+      },
+      {
+        "p": "Nyves bewaart informatie zolang dat redelijkerwijs nodig is om de Web Applicatie te runnen, aan wettelijke verplichtingen te voldoen, haar algemene Voorwaarden te handhaven en misbruik te voorkomen."
+      },
+      {
+        "p": "Bewaarperioden kunnen variëren afhankelijk van de aard van de gegevens, waaronder logs, moderatiegegevens, meldingen en back-upgegevens. Sommige informatie kan langer worden bewaard wanneer dat nodig is voor juridische, veiligheids- of geschilbeslechtingsdoeleinden."
+      },
+      {
+        "p": "Nyves is niet verplicht gebruikerscontent te bewaren en kan content naar eigen goeddunken verwijderen of niet langer opslaan of weergeven, met inachtneming van het toepasselijke recht."
+      },
+      {
+        "h3": "Bewaartermijnen"
+      },
+      {
+        "p": "Content die je publiceert, wordt als Nostr-event naar relays verzonden en kan daar voor onbepaalde tijd bewaard blijven, ook als je het event in de Web Applicatie verwijdert of je account opheft. Elke relay beheert zijn eigen opslag en verwijderbeleid. Je kunt per event een vervaldatum instellen (het expiration-veld uit NIP-40); relays die dat ondersteunen kunnen het event daarna verwijderen. Of een relay zich daaraan houdt, kunnen we niet garanderen."
+      },
+      {
+        "p": "Voor alle overige gegevens die binnen de door Nyves beheerde infrastructuur worden opgeslagen, zoals server- en foutopsporingslogs, analytics en mailingaanmeldingen, geldt: we bewaren ze zo lang als nodig is voor het doel waarvoor ze zijn verzameld, en verwijderen ze daarna. Je e-mailadres bij een mailingaanmelding bewaren we tot je je afmeldt. Gegevens in de lokale opslag van je browser bewaren wij niet; die blijven op je eigen apparaat staan tot je ze zelf wist."
+      },
+      {
+        "h3": "Je rechten"
+      },
+      {
+        "p": "Onder de AVG heb je een aantal rechten met betrekking tot je persoonsgegevens. Omdat Nyves grotendeels lokaal in je browser draait en geen accounts bijhoudt, kun je sommige daarvan ook zelf uitoefenen, bijvoorbeeld door de lokale opslag van de app te wissen."
+      },
+      {
+        "dl": [
+          {
+            "term": "Recht op inzage",
+            "text": "Je kunt opvragen welke persoonsgegevens wij van je verwerken en daarvan een kopie ontvangen. Veel gegevens zie je overigens direct in de Web Applicatie zelf, omdat die lokaal draait."
+          },
+          {
+            "term": "Recht op rectificatie",
+            "text": "Je kunt onjuiste of onvolledige gegevens laten corrigeren. Je profielmetadata in je Nostr-events kun je zelf aanpassen en opnieuw publiceren."
+          },
+          {
+            "term": "Recht op gegevenswissing",
+            "text": "Je kunt verzoeken om verwijdering van je gegevens. De lokale opslag van de app kun je zelf wissen via je browser. Content die je op relays hebt gepubliceerd, kun je verwijderen met een verwijderverzoek (NIP-09); of een relay dat uitvoert, kunnen wij niet garanderen."
+          },
+          {
+            "term": "Recht op beperking van de verwerking",
+            "text": "Je kunt vragen om de verwerking tijdelijk te beperken, bijvoorbeeld terwijl een verzoek of een bezwaar wordt behandeld."
+          },
+          {
+            "term": "Recht op bezwaar",
+            "text": "Je kunt bezwaar maken tegen verwerkingen die wij baseren op een gerechtvaardigd belang, zoals analytics en foutopsporing."
+          },
+          {
+            "term": "Recht op dataportabiliteit",
+            "text": "Je kunt je gegevens in een gestructureerd, gangbaar en machineleesbaar formaat opvragen of laten overdragen."
+          },
+          {
+            "term": "Recht om toestemming in te trekken",
+            "text": "Waar de verwerking op je toestemming is gebaseerd (zoals mailingaanmeldingen of optioneel inloggen met Google) kun je die toestemming op elk moment intrekken. Dat laat de rechtmatigheid van de verwerking daarvoor onveranderd."
+          },
+          {
+            "term": "Recht om een klacht in te dienen",
+            "text": "Je kunt een klacht indienen bij de Autoriteit Persoonsgegevens (autoriteitpersoonsgegevens.nl) als je vindt dat wij je gegevens onrechtmatig verwerken."
+          }
+        ]
+      },
+      {
+        "p": "Je kunt een verzoek of een bezwaar indienen via info{'@'}sebastix.nl. We reageren binnen één maand. Omdat Nyves geen accounts bijhoudt, kunnen we een verzoek niet altijd aan een persoon koppelen; in dat geval laten we je weten wat we wel kunnen doen. Content die jij of anderen naar relays van derden hebben gekopieerd, kunnen wij niet voor je verwijderen; wend je daarvoor tot de beheerder van die relay."
+      },
+      {
+        "h3": "Cookies, lokale opslag en doorgifte van gegevens"
+      },
+      {
+        "h4": "Cookies en lokale opslag"
+      },
+      {
+        "p": "De Web Applicatie gebruikt de lokale opslag van je browser (localStorage) om je instellingen, sleutels, concepten en gecachte events te bewaren. Die gegevens blijven op je eigen apparaat. Daarnaast kan de zelfgehoste Matomo-instantie (matomo.sebastix.nl) functionele cookies plaatsen om bezoeken te onderscheiden en de Web Applicatie te verbeteren. We plaatsen geen advertentie- of trackingcookies van derden."
+      },
+      {
+        "p": "Je kunt analytics weigeren door cookies in je browser te blokkeren of een adblocker te gebruiken; de Web Applicatie blijft dan gewoon werken. De lokale opslag kun je op elk moment wissen via de instellingen van je browser."
+      },
+      {
+        "h4": "Doorgifte van gegevens"
+      },
+      {
+        "p": "Alle diensten die Nyves gebruikt, namelijk Matomo, GlitchTip en ListMonk, draaien op zelfgehoste servers in Nederland. Er vindt geen doorgifte van persoonsgegevens naar landen buiten de EU/EER plaats. De enige gegevens die buiten onze eigen infrastructuur terechtkomen, zijn de events die je zelf naar relays publiceert. De beheerders van die relays zijn daarvoor zelf verantwoordelijk; zie ook de definities van Nostr en relay."
+      },
+      {
+        "h4": "Automatische besluitvorming"
+      },
+      {
+        "p": "Nyves gebruikt geen geautomatiseerde besluitvorming of profilering die rechtsgevolgen voor je heeft of je anderszins in aanzienlijke mate treft."
+      },
+      {
+        "h3": "Beveiliging"
+      },
+      {
+        "p": "Nyves neemt redelijke technische en organisatorische maatregelen om informatie te beschermen die op door Nyves beheerde infrastructuur wordt verwerkt. Geen enkel systeem is echter volledig veilig, en Nyves garandeert niet dat informatie vrij blijft van ongeoorloofde toegang, verlies of wijziging."
+      },
+      {
+        "p": "Als zich een datalek voordoet waarbij persoonsgegevens betrokken zijn die onder onze verantwoordelijkheid worden verwerkt, beoordelen we het risico en nemen we passende maatregelen om de gevolgen te beperken. Is het lek waarschijnlijk een risico voor jouw rechten en vrijheden, dan melden we dat bij de Autoriteit Persoonsgegevens en, indien nodig, ook bij jou. Omdat Nyves geen accounts bijhoudt en de meeste gegevens lokaal in je browser blijven, kan een lek alleen betrekking hebben op de door Nyves beheerde infrastructuur, zoals server- en foutopsporingslogs en mailingaanmeldingen."
+      },
+      {
+        "h3": "Kinderen"
+      },
+      {
+        "p": "De Web Applicatie richt zich niet tot personen onder de 13 jaar. Nyves verzamelt niet bewust persoonsgegevens van personen onder de 13 jaar. Ben je een ouder of voogd en weet je dat je kind persoonsgegevens aan de door Nyves beheerde infrastructuur heeft verstrekt, neem dan contact met ons op zodat deze kunnen worden verwijderd."
+      },
+      {
+        "h3": "Kennisgeving gedecentraliseerd systeem"
+      },
+      {
+        "p": "Omdat de Web Applicatie binnen een gedecentraliseerd netwerk met relays communiceert, kan content op onafhankelijke relays, archieven of systemen van derden blijven bestaan, zelfs nadat deze van door Nyves beheerde infrastructuur is verwijderd. Nyves kan de verwijdering of beheersing van dergelijke content niet garanderen."
+      },
+      {
+        "h3": "Wijzigingen in dit beleid"
+      },
+      {
+        "p": "We kunnen dit privacybeleid van tijd tot tijd bijwerken. De actuele versie staat altijd op deze pagina; het versienummer en de datum 'Laatst bijgewerkt' hierboven worden dan aangepast."
+      },
+      {
+        "p": "Een nieuwe versie gaat in 30 dagen na plaatsing op deze pagina in werking, tenzij de wet of een dringende veiligheidskwestie een kortere termijn vereist. Tot die tijd blijft de vorige versie van toepassing op gegevens die al zijn verzameld."
+      },
+      {
+        "p": "Omdat Nyves geen accounts bijhoudt en geen e-mailadressen van bezoekers verzamelt, kunnen we je niet rechtstreeks informeren over wijzigingen. Bij ingrijpende wijzigingen plaatsen we daarom een duidelijke kennisgeving op de homepage en op deze pagina."
+      },
+      {
+        "h3": "Contact"
+      },
+      {
+        "lines": [
+          "Uitgever: Sebastian Hagens",
+          "Privacy en AVG: info{'@'}sebastix.nl - voor vragen over dit beleid en voor je AVG-verzoeken, zoals inzage, correctie of verwijdering",
+          "Support: info{'@'}nyves.nl - voor vragen over het gebruik van de Web Applicatie",
+          "Meer contactgegevens vind je op https://sebastix.nl/contact"
+        ]
+      }
+    ]
   },
   "footer": {
     "initiatief": "Een initiatief van"
