@@ -24,7 +24,10 @@ const generateLightningInvoice = async () => {
   // Show the modal now with the invoice string
   openModal('Invoice', invoice);
 }
-
+useSeoMeta({
+  title: `Doneer - Nyves`,
+  description: `Hoe je het project Nyves kunt steunen met geld`
+})
 </script>
 
 <template>
@@ -34,21 +37,20 @@ const generateLightningInvoice = async () => {
       {{ $t('Hoe je het project Nyves kunt steunen met geld') }}
     </p>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-      <div class="border border-gray-200 bg-[#fcfcfc] rounded-sm pb-8 md:col-span-2">
-        <div class="h-[44px] nyves-bg-gray-header"></div>
-        <div class="px-8">
-          <h2 class="text-2xl mb-4">{{ $t('Start donating') }}</h2>
-        </div>
-      </div>
       <div class="border border-gray-200 bg-[#fcfcfc] rounded-sm pb-8">
         <div class="h-[44px] nyves-bg-gray-header"></div>
         <div class="px-8">
           <h2 class="text-2xl mb-4">{{ $t('OpenCollective') }}</h2>
           <p>
-            {{ $t('OpenCollective is een platform waar je kunt doneren aan projecten. Je kunt eenmalig doneren, maar ook een maandelijks doen via een bankoverboeking.') }}
+            {{ $t('OpenCollective is een platform waar je kunt doneren aan projecten. Je kunt eenmalig doneren, maar ook maandelijks of jaarlijks via een bankoverboeking.') }}
             <br />
             <br />
-            Our project page is coming soon.
+            <a href="https://opencollective.com/sebastix/projects/nyves" target="_blank" class="font-bold">
+              https://opencollective.com/sebastix/projects/nyves
+              <svg class="size-4 inline align-text-top" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
           </p>
         </div>
       </div>
