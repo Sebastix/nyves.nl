@@ -627,6 +627,32 @@
       }
     ]
   },
+    "doneer": {
+      "title": "Donate",
+      "subtitle": "How you can support the Nyves project with money",
+      "opencollective": {
+        "heading": "OpenCollective",
+        "text": "OpenCollective is a platform where you can donate to projects. You can make a one-time donation, or a monthly or yearly one via a bank transfer."
+      },
+      "bank": {
+        "heading": "Bank transfer",
+        "recipient": "Recipient",
+        "iban": "IBAN",
+        "bic": "BIC",
+        "link_label": "Or click this link:"
+      },
+      "bitcoin": {
+        "heading": "Bitcoin",
+        "address": "Bitcoin address:",
+        "silent_payment": "Silent payment address:",
+        "lightning": "Lightning:",
+        "invoice_before": "Or ",
+        "invoice_link": "click here",
+        "invoice_after": " to generate a Lightning invoice of 2100 sats which you can donate."
+      },
+      "copied": "Copied!"
+    }
+,
   "footer": {
     "initiatief": "An initiative of"
   },

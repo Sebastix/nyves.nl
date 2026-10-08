@@ -66,7 +66,7 @@ onUnmounted(async () => {
     <div class="flex gap-2">
       <div>
         <NuxtLink :to="`/profiel/${nip19.npubEncode(krabbel.pubkey)}`">
-          <NostrComponentsProfilePicture :pubkey="krabbel.pubkey" class="!size-12" />
+          <NostrComponentsProfilePicture :pubkey="krabbel.pubkey" class="size-12!" />
         </NuxtLink>
       </div>
       <div>

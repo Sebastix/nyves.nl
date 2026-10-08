@@ -37,7 +37,7 @@
       </i18n-t>
     </div>
     <h2 class="text-2xl font-bold my-8 text-center">{{ $t('highlight_profiles_with_themes') }}</h2>
-    <NostrComponentsHighlightProfiles :filters="[]" :limit="26" class="text-center" />
+    <NostrComponentsDiscoverProfilesWithDesigns :filters="[]" :limit="26" class="text-center" />
   </div>
 </template>
 

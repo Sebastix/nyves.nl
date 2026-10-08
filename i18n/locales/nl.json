@@ -625,6 +625,32 @@
       }
     ]
   },
+    "doneer": {
+      "title": "Doneer",
+      "subtitle": "Hoe je het project Nyves kunt steunen met geld",
+      "opencollective": {
+        "heading": "OpenCollective",
+        "text": "OpenCollective is een platform waar je kunt doneren aan projecten. Je kunt eenmalig doneren, maar ook maandelijks of jaarlijks via een bankoverboeking."
+      },
+      "bank": {
+        "heading": "Bankoverschrijving",
+        "recipient": "Ontvanger",
+        "iban": "IBAN",
+        "bic": "BIC",
+        "link_label": "Of klik op deze link:"
+      },
+      "bitcoin": {
+        "heading": "Bitcoin",
+        "address": "Bitcoin-adres:",
+        "silent_payment": "Silent payment-adres:",
+        "lightning": "Lightning:",
+        "invoice_before": "Of ",
+        "invoice_link": "klik hier",
+        "invoice_after": " om een Lightning-factuur van 2100 sats te genereren die je kunt doneren."
+      },
+      "copied": "Gekopieerd!"
+    }
+,
   "footer": {
     "initiatief": "Een initiatief van"
   },
