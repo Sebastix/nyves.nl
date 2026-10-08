@@ -63,7 +63,7 @@ onUnmounted(async () => {
     <template v-if="item.tags" v-for="(tag, key) in item.tags" :key="tag[0]">
       <h4 v-if="tag[0] === 'title'" class="mb-2">
         <!-- @todo generate nevent or naddr identifier voor de link hier -->
-        <NuxtLink :to="`https://nostrver.se/e/${nip19.neventEncode(item)}`" target="_blank">
+        <NuxtLink :to="`https://njump.to/${nip19.neventEncode(item)}`" target="_blank">
           {{ item.tags[key][1] }}<svg class="size-3 inline align-baseline ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
           </svg>

@@ -31,12 +31,13 @@ onMounted(async() => {
 </script>
 
 <template>
-  <div v-if="loading">
-    <span class="font-mono">{{ name.substring(0, 8)+`...` }}</span><div class="animate-spin rounded-full size-2 border-b-2 border-nyves-blue inline-block"></div>
-  </div>
-  <div v-else>
+  <template v-if="loading">
+    <span class="font-mono">{{ name.substring(0, 8)+`...` }}</span>
+    <LoadingSpinner class="scale-25 inline-block align-middle" />
+  </template>
+  <template v-else>
     {{ name }}
-  </div>
+  </template>
 </template>
 
 <style scoped>
