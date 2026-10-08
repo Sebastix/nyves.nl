@@ -86,6 +86,10 @@ export default defineNuxtConfig({
       voorwaarden : {
         nl: '/voorwaarden',
         en: '/terms'
+      },
+      tijdlijn: {
+        nl: '/tijdlijn',
+        en: '/timeline'
       }
     }
   },

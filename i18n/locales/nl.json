@@ -20,6 +20,102 @@
   "Veelgestelde_vragen": "Veelgestelde vragen",
   "Voorwaarden": "Voorwaarden",
   "Privacy": "Privacy",
+  "tijdlijn": {
+    "title": "Tijdlijn",
+    "subtitle": "Hoe Nyves tot stand is gekomen",
+    "view_details": "Bekijk details",
+    "now": "Nu",
+    "present": "Heden",
+    "story_continues": "Het verhaal gaat verder...",
+    "story_continues_text": "Nyves wordt doorontwikkeld en helpt mensen hun oude Hyves-profiel terug te vinden.",
+    "events": {
+      "idea": {
+        "date": "1 november 2024",
+        "title": "Alles begint met een idee",
+        "description": "Dit zijn de eerste sporen in een gesprek tussen Yme Bosma en Sebastian Hagens."
+      },
+      "domain-registration": {
+        "date": "5 februari 2025",
+        "title": "Domeinregistratie",
+        "description": "Het nyves.nl domein is geregistreerd."
+      },
+      "first-pitch": {
+        "date": "14 december 2025",
+        "title": "Eerste pitch ter kennismaking",
+        "description": "Sebastian Hagens pitcht het idee bij het SIDNfonds."
+      },
+      "sidnfonds-application": {
+        "date": "27 februari 2026",
+        "title": "SIDNfonds pioniersproject aanvraag ingediend voor Nyves",
+        "description": "De aanvraag is verstuurd naar het SIDNfonds voor Nyves als pioniersproject."
+      },
+      "sidnfonds-pioneer-project": {
+        "date": "20 maart 2026",
+        "title": "SINDfonds pioniersproject",
+        "description": "Nyves is geselecteerd als pioniersproject bij het SIDNfonds en ontvangt hiervoor € 10.000 subsidie."
+      },
+      "development-start": {
+        "date": "1 april 2026",
+        "title": "Start ontwikkeling",
+        "description": "Start van de bouw van de Nyves applicatie door Sebastian Hagens."
+      },
+      "first-test-migrations": {
+        "date": "8 mei 2026",
+        "title": "Eerste test migraties",
+        "description": "De eerste migraties worden uitgevoerd voor Nyves in combinatie met een relay op https://relay.nyves.nl."
+      },
+      "first-media-attention": {
+        "date": "4 juni 2026",
+        "title": "Eerste media aandacht",
+        "description": "Nyves wordt genoemd in de AngryNerds podcast aflevering nummer 302."
+      },
+      "keypair-migration-start": {
+        "date": "7 augustus 2026",
+        "title": "Start migratie aanmaken keypairs per gebruikersnaam",
+        "description": "De eerste migratie is gestart voor Nyves waar voor elke gebruikersnaam een nostr keypair wordt aangemaakt."
+      },
+      "custom-relay-live": {
+        "date": "20 augustus 2026",
+        "title": "Custom relay live",
+        "description": "Op https://rely.nyves.nl staat de nieuwe op maat gemaakte relay voor Nyves."
+      },
+      "keypair-migration-completed": {
+        "date": "8 september 2026",
+        "title": "Migratie voor de 9+ miljoen keypairs voltooid",
+        "description": "De eerste migratie is voltooid voor Nyves (9+ miljoen keypairs aangemaakt)."
+      },
+      "usernames-migration-start": {
+        "date": "9 september 2026",
+        "title": "Start migratie van alle gebruikersnamen",
+        "description": "Per keypair wordt nu een set van zogenaamde nostr events aangemaakt, zodat een profiel kan worden opgebouwd die doorzoekbaar is via Nyves."
+      },
+      "hyves-back-online": {
+        "date": "22 september 2026",
+        "title": "Hyves terug als sociaal platform, duizenden bezoekers voor Nyves",
+        "description": "Op dinsdag 22 september is Hyves terug online gebracht als sociaal platform door Mediahuis. Mensen zoeken nu massaal naar Hyves en wordt Nyves door duizenden mensen gevonden."
+      },
+      "follow-the-money": {
+        "date": "24 september 2026",
+        "title": "Nyves genoemd door Follow The Money",
+        "description": "Follow The Money heeft een artikel gepubliceerd met de titel \"Hyves draait wél op Amerikaanse tech, in tegenstelling tot wat eigenaar De Telegraaf beweert\"."
+      },
+      "proprivacy-podcast": {
+        "date": "30 september 2026",
+        "title": "Nyves genoemd in de ProPrivacy podcast",
+        "description": "Hyves wordt besproken in deze ProPrivacy podcast aflevering vanaf minuut 22. Iets later op minuut 36 gaat het ook over Nyves en hoe we social media op een alternatieve manier kunnen opzetten dankzij het open protocol nostr."
+      },
+      "aos-collective-donation": {
+        "date": "1 oktober 2026",
+        "title": "And Other Stuff Collective doneert $15.000 aan Nyves",
+        "description": "Nyves heeft een donatie ontvangen van $15.0000 vanuit het AOS Collective via OpenCollective."
+      },
+      "angry-nerds-podcast": {
+        "date": "1 oktober 2026",
+        "title": "Nyves komt opnieuw aan bod in de Angry Nerds podcast",
+        "description": "De AngryNerds bespreken Hyves en komen tot de conclusie dat het opbouwen van profielen voor hun eigen advertentiebedrijf van Mediahuis het enige doel is. En dat je het niet moet verwarren met Nyves! \"Die indexeren op dit moment 8 miljoen oude Hyves accounts voor web archive restores. En Nyves is op nostr gebaseerd.\""
+      }
+    }
+  },
   "footer": {
     "initiatief": "Een initiatief van"
   },

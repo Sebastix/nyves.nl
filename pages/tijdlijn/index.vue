@@ -5,108 +5,119 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 // Register GSAP plugin
 gsap.registerPlugin(ScrollTrigger)
 
-const timelineEvents = [
+const { t, tm, rt } = useI18n()
+
+// Language independent metadata for every timeline event.
+// The `id` links each entry to its translated content in the i18n locale files
+// (see `tijdlijn.events.<id>` in i18n/locales/nl.json and en.json).
+const timelineMeta = [
   {
-    date: '1 november 2024',
-    title: 'Alles begint met een idee',
-    description: 'Dit zijn de eerste sporen in een gesprek tussen Yme Bosma en Sebastian Hagens.',
-    link: 'https://jumble.social/notes/nevent1qvzqqqqqqypzqpnrnguxe8qszsshvgkvhn6qjzxy7xsvx03rlrtddr62haj4lrm3qyt8wumn8ghj7un9d3shjtnyd968gmewwp6kytcpz9mhxue69uhkummnw3ezuamfdejj7qpqu9gtcehnm3wygz60d4um52vkslwqyg2tt2dmq63neyqqc5kf9mkq8c3xjp',
-    type: 'idea'
+    id: 'idea',
+    type: 'idea',
+    link: 'https://jumble.social/notes/nevent1qvzqqqqqqypzqpnrnguxe8qszsshvgkvhn6qjzxy7xsvx03rlrtddr62haj4lrm3qyt8wumn8ghj7un9d3shjtnyd968gmewwp6kytcpz9mhxue69uhkummnw3ezuamfdejj7qpqu9gtcehnm3wygz60d4um52vkslwqyg2tt2dmq63neyqqc5kf9mkq8c3xjp'
   },
   {
-    date: '5 februari 2025',
-    title: 'Domeinregistratie',
-    description: 'Het nyves.nl domein is geregistreerd.',
+    id: 'domain-registration',
     type: 'milestone'
   },
   {
-    date: '14 december 2025',
-    title: 'Eerste pitch ter kennismaking',
-    description: 'Sebastian Hagens pitcht het idee bij het SIDNfonds.',
+    id: 'first-pitch',
     type: 'development'
   },
   {
-    date: 'Februari 2026',
-    title: 'Officiële aanvraag',
-    description: 'Aanvraag ingediend bij SIDNfonds voor Nyves als pioniersproject',
-    type: 'develoment'
+    id: 'sidnfonds-application',
+    type: 'development'
   },
   {
-    date: 'Maart 2026',
-    title: 'Selectie als pioniersproject',
-    description: 'Nyves wordt geselecteerd als pioniersproject bij SIDNfonds',
-    link: 'https://www.sidnfonds.nl/projecten/nyves',
+    id: 'sidnfonds-pioneer-project',
     type: 'success',
+    link: 'https://www.sidnfonds.nl/projecten/nyves',
     image: '/sidnfinds-logo.svg',
     imageAlt: 'SIDNfonds logo'
   },
   {
-    date: '1 april 2026',
-    title: 'Start ontwikkeling',
-    description: 'Start van de bouw van de Nyves applicatie door Sebastian Hagens',
+    id: 'development-start',
     type: 'development'
   },
   {
-    date: '8 mei 2026',
-    title: 'Eerste test migraties',
-    description: 'De eerste migraties worden uitgevoerd voor Nyves in combinatie met een relay op https://relay.nyves.nl.',
-    link: 'https://relay.nyves.nl',
+    id: 'first-test-migrations',
+    type: 'development',
+    link: 'https://relay.nyves.nl'
+  },
+  {
+    id: 'first-media-attention',
+    type: 'milestone',
+    link: 'https://video.angrynerdspodcast.nl/w/cS5wxXgRKn4hQ3dRSZJrJD?start=57m55s'
+  },
+  {
+    id: 'keypair-migration-start',
     type: 'development'
   },
   {
-    date: '4 juni 2026',
-    title: 'Eerste media aandacht',
-    description: 'Nyves wordt genoemd in de AngryNerds podcast',
-    link: 'https://video.angrynerdspodcast.nl/w/cS5wxXgRKn4hQ3dRSZJrJD?start=57m55s',
+    id: 'custom-relay-live',
+    type: 'development',
+    link: 'https://rely.nyves.nl'
+  },
+  {
+    id: 'keypair-migration-completed',
+    type: 'development'
+  },
+  {
+    id: 'usernames-migration-start',
+    type: 'development'
+  },
+  {
+    id: 'hyves-back-online',
     type: 'milestone'
   },
   {
-    date: '7 augustus 2026',
-    title: 'Start migratie aanmaken keypairs per gebruikersnaam',
-    description: 'De eerste migratie is gestart voor Nyves waar voor elke gebruikersnaam een nostr keypair wordt aangemaakt.',
-    type: 'development'
+    id: 'follow-the-money',
+    type: 'success',
+    link: 'https://www.ftm.nl/artikelen/hyves-draait-wel-op-amerikaanse-tech?share=ipZHnrJIjxaSnEEIeIsA9k%2BoqGSc6qziqkqbusVNoBnbHnbWal5bikgEZLHlQRI%3D'
   },
   {
-    date: '20 augustus 2026',
-    title: 'Custom relay live',
-    description: 'Op https://rely.nyves.nl staat de nieuwe op maat gemaakte relay voor Nyves.',
-    link: 'https://rely.nyves.nl',
-    type: 'development'
+    id: 'proprivacy-podcast',
+    type: 'development',
+    link: 'https://www.youtube.com/watch?v=3nMuQf8Hdto&t=1319s'
   },
   {
-    date: '8 september 2026',
-    title: 'Migratie voor de 9+ miljoen keypairs voltooid',
-    description: 'De eerste migratie is voltooid voor Nyves (9+ miljoen keypairs aangemaakt)',
-    type: 'development'
+    id: 'aos-collective-donation',
+    type: 'success',
+    link: 'https://opencollective.com/aos-collective/expenses/348513'
   },
   {
-    date: '9 september 2026',
-    title: 'Start migratie van alle gebruikersnamen',
-    description: 'Per keypair wordt nu een set van zogenaamde nostr events aangemaakt, zodat een profiel kan worden opgebouwd die doorzoekbaar is via Nyves.',
-    type: 'development'
+    id: 'angry-nerds-podcast',
+    type: 'development',
+    link: 'https://video.angrynerdspodcast.nl/w/fVpKCdbBECum9TYGqKkSU8?start=1h30m'
   },
-  {
-    date: '22 september 2026',
-    title: 'Hyves terug als sociaal platform, duizenden bezoekers voor Nyves',
-    description: 'Op dinsdag 22 september is Hyves terug online gebracht als sociaal platform door Mediahuis. Mensen zoeken nu massaal naar Hyves en wordt Nyves door duizenden mensen gevonden.',
-    type: 'milestone'
-  },
-  {
-    date: '24 september 2026',
-    title: 'Nyves genoemd door Follow The Money',
-    description: 'Op donderdag 24 september publiceert Follow The Money een artikel "Hyves draait wél op Amerikaanse tech, in tegenstelling tot wat eigenaar De Telegraaf beweert".',
-    link: 'https://www.ftm.nl/artikelen/hyves-draait-wel-op-amerikaanse-tech?share=ipZHnrJIjxaSnEEIeIsA9k%2BoqGSc6qziqkqbusVNoBnbHnbWal5bikgEZLHlQRI%3D',
-    type: 'success'
-  }
 ]
 
+// Merge the localized date/title/description into the language independent metadata
+const timelineEvents = computed(() =>
+  timelineMeta.map((meta) => {
+    const content = tm(`tijdlijn.events.${meta.id}`) || {}
+    return {
+      ...meta,
+      date: rt(content.date ?? ''),
+      title: rt(content.title ?? ''),
+      description: rt(content.description ?? ''),
+    }
+  })
+)
+
 const parseDate = (dateString) => {
-  // Parse different date formats
-  const months = {
-    'januari': 0, 'februari': 1, 'maart': 2, 'april': 3, 'mei': 4, 'juni': 5,
-    'juli': 6, 'augustus': 7, 'september': 8, 'oktober': 9, 'november': 10, 'december': 11
+  if (!dateString) {
+    return { day: '', month: '', year: '' }
   }
-  
+
+  // Month names for all supported locales (Dutch + English)
+  const months = {
+    januari: 0, februari: 1, maart: 2, april: 3, mei: 4, juni: 5,
+    juli: 6, augustus: 7, september: 8, oktober: 9, november: 10, december: 11,
+    january: 0, february: 1, march: 2, may: 4, june: 5, july: 6,
+    august: 7, october: 9
+  }
+
   // Handle "1 november 2024" format
   const dayMonthYearMatch = dateString.match(/(\d+)\s+(\w+)\s+(\d{4})/)
   if (dayMonthYearMatch) {
@@ -116,14 +127,14 @@ const parseDate = (dateString) => {
       return { day: day.padStart(2, '0'), month: month.charAt(0).toUpperCase() + month.slice(1), year }
     }
   }
-  
+
   // Handle "Februari 2025" format  
   const monthYearMatch = dateString.match(/(\w+)\s+(\d{4})/)
   if (monthYearMatch) {
     const [, month, year] = monthYearMatch
     return { day: '', month: month.charAt(0).toUpperCase() + month.slice(1), year }
   }
-  
+
   return { day: '', month: dateString, year: '' }
 }
 
@@ -188,14 +199,18 @@ onMounted(() => {
     }
   })
 })
+useSeoMeta({
+  title: () => `${t('tijdlijn.title')} - Nyves`,
+  description: () => t('tijdlijn.subtitle')
+})
 </script>
 
 <template>
   <div class="min-h-screen py-12">
     <section class="leading-relaxed max-w-4xl mx-auto px-4">
-      <h1 class="text-4xl text-nyves-blue mb-8 text-center font-bold">Tijdlijn</h1>
+      <h1 class="text-4xl text-nyves-blue mb-8 text-center font-bold">{{ $t('tijdlijn.title') }}</h1>
       <p class="text-center text-xl mb-12 text-gray-600">
-        Hoe Nyves tot stand is gekomen
+        {{ $t('tijdlijn.subtitle') }}
       </p>
       
       <!-- Timeline -->
@@ -207,7 +222,7 @@ onMounted(() => {
         <div class="space-y-8">
           <div 
             v-for="(event, index) in timelineEvents" 
-            :key="index"
+            :key="event.id"
             class="relative flex items-start group timeline-item"
           >
             <!-- Date calendar -->
@@ -259,7 +274,7 @@ onMounted(() => {
                         target="_blank"
                         class="inline-flex items-center text-nyves-blue hover:text-nyves-blue-secundary transition-colors duration-200 font-medium"
                     >
-                      <span class="mr-2">Bekijk details</span>
+                      <span class="mr-2">{{ $t('tijdlijn.view_details') }}</span>
                       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
                       </svg>
@@ -285,7 +300,7 @@ onMounted(() => {
           <div class="absolute left-0 w-20 h-24 bg-white rounded-lg shadow-lg overflow-hidden">
             <!-- Calendar header -->
             <div class="bg-nyves-orange h-6 w-full flex items-center justify-center">
-              <div class="text-xs font-semibold text-white uppercase">Nu</div>
+              <div class="text-xs font-semibold text-white uppercase">{{ $t('tijdlijn.now') }}</div>
             </div>
             <!-- Calendar body -->
             <div class="flex flex-col items-center justify-center h-18 bg-white">
@@ -295,13 +310,13 @@ onMounted(() => {
           <div class="ml-24 w-full">
             <div class="p-6 rounded-lg bg-nyves-orange/10 shadow-md">
               <div class="text-sm font-semibold text-nyves-orange mb-2">
-                Heden
+                {{ $t('tijdlijn.present') }}
               </div>
               <h3 class="text-xl font-bold text-gray-800 mb-3">
-                Het verhaal gaat verder...
+                {{ $t('tijdlijn.story_continues') }}
               </h3>
               <p class="text-gray-700 leading-relaxed">
-                Nyves groeit elke dag en helpt mensen hun Hyves profiel terug te vinden.
+                {{ $t('tijdlijn.story_continues_text') }}
               </p>
             </div>
           </div>
