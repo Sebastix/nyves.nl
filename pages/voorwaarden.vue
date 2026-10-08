@@ -27,11 +27,18 @@ const sectionIds = [
   'contact',
 ]
 
-// Each section is { id, title, content }. content is an array of blocks:
-//   - string                  -> plain paragraph
-//   - { ul: [ ... ] }         -> bulleted list
-//   - { defs: [ {term,text} ] } -> definition list (bold lead-in term)
-//   - { p: '...{slot}...' }   -> paragraph rendered with <i18n-t> for inline markup
+// Each section is { id, title, content }. `title` is resolved with t().
+// `content` is an array of blocks, retrieved with tm() for its *structure*
+// only. IMPORTANT: the actual text of every block is always resolved through
+// i18n-t using a keypath, because @nuxtjs/i18n precompiles locale strings at
+// build time — tm() returns the compiled message AST, not the raw string, so
+// rendering a tm() leaf directly would dump the AST as JSON.
+//
+// Block shapes:
+//   - string                   -> plain paragraph  (keypath: content.<bi>)
+//   - { p: '...{slot}...' }    -> paragraph with inline markup (keypath: .p)
+//   - { ul: [ ... ] }          -> bulleted list    (keypath: .ul.<ii>)
+//   - { defs: [{term,text}] }  -> definition list  (keypath: .defs.<ii>.term/.text)
 const sections = computed(() =>
   sectionIds.map((id) => ({
     id,
@@ -75,7 +82,8 @@ useSeoMeta({
           </h2>
 
           <template v-for="(block, bi) in section.content" :key="bi">
-            <i18n-t
+            <!-- Paragraph containing inline markup (link / e-mail) -->
+            <i18n-t scope="global"
               v-if="block && typeof block === 'object' && block.p"
               :keypath="`voorwaarden.sections.${section.id}.content.${bi}.p`"
               tag="p"
@@ -89,23 +97,43 @@ useSeoMeta({
               </template>
             </i18n-t>
 
+            <!-- Bulleted list -->
             <ul
               v-else-if="block && typeof block === 'object' && block.ul"
               class="list-disc ml-6 space-y-1 mb-3"
             >
-              <li v-for="(item, ii) in block.ul" :key="ii">{{ item }}</li>
+              <i18n-t scope="global"
+                v-for="(item, ii) in block.ul"
+                :key="ii"
+                :keypath="`voorwaarden.sections.${section.id}.content.${bi}.ul.${ii}`"
+                tag="li"
+              />
             </ul>
 
+            <!-- Definition list (bold lead-in term + text) -->
             <ul
               v-else-if="block && typeof block === 'object' && block.defs"
               class="list-disc ml-6 space-y-1 mb-3"
             >
               <li v-for="(item, ii) in block.defs" :key="ii">
-                <strong>{{ item.term }}</strong> {{ item.text }}
+                <i18n-t scope="global"
+                  :keypath="`voorwaarden.sections.${section.id}.content.${bi}.defs.${ii}.term`"
+                  tag="strong"
+                />
+                <i18n-t scope="global"
+                  :keypath="`voorwaarden.sections.${section.id}.content.${bi}.defs.${ii}.text`"
+                  tag="span"
+                />
               </li>
             </ul>
 
-            <p v-else class="mb-3">{{ block }}</p>
+            <!-- Plain paragraph (stored as a string) -->
+            <i18n-t scope="global"
+              v-else
+              :keypath="`voorwaarden.sections.${section.id}.content.${bi}`"
+              tag="p"
+              class="mb-3"
+            />
           </template>
         </template>
       </div>
