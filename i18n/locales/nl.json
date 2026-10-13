@@ -10,6 +10,7 @@
   "zoek_profielen": "Zoek profielen...",
   "zoek_profielen_btn": "Zoek profielen",
   "of_bekijk_dit_voorbeeld": "of bekijk dit voorbeeld",
+  "of_ontdek_deze_profielen": "of ontdek deze profielen",
   "soapbox_collab": "{0} is een bedrijf met hacktivisten die free and open-source software ontwikkelen voor gedecentraliseerde social media. Ze hebben als missie om online communities te versterken met tools die de keuzevrijheid, digitale soevereiniteit en individuele autonomie vergroten. Zij zijn de makers van Ditto, MKStack, Sharespeare en andere innovatieve platformen. Via die platformen hervormen zij de manier waarop mensen met elkaar verbinden en communiceren via het internet.",
   "ditto_collab": "{0} is een sociaal gebouwd door Soapbox voor mensen die plezier willen beleven, in plaats van de Big-Tech machine te voeden. Open-source, gedecentraliseerd en het platform is volledig aan te passen aan jouw wensen en op voort te bouwen. {1} {2} Met zowel Nyves als Ditto kun je je profiel en het design aanpassen met kleuren, achtergrondafbeeldingen, lettertypes en meer.",
   "highlight_profiles_with_themes": "Profielen met een eigen design",
@@ -651,11 +652,41 @@
       "copied": "Gekopieerd!"
     }
 ,
+    "ontdek_profielen": {
+      "seo_title": "Ontdek profielen uit de Nostrverse en Fediverse",
+      "seo_description": "Ontdek enkele interessante profielen uit de Nostrverse en Fediverse.",
+      "title": "Ontdek enkele interessante profielen",
+      "intro": "Een lijst van profielen die de moeite waard zijn om te bekijken.",
+      "nl_profiles": "Nederlandse profielen uit de Nostrverse",
+      "fediverse": "Uit de fediverse",
+      "global_profiles": "Globaal uit de Nostrverse",
+      "what_is_nostrverse_q": "Wat is de Nostrverse?",
+      "what_is_nostrverse_a1": "De Nostrverse is het geheel van relays, applicaties en personen die samen gebruikmaken van het open Nostr-protocol. Anders dan bij een centraal platform is er geen eigenaar: je identiteit is een sleutelpaar dat volledig van jou is, en je content wordt bewaard op relays die jij kiest.",
+      "what_is_nostrverse_a2": "Omdat je profiel, volgers en berichten niet aan één applicatie gebonden zijn, kun je vrij wisselen tussen verschillende Nostr-apps en toch alles behouden. Denk aan het verschil tussen het telefoonnetwerk en één specifieke app: het netwerk blijft, de app kun je vervangen.",
+      "what_is_fediverse_q": "Wat is de Fediverse?",
+      "what_is_fediverse_a1": "De Fediverse is het netwerk van verschillende platformen die via het open ActivityPub-protocol met elkaar kunnen praten, zoals Mastodon, Pixelfed en PeerTube. Ook hier is er geen centrale eigenaar: iedereen kan een eigen server beginnen en die servers wisselen onderling berichten uit.",
+      "what_is_fediverse_a2": "De Fediverse en Nostr delen dezelfde idealen van decentralisatie en gebruikersvrijheid, maar gebruiken een ander protocol. Daarom tonen we op deze pagina profielen uit beide werelden naast elkaar.",
+      "create_profile_q": "Hoe kan ik een profiel aanmaken?",
+      "create_profile_a1": "Nyves zelf kan op dit moment (nog) geen nieuw profiel aanmaken of een bestaand profiel koppelen. Nog in ontwikkeling: Nyves geeft je automatisch een gastprofiel waarmee je kunt reageren en berichten plaatsen. Een gastprofiel is een echt Nostr-profiel, maar heeft enkel een naam en wordt na 7 dagen verwijderd als je het niet permanent maakt.",
+      "create_profile_a2": "Wil je een blijvend profiel? Maak er dan een aan met een Nostr-applicatie zoals {ditto}. Bewaar je privésleutel altijd op een veilige plek: wie die sleutel bezit, heeft volledige toegang tot je profiel.",
+      "create_design_q": "Hoe maak ik een eigen design voor mijn profiel?",
+      "create_design_a1": "Nyves ondersteunt zogenoemde thema’s of eigen designs voor je profiel. Zo’n design wordt vastgelegd in een Nostr-event (kind 16767) dat je maakt met een applicatie die profielthema’s ondersteunt, zoals {ditto}. Je kunt daarin onder meer de achtergrondkleur of -afbeelding, de kleuren van de tekst en de gebruikte lettertypes instellen.",
+      "create_design_a2": "Zodra jouw profiel een eigen design heeft, verschijnt op je profielpagina de knop ‘Toon eigen design!’ waarmee je heen en weer kunt schakelen tussen je eigen design en het standaard design van Nyves. Wil je inspiratie opdoen? Bekijk dan de profielen met een eigen design."
+    }
+,
   "footer": {
     "initiatief": "Een initiatief van"
   },
   "MailingList": {
     "Aanmelden": "Aanmelden",
-    "Signal": "Of word lid van de Nyves chat groep op Signal:"
+    "Signal": "Of word lid van de Nyves chat groep op Signal:",
+    "heading_lead": "Nyves volgen?",
+    "heading_rest": "Blijf op de hoogte via onze nieuwsbrief.",
+    "heading_search_lead": "Wil je een bericht ontvangen zodra alle profielen beschikbaar zijn?",
+    "heading_search_rest": "Meld je dan aan voor de nieuwsbrief.",
+    "email_placeholder": "Jouw e-mailadres",
+    "captcha_required": "Voltooi eerst de CAPTCHA verificatie.",
+    "success": "Bedankt voor je aanmelding! Check je e-mail voor bevestiging.",
+    "error": "Er ging iets mis. Probeer het opnieuw."
   }
 }

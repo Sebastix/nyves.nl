@@ -20,7 +20,40 @@ useSeoMeta({
     </details>
     <details>
       <summary>Hoe maak ik een nieuw profiel aan?</summary>
-      Dit is momenteel (nog) niet mogelijk.
+      <p>
+        Nyves zelf kan op dit moment (nog) geen nieuw profiel aanmaken of een bestaand profiel koppelen.
+        In ontwikkeling: Nyves geeft je automatisch een gastprofiel waarmee je kunt reageren en berichten plaatsen.
+        Een gastprofiel is een echt Nostr-profiel, maar heeft enkel een naam en wordt na 7 dagen verwijderd als je het niet permanent maakt.
+      </p>
+      <p>
+        Wil je een blijvend profiel? Maak er dan een aan met een Nostr-applicatie zoals
+        <a href="https://ditto.pub" target="_blank" rel="noopener noreferrer" class="inline-flex items-center align-top">
+          Ditto
+          <svg class="size-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+          </svg>
+        </a>.
+        Bewaar je privésleutel altijd op een veilige plek: wie die sleutel bezit, heeft volledige toegang tot je profiel.
+      </p>
+    </details>
+    <details>
+      <summary>Hoe maak ik een eigen design voor mijn profiel?</summary>
+      <p>
+        Nyves ondersteunt zogenoemde thema's of eigen designs voor je profiel.
+        Zo'n design wordt vastgelegd in een Nostr-event (kind 16767) dat je maakt met een applicatie die profielthema's ondersteunt, zoals
+        <a href="https://ditto.pub" target="_blank" rel="noopener noreferrer" class="inline-flex items-center align-top">
+          Ditto
+          <svg class="size-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+          </svg>
+        </a>.
+        Je kunt daarin onder meer de achtergrondkleur of -afbeelding, de kleuren van de tekst en de gebruikte lettertypes instellen.
+      </p>
+      <p>
+        Zodra jouw profiel een eigen design heeft, verschijnt op je profielpagina de knop 'Toon eigen design!' waarmee je heen en weer kunt schakelen tussen je eigen design en het standaard design van Nyves.
+        Wil je inspiratie opdoen? Bekijk dan de
+        <NuxtLink to="/profielen-uit-de-nostrverse-en-fediverse">profielen met een eigen design</NuxtLink>.
+      </p>
     </details>
     <details>
       <summary>Is Nyves opensource?</summary>
@@ -78,6 +111,9 @@ useSeoMeta({
       Dat is een hele goed vraag. Content kan namelijk van verschillende relays worden opgehaald die getoond wordt in de applicatie.
     </details>
     <details>
+      <summary>Hoe voeg ik iemand toe als vriend?</summary>
+    </details>
+    <details>
       <summary>Wat is Hyves?</summary>
       Hyves was een social media platform die in Nederland actief was vanaf 2004 tot 2013. Hierbij enkele feiten van het platform uit die tijd:
       <ul class="list-disc pl-8">
@@ -106,12 +142,67 @@ useSeoMeta({
       </a>
     </details>
     <details>
+      <summary>Wie is de eigenaar van Hyves?</summary>
+      <p>
+        Dat is Mediahuis.
+      </p>
+    </details>
+    <details>
+      <summary>Welke gegevens heeft Mediahuis nog van Hyves?</summary>
+      <p>
+        Volgens
+        <a
+            href="https://www.nu.nl/tech/5994609/ruim-negen-miljoen-gearchiveerde-hyves-profielen-online-te-vinden.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center align-top"
+        >
+          deze bron
+          <svg class="size-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+          </svg>
+        </a>, heeft Mediahuis mogelijk nog alle inloggegevens. In 2018 is Hyves Games verkocht aan Azerion waarbij alle data mee is verhuisd, op de wachtwoorden na.
+      </p>
+    </details>
+    <details>
       <summary>Wat is het verschil tussen Nyves en Hyves?</summary>
       Antwoorden op deze vraag vind je op <NuxtLink to="/blog/verschil-tussen-nyves-en-hyves">deze pagina</NuxtLink>.
+    </details>
+    <details>
+      <summary>Wat is de Nostrverse?</summary>
+      <p>
+        De Nostrverse is het geheel van relays, applicaties en personen die samen gebruikmaken van het open Nostr-protocol.
+        Anders dan bij een centraal platform is er geen eigenaar: je identiteit is een sleutelpaar dat volledig van jou is, en je content wordt bewaard op relays die jij kiest.
+      </p>
+      <p>
+        Omdat je profiel, volgers en berichten niet aan één applicatie gebonden zijn, kun je vrij wisselen tussen verschillende Nostr-apps en toch alles behouden.
+        Denk aan het verschil tussen het telefoonnetwerk en één specifieke app: het netwerk blijft, de app kun je vervangen.
+      </p>
+    </details>
+    <details>
+      <summary>Wat is de Fediverse?</summary>
+      <p>
+        De Fediverse is het netwerk van verschillende platformen die via het open ActivityPub-protocol met elkaar kunnen praten, zoals Mastodon, Pixelfed en PeerTube.
+        Ook hier is er geen centrale eigenaar: iedereen kan een eigen server beginnen en die servers wisselen onderling berichten uit.
+      </p>
+      <p>
+        De Fediverse en Nostr delen dezelfde idealen van decentralisatie en gebruikersvrijheid, maar gebruiken een ander protocol.
+        Daarom tonen we profielen uit beide werelden naast elkaar op de pagina
+        <NuxtLink to="/profielen-uit-de-nostrverse-en-fediverse">Ontdek profielen uit de Nostrverse en Fediverse</NuxtLink>.
+      </p>
     </details>
     <h2 class="text-xl">Content</h2>
     <details>
       <summary>Hoe verwijder ik content?</summary>
+    </details>
+    <details>
+      <summary>Hoe plaats ik een krabbel?</summary>
+    </details>
+    <details>
+      <summary>Hoe plaats ik een foto of video?</summary>
+    </details>
+    <details>
+      <summary>Hoe kan ik mijn profielfoto aanpassen?</summary>
     </details>
     <h2 class="text-xl">Privacy</h2>
     <details>

@@ -1,4 +1,5 @@
 <script setup>
+const localePath = useLocalePath()
 const { pool, queryRelays } = useSharedRelayPool()
 
 const RELAY = 'wss://rely.nyves.nl'
@@ -25,9 +26,7 @@ onMounted(async () => {
         filter
       ])
 
-      setInterval(() => {
-        ws.send(countMessage)
-      }, 1000)
+      ws.send(countMessage)
 
       ws.onmessage = (event) => {
         try {
@@ -101,8 +100,8 @@ onMounted(async () => {
           </svg>
           {{ $t('zoek_profielen_btn') }}
         </NuxtLink>
-        <NuxtLink to="/profiel/npub1qe3e5wrvnsgpggtkytxteaqfprz0rgxr8c3l34kk3a9t7e2l3acslezefe" class="text-base/10">
-          {{ $t('of_bekijk_dit_voorbeeld') }}
+        <NuxtLink :to="`${ localePath('profielen-uit-de-nostrverse-en-fediverse') }`" class="text-base/10">
+          {{ $t('of_ontdek_deze_profielen') }}
         </NuxtLink>
       </div>
       <i18n-t keypath="hero_intro_search_count" tag="p" class="text-gray-500 text-base mt-4">

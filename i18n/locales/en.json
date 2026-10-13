@@ -10,6 +10,7 @@
   "zoek_profielen": "Search profiles...",
   "zoek_profielen_btn": "Search profiles",
   "of_bekijk_dit_voorbeeld": "or open this example",
+  "of_ontdek_deze_profielen": "or discover these profiles",
   "soapbox_collab": "{0} is a technology company building free and open-source software for decentralized social media. Their mission is to empower communities online through tools that prioritize user freedom, data sovereignty, and censorship resistance. They're the creators of Ditto, MKStack, Shakespeare, and other innovative platforms that are reshaping how people connect and communicate on the internet. ",
   "ditto_collab": "{0} is a social platform build by Soapbox for people who want to have fun, not feed the Big Tech machine. Open source, decentralized, and entirely yours to customize and build upon. {1} {2} With both Nyves and Ditto you can customize your profile and theme with color palettes, background images, fonts, and more.",
   "highlight_profiles_with_themes": "Profiles with a customized theme",
@@ -653,11 +654,41 @@
       "copied": "Copied!"
     }
 ,
+    "ontdek_profielen": {
+      "seo_title": "Discover profiles from the Nostrverse and Fediverse",
+      "seo_description": "Discover some interesting profiles from the Nostrverse and Fediverse.",
+      "title": "Discover some interesting profiles",
+      "intro": "A list of profiles that are worth checking out.",
+      "nl_profiles": "Dutch profiles from the Nostrverse",
+      "fediverse": "From the fediverse",
+      "global_profiles": "Global from the Nostrverse",
+      "what_is_nostrverse_q": "What is the Nostrverse?",
+      "what_is_nostrverse_a1": "The Nostrverse is the collection of relays, applications and people that together use the open Nostr protocol. Unlike a central platform, it has no owner: your identity is a key pair that is entirely yours, and your content is stored on relays of your choosing.",
+      "what_is_nostrverse_a2": "Because your profile, followers and posts are not tied to a single application, you can freely switch between different Nostr apps and still keep everything. Think of the difference between the telephone network and one specific app: the network stays, the app can be replaced.",
+      "what_is_fediverse_q": "What is the Fediverse?",
+      "what_is_fediverse_a1": "The Fediverse is the network of different platforms that can talk to each other through the open ActivityPub protocol, such as Mastodon, Pixelfed and PeerTube. Here too there is no central owner: anyone can start their own server, and those servers exchange messages with one another.",
+      "what_is_fediverse_a2": "The Fediverse and Nostr share the same ideals of decentralisation and user freedom, but use a different protocol. That is why we show profiles from both worlds side by side on this page.",
+      "create_profile_q": "How can I create a profile?",
+      "create_profile_a1": "Nyves itself cannot (yet) create a new profile or connect an existing one. In development: Nyves automatically gives you a guest profile that lets you reply and post. A guest profile is a real Nostr profile, but it only has a name and is removed after 7 days if you do not make it permanent.",
+      "create_profile_a2": "Would you like a lasting profile? Create one with a Nostr application such as {ditto}. Always keep your private key in a safe place: whoever holds that key has full access to your profile.",
+      "create_design_q": "How do I create a custom design for my profile?",
+      "create_design_a1": "Nyves supports so-called themes or custom designs for your profile. Such a design is stored in a Nostr event (kind 16767) that you create with an application that supports profile themes, such as {ditto}. In it you can set, among other things, the background colour or image, the text colours and the fonts used.",
+      "create_design_a2": "As soon as your profile has a custom design, a ‘Show custom design!’ button appears on your profile page, letting you switch back and forth between your own design and the Nyves default design. Looking for inspiration? Have a look at the profiles with a custom design."
+    }
+,
   "footer": {
     "initiatief": "An initiative of"
   },
   "MailingList": {
     "Aanmelden": "Subscribe",
-    "Signal": "Or join the Nyves chat group via Signal:"
+    "Signal": "Or join the Nyves chat group via Signal:",
+    "heading_lead": "Follow Nyves.",
+    "heading_rest": "Stay up to date via our newsletter.",
+    "heading_search_lead": "Would you like to receive a message once all profiles are available?",
+    "heading_search_rest": "Sign up for the newsletter.",
+    "email_placeholder": "Your email address",
+    "captcha_required": "Please complete the CAPTCHA verification first.",
+    "success": "Thanks for subscribing! Check your email for confirmation.",
+    "error": "Something went wrong. Please try again."
   }
 }

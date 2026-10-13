@@ -1,10 +1,19 @@
 <script setup>
 import { ref, onMounted, nextTick } from 'vue'
 
+const { t } = useI18n()
+
 const props = defineProps({
+  // Optional raw HTML heading override. When empty, a localized heading
+  // is rendered based on `variant` (the i18n plugin forbids HTML in messages).
   heading: {
     type: String,
-    default: '<span class="text-nyves-blue font-bold">Nyves volgen?</span> Blijf op de hoogte via onze nieuwsbrief.'
+    default: ''
+  },
+  // 'default' | 'search' — selects which localized heading to show.
+  variant: {
+    type: String,
+    default: 'default'
   }
 })
 
@@ -34,7 +43,7 @@ const handleSubmit = async (event) => {
   event.preventDefault()
   
   if (!CaptchaResponse.value) {
-    submitMessage.value = 'Voltooi eerst de CAPTCHA verificatie.'
+    submitMessage.value = t('MailingList.captcha_required')
     return
   }
   
@@ -51,7 +60,7 @@ const handleSubmit = async (event) => {
     })
     
     if (response.ok) {
-      submitMessage.value = 'Bedankt voor je aanmelding! Check je e-mail voor bevestiging.'
+      submitMessage.value = t('MailingList.success')
       event.target.reset()
       // Reset hCaptcha
       if (window.hcaptcha) {
@@ -59,11 +68,11 @@ const handleSubmit = async (event) => {
       }
       CaptchaResponse.value = ''
     } else {
-      submitMessage.value = 'Er ging iets mis. Probeer het opnieuw.'
+      submitMessage.value = t('MailingList.error')
     }
   } catch (error) {
     console.error('Submit error:', error)
-    submitMessage.value = 'Er ging iets mis. Probeer het opnieuw.'
+    submitMessage.value = t('MailingList.error')
   } finally {
     isSubmitting.value = false
   }
@@ -103,10 +112,20 @@ const setupAltcha = () => {
     <div class="h-[44px] nyves-bg-gray-header"></div>
     <form method="post" action="https://mail.nyves.nl/subscription/form" class="listmonk-form">
       <div>
-        <h3 class="text-xl font-medium mb-2" v-html="heading"></h3>
+        <h3 class="text-xl font-medium mb-2">
+          <span v-if="heading" v-html="heading"></span>
+          <template v-else-if="variant === 'search'">
+            <strong class="block mb-4">{{ $t('MailingList.heading_search_lead') }}</strong>
+            {{ $t('MailingList.heading_search_rest') }}
+          </template>
+          <template v-else>
+            <span class="text-nyves-blue font-bold">{{ $t('MailingList.heading_lead') }}</span>
+            {{ $t('MailingList.heading_rest') }}
+          </template>
+        </h3>
         <input type="hidden" name="nonce" />
         <p>
-          <input type="email" name="email" autocomplete="on" required placeholder="Jouw e-mailadres" class="p-2 bg-white border border-nyves-blue focus:outline-nyves-orange rounded-sm text-base min-w-[360px]" />
+          <input type="email" name="email" autocomplete="on" required :placeholder="$t('MailingList.email_placeholder')" class="p-2 bg-white border border-nyves-blue focus:outline-nyves-orange rounded-sm text-base min-w-[360px]" />
         </p>
         <p>
           <input id="e1cfa" type="checkbox" name="l" checked value="e1cfa5a7-26e8-428b-92ef-d4337c2843a0" class="hidden" />

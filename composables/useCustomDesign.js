@@ -14,7 +14,8 @@ export const useCustomDesign = () => {
   })
 
   /**
-   * Fetch custom design event (kind 36767) for a specific pubkey
+   * Fetch custom design event (kind 16767) for a specific pubkey
+   * Specs: https://about.ditto.pub/reference#ditto-profile-theme
    * @param {string} pubkey - The hex pubkey to fetch design for
    * @param {string} relay - The relay URL to fetch from
    * @returns {Promise<void>}
@@ -53,7 +54,7 @@ export const useCustomDesign = () => {
         }
 
       } else {
-        console.log('No custom design event found')
+        console.log('No custom design event found for', pubkey)
         designData.value.custom_design = false
       }
 

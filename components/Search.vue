@@ -47,7 +47,7 @@ const debouncedZoek = (term) => {
   
   debounceTimer.value = setTimeout(() => {
     zoekProfielen(term)
-  }, 30000)
+  }, 45000)
 }
 
 // Watch zoekterm voor real-time zoeken (alleen voor dropdown)
@@ -259,7 +259,7 @@ onUnmounted(() => {
     <!-- Geen resultaten -->
     <div v-else-if="zoekData.heeftGezocht && zoekData.resultaten.length === 0" class="text-center mt-8">
       <p class="text-gray-500 mb-12 text-xl">Helaas, er zijn geen profielen gevonden met de zoekterm "{{ zoekData.laatsteQuery }}"</p>
-      <MailingList heading='<strong class="block mb-4">Wil je een bericht ontvangen zodra alle profielen beschikbaar zijn?</strong> Meld je dan aan voor de nieuwsbrief.' />
+      <MailingList variant="search" />
     </div>
 
     <!-- Resultatenlijst -->

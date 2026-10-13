@@ -40,6 +40,8 @@ useSeoMeta({
             <br />
             <br />
             Dat is wat Nyves aan het worden is.
+            <br />
+            <NuxtLink to="/tijdlijn" class="text-sm my-4 inline-block">> Bekijk hier de tijdlijn van Nyves</NuxtLink>
           </p>
           <h2 class="text-lg mt-4 mb-2 font-bold">Waarom?</h2>
           <p class="text-gray-600 leading-relaxed">

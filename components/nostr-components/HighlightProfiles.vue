@@ -1,8 +1,11 @@
 <script setup>
 import { nip19 } from 'nostr-tools'
 
-const { fetchProfileByPubkey } = useNostrProfile()
-const { pool, queryRelays, closeRelays } = useSharedRelayPool()
+const { pool, queryRelays } = useSharedRelayPool()
+const { designData, fetchCustomDesign } = useCustomDesign()
+
+// Custom design reactive property
+const custom_design = computed(() => designData.value.custom_design)
 
 const loading = ref(true)
 const profiles = ref([])
@@ -20,54 +23,29 @@ const props = defineProps({
 
 onMounted(async () => {
   try {
-    const filter = {
-      authors: [],
-    };
+    loading.value = false;
     if (props.filters.authors) {
+      const relays = ['wss://relay.ditto.pub', 'wss://rely.nyves.nl']
+      const filter = {
+        authors: [],
+      };
       // Loop over each author in filters.authors
-      for (const author of props.filters.authors) {
-        const pub_hex = nip19.decode(author)
-        filter.authors.push(pub_hex.data);
-        const profile = await fetchProfileByPubkey(pub_hex.data)
-        profiles.value.push(profile)
+      for (const npub of props.filters.authors) {
+        const pubkey = nip19.decode(npub).data
+        // Fetch custom profile design per pubkey
+        await fetchCustomDesign(pubkey);
+        if (designData.value.custom_design) {
+          console.log(designData.value.themeSettings)
+          // Apply styling to profile component and elements in the DOM.
+          const targetElement = document.querySelectorAll('[data-npub=' + npub + ']')[0]
+          targetElement.style.backgroundColor = designData.value.themeSettings.colors.background
+          targetElement.style.color = designData.value.themeSettings.colors.text
+          targetElement.style.fontFamily = designData.value.themeSettings.font.name
+          targetElement.querySelector('a.border-3').style.borderColor = designData.value.themeSettings.colors.primary
+          targetElement.querySelector('a.text-sm').style.color = designData.value.themeSettings.colors.primary
+        }
       }
     }
-    if (profiles.value.length > 0) {
-      loading.value = false;
-    }
-    //
-    // const relays = ['wss://relay.ditto.pub', 'wss://rely.nyves.nl']
-    // const filter = {
-    //   authors: [],
-    //   kinds: [16767],
-    //   limit: props.limit
-    // }
-    // if (props.filters.authors) {
-    //   // Loop over each author in filters.authors
-    //   props.filters.authors.forEach((author) => {
-    //     const pub_hex = nip19.decode(author)
-    //     filter.authors.push(pub_hex.data);
-    //   });
-    // }
-    // const events = await queryRelays(relays, filter)
-    // if (events.length > 0) {
-    //   events.forEach((event, index) => {
-    //     if (
-    //         event.tags[2] && event.tags[2][0] === 'c'
-    //     ) {
-    //       profiles.value.push({
-    //         'background': event.tags[0][0] === 'c' ? event.tags[0][1] : '',
-    //         'text': event.tags[1][0] === 'c' ? event.tags[1][1] : '',
-    //         'primary': event.tags[2][0] === 'c' ? event.tags[2][1] : '',
-    //         'pubkey': event.pubkey,
-    //         'npub': nip19.npubEncode(event.pubkey)
-    //       })
-    //     }
-    //   })
-    //   loading.value = false
-    // } else {
-    //   loading.value = false
-    // }
   } catch (e) {
     console.log(e)
     loading.value = false
@@ -85,19 +63,31 @@ onUnmounted(() => {
   </div>
   <div v-else class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 items-center">
     <div
-        v-for="(profile, index) in profiles"
+        v-for="(npub, index) in filters.authors"
     >
-      <div
-          :style="`background-color: ${profile.background}; color: ${profile.text}`"
-          class="w-full aspect-square grid content-center">
-        <NuxtLink :to="`/profiel/${profile.npub}`" class="border-3 rounded-sm mx-auto transform hover:-translate-y-0.5 transition-all duration-200" :style="`color: ${profile.primary} !important`">
-          <NostrComponentsProfilePicture :pubkey="profile.pubkey" />
+      <div class="w-full aspect-square grid content-center" :data-npub="`${npub}`">
+        <NuxtLink :to="`/profiel/${nip19.decode(npub).data}`" class="border-3 rounded-sm mx-auto transform hover:-translate-y-0.5 transition-all duration-200">
+          <NostrComponentsProfilePicture :pubkey="nip19.decode(npub).data" />
         </NuxtLink>
-        <NuxtLink :to="`/profiel/${profile.npub}`" class="text-sm mx-auto" :style="`color: ${profile.primary} !important`">
-          <NostrComponentsPubkeyToName :pubkey="profile.pubkey" />
+        <NuxtLink :to="`/profiel/${nip19.decode(npub).data}`" class="text-sm mx-auto">
+          <NostrComponentsPubkeyToName :pubkey="nip19.decode(npub).data" />
         </NuxtLink>
       </div>
     </div>
+<!--    <div-->
+<!--        v-for="(profile, index) in profiles" class="hidden"-->
+<!--    >-->
+<!--      <div-->
+<!--          :style="`background-color: ${profile.background}; color: ${profile.text}`"-->
+<!--          class="w-full aspect-square grid content-center">-->
+<!--        <NuxtLink :to="`/profiel/${profile.npub}`" class="border-3 rounded-sm mx-auto transform hover:-translate-y-0.5 transition-all duration-200" :style="`color: ${profile.primary} !important`">-->
+<!--          <NostrComponentsProfilePicture :pubkey="profile.pubkey" />-->
+<!--        </NuxtLink>-->
+<!--        <NuxtLink :to="`/profiel/${profile.npub}`" class="text-sm mx-auto" :style="`color: ${profile.primary} !important`">-->
+<!--          <NostrComponentsPubkeyToName :pubkey="profile.pubkey" />-->
+<!--        </NuxtLink>-->
+<!--      </div>-->
+<!--    </div>-->
   </div>
 </template>
 

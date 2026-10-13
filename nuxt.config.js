@@ -90,6 +90,10 @@ export default defineNuxtConfig({
       tijdlijn: {
         nl: '/tijdlijn',
         en: '/timeline'
+      },
+      'profielen-uit-de-nostrverse-en-fediverse' : {
+        nl: '/profielen-uit-de-nostrverse-en-fediverse',
+        en: '/profiles-from-the-nostrverse-and-fediverse'
       }
     }
   },

@@ -1,6 +1,4 @@
 <script setup>
-import LanguageSelect from './LanguageSelect.vue';
-
 const localePath = useLocalePath()
 
 const props = defineProps({

@@ -26,9 +26,7 @@ onMounted(async () => {
         filter
       ])
 
-      setInterval(() => {
-        ws.send(countMessage)
-      }, 1000)
+      ws.send(countMessage)
 
       ws.onmessage = (event) => {
         try {
@@ -70,14 +68,17 @@ useSeoMeta({
     </p>
 
     <p class="bg-orange-100/50 border border-orange-100 max-w-2xl mx-auto text-xs leading-relaxed mb-12 p-2 flex flex-col md:flex-row">
-      <span class="w-1/4 font-bold">08-09-2026</span>
+      <span class="w-1/4 font-bold">13-10-2026</span>
       <span>
-        Fase 2 van de migratie wordt nu uitgevoerd waar voor elke keypair een profiel (9+ miljoen stuks) wordt aangemaakt.
+        Fase 2 van de migratie is afgerond. Er ontbreken nog zo'n 1,25 miljoen namen. <br /> Zodra deze zijn verwerkt, zal de migratie verder gaan met het terugzetten van profielfoto's en andere elementen van elk profiel.
         <br />
         Lees de laatste updates op de <NuxtLink :to="localePath('nieuws')">nieuwspagina</NuxtLink>.
       </span>
     </p>
 
+    <div class="max-w-lg mx-auto text-sm text-gray-500 mb-1">
+      De zoekfunctie werkt nog niet optimaal. Probeer andere zoektermen voor een verschillende resultaten.
+    </div>
     <!-- Zoek Component -->
     <Search
       :show-results-list="true"
