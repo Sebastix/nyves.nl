@@ -3,7 +3,7 @@ import { nip19 } from 'nostr-tools';
 import LoadingSpinner from '../../../components/LoadingSpinner.vue';
 
 const route = useRoute()
-const { fetchProfile } = useNostrProfile()
+const { fetchProfile, fetchProfiles, getCachedName, getCachedProfile } = useNostrProfile()
 const { queryRelays } = useSharedRelayPool()
 
 // Get npub/id from route params - in [id] folder structure, the param is named 'id'
@@ -149,6 +149,122 @@ const loadProfileAndFriends = async (pubkey) => {
   }
 }
 
+// ---------------------------------------------------------------------------
+// Search friends by name (input field 'search-friend')
+// ---------------------------------------------------------------------------
+
+// Minimum number of characters before the search starts matching
+const MIN_SEARCH_LENGTH = 3
+
+// Raw value of the search input
+const searchQuery = ref('')
+
+// Normalize a value so searching is case- and accent-insensitive
+// (e.g. 'Sébastian' matches 'sebastian')
+const normalizeValue = (value) => {
+  if (value === null || value === undefined) return ''
+  return String(value)
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .trim()
+}
+
+// Normalized search term
+const searchTerm = computed(() => normalizeValue(searchQuery.value))
+
+// The search only starts matching when the query is at least 3 characters long
+const isSearchActive = computed(() => searchTerm.value.length >= MIN_SEARCH_LENGTH)
+
+// Name of a contact: from the loaded profile, or from the shared profile cache
+// (the cache is filled by the ProfilePicture / PubkeyToName child components)
+const contactName = (contact) => {
+  const profile = contact?.profile
+  return profile?.name
+      || profile?.display_name
+      || profile?.displayName
+      || getCachedName(contact?.pubkey)
+      || ''
+}
+
+// All values of a contact that can be matched by the search query
+const searchableValues = (contact) => [
+  contactName(contact),
+  contact?.profile?.display_name,
+  contact?.profile?.nip05,
+  contact?.petname,
+  contact?.npub,
+  contact?.pubkey
+]
+
+// Check whether a single contact matches the current search query
+const matchesSearch = (contact) => {
+  if (!isSearchActive.value) return true
+  return searchableValues(contact).some(value => normalizeValue(value).includes(searchTerm.value))
+}
+
+// Friends with a loaded profile (the grid)
+const filteredVrienden = computed(() => {
+  if (!isSearchActive.value) return vrienden.value
+  return vrienden.value.filter(matchesSearch)
+})
+
+// Contacts without a loaded profile (the 'Pubkeys' section)
+const otherContacts = computed(() => rawContactData.value.slice(vrienden.value.length))
+
+const filteredOtherContacts = computed(() => {
+  if (!isSearchActive.value) return otherContacts.value
+  return otherContacts.value.filter(matchesSearch)
+})
+
+// Total number of matches for the current search query
+const searchResultCount = computed(() => filteredVrienden.value.length + filteredOtherContacts.value.length)
+
+// Whether the current search query has any match at all
+const hasSearchResults = computed(() => searchResultCount.value > 0)
+
+// Clear the search field and show all friends again
+const clearSearch = () => {
+  searchQuery.value = ''
+}
+
+// ---------------------------------------------------------------------------
+// Names of the contacts in the 'Pubkeys' section are normally fetched by the
+// PubkeyToName component. When the search starts, the missing names are
+// fetched in one batch (one filter for all pubkeys) so those contacts can be
+// matched by name as well. The results of the batch are stored in the shared
+// profile cache, which makes the filter update automatically.
+// ---------------------------------------------------------------------------
+const loadingSearchNames = ref(false)
+const searchNamesLoaded = ref(false)
+
+const loadNamesForOtherContacts = async () => {
+  if (searchNamesLoaded.value || loadingSearchNames.value) return
+
+  const missingNames = otherContacts.value.filter(contact => !getCachedProfile(contact.pubkey) && contact.npub)
+  if (missingNames.length === 0) {
+    searchNamesLoaded.value = true
+    return
+  }
+
+  loadingSearchNames.value = true
+  try {
+    await fetchProfiles(missingNames.map(contact => contact.npub))
+  } catch (e) {
+    console.error('❌ Error loading names for search:', e)
+  } finally {
+    loadingSearchNames.value = false
+    searchNamesLoaded.value = true
+  }
+}
+
+// Fetch the missing names as soon as a search query is active
+watch(isSearchActive, (active) => {
+  if (active) {
+    loadNamesForOtherContacts()
+  }
+})
+
 // Enhanced route validation 
 definePageMeta({
   validate(route) {
@@ -197,7 +313,12 @@ onMounted(async () => {
 
 })
 
-watch(() => route.params.id, loadProfileAndFriends)
+watch(() => route.params.id, (id) => {
+  // Reset the search (and its loaded names) when another profile is opened
+  clearSearch()
+  searchNamesLoaded.value = false
+  loadProfileAndFriends(id)
+})
 
 // Default SEO
 useSeoMeta({
@@ -256,18 +377,38 @@ useSeoMeta({
           <!-- Loaded Profiles -->
           <div v-if="vrienden.length > 0" class="border border-gray-200 bg-[#fcfcfc] rounded-sm">
             <h2 class="nyves-bg-gray-header font-bold text-nyves-blue mb-0 p-2">
-              Vrienden ({{ rawContactData.length }})
+              Vrienden ({{ isSearchActive ? `${searchResultCount} / ${rawContactData.length}` : rawContactData.length }})
             </h2>
 
-            <form class="px-2 mb-4">
+            <form class="px-2 mb-4" @submit.prevent>
               <label>
-                <input type="text" name="search-friend" class="p-1 bg-white rounded-sm border border-gray-500 text-sm min-w-96" placeholder="Tik (de eerste letter van) de naam in:" />
+                <input
+                    v-model="searchQuery"
+                    type="search"
+                    name="search-friend"
+                    class="p-1 bg-white rounded-sm border border-gray-500 text-sm min-w-96"
+                    placeholder="Tik (de eerste letter van) de naam in:"
+                    autocomplete="off"
+                    @keydown.esc="clearSearch"
+                />
               </label>
+              <!-- Search feedback -->
+              <p v-if="searchQuery.trim().length > 0 && !isSearchActive" class="text-xs text-gray-500 mt-1">
+                Typ minstens {{ MIN_SEARCH_LENGTH }} letters om te zoeken...
+              </p>
+              <p v-else-if="isSearchActive" class="text-xs text-gray-600 mt-1">
+                {{ searchResultCount }} van {{ rawContactData.length }} vrienden gevonden voor "{{ searchQuery.trim() }}"
+                <button type="button" class="ml-1 underline cursor-pointer" @click="clearSearch">wis zoekopdracht</button>
+                <span v-if="loadingSearchNames" class="ml-1 text-gray-500">· namen van de overige contacten worden geladen...</span>
+              </p>
             </form>
 
-            <div class="grid grid-cols-3 md:grid-cols-5 gap-1 mb-4 border-b border-b-gray-200 pb-2">
+            <div
+                v-if="filteredVrienden.length > 0"
+                class="grid grid-cols-3 md:grid-cols-5 gap-1 mb-4 border-b border-b-gray-200 pb-2"
+            >
               <div
-                  v-for="vriend in vrienden"
+                  v-for="vriend in filteredVrienden"
                   :key="vriend.npub"
                   class="text-center"
               >
@@ -278,16 +419,28 @@ useSeoMeta({
               </div>
             </div>
 
-            <template v-if="rawContactData.length > vrienden.length">
+            <!-- No results for the current search query -->
+            <div v-if="isSearchActive && !hasSearchResults && !loadingSearchNames" class="text-center py-8 px-2 text-gray-600">
+              <p class="font-medium text-gray-900">
+                Geen vrienden gevonden voor "{{ searchQuery.trim() }}"
+              </p>
+              <p class="text-sm mt-1">
+                <button type="button" class="underline cursor-pointer" @click="clearSearch">Wis de zoekopdracht</button>
+                om alle vrienden weer te tonen.
+              </p>
+            </div>
+
+            <template v-if="otherContacts.length > 0">
               <h3 class="text-lg font-semibold text-nyves-blue mb-2 p-2">
-                Pubkeys ({{ rawContactData.length - vrienden.length }})
+                Pubkeys ({{ filteredOtherContacts.length }})
               </h3>
               <p class="text-center text-sm text-gray-600 bg-yellow-100 p-2 mb-3">
                 💡 Profielen voor onderstaande contacten worden (nog) niet automatisch geladen om performance redenen.
+                Zodra je zoekt, worden de namen alsnog opgehaald zodat je ook in deze lijst op naam kunt zoeken.
               </p>
               <div class="grid grid-cols-1 md:grid-cols-5 gap-2 p-2">
                 <div
-                    v-for="contact in rawContactData.slice(vrienden.length)"
+                    v-for="contact in filteredOtherContacts"
                     :key="contact.npub"
                     class="flex items-center justify-between p-2 bg-white rounded border text-sm"
                 >

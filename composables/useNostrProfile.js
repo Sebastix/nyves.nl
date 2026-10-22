@@ -1,3 +1,4 @@
+import { reactive } from 'vue'
 import * as nip19 from 'nostr-tools/nip19'
 
 // Default 'indexer' relays to use for fetching profile data
@@ -13,6 +14,45 @@ const DEFAULT_RELAYS = [
   'wss://relay.vertexlab.io',
   'wss://user.kindpag.es'
 ]
+
+// Reactive in-memory cache of resolved profiles, keyed by hex pubkey.
+// Shared between components so a name that is fetched inside a child component
+// (ProfilePicture, PubkeyToName) can be reused by a parent component to filter
+// or search rendered elements without fetching the profile again.
+const profileCache = reactive({})
+
+/**
+ * Store a resolved profile in the shared cache
+ * @param {Object|null} profile - Profile metadata (must contain a pubkey)
+ * @returns {Object|null} The same profile, for easy chaining
+ */
+const cacheProfile = (profile) => {
+  if (profile && profile.pubkey) {
+    profileCache[profile.pubkey] = profile
+  }
+  return profile
+}
+
+/**
+ * Get a cached profile for a hex pubkey
+ * @param {string} pubkey - Hex formatted public key
+ * @returns {Object|null} Cached profile data or null when unknown
+ */
+const getCachedProfile = (pubkey) => {
+  if (!pubkey) return null
+  return profileCache[pubkey] || null
+}
+
+/**
+ * Get the (display) name of a cached profile
+ * @param {string} pubkey - Hex formatted public key
+ * @returns {string} Name, display_name or an empty string when unknown
+ */
+const getCachedName = (pubkey) => {
+  const cached = getCachedProfile(pubkey)
+  if (!cached) return ''
+  return cached.name || cached.display_name || cached.displayName || ''
+}
 
 export const useNostrProfile = () => {
   const { pool, queryRelays } = useSharedRelayPool()
@@ -34,6 +74,13 @@ export const useNostrProfile = () => {
         }
         pubkey = decoded.data
       }
+
+      // Return the cached profile when available, to avoid duplicate relay queries
+      const cachedProfile = getCachedProfile(pubkey)
+      if (cachedProfile) {
+        return cachedProfile
+      }
+
       // Create filter for kind 0 (metadata) events
       const filter = {
         kinds: [0],
@@ -53,13 +100,13 @@ export const useNostrProfile = () => {
       const event = events[0]
       try {
         const metadata = JSON.parse(event.content)
-        return {
+        return cacheProfile({
           ...metadata,
           pubkey,
           npub,
           created_at: event.created_at,
           tags: event.tags
-        }
+        })
       } catch (parseError) {
         console.error('Failed to parse profile metadata JSON:', parseError)
         return null
@@ -126,13 +173,13 @@ export const useNostrProfile = () => {
         try {
           const metadata = JSON.parse(event.content)
           const npub = npubToHex[event.pubkey]
-          profiles[npub] = {
+          profiles[npub] = cacheProfile({
             ...metadata,
             pubkey: event.pubkey,
             npub,
             created_at: event.created_at,
             tags: event.tags
-          }
+          })
         } catch (parseError) {
           console.error('Failed to parse profile metadata JSON for pubkey:', event.pubkey, parseError)
         }
@@ -154,6 +201,12 @@ export const useNostrProfile = () => {
    */
   const fetchProfileByPubkey = async (pubkey, relays = DEFAULT_RELAYS) => {
     try {
+      // Return the cached profile when available, to avoid duplicate relay queries
+      const cachedProfile = getCachedProfile(pubkey)
+      if (cachedProfile) {
+        return cachedProfile
+      }
+
       // Create filter for kind 0 (metadata) events
       const filter = {
         kinds: [0],
@@ -176,13 +229,13 @@ export const useNostrProfile = () => {
         // Convert pubkey to npub for completeness
         const npub = nip19.npubEncode(pubkey)
         
-        return {
+        return cacheProfile({
           ...metadata,
           pubkey,
           npub,
           created_at: event.created_at,
           tags: event.tags
-        }
+        })
       } catch (parseError) {
         console.error('Failed to parse profile metadata JSON:', parseError)
         return null
@@ -205,6 +258,8 @@ export const useNostrProfile = () => {
     fetchProfile,
     fetchProfiles,
     fetchProfileByPubkey,
+    getCachedProfile,
+    getCachedName,
     close
   }
 }
