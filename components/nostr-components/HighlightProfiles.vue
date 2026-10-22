@@ -53,6 +53,7 @@ onMounted(async () => {
 })
 
 onUnmounted(() => {
+  // Close relay connections
 
 })
 </script>

@@ -4,8 +4,8 @@ import { nip19 } from 'nostr-tools'
 const route = useRoute()
 const { fetchProfile } = useNostrProfile()
 
-// Get npub/id from route params - in [id] folder structure, the param is named 'id'
 const npub = route.params.id
+const loading = ref(true)
 const profile = ref(null)
 
 onMounted(async () => {
@@ -22,25 +22,46 @@ onMounted(async () => {
         pubkey: pubkey
       }
     }
-    // Load events of NIP-68 and NIP-71
+    loading.value = false
+    useSeoMeta({
+      title: `Meer over ${profile.value.display_name || profile.value.name || 'Meer'} - Nyves`,
+      description: `Meer over pagina van het profiel van ${profile.value.display_name || profile.value.name} op Nyves`
+    })
   } catch (e) {
     console.error(e)
   }
+})
+
+onUnmounted(() => {
+
+})
+
+// Default SEO
+useSeoMeta({
+  title: 'Meer - Nyves',
+  description: 'Meer profiel pagina'
 })
 </script>
 
 <template>
   <div class="mt-3">
-    <div class="mb-6" v-if="profile">
-      <NuxtLink
-          :to="`/profiel/${npub}`"
-          class="hover:text-nyves-blue"
-      >
-        {{ profile.name || profile.display_name || '...' }}
-      </NuxtLink>
-      <h1 class="text-3xl font-bold text-gray-900 mb-2">
-        Meer over {{ profile.name || profile.display_name || '...' }}
-      </h1>
+    <!-- Loading State -->
+    <div v-if="loading" class="flex justify-center items-center min-h-64">
+      <div class="text-center">
+        <LoadingSpinner class="size-12 mx-auto mb-12" />
+        <p class="text-gray-600">Een moment geduld...</p>
+      </div>
+    </div>
+    <div v-if="profile">
+      <ProfielProfileHeader :profile="profile" />
+      <section class="border border-gray-200 bg-[#fcfcfc] rounded-sm">
+        <h2 class="nyves-bg-gray-header font-bold text-nyves-blue mb-0 p-2">
+          Meer pagina van {{ profile.name || profile.display_name || '...' }}
+        </h2>
+        <p class="px-2 mb-2">
+          Dit onderdeel is nog in ontwikkeling.
+        </p>
+      </section>
     </div>
   </div>
 </template>

@@ -74,6 +74,7 @@ const filters = ref({
         'npub1x2nsd57m43rt663drdxgnzlfsmmu6p5j7z0xzec2tpxwyvy79sts35u4eh', // Patrick Breyer
         'npub1tp3f6k0p9534lt37pv6yyr2ygyt30d2smcgmyhfnzsj09ahsvnysyze8qg', // Richard Stallman
         'npub1mf3yh9hywzgagz3xajrg6sn82yffykhlj7wcwypy75uzfee5r3cqfyeu5h', // JA Westenberg
+        'npub142mc6xqsc5js0jp93cydkm4650gn59d9lrkcvf3tuc7shkqpvpnq38mdjn', // Brew
         'npub10eflqqcuywqatyv2f7wqudndkcg44xn29mp7wysxjmqlk63cq8gqy9sljp', // Marleen Stikker
         'npub16kgy8wk54sehmdz29axvlylck320cq3fxj5cpxm8lp053czpeuks289fan', // Angry Nerds podcast
         'npub1yerpqzt2ht9ckwfnx4dr264reymvs2tq6rngusmyfhk8yp9xcd6sqq9vxk', // NRC
@@ -106,6 +107,15 @@ const filters = ref({
   }
 })
 const { t } = useI18n()
+
+onMounted(async () => {
+
+})
+
+onUnmounted(async () => {
+
+})
+
 useSeoMeta({
   title: () => t('ontdek_profielen.seo_title'),
   description: () => t('ontdek_profielen.seo_description')

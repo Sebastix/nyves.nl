@@ -16,37 +16,28 @@ export default defineNuxtRouteMiddleware((to, from) => {
   }
 
   const profileId = pathSegments[1]
-  const subPath = pathSegments[2] // Could be 'vrienden' or undefined
+  const subPath = pathSegments[2]
 
-  console.log('Profile routing middleware:', { 
-    path: to.path, 
-    profileId, 
-    subPath,
-    pathSegments 
-  })
 
   // Handle vrienden subpath
-  if (subPath === 'vrienden') {
-    console.log('Routing to vrienden page for:', profileId)
-    
-    // Validate that profileId looks like npub
-    if (profileId.startsWith('npub1')) {
-      // Let the pages/profiel/[id]/vrienden.vue handle this - no redirect needed
-      return
-    } else {
-      // Invalid npub format for vrienden page
-      console.log('Invalid npub format for vrienden:', profileId)
-      throw createError({
-        statusCode: 404,
-        statusMessage: 'Invalid profile ID format voor vrienden pagina'
-      })
-    }
-  }
+  // if (subPath === 'vrienden') {
+  //   // Validate that profileId looks like npub
+  //   if (profileId.startsWith('npub1')) {
+  //     // Let the pages/profiel/[id]/vrienden.vue handle this - no redirect needed
+  //     return
+  //   } else {
+  //     // Invalid npub format for vrienden page
+  //     console.log('Invalid npub format for vrienden:', profileId)
+  //     throw createError({
+  //       statusCode: 404,
+  //       statusMessage: 'Invalid profile ID format voor vrienden pagina'
+  //     })
+  //   }
+  // }
 
   // Handle main profile routes (no subpath)
   if (!subPath) {
-    console.log('Main profile route for:', profileId)
-    
+
     // Check if this looks like a username#pubkey format
     if (profileId.includes('#') || to.hash !== '') {
       console.log('username#pubkey format for migrated Hyves profile detected:', profileId, 'with pubkey', to.hash)
@@ -56,7 +47,7 @@ export default defineNuxtRouteMiddleware((to, from) => {
     
     // Check if this is an npub
     if (profileId.startsWith('npub1')) {
-      console.log('NPub format detected:', profileId)
+      console.log('npub1 format detected:', profileId)
       // pages/profiel/[id]/index.vue handle this
       return
     }
@@ -83,7 +74,4 @@ export default defineNuxtRouteMiddleware((to, from) => {
     })
   }
 
-  // Handle other subpaths (future routes like /profiel/npub.../posts, etc.)
-  //console.log('Unknown subpath for profile:', subPath)
-  //return
 })

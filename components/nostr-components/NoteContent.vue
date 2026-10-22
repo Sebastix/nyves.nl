@@ -35,6 +35,7 @@ const buildMatcher = () => new RegExp([
   `(?<video>https?:\\/\\/${URL_BODY}${VIDEO_EXT})`,
   `(?<image>https?:\\/\\/${URL_BODY}${IMAGE_EXT})`,
   `(?<npub>nostr:npub1[${NPUB_CHARS}]+)`,
+  `(?<npub>npub1[${NPUB_CHARS}]+)`,
   `(?<nprofile>nostr:nprofile1[${NPUB_CHARS}]+)`,
   `(?<url>https?:\\/\\/${URL_BODY})`,
   `(?<emoji>:[a-zA-Z0-9_+-]+:)`,
@@ -121,7 +122,7 @@ const trimTrailingPunctuation = (match) => {
       <video v-else-if="part.type === 'video'" controls>
         <source :src="part.src" />
       </video>
-      <img v-else-if="part.type === 'emoji'" :src="part.src" :alt="part.alt" class="inline-block size-5" />
+      <img v-else-if="part.type === 'emoji'" :src="part.src" :alt="part.alt" class="inline-block size-5!" />
       <NuxtLink v-else-if="part.type === 'npub'" :to="`/profiel/${part.npub}`">
         <NostrComponentsPubkeyToName :pubkey="part.pubkey" />
       </NuxtLink>

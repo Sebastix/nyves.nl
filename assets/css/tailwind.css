@@ -12,6 +12,14 @@ a {
   &:hover {
     @apply text-nyves-blue-secundary underline;
   }
+  &.router-link-active {
+    @apply font-bold;
+  }
+}
+.profileHeader {
+  a.router-link-active {
+    @apply text-black;
+  }
 }
 section.categorie {
   @apply leading-relaxed max-w-2xl mx-auto;
@@ -66,5 +74,13 @@ details {
 .blogArticle {
   h2 {
     @apply text-xl font-bold my-2;
+  }
+}
+
+.www {
+  .content {
+    img, video {
+      @apply md:w-1/2;
+    }
   }
 }

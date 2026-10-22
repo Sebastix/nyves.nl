@@ -225,10 +225,12 @@ console.log('[id]/index.vue loaded:', {
       <div class="grid grid-cols-1 md:grid-cols-2 profileHeader">
         <h1 class="col-span-2 text-3xl font-bold mb-1">{{ profile.name }} <a :href="profile.urlWaybackMachine" target="_blank" class="text-xs" v-if="profile.urlWaybackMachine">{{ profile.urlWaybackMachine }}</a></h1>
         <div class="mb-2">
-          <NuxtLink :to="`/profiel/${profile.npub}/over`" class="mr-4 text-xs font-bold">Over</NuxtLink>
-          <NuxtLink :to="`/profiel/${profile.npub}/vrienden`" class="mr-4 text-xs">Vrienden</NuxtLink>
-          <NuxtLink :to="`/profiel/${profile.npub}/media`" class="mr-4 text-xs">Foto's</NuxtLink>
-          <NuxtLink :to="`/profiel/${profile.npub}/meer`" class="text-xs">Meer</NuxtLink>
+          <RouterLink :to="`/profiel/${profile.npub}/over`" class="mr-4 text-xs font-bold">Over</RouterLink>
+          <RouterLink :to="`/profiel/${profile.npub}/vrienden`" class="mr-4 text-xs">Vrienden</RouterLink>
+          <RouterLink :to="`/profiel/${profile.npub}/wiewatwaar`" class="mr-4 text-xs">WWW</RouterLink>
+          <RouterLink :to="`/profiel/${profile.npub}/media`" class="mr-4 text-xs">Foto's</RouterLink>
+          <RouterLink :to="`/profiel/${profile.npub}/blog`" class="mr-4 text-xs">Blog</RouterLink>
+          <RouterLink :to="`/profiel/${profile.npub}/meer`" class="text-xs">Meer</RouterLink>
         </div>
         <button
             @click="toggleCustomDesign"
@@ -264,9 +266,7 @@ console.log('[id]/index.vue loaded:', {
       <div class="flex flex-col md:flex-row gap-2 mt-3">
         <!-- Bottom Left -->
         <div class="basis-1/2">
-
           <ProfielMedia :profile="profile" :nyvesProfile="nyvesProfile" />
-
           <!-- Krabbels Section -->
           <div class="border border-gray-200 bg-[#fcfcfc] rounded-sm">
             <h3 class="nyves-bg-gray-header p-2 text-nyves-blue font-bold">Krabbels</h3>
@@ -294,18 +294,20 @@ console.log('[id]/index.vue loaded:', {
 
           <!-- WWW section -->
           <div class="border border-gray-200 bg-[#fcfcfc] rounded-sm mb-3">
-            <h3 class="nyves-bg-gray-header p-2 text-nyves-blue font-bold">WieWatWaar</h3>
-            <p class="p-2 text-sm">
-              Geen items gevonden
-            </p>
+            <h3 class="nyves-bg-gray-header p-2 text-nyves-blue font-bold">
+              <NuxtLink :to="`${profile.npub}/wiewatwaar`">WieWatWaar</NuxtLink>
+            </h3>
+            <ProfielWieWatWaars :profile="profile" :filters="{'limit': 20, 'cols': 1}" />
             <div class="my-1">
-              <NuxtLink :to="`${profile.npub}/wie-wat-waar`" class="text-xs mx-2">› Meer</NuxtLink>
+              <NuxtLink :to="`${profile.npub}/wiewatwaar`" class="text-xs mx-2">› Meer</NuxtLink>
             </div>
           </div>
 
           <!-- Blogs section -->
           <div class="border border-gray-200 bg-[#fcfcfc] rounded-sm mb-3">
-            <h3 class="nyves-bg-gray-header p-2 text-nyves-blue font-bold">Blog</h3>
+            <h3 class="nyves-bg-gray-header p-2 text-nyves-blue font-bold">
+              <NuxtLink :to="`${profile.npub}/blog`">Blog</NuxtLink>
+            </h3>
             <ProfielBlog :profile="profile" />
             <div class="my-1">
               <NuxtLink :to="`${profile.npub}/blog`" class="text-xs mx-2">› Meer</NuxtLink>

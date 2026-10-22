@@ -56,7 +56,6 @@ const loadNews = async () => {
     })
     
     newsData.value = filteredEvents
-    // Construct Nevents for encoding a nevent... identifier
 
     loading.value = false
   } catch (e) {
