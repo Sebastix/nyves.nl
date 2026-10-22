@@ -18,9 +18,21 @@ export const useCustomDesign = () => {
    * Specs: https://about.ditto.pub/reference#ditto-profile-theme
    * @param {string} pubkey - The hex pubkey to fetch design for
    * @param {string} relay - The relay URL to fetch from
-   * @returns {Promise<void>}
+   * @param {Object} [options] - Optional settings
+   * @param {AbortSignal} [options.signal] - Cancels the lookup, e.g. when the
+   *   component that asked for it is unmounted (navigating away). Without it the
+   *   relay query keeps running until it receives EOSE or times out.
+   * @returns {Promise<Object|null>} The theme settings, or null when there is no
+   *   custom design or when the lookup was cancelled
    */
-  const fetchCustomDesign = async (pubkey, relay = 'wss://relay.ditto.pub') => {
+  const fetchCustomDesign = async (pubkey, relay = 'wss://relay.ditto.pub', options = {}) => {
+    const { signal } = options
+
+    // Never open a subscription when the caller already cancelled the lookup
+    if (signal?.aborted) {
+      return null
+    }
+
     try {
       designData.value.loading = true
       designData.value.error = null
@@ -34,8 +46,15 @@ export const useCustomDesign = () => {
         limit: 1
       }
 
-      // Fetch the event from the specified relay using tracked query method
-      const events = await queryRelays([relay], filter)
+      // Fetch the event from the specified relay using tracked query method.
+      // The abort signal is forwarded to the pool: aborting closes the running
+      // subscription instead of waiting for EOSE or its timeout.
+      const events = await queryRelays([relay], filter, signal ? { abort: signal } : {})
+
+      // Cancelled while querying: leave the reactive state untouched
+      if (signal?.aborted) {
+        return null
+      }
 
       if (events.length > 0) {
         const designEvent = events[0]
@@ -56,14 +75,26 @@ export const useCustomDesign = () => {
       } else {
         console.log('No custom design event found for', pubkey)
         designData.value.custom_design = false
+        return null
       }
 
+      return designData.value.themeSettings
+
     } catch (error) {
+      // An aborted query is not an error: the caller simply navigated away
+      if (signal?.aborted) {
+        return null
+      }
+
       console.error('Failed to fetch custom design:', error)
       designData.value.error = error.message
       designData.value.custom_design = false
+      return null
     } finally {
-      designData.value.loading = false
+      // Don't touch the reactive state of a cancelled (unmounted) caller
+      if (!signal?.aborted) {
+        designData.value.loading = false
+      }
     }
   }
 

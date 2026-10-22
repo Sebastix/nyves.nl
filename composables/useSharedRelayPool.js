@@ -44,6 +44,90 @@ export const useSharedRelayPool = () => {
   }
 
   /**
+   * All url variants a relay connection can be stored under in the pool.
+   * Different nostr-tools versions (and different relay urls) keep or strip the
+   * trailing slash, so both variants are checked.
+   * @param {string} url - Relay url
+   * @returns {string[]} Url variants (without duplicates)
+   */
+  const relayUrlVariants = (url) => {
+    if (!url) return []
+
+    const variants = new Set()
+    const add = (value) => {
+      variants.add(value)
+      variants.add(value.replace(/\/+$/, ''))
+      variants.add(value.replace(/\/+$/, '') + '/')
+    }
+
+    add(url)
+    try {
+      const parsed = new URL(url.includes('://') ? url : `wss://${url}`)
+      if (parsed.protocol === 'http:') parsed.protocol = 'ws:'
+      if (parsed.protocol === 'https:') parsed.protocol = 'wss:'
+      add(parsed.toString())
+    } catch (e) {
+      // url is not parseable, the raw variants above are enough
+    }
+
+    return [...variants]
+  }
+
+  /**
+   * Get the relay connection object of the shared pool for a relay url.
+   * Recent nostr-tools versions store the relays in a Map, older ones in a
+   * plain object, both are supported here.
+   * @param {string} relayUrl - Relay url
+   * @returns {Object|null} The relay connection or null when not connected
+   */
+  const getPoolRelay = (relayUrl) => {
+    const relays = sharedPoolInstance?.relays
+    if (!relays || !relayUrl) return null
+
+    const isMap = typeof relays.get === 'function'
+    for (const variant of relayUrlVariants(relayUrl)) {
+      const relay = isMap ? relays.get(variant) : relays[variant]
+      if (relay) return relay
+    }
+    return null
+  }
+
+  /**
+   * Remove a relay connection from the shared pool so it will be reconnected
+   * on the next query.
+   * @param {string} relayUrl - Relay url
+   */
+  const removePoolRelay = (relayUrl) => {
+    const relays = sharedPoolInstance?.relays
+    if (!relays || !relayUrl) return
+
+    const isMap = typeof relays.delete === 'function'
+    relayUrlVariants(relayUrl).forEach((variant) => {
+      if (isMap) {
+        relays.delete(variant)
+      } else {
+        delete relays[variant]
+      }
+    })
+  }
+
+  /**
+   * Wait for a given time, but stop waiting as soon as the signal is aborted
+   * @param {number} ms - Milliseconds to wait
+   * @param {AbortSignal} [signal] - Optional abort signal
+   * @returns {Promise<void>}
+   */
+  const waitFor = (ms, signal) => new Promise((resolve) => {
+    if (signal?.aborted) return resolve()
+
+    const handle = setTimeout(resolve, ms)
+    signal?.addEventListener('abort', () => {
+      clearTimeout(handle)
+      resolve()
+    }, { once: true })
+  })
+
+  /**
    * Check WebSocket connection status for a relay
    * @param {string} relayUrl - Relay URL to check
    * @returns {string} Connection status: 'open', 'connecting', 'closing', 'closed'
@@ -53,7 +137,7 @@ export const useSharedRelayPool = () => {
       return 'closed'
     }
 
-    const relay = sharedPoolInstance.relays[relayUrl]
+    const relay = getPoolRelay(relayUrl)
     if (!relay || !relay.ws) {
       return 'closed'
     }
@@ -73,9 +157,10 @@ export const useSharedRelayPool = () => {
   /**
    * Ensure relay connections are open before querying
    * @param {string[]} relays - Array of relay URLs
+   * @param {Object} [params] - Optional query params, an abort signal stops waiting early
    * @returns {Promise<void>} Promise that resolves when connections are ready
    */
-  const ensureRelayConnections = async (relays) => {
+  const ensureRelayConnections = async (relays, params = {}) => {
     if (!sharedPoolInstance) {
       throw new Error('Shared pool not available')
     }
@@ -90,16 +175,14 @@ export const useSharedRelayPool = () => {
         //console.log(`🔄 Reconnecting to ${normalizedUrl}...`)
         
         // Force cleanup of closed connection
-        if (sharedPoolInstance.relays[normalizedUrl]) {
-          delete sharedPoolInstance.relays[normalizedUrl]
-        }
-        
-        // Wait a bit for connection to establish
-        await new Promise(resolve => setTimeout(resolve, 800))
+        removePoolRelay(normalizedUrl)
+
+        // Wait a bit for connection to establish (stops early when aborted)
+        await waitFor(800, params?.abort)
       } else if (status === 'connecting') {
-        // Wait for connection to open
+        // Wait for connection to open (stops early when aborted)
         console.log(`⏳ Waiting for ${normalizedUrl} to connect...`)
-        await new Promise(resolve => setTimeout(resolve, 2500))
+        await waitFor(2500, params?.abort)
       }
     })
 
@@ -110,9 +193,11 @@ export const useSharedRelayPool = () => {
    * Enhanced pool query that tracks relay URLs and manages connections
    * @param {string[]} relays - Array of relay URLs
    * @param {Object} filter - Nostr filter object
+   * @param {Object} [params] - Optional query params forwarded to the pool, e.g.
+   *   `{ abort: signal }` to cancel an in-flight query when a component unmounts
    * @returns {Promise} Query promise
    */
-  const queryRelays = async (relays, filter) => {
+  const queryRelays = async (relays, filter, params = {}) => {
     if (!sharedPoolInstance) {
       throw new Error('Shared pool not available')
     }
@@ -125,20 +210,31 @@ export const useSharedRelayPool = () => {
     })
 
     //console.log(`📡 Querying ${normalizedRelays.length} relays, total tracked: ${trackedRelays.size}`)
-    
+
+    // Already cancelled by the caller: don't open a relay subscription at all
+    if (params?.abort?.aborted) {
+      return []
+    }
+
     // Ensure all relay connections are open before querying
-    await ensureRelayConnections(normalizedRelays)
-    
-    return sharedPoolInstance.querySync(normalizedRelays, filter)
+    await ensureRelayConnections(normalizedRelays, params)
+
+    if (params?.abort?.aborted) {
+      return []
+    }
+
+    return sharedPoolInstance.querySync(normalizedRelays, filter, params)
   }
 
   /**
    * Enhanced pool subscription that tracks relay URLs and manages connections
    * @param {string[]} relays - Array of relay URLs  
    * @param {Object} filter - Nostr filter object
+   * @param {Object} [params] - Optional subscription params forwarded to the pool, e.g.
+   *   `{ abort: signal }` to cancel an in-flight subscription when a component unmounts
    * @returns {Promise<Object>} Subscription object promise
    */
-  const subscribeToRelays = async (relays, filter) => {
+  const subscribeToRelays = async (relays, filter, params = {}) => {
     if (!sharedPoolInstance) {
       throw new Error('Shared pool not available')
     }
@@ -151,11 +247,20 @@ export const useSharedRelayPool = () => {
     })
 
     //console.log(`🔔 Subscribing to ${normalizedRelays.length} relays, total tracked: ${trackedRelays.size}`)
-    
+
+    // Already cancelled by the caller: don't open a relay subscription at all
+    if (params?.abort?.aborted) {
+      return { close: () => {} }
+    }
+
     // Ensure all relay connections are open before subscribing
-    await ensureRelayConnections(normalizedRelays)
-    
-    return sharedPoolInstance.subscribeMany(normalizedRelays, [filter], {})
+    await ensureRelayConnections(normalizedRelays, params)
+
+    if (params?.abort?.aborted) {
+      return { close: () => {} }
+    }
+
+    return sharedPoolInstance.subscribeMany(normalizedRelays, [filter], params)
   }
 
   /**
