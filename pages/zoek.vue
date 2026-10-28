@@ -68,9 +68,9 @@ useSeoMeta({
     </p>
 
     <p class="bg-orange-100/50 border border-orange-100 max-w-2xl mx-auto text-xs leading-relaxed mb-12 p-2 flex flex-col md:flex-row">
-      <span class="w-1/4 font-bold">13-10-2026</span>
+      <span class="w-1/4 font-bold">26-10-2026</span>
       <span>
-        Fase 2 van de migratie is afgerond. Er ontbreken nog zo'n 1,25 miljoen namen. <br /> Zodra deze zijn verwerkt, zal de migratie verder gaan met het terugzetten van profielfoto's en andere elementen van elk profiel.
+        9+ miljoen gebruikersnamen zijn verwerkt! De migratie zal verder gaan met het terugzetten van profielfoto's en andere elementen van elk profiel.
         <br />
         Lees de laatste updates op de <NuxtLink :to="localePath('nieuws')">nieuwspagina</NuxtLink>.
       </span>
