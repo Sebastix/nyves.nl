@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted, computed } from 'vue'
 
-const { tm } = useI18n()
+const { tm, rt } = useI18n()
 
 const videoRef = ref(null)
 const currentSegment = ref(0)
@@ -16,7 +16,18 @@ const parseTimestamp = (timestamp) => {
 
 // Transcript segments (start/end times live in the locale files, the text is translated)
 // The narration itself is English, so the nl transcript is a translation of it.
-const segments = computed(() => tm('home.video.transcript') || [])
+//
+// `tm()` only gives the *structure* (the array of segments). @nuxtjs/i18n
+// precompiles locale messages at build time, so each `text` is a message AST
+// object, not a string — it has to be resolved with `rt()` before rendering,
+// otherwise the template would dump the AST as JSON. Same approach as
+// pages/tijdlijn/index.vue.
+const segments = computed(() =>
+  (tm('home.video.transcript') || []).map((segment) => ({
+    ...segment,
+    text: rt(segment.text),
+  }))
+)
 
 const updateActiveSegment = () => {
   if (!videoRef.value) return
