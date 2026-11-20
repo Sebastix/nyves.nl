@@ -1,6 +1,10 @@
 import { ref, readonly, onUnmounted } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 export const useRelayHealth = (relayUrl) => {
+  // Status texts and errors are user facing, so they follow the active locale.
+  const { t, locale } = useI18n()
+
   const healthData = ref({
     isConnected: false,
     isConnecting: false,
@@ -41,7 +45,7 @@ export const useRelayHealth = (relayUrl) => {
       // Maak nieuwe WebSocket verbinding
       await new Promise((resolve, reject) => {
         const timeout = setTimeout(() => {
-          reject(new Error('Verbinding timeout'))
+          reject(new Error(t('relayHealth.connection_timeout')))
         }, 10000)
 
         ws = new WebSocket(relayUrl)
@@ -86,7 +90,7 @@ export const useRelayHealth = (relayUrl) => {
         
         ws.onerror = (error) => {
           clearTimeout(timeout)
-          reject(new Error('WebSocket verbindingsfout'))
+          reject(new Error(t('relayHealth.websocket_error')))
         }
         
         ws.onclose = () => {
@@ -128,7 +132,7 @@ export const useRelayHealth = (relayUrl) => {
       healthData.value.responseTime = null
       healthData.value.lastChecked = new Date()
       healthData.value.status = 'error'
-      healthData.value.error = error.message || 'Verbinding gefaald'
+      healthData.value.error = error.message || t('relayHealth.connection_failed')
     }
   }
 
@@ -186,7 +190,7 @@ export const useRelayHealth = (relayUrl) => {
           ws.send(countMessage)
           
           const timeout = setTimeout(() => {
-            reject(new Error('COUNT timeout'))
+            reject(new Error(t('relayHealth.count_timeout')))
           }, 10000)
           
           ws.onmessage = (event) => {
@@ -203,7 +207,7 @@ export const useRelayHealth = (relayUrl) => {
                 resolve()
               } else if (data[0] === 'CLOSED' && data[1] === countId) {
                 clearTimeout(timeout)
-                throw new Error('COUNT niet ondersteund door relay')
+                throw new Error(t('relayHealth.count_unsupported'))
               }
             } catch (parseError) {
               // Negeer parse errors
@@ -212,7 +216,7 @@ export const useRelayHealth = (relayUrl) => {
         }
         
         ws.onerror = () => {
-          reject(new Error('WebSocket fout tijdens COUNT'))
+          reject(new Error(t('relayHealth.count_websocket_error')))
         }
       })
       
@@ -299,13 +303,13 @@ export const useRelayHealth = (relayUrl) => {
   const getStatusText = () => {
     switch (healthData.value.status) {
       case 'connected':
-        return 'Verbonden'
+        return t('relayHealth.status_connected')
       case 'connecting':
-        return 'Verbinding maken...'
+        return t('relayHealth.status_connecting')
       case 'error':
-        return 'Verbinding gefaald'
+        return t('relayHealth.status_error')
       default:
-        return 'Niet verbonden'
+        return t('relayHealth.status_disconnected')
     }
   }
 
@@ -316,13 +320,13 @@ export const useRelayHealth = (relayUrl) => {
     if (!healthData.value.responseTime) return null
     
     if (healthData.value.responseTime < 500) {
-      return `${healthData.value.responseTime}ms (uitstekend)`
+      return `${healthData.value.responseTime}ms (${t('relayHealth.speed_excellent')})`
     } else if (healthData.value.responseTime < 1000) {
-      return `${healthData.value.responseTime}ms (goed)`
+      return `${healthData.value.responseTime}ms (${t('relayHealth.speed_good')})`
     } else if (healthData.value.responseTime < 3000) {
-      return `${healthData.value.responseTime}ms (redelijk)`
+      return `${healthData.value.responseTime}ms (${t('relayHealth.speed_fair')})`
     } else {
-      return `${healthData.value.responseTime}ms (traag)`
+      return `${healthData.value.responseTime}ms (${t('relayHealth.speed_slow')})`
     }
   }
 
@@ -336,7 +340,7 @@ export const useRelayHealth = (relayUrl) => {
     if (!count && count !== 0) return null
     
     const isApproximate = healthData.value.eventCount.approximate
-    const formatted = count.toLocaleString('nl-NL')
+    const formatted = count.toLocaleString(locale.value)
     
     return isApproximate ? `~${formatted} events` : `${formatted} events`
   }

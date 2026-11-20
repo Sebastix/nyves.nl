@@ -4,7 +4,7 @@
   <section class="mb-8">
     <div class="border border-gray-200 bg-[#fcfcfc] rounded-sm overflow-hidden">
       <div class="h-[44px] nyves-bg-gray-header"></div>
-      <h2 class="text-2xl font-bold mb-8 text-center">Het publieke Hyves archief</h2>
+      <h2 class="text-2xl font-bold mb-8 text-center">{{ $t('home.archive.heading') }}</h2>
       <div class="grid md:grid-cols-2 gap-8 items-center px-8 pb-[44px]">
         <div>
           <img src="~/assets/IAE_LOGO_FULL_BLACK.webp" class="max-w-xs mx-auto" alt="Internet Archive Europe" />
@@ -12,8 +12,7 @@
         </div>
         <div>
           <p class="text-gray-600 leading-relaxed">
-            Op dit moment gebruiken we de publiek beschikbare data van Hyves profielen die door de Archive Team zijn verzameld.
-            Deze data is de bron voor alle content die we overzetten naar zogenaamde nostr events. Deze events kunnen worden vervolgens worden opgehaald vanaf verschillende relays. Dit is wat de applicatie op Nyves.nl momenteel doet.
+            {{ $t('home.archive.body') }}
           </p>
           <a href="https://wiki.archiveteam.org/index.php/Hyves" target="_blank" class="inline-flex items-center mt-2">
             https://wiki.archiveteam.org/index.php/Hyves

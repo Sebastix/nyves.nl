@@ -6,7 +6,7 @@ import { getSharedPoolStats } from '@/composables/useSharedRelayPool'
 <template>
   <div class="text-white text-sm">
     <p class="mb-2">
-      {{ getSharedPoolStats().relayUrls.length }} verbonden relays
+      {{ $t('relayHealth.connected_relays', [getSharedPoolStats().relayUrls.length]) }}
     </p>
     <ul class="pl-4">
       <li v-for="relay in getSharedPoolStats().relayUrls">{{ relay }}</li>

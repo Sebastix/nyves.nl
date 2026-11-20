@@ -2,6 +2,7 @@
 const { pool, queryRelays, closeRelays } = useSharedRelayPool()
 
 const localePath = useLocalePath()
+const { locale } = useI18n()
 
 const RELAY = 'wss://rely.nyves.nl'
 
@@ -33,7 +34,7 @@ onMounted(async () => {
           const data = JSON.parse(event.data)
           if (data[0] === 'COUNT' && data[1] === countId) {
             if (data[2]) {
-              count.value.names = data[2].count.toLocaleString('nl-NL')
+              count.value.names = data[2].count.toLocaleString(locale.value)
             }
           }
           loading.value = false

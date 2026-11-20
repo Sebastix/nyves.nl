@@ -22,33 +22,28 @@
               <svg class="size-6 mr-2" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
               </svg>
-              Pioniersproject
+              {{ $t('home.sidnfonds.badge') }}
             </div>
           </div>
 
           <!-- Content Sectie -->
           <div>
             <div class="space-y-4 text-gray-600 leading-relaxed">
-              <p>
-                <strong class="text-gray-800">Nyves</strong> is in maart 2026 geselecteerd als pioniersproject door
-                <strong class="text-gray-800">SIDNfonds</strong>, de Nederlandse organisatie die innovatieve 
-                internetprojecten ondersteunt die bijdragen aan een sterker internet.
-                <br />
-                Hiervoor ontvangt het project een subsidie van € 10.000. Met deze financiële steun kan het idee van Nyves uitgewerkt worden tot een proof-of-concept applicatie.
-              </p>
+              <p>{{ $t('home.sidnfonds.body') }}</p>
+              <p>{{ $t('home.sidnfonds.grant') }}</p>
             </div>
 
             <!-- Link naar SIDNfonds -->
             <div class="mt-8">
               <a href="https://www.sidnfonds.nl/projecten/nyves" target="_blank" class="inline-flex items-center">
-                Projectpagina
+                {{ $t('home.sidnfonds.project_page') }}
                 <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                 </svg>
               </a>
               |
               <a href="https://www.sidnfonds.nl" target="_blank" class="inline-flex items-center font-medium">
-                Meer over SIDNfonds
+                {{ $t('home.sidnfonds.more_about') }}
                 <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                 </svg>
@@ -61,13 +56,10 @@
       <!-- Quote sectie -->
       <div class="mt-4 px-4">
         <blockquote class="text-xl text-gray-700 italic font-light max-w-3xl mx-auto">
-          "Het project ‘Nyves’ heeft als doel om oude Hyves-profielen opnieuw tot leven te brengen met een moderne, open
-          webapplicatie gebaseerd op het Nostr-protocol. Gebruikers kunnen hun opgeslagen Hyves-data eenvoudig heractiveren,
-          delen en doorzoeken. Nyves behoudt digitaal erfgoed, versterkt data-autonomie en toont hoe open protocollen het sociale
-          web toekomstbestendig maken. Het sluit hiermee aan bij doelstelling 1 van SIDN fonds: Sterk internet."
+          {{ $t('home.sidnfonds.quote') }}
         </blockquote>
         <div class="max-w-3xl mx-auto my-4 text-gray-500 text-right">
-          - SIDNfonds over Nyves
+          {{ $t('home.sidnfonds.quote_attribution') }}
         </div>
       </div>
 

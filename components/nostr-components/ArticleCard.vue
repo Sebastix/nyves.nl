@@ -16,9 +16,11 @@ const props = defineProps({
   }
 })
 
+const { t, locale } = useI18n()
+
 // Format date for display
 const formatDate = (timestamp) => {
-  return new Date(timestamp * 1000).toLocaleDateString('en-US', {
+  return new Date(timestamp * 1000).toLocaleDateString(locale.value, {
     year: 'numeric',
     month: 'long',
     day: 'numeric'
@@ -31,28 +33,26 @@ const formatRelativeDate = (timestamp) => {
   const articleDate = timestamp * 1000
   const diffMs = now - articleDate
   const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24))
-  
+
   if (diffDays === 0) {
-    return 'Today'
+    return t('articles.today')
   } else if (diffDays === 1) {
-    return 'Yesterday'
+    return t('articles.yesterday')
   } else if (diffDays < 30) {
-    return `${diffDays} days ago`
+    return t('articles.days_ago', [diffDays])
   } else if (diffDays < 365) {
-    const diffMonths = Math.floor(diffDays / 30)
-    return `${diffMonths} month${diffMonths > 1 ? 's' : ''} ago`
+    return t('articles.months_ago', [Math.floor(diffDays / 30)])
   } else {
-    const diffYears = Math.floor(diffDays / 365)
-    return `${diffYears} year${diffYears > 1 ? 's' : ''} ago`
+    return t('articles.years_ago', [Math.floor(diffDays / 365)])
   }
 }
 
 // Get reading time estimate
 const readingTime = computed(() => {
   const wordsPerMinute = 180
-  const wordCount = props.article.content.split(/\s+/).length
+  const wordCount = (props.article.content ?? '').split(/\s+/).length
   const minutes = Math.ceil(wordCount / wordsPerMinute)
-  return `${minutes} min read`
+  return t('articles.min_read', [minutes])
 })
 
 // Check if article has image
@@ -118,7 +118,7 @@ const articleUrl = () => {
 
           <!-- Author Info (if enabled) -->
           <div v-if="showAuthor" class="flex items-center">
-            by
+            {{ $t('articles.by') }}
             <span>
               {{ article.authorPubkey.substring(0, 8) }}...
             </span>

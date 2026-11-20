@@ -2,6 +2,8 @@
 import { onMounted, ref } from 'vue'
 import { useRelayHealth } from '~/composables/useRelayHealth'
 
+const { t, locale } = useI18n()
+
 const props = defineProps({
   relayUrl: {
     type: String,
@@ -45,7 +47,7 @@ onMounted(() => {
 // Format laatste check tijd
 const formatLastChecked = (date) => {
   if (!date) return ''
-  return date.toLocaleTimeString('nl-NL', { 
+  return date.toLocaleTimeString(locale.value, { 
     hour: '2-digit', 
     minute: '2-digit',
     second: '2-digit'
@@ -75,22 +77,22 @@ const getLimitations = () => {
   const items = []
   
   if (limitations.max_message_length) {
-    items.push(`Max bericht: ${(limitations.max_message_length / 1024).toFixed(1)}KB`)
+    items.push(t('relayHealth.limitation_message_length', [(limitations.max_message_length / 1024).toFixed(1)]))
   }
   if (limitations.max_subscriptions) {
-    items.push(`Max subscriptions: ${limitations.max_subscriptions}`)
+    items.push(t('relayHealth.limitation_subscriptions', [limitations.max_subscriptions]))
   }
   if (limitations.max_limit) {
-    items.push(`Max limit: ${limitations.max_limit}`)
+    items.push(t('relayHealth.limitation_limit', [limitations.max_limit]))
   }
   if (limitations.auth_required) {
-    items.push('Auth vereist')
+    items.push(t('relayHealth.limitation_auth'))
   }
   if (limitations.payment_required) {
-    items.push('Betaling vereist')
+    items.push(t('relayHealth.limitation_payment'))
   }
   if (limitations.min_pow_difficulty) {
-    items.push(`Min PoW: ${limitations.min_pow_difficulty}`)
+    items.push(t('relayHealth.limitation_pow', [limitations.min_pow_difficulty]))
   }
   
   return items
@@ -116,7 +118,7 @@ const getLimitations = () => {
             'bg-gray-400': healthData.status === 'disconnected'
           }"></div>
           <h3 class="text-sm font-medium text-gray-900">
-            {{ healthData.relayInfo?.name || 'Relay Status' }}
+            {{ healthData.relayInfo?.name || $t('relayHealth.relay_status') }}
           </h3>
           <span class="text-sm font-medium" :class="getStatusColor()">
             {{ getStatusText() }} <span class="text-black text-xs">{{ getResponseTimeDisplay() }}</span>
@@ -129,7 +131,7 @@ const getLimitations = () => {
             @click="refreshAll"
             :disabled="healthData.isConnecting || healthData.isLoadingExtra"
             class="p-1.5 disabled:opacity-50 transition-colors cursor-pointer"
-            title="Vernieuw status"
+            :title="$t('relayHealth.refreshed')"
           >
             <svg 
               :class="{ 'animate-spin': healthData.isConnecting || healthData.isLoadingExtra }"
@@ -146,7 +148,7 @@ const getLimitations = () => {
           <button
               @click="toggleDetails"
               class="p-1.5 transition-colors cursor-pointer"
-              :title="showDetails ? 'Verberg details' : 'Toon details'"
+              :title="showDetails ? $t('relayHealth.hide_details') : $t('relayHealth.show_details')"
           >
             <svg
                 class="w-4 h-4 transition-transform"
@@ -164,7 +166,7 @@ const getLimitations = () => {
       <!-- Main Error (alleen critieke fouten) -->
       <div v-if="healthData.error" class="mt-3 p-2 bg-red-50 border border-red-200 rounded">
         <p class="text-xs text-red-600">
-          <strong>Verbindingsfout:</strong> {{ healthData.error }}
+          <strong>{{ $t('relayHealth.connection_error') }}</strong> {{ healthData.error }}
         </p>
       </div>
 
@@ -174,7 +176,7 @@ const getLimitations = () => {
           <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
           <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
         </svg>
-        <span>Relay verbinding testen...</span>
+        <span>{{ $t('relayHealth.testing') }}</span>
       </div>
     </div>
 
@@ -182,26 +184,29 @@ const getLimitations = () => {
     <div v-if="showDetails" class="border-t border-gray-100 p-4 bg-gray-50">
 
       <p class="text-xs mb-4">
-        Nyves maakt gebruik van <a href="https://nips.nostr.com/50" target="_blank">NIP-50 Search Capability</a> om informatie te doorzoeken op de relay <a href="https://rely.nyves.nl" target="_blank">https://rely.nyves.nl</a>.
+        <i18n-t keypath="relayHealth.about_nip50" tag="span">
+          <a href="https://nips.nostr.com/50" target="_blank">NIP-50 Search Capability</a>
+          <a href="https://rely.nyves.nl" target="_blank">https://rely.nyves.nl</a>
+        </i18n-t>
       </p>
       
       <!-- Basic Connection Info -->
       <div class="mb-6">
         <h4 class="text-md font-medium text-gray-900 mb-3 flex items-center">
           <span class="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
-          Verbinding Details
+          {{ $t('relayHealth.connection_details') }}
         </h4>
         
         <div class="bg-white rounded border p-3 space-y-2 text-sm">
           <!-- Relay URL -->
           <div class="flex justify-between">
-            <span class="font-medium text-gray-600">Relay:</span>
+            <span class="font-medium text-gray-600">{{ $t('relayHealth.relay') }}</span>
             <span class="text-gray-900 font-mono">{{ getRelayDisplayName(relayUrl) }}</span>
           </div>
 
           <!-- Verbinding Status -->
           <div class="flex justify-between">
-            <span class="font-medium text-gray-600">Status:</span>
+            <span class="font-medium text-gray-600">{{ $t('relayHealth.status') }}</span>
             <span class="font-medium" :class="getStatusColor()">
               {{ getStatusText() }}
             </span>
@@ -209,19 +214,19 @@ const getLimitations = () => {
 
           <!-- Response Time -->
           <div v-if="healthData.responseTime !== null" class="flex justify-between">
-            <span class="font-medium text-gray-600">Response tijd:</span>
+            <span class="font-medium text-gray-600">{{ $t('relayHealth.response_time') }}</span>
             <span class="text-gray-900">{{ getResponseTimeDisplay() }}</span>
           </div>
 
           <!-- Event Count -->
           <div v-if="getEventCountDisplay()" class="flex justify-between">
-            <span class="font-medium text-gray-600">Aantal events:</span>
+            <span class="font-medium text-gray-600">{{ $t('relayHealth.event_count') }}</span>
             <span class="text-gray-900">{{ getEventCountDisplay() }}</span>
           </div>
 
           <!-- Laatste Check -->
           <div v-if="healthData.lastChecked" class="flex justify-between text-xs text-gray-500 pt-2 border-t border-gray-100">
-            <span>Laatst gecontroleerd:</span>
+            <span>{{ $t('relayHealth.last_checked') }}</span>
             <span>{{ formatLastChecked(healthData.lastChecked) }}</span>
           </div>
         </div>
@@ -231,51 +236,51 @@ const getLimitations = () => {
       <div v-if="healthData.relayInfo" class="mb-6">
         <h4 class="text-md font-medium text-gray-900 mb-3 flex items-center">
           <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-          Relay Informatie (NIP-11)
+          {{ $t('relayHealth.relay_info') }}
         </h4>
         
         <div class="bg-white rounded border p-3 space-y-2 text-sm">
           <!-- Beschrijving -->
           <div v-if="healthData.relayInfo.description">
-            <div class="font-medium text-gray-600">Beschrijving:</div>
+            <div class="font-medium text-gray-600">{{ $t('relayHealth.description') }}</div>
             <div class="text-gray-900 text-xs leading-relaxed whitespace-pre-line">{{ healthData.relayInfo.description }}</div>
           </div>
 
           <!-- Software -->
           <div v-if="getRelaySoftware()">
-            <div class="font-medium text-gray-600">Software:</div>
+            <div class="font-medium text-gray-600">{{ $t('relayHealth.software') }}</div>
             <div class="text-gray-900">{{ getRelaySoftware() }}</div>
           </div>
 
           <!-- Contact Info -->
           <div v-if="healthData.relayInfo.contact">
-            <div class="font-medium text-gray-600">Contact:</div>
+            <div class="font-medium text-gray-600">{{ $t('relayHealth.contact') }}</div>
             <div class="text-gray-900 font-mono text-xs">{{ healthData.relayInfo.contact }}</div>
           </div>
 
           <!-- Admin Pubkey -->
           <div v-if="healthData.relayInfo.pubkey">
-            <div class="font-medium text-gray-600">Admin Pubkey:</div>
+            <div class="font-medium text-gray-600">{{ $t('relayHealth.admin_pubkey') }}</div>
             <div class="text-gray-900 font-mono text-xs break-all">{{ healthData.relayInfo.pubkey }}</div>
           </div>
 
           <!-- Ondersteunde NIPs -->
           <div v-if="getSupportedNipsDisplay()">
-            <div class="font-medium text-gray-600">Ondersteunde NIPs:</div>
+            <div class="font-medium text-gray-600">{{ $t('relayHealth.supported_nips') }}</div>
             <div class="text-gray-900 text-xs">{{ getSupportedNipsDisplay() }}</div>
           </div>
 
           <!-- Payment info -->
           <div v-if="healthData.relayInfo.fees">
-            <div class="font-medium text-gray-600">Tarieven:</div>
-            <div class="text-gray-900 text-xs">Betaling vereist (zie relay voor details)</div>
+            <div class="font-medium text-gray-600">{{ $t('relayHealth.fees') }}</div>
+            <div class="text-gray-900 text-xs">{{ $t('relayHealth.payment_required_details') }}</div>
           </div>
         </div>
 
         <!-- NIP-11 Error -->
         <div v-if="healthData.relayInfoError" class="mt-2 p-2 bg-yellow-50 border border-yellow-200 rounded text-xs">
           <p class="text-yellow-700">
-            <strong>NIP-11 fout:</strong> {{ healthData.relayInfoError }}
+            <strong>{{ $t('relayHealth.nip11_error') }}</strong> {{ healthData.relayInfoError }}
           </p>
         </div>
       </div>
@@ -284,7 +289,7 @@ const getLimitations = () => {
       <div v-if="healthData.relayInfo?.limitation" class="mb-6">
         <h4 class="text-md font-medium text-gray-900 mb-3 flex items-center">
           <span class="w-2 h-2 bg-orange-500 rounded-full mr-2"></span>
-          Server Beperkingen
+          {{ $t('relayHealth.limitations') }}
         </h4>
         
         <div class="bg-white rounded border p-3">
@@ -293,7 +298,7 @@ const getLimitations = () => {
               • {{ limitation }}
             </div>
             <div v-if="getLimitations().length === 0" class="text-gray-500 italic">
-              Geen specifieke beperkingen gevonden
+              {{ $t('relayHealth.no_limitations') }}
             </div>
           </div>
         </div>
@@ -303,20 +308,20 @@ const getLimitations = () => {
       <div v-if="healthData.eventCount || healthData.eventCountError" class="mb-6">
         <h4 class="text-md font-medium text-gray-900 mb-3 flex items-center">
           <span class="w-2 h-2 bg-purple-500 rounded-full mr-2"></span>
-          Event Statistieken (NIP-45)
+          {{ $t('relayHealth.event_stats') }}
         </h4>
         
         <div class="bg-white rounded border p-3 text-sm">
           <div v-if="healthData.eventCount">
-            <div class="font-medium text-gray-600">Totaal aantal events:</div>
+            <div class="font-medium text-gray-600">{{ $t('relayHealth.total_events') }}</div>
             <div class="text-gray-900 text-lg font-bold">{{ getEventCountDisplay() }}</div>
             <div v-if="healthData.eventCount.approximate" class="text-xs text-gray-500 mt-1">
-              * Geschatte telling (HyperLogLog)
+              {{ $t('relayHealth.approximate') }}
             </div>
           </div>
           
           <div v-if="healthData.eventCountError" class="text-red-600 text-xs">
-            COUNT niet ondersteund of gefaald: {{ healthData.eventCountError }}
+            {{ $t('relayHealth.count_failed', [healthData.eventCountError]) }}
           </div>
         </div>
       </div>
@@ -325,25 +330,25 @@ const getLimitations = () => {
       <div class="mb-4">
         <h4 class="text-md font-medium text-gray-900 mb-3 flex items-center">
           <span class="w-2 h-2 bg-gray-500 rounded-full mr-2"></span>
-          Functionaliteit Support
+          {{ $t('relayHealth.feature_support') }}
         </h4>
         
         <div class="bg-white rounded border p-3">
           <div class="text-xs space-y-1">
             <div class="flex justify-between">
-              <span>NIP-11 (Relay Info):</span>
+              <span>{{ $t('relayHealth.nip11_label') }}</span>
               <span :class="healthData.relayInfo ? 'text-green-600' : 'text-red-600'">
                 {{ healthData.relayInfo ? '✓' : '✗' }}
               </span>
             </div>
             <div class="flex justify-between">
-              <span>NIP-45 (Event Count):</span>
+              <span>{{ $t('relayHealth.nip45_label') }}</span>
               <span :class="healthData.eventCount ? 'text-green-600' : 'text-red-600'">
                 {{ healthData.eventCount ? '✓' : '✗' }}
               </span>
             </div>
             <div class="flex justify-between">
-              <span>NIP-50 (Search):</span>
+              <span>{{ $t('relayHealth.nip50_label') }}</span>
               <span :class="supportsNip(50) ? 'text-green-600' : 'text-gray-400'">
                 {{ supportsNip(50) ? '✓' : '?' }}
               </span>
@@ -354,7 +359,7 @@ const getLimitations = () => {
 
       <!-- Info tekst -->
       <div class="text-xs text-gray-400 text-center pt-2 border-t border-gray-200">
-        <p>Automatische controle elke {{ Math.floor(checkInterval / 1000) }} seconden</p>
+        <p>{{ $t('relayHealth.auto_check', [Math.floor(checkInterval / 1000)]) }}</p>
       </div>
     </div>
   </div>

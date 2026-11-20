@@ -1,6 +1,4 @@
 {
-  "head_title": "Welkom bij Nyves - breng jouw Hyves profiel terug tot leven",
-  "welcome": "Welkom",
   "welkom_bij": "Welkom bij",
   "bring_back_your_hyves_profile": "Breng jouw Hyves profiel terug tot leven.",
   "hero_intro": "Dankzij {0}. Dit is een open en simpel protocol waarmee data gedistribueerd wordt via {1}. Ieder individu heeft dankzij {2} alle macht. Iedereen kan verifiëren wat ieders content is.",
@@ -9,12 +7,361 @@
   "zoeken": "Zoeken",
   "zoek_profielen": "Zoek profielen...",
   "zoek_profielen_btn": "Zoek profielen",
-  "of_bekijk_dit_voorbeeld": "of bekijk dit voorbeeld",
   "of_ontdek_deze_profielen": "of ontdek deze profielen",
   "soapbox_collab": "{0} is een bedrijf met hacktivisten die free and open-source software ontwikkelen voor gedecentraliseerde social media. Ze hebben als missie om online communities te versterken met tools die de keuzevrijheid, digitale soevereiniteit en individuele autonomie vergroten. Zij zijn de makers van Ditto, MKStack, Sharespeare en andere innovatieve platformen. Via die platformen hervormen zij de manier waarop mensen met elkaar verbinden en communiceren via het internet.",
   "ditto_collab": "{0} is een sociaal gebouwd door Soapbox voor mensen die plezier willen beleven, in plaats van de Big-Tech machine te voeden. Open-source, gedecentraliseerd en het platform is volledig aan te passen aan jouw wensen en op voort te bouwen. {1} {2} Met zowel Nyves als Ditto kun je je profiel en het design aanpassen met kleuren, achtergrondafbeeldingen, lettertypes en meer.",
   "highlight_profiles_with_themes": "Profielen met een eigen design",
   "hero_intro_search_count": "Op dit moment kun je {0} {1} namen doorzoeken.",
+  "Blog": "Blog",
+  "HVSbackup": "HVSbackup",
+  "Nostr": "Nostr",
+  "relays": "relays",
+  "Soapbox": "Soapbox",
+  "Ditto": "Ditto",
+  "nostrConnect": {
+    "title": "Inloggen",
+    "already_connected": "Al verbonden!",
+    "connected_as": "Verbonden als {0}",
+    "last_connected": "Laatst verbonden:",
+    "disconnect": "Verbreken",
+    "instructions": "Verbind je Nostr-identiteit.",
+    "checking_extension": "Op zoek naar browser-extensie...",
+    "extension_detected": "Browser-extensie gevonden",
+    "extension_missing": "Geen browser-extensie gevonden",
+    "install_hint": "Installeer een Nostr browser-extensie, bijvoorbeeld:",
+    "detecting": "Extensie detecteren...",
+    "connecting": "Verbinden...",
+    "connect_with_extension": "Verbinden met browser-extensie",
+    "extension_required": "Browser-extensie vereist",
+    "check_again": "Opnieuw controleren",
+    "no_extension_alert": "Geen Nostr-extensie beschikbaar",
+    "connection_failed_alert": "Verbinden mislukt: {0}"
+  },
+  "nostrCreateProfile": {
+    "title": "Maak een Nyves profiel"
+  },
+  "eventJson": {
+    "heading": "Nostr event (Kind {0})",
+    "copy": "JSON kopiëren",
+    "view_on_njump": "Bekijk op njump ↗"
+  },
+  "articles": {
+    "error": "Fout bij laden van artikelen",
+    "no_articles": "Geen artikelen gevonden",
+    "no_articles_topic": "Geen artikelen gevonden voor onderwerp \"{0}\".",
+    "no_articles_author": "Geen artikelen gevonden voor auteur: {0}.",
+    "no_articles_tags": "Geen artikelen gevonden met tags: {0}.",
+    "search_again": "Zoek opnieuw",
+    "by": "door",
+    "today": "Vandaag",
+    "yesterday": "Gisteren",
+    "days_ago": "{0} dagen geleden",
+    "months_ago": "{0} maanden geleden",
+    "years_ago": "{0} jaar geleden",
+    "min_read": "{0} min leestijd",
+    "untitled": "Zonder titel"
+  },
+  "home": {
+    "collab_heading": "We doen het niet alleen",
+    "soapbox_tagline": "Taking back the internet.",
+    "ditto_tagline": "Your content. Your vibe. Your rules.",
+    "statistics": {
+      "heading": "Statistieken",
+      "content_question": "Hoeveel content hebben al terug kunnen zetten?",
+      "usernames": "gebruikersnamen",
+      "profile_pictures": "profielfoto's",
+      "friendships": "vriendschappen",
+      "designs": "designs",
+      "albums": "albums met {0} foto's",
+      "krabbels": "krabbels",
+      "www": "wiewatwaar's",
+      "blogs": "blogs",
+      "gadgets": "gadgets",
+      "profiles_question": "Hoeveel profielen zijn er actief?",
+      "archived_profiles": "{0} Nyves profielen uit het archief",
+      "nostrverse_profiles": "{0} profielen uit de nostrverse"
+    },
+    "build_in_public": {
+      "heading_lead": "Build in",
+      "heading_highlight": "Public",
+      "subtitle": "Volg het proces van het project in real-time.",
+      "repository_heading": "Code Repository",
+      "repository_subtitle": "Open source ontwikkeling",
+      "repository_text": "Bekijk de volledige {0} van Nyves op GitLab. De werking van de applicatie is volledig transparant.",
+      "repository_text_highlight": "broncode",
+      "feature_nuxt": "Nuxt.js web applicatie",
+      "feature_nostr": "Nostr protocol implementatie",
+      "feature_contributions": "Contributions zijn welkom, AGPLv2",
+      "management_heading": "Project management",
+      "management_subtitle": "Live te volgen via ons Taiga board",
+      "management_text": "Bekijk de {0} live via ons Taiga dashboard. Zie welke features in ontwikkeling zijn en wat er op de roadmap staat.",
+      "management_text_highlight": "voortgang",
+      "feature_timeline": "Project timeline",
+      "feature_epics": "Epics met een kanban bord",
+      "feature_issues": "Overzicht met issues",
+      "view_dashboard": "Bekijk project dashboard",
+      "transparency": "Transparantie",
+      "collaboration": "Samenwerking",
+      "philosophy_text": "Door {0} te werken, delen we niet alleen onze code, maar ook ons proces. Dit zorgt voor vertrouwen, kan iedereen ervan leren en nodigt anderen uit tot samenwerking.",
+      "philosophy_highlight": "build in public"
+    },
+    "sidnfonds": {
+      "badge": "Pioniersproject",
+      "body": "Nyves is in maart 2026 geselecteerd als pioniersproject door SIDNfonds, de Nederlandse organisatie die innovatieve internetprojecten ondersteunt die bijdragen aan een sterker internet.",
+      "grant": "Hiervoor ontvangt het project een subsidie van € 10.000. Met deze financiële steun kan het idee van Nyves uitgewerkt worden tot een proof-of-concept applicatie.",
+      "project_page": "Projectpagina",
+      "more_about": "Meer over SIDNfonds",
+      "quote": "\"Het project ‘Nyves’ heeft als doel om oude Hyves-profielen opnieuw tot leven te brengen met een moderne, open webapplicatie gebaseerd op het Nostr-protocol. Gebruikers kunnen hun opgeslagen Hyves-data eenvoudig heractiveren, delen en doorzoeken. Nyves behoudt digitaal erfgoed, versterkt data-autonomie en toont hoe open protocollen het sociale web toekomstbestendig maken. Het sluit hiermee aan bij doelstelling 1 van SIDN fonds: Sterk internet.\"",
+      "quote_attribution": "- SIDNfonds over Nyves"
+    },
+    "aos": {
+      "donation": "Het collectief And Other Stuff heeft in oktober $15.000 dollar gedoneerd aan het project.",
+      "quote": "And Other Stuff (AOS) is a collective of people who build, imagine, organize, and experiment. Together, we create and steward freedom tech—open tools, protocols, and applications that strengthen human liberty. We enhance the Commons, explore the art of the possible, and empower people to build their own futures.",
+      "divine": "Divine is ook onderdeel van het AOS collective. Dat is een platform die oa oude content van het Vine platform terug tot leven brengt."
+    },
+    "protocols": {
+      "platforms_heading": "Protocols, not platforms",
+      "platforms_subtitle": "A technical approach to free speech",
+      "platforms_body": "Als je het artikel `protocols, not platforms` van Mike Masnick hebt gelezen dan heb je wellicht het inzicht gekregen dat we sociale media minder gecentraliseerd kunnen maken. Diverse protocollen bieden ons namelijk de optie om gedecentraliseerd sociale netwerken te creeren. In zo'n ecosysteem verdwijnen namelijk de belangen die vandaag de dag al onze aandacht opeisen en ons digitaal welzijn afbreken.",
+      "nostr_heading": "Nostr",
+      "nostr_subtitle": "Notes and other Stuff Transmitted by Relays",
+      "nostr_body": "Een open protocol waar iedereen via zogenoemde events (data) kan distribueren via een netwerk van relays. Geen verificatie restricties en geen API's. Het is een grassroots project zonder een centrale tussenpartij die alle touwtjes in handen heeft. Alle data kan door iedereen worden opgevraagd en worden geverifieerd. Elk event is voorzien van een digitale handtekening. Deze handtekening is gemaakt met een cryptografische privé sleutel."
+    },
+    "archive": {
+      "heading": "Het publieke Hyves archief",
+      "body": "Op dit moment gebruiken we de publiek beschikbare data van Hyves profielen die door de Archive Team zijn verzameld. Deze data is de bron voor alle content die we overzetten naar zogenaamde nostr events. Deze events kunnen worden vervolgens worden opgehaald vanaf verschillende relays. Dit is wat de applicatie op Nyves.nl momenteel doet."
+    },
+    "video": {
+      "play": "Video afspelen",
+      "pause": "Pauze",
+      "transcript": [
+      {
+        "start": 0,
+        "end": 3.2,
+        "text": "Laten we Hyves terugbrengen."
+      },
+      {
+        "start": 3.2,
+        "end": 10.8,
+        "text": "Profiel voor profiel, bericht voor bericht, foto voor foto."
+      },
+      {
+        "start": 10.8,
+        "end": 18,
+        "text": "Voordat Hyves offline ging, hebben duizenden mensen hun profiel veiliggesteld met Hyves Backup."
+      },
+      {
+        "start": 18,
+        "end": 26,
+        "text": "Dat was een desktop-app die ik heb gebouwd en die al je Hyves-content lokaal op je eigen computer opsloeg."
+      },
+      {
+        "start": 26,
+        "end": 32.5,
+        "text": "Waardevolle content, waardevolle herinneringen die een digitaal geheugen vormen en bewaard moeten blijven."
+      },
+      {
+        "start": 32.5,
+        "end": 40,
+        "text": "Mijn idee is om iedereen die een back-up heeft gemaakt uit te nodigen"
+      },
+      {
+        "start": 40,
+        "end": 47,
+        "text": "om die back-up weer om te zetten in een Hyves-profiel, via de app Nyves."
+      },
+      {
+        "start": 47,
+        "end": 56,
+        "text": "Net als Hyves Backup is dit een webapp die lokaal in je browser draait,"
+      },
+      {
+        "start": 56,
+        "end": 60,
+        "text": "zonder server en zonder platform."
+      },
+      {
+        "start": 60,
+        "end": 64.5,
+        "text": "Want data wordt uitgewisseld via zogenoemde relays."
+      },
+      {
+        "start": 64.5,
+        "end": 73,
+        "text": "Op Nyves kun je ook profielen bekijken en berichten achterlaten, net als vroeger."
+      },
+      {
+        "start": 73,
+        "end": 80,
+        "text": "Dit alles is mogelijk gemaakt door een nieuw sociaal netwerkprotocol genaamd Nostr."
+      },
+      {
+        "start": 80,
+        "end": 87,
+        "text": "Dus ja, nogmaals: Nyves is een app, en dus geen platform."
+      },
+      {
+        "start": 87,
+        "end": 94.5,
+        "text": "Met Nyves kunnen we het authentieke gevoel van sociale media terugbrengen."
+      },
+      {
+        "start": 94.5,
+        "end": 102,
+        "text": "Sociale media waar verbinding voorop staat, waar je vrienden en hun content voorop staan."
+      },
+      {
+        "start": 102,
+        "end": 108.4,
+        "text": "Sociale media zonder derde partijen, de platforms, die er alles aan doen om zoveel mogelijk aandacht te grijpen,"
+      },
+      {
+        "start": 108.4,
+        "end": 111,
+        "text": "voor commerciële belangen."
+      },
+      {
+        "start": 111,
+        "end": 113.5,
+        "text": "Nyves, met een N."
+      },
+      {
+        "start": 113.5,
+        "end": 116.5,
+        "text": "Dit is het idee dat ik graag wil omzetten in een proof of concept."
+      },
+      {
+        "start": 116.5,
+        "end": 119,
+        "text": "Dank je wel."
+      }
+      ]
+    }
+  },
+  "search": {
+    "no_results_dropdown": "Geen profielen gevonden voor \"{0}\"",
+    "no_results": "Helaas, er zijn geen profielen gevonden met de zoekterm \"{0}\"",
+    "found": "{0} profielen gevonden voor \"{1}\"",
+    "more_available": "(meer beschikbaar)",
+    "page_info": "Pagina {0} ({1}-{2} profielen)",
+    "load_more": "Meer laden",
+    "loading": "Laden...",
+    "error": "Er ging iets mis bij het zoeken. Probeer het opnieuw."
+  },
+  "relayHealth": {
+    "relay_status": "Relay status",
+    "refreshed": "Vernieuw status",
+    "hide_details": "Verberg details",
+    "show_details": "Toon details",
+    "connection_error": "Verbindingsfout:",
+    "testing": "Relay verbinding testen...",
+    "about_nip50": "Nyves maakt gebruik van {0} om informatie te doorzoeken op de relay {1}.",
+    "connection_details": "Verbinding Details",
+    "relay": "Relay:",
+    "status": "Status:",
+    "response_time": "Response tijd:",
+    "event_count": "Aantal events:",
+    "last_checked": "Laatst gecontroleerd:",
+    "relay_info": "Relay Informatie (NIP-11)",
+    "description": "Beschrijving:",
+    "software": "Software:",
+    "contact": "Contact:",
+    "admin_pubkey": "Admin Pubkey:",
+    "supported_nips": "Ondersteunde NIPs:",
+    "fees": "Tarieven:",
+    "payment_required_details": "Betaling vereist (zie relay voor details)",
+    "nip11_error": "NIP-11 fout:",
+    "limitations": "Server Beperkingen",
+    "no_limitations": "Geen specifieke beperkingen gevonden",
+    "limitation_message_length": "Max bericht: {0}KB",
+    "limitation_subscriptions": "Max subscriptions: {0}",
+    "limitation_limit": "Max limit: {0}",
+    "limitation_auth": "Auth vereist",
+    "limitation_payment": "Betaling vereist",
+    "limitation_pow": "Min PoW: {0}",
+    "event_stats": "Event Statistieken (NIP-45)",
+    "total_events": "Totaal aantal events:",
+    "approximate": "* Geschatte telling (HyperLogLog)",
+    "count_failed": "COUNT niet ondersteund of gefaald: {0}",
+    "feature_support": "Functionaliteit Support",
+    "nip11_label": "NIP-11 (Relay info):",
+    "nip45_label": "NIP-45 (Events tellen):",
+    "nip50_label": "NIP-50 (Zoeken):",
+    "auto_check": "Automatische controle elke {0} seconden",
+    "status_connected": "Verbonden",
+    "status_connecting": "Verbinding maken...",
+    "status_error": "Verbinding gefaald",
+    "status_disconnected": "Niet verbonden",
+    "speed_excellent": "uitstekend",
+    "speed_good": "goed",
+    "speed_fair": "redelijk",
+    "speed_slow": "traag",
+    "connection_timeout": "Verbinding timeout",
+    "connection_failed": "Verbinding gefaald",
+    "websocket_error": "WebSocket verbindingsfout",
+    "count_timeout": "COUNT timeout",
+    "count_unsupported": "COUNT niet ondersteund door relay",
+    "count_websocket_error": "WebSocket fout tijdens COUNT",
+    "connected_relays": "{0} verbonden relays"
+  },
+  "profiel": {
+    "nav": {
+      "about": "Over",
+      "friends": "Vrienden",
+      "www": "WWW",
+      "photos": "Foto's",
+      "blog": "Blog",
+      "more": "Meer"
+    },
+    "about": {
+      "heading": "Profiel",
+      "name": "Naam:",
+      "member_since": "Hyver sinds {0}",
+      "brands": "Mijn merken:",
+      "spots": "Spots:",
+      "website": "Website:",
+      "view_full_profile": "Bekijk volledig profiel"
+    },
+    "media": {
+      "heading": "Foto's & video's",
+      "spots": "Gespot! ({0})",
+      "view_all": "Bekijk alle foto's en video's"
+    },
+    "friends": {
+      "heading": "Vrienden ({0})",
+      "view_all": "Bekijk alle vrienden"
+    },
+    "krabbels": {
+      "reply": "Reageer"
+    },
+    "www": {
+      "replies": "{0} reactie(s)",
+      "reply": "Reageer",
+      "respect": "{0} Nyvers respecteren dit"
+    },
+    "blog": {
+      "no_items": "Geen items gevonden"
+    }
+  },
+  "common": {
+    "home": "Home",
+    "code": "Code",
+    "language": "Taal",
+    "no_items": "Geen items gevonden",
+    "loading": "Laden...",
+    "load_more": "Meer laden",
+    "previous": "Vorige",
+    "next": "Volgende",
+    "page": "Pagina",
+    "reply": "Reageer",
+    "comments": "reactie(s)",
+    "read_more": "Lees meer",
+    "close": "Sluiten",
+    "copy": "Kopi\u00ebren",
+    "copied": "Gekopieerd!",
+    "retry": "Probeer opnieuw",
+    "sats": "sats"
+  },
   "Nieuws": "Nieuws",
   "Doneer": "Doneer",
   "Over_Nyves": "Over Nyves",

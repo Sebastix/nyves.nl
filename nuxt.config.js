@@ -7,6 +7,14 @@ export default defineNuxtConfig({
     compatibilityVersion: 5,
   },
 
+  experimental: {
+    // Nuxt 4.6.2+ defaults `nitroAutoImports` to false when compatibilityVersion >= 5,
+    // which drops the #imports preset that @nuxtjs/i18n's server runtime imports from.
+    // Without this the Nitro build fails with:
+    //   "useRuntimeConfig" is not exported by "virtual:#imports"
+    nitroAutoImports: true,
+  },
+
   vite: {
     plugins: [
       tailwindcss()

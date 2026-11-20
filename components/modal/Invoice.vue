@@ -47,7 +47,7 @@ onMounted(() => {
 <template>
   <div class="text-white break-all">
     <span class="block mb-4 text-center text-4xl">
-      2100 sats
+      2100 {{ $t('common.sats') }}
     </span>
     <div id="canvas"></div>
     <code class="text-sm mt-4 block">{{ lightningInvoice }}</code>
