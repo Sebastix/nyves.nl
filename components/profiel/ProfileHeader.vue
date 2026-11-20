@@ -21,12 +21,12 @@ const props = defineProps({
         <a :href="`${profile.urlWaybackMachine}/vrienden`" target="_blank" class="text-xs" v-if="profile.urlWaybackMachine">{{ profile.urlWaybackMachine }}</a>
       </h1>
       <div class="mb-2">
-        <RouterLink :to="`/profiel/${profile.npub}/over`" class="mr-4 text-xs">Over</RouterLink>
-        <RouterLink :to="`/profiel/${profile.npub}/vrienden`" class="mr-4 text-xs">Vrienden</RouterLink>
-        <RouterLink :to="`/profiel/${profile.npub}/wiewatwaar`" class="mr-4 text-xs">WWW</RouterLink>
-        <RouterLink :to="`/profiel/${profile.npub}/media`" class="mr-4 text-xs">Foto's</RouterLink>
-        <RouterLink :to="`/profiel/${profile.npub}/blog`" class="mr-4 text-xs">Blog</RouterLink>
-        <RouterLink :to="`/profiel/${profile.npub}/meer`" class="text-xs">Meer</RouterLink>
+        <RouterLink :to="`/profiel/${profile.npub}/over`" class="mr-4 text-xs">{{ $t('profiel.nav.about') }}</RouterLink>
+        <RouterLink :to="`/profiel/${profile.npub}/vrienden`" class="mr-4 text-xs">{{ $t('profiel.nav.friends') }}</RouterLink>
+        <RouterLink :to="`/profiel/${profile.npub}/wiewatwaar`" class="mr-4 text-xs">{{ $t('profiel.nav.www') }}</RouterLink>
+        <RouterLink :to="`/profiel/${profile.npub}/media`" class="mr-4 text-xs">{{ $t('profiel.nav.photos') }}</RouterLink>
+        <RouterLink :to="`/profiel/${profile.npub}/blog`" class="mr-4 text-xs">{{ $t('profiel.nav.blog') }}</RouterLink>
+        <RouterLink :to="`/profiel/${profile.npub}/meer`" class="text-xs">{{ $t('profiel.nav.more') }}</RouterLink>
       </div>
     </div>
   </div>

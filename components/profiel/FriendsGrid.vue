@@ -78,7 +78,7 @@ onMounted(async () => {
     <!-- Friends Section -->
     <h3 class="nyves-bg-gray-header h-10 font-bold text-nyves-blue mb-2 p-2">
       <NuxtLink :to="`/profiel/${profile.npub}/vrienden`">
-        Vrienden ({{ contactsData.length }})
+        {{ $t('profiel.friends.heading', [contactsData.length]) }}
       </NuxtLink>
     </h3>
     <!-- Loading State -->
@@ -98,7 +98,7 @@ onMounted(async () => {
       </template>
     </div>
     <div class="my-1">
-      <NuxtLink :to="`/profiel/${profile.npub}/vrienden`" class="text-xs mx-2">› Bekijk alle vrienden</NuxtLink>
+      <NuxtLink :to="`/profiel/${profile.npub}/vrienden`" class="text-xs mx-2">› {{ $t('profiel.friends.view_all') }}</NuxtLink>
     </div>
   </div>
 </template>

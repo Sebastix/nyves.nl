@@ -8,6 +8,7 @@ import MailingList from './MailingList.vue';
 const emit = defineEmits(['profielGeselecteerd'])
 const route = useRoute()
 const router = useRouter()
+const localePath = useLocalePath()
 
 // Props om gedrag te bepalen
 const props = defineProps({
@@ -86,9 +87,9 @@ const handleSubmit = async (event) => {
     toonDropdown.value = false
     
     // Check of we moeten navigeren naar /zoek pagina
-    if (props.navigateOnSubmit && route.path !== '/zoek') {
+    if (props.navigateOnSubmit && route.path !== localePath('zoek')) {
       // Navigeer naar zoek pagina met query parameter
-      await router.push({ path: '/zoek', query: { q: zoekterm.value } })
+      await router.push({ path: localePath('zoek'), query: { q: zoekterm.value } })
       return
     }
     
@@ -228,7 +229,7 @@ onUnmounted(() => {
 
       <!-- Geen resultaten -->
       <div v-else-if="zoekData.heeftGezocht && !zoekData.laden && zoekData.resultaten.length === 0" class="px-4 py-3 text-sm text-gray-500">
-        Geen profielen gevonden voor "{{ zoekData.laatsteQuery }}"
+        {{ $t('search.no_results_dropdown', [zoekData.laatsteQuery]) }}
       </div>
 
       <!-- Resultaten lijst in dropdown -->
@@ -258,7 +259,7 @@ onUnmounted(() => {
 
     <!-- Geen resultaten -->
     <div v-else-if="zoekData.heeftGezocht && zoekData.resultaten.length === 0" class="text-center mt-8">
-      <p class="text-gray-500 mb-12 text-xl">Helaas, er zijn geen profielen gevonden met de zoekterm "{{ zoekData.laatsteQuery }}"</p>
+      <p class="text-gray-500 mb-12 text-xl">{{ $t('search.no_results', [zoekData.laatsteQuery]) }}</p>
       <MailingList variant="search" />
     </div>
 
@@ -267,12 +268,11 @@ onUnmounted(() => {
       <!-- Resultaten header -->
       <div class="flex justify-between items-center mb-4">
         <p class="text-xl text-gray-600 font-bold">
-          {{ paginatieInfo.totaalGeladen }} profielen gevonden voor "{{ zoekData.laatsteQuery }}"
-          <span v-if="zoekData.heeftMeer">(meer beschikbaar)</span>
+          {{ $t('search.found', [paginatieInfo.totaalGeladen, zoekData.laatsteQuery]) }}
+          <span v-if="zoekData.heeftMeer">{{ $t('search.more_available') }}</span>
         </p>
         <div class="text-sm text-gray-500">
-          Pagina {{ paginatieInfo.huidigePagina }} 
-          ({{ paginatieInfo.startIndex }}-{{ paginatieInfo.endIndex }} profielen)
+          {{ $t('search.page_info', [paginatieInfo.huidigePagina, paginatieInfo.startIndex, paginatieInfo.endIndex]) }}
         </div>
       </div>
 
@@ -311,7 +311,7 @@ onUnmounted(() => {
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
           </svg>
-          <span>Vorige</span>
+          <span>{{ $t('common.previous') }}</span>
         </button>
 
         <!-- Pagina nummers (alleen voor geladen pagina's) -->
@@ -340,7 +340,7 @@ onUnmounted(() => {
             @click="gaNaarVolgendePagina"
             class="flex items-center space-x-2 px-3 py-2 text-sm text-gray-600 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
           >
-            <span>Volgende</span>
+            <span>{{ $t('common.next') }}</span>
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
             </svg>
@@ -359,7 +359,7 @@ onUnmounted(() => {
             <svg v-else class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
             </svg>
-            <span>{{ zoekData.laadtMeer ? 'Laden...' : 'Meer laden' }}</span>
+            <span>{{ zoekData.laadtMeer ? $t('search.loading') : $t('search.load_more') }}</span>
           </button>
         </div>
       </div>

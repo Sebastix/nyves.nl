@@ -1,10 +1,12 @@
 import { ref, readonly, computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 import * as nip19 from 'nostr-tools/nip19'
 
 // Nyves relay voor zoeken
 const SEARCH_RELAY = 'wss://rely.nyves.nl'
 
 export const useNostrSearch = () => {
+  const { t } = useI18n()
   const { pool, queryRelays, closeRelays } = useSharedRelayPool()
 
   // Reactieve state
@@ -165,7 +167,7 @@ export const useNostrSearch = () => {
 
     } catch (error) {
       console.error('Fout bij zoeken naar profielen:', error)
-      zoekData.value.fout = 'Er ging iets mis bij het zoeken. Probeer het opnieuw.'
+      zoekData.value.fout = t('search.error')
       zoekData.value.resultaten = []
     } finally {
       zoekData.value.laden = false

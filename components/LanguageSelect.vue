@@ -38,8 +38,9 @@ watch(locale, (newLocale) => {
 
 <template>
   <form id="languageSelect">
-    <select 
-      :value="selectedLocale" 
+    <select
+      :value="selectedLocale"
+      :aria-label="$t('common.language')"
       @change="handleLanguageChange"
     >
       <option 

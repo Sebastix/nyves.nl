@@ -35,7 +35,7 @@ onUnmounted(() => {
 <template>
   <div
       class="rounded-full bg-white/25 hover:bg-white/50 text-black/80 pl-2 pr-1 py-2 text-xs text-center relative cursor-pointer"
-      :title="`${poolStats.relayUrls.length} verbonden relays`"
+      :title="$t('relayHealth.connected_relays', [poolStats.relayUrls.length])"
       @click="openModal('RelayConnections')">
     <span class="absolute top-3 -left-1 size-2 inline-flex animate-ping rounded-full bg-green-400 opacity-75"></span>
     <span class="absolute top-3 -left-1 size-2 inline-flex rounded-full bg-green-700 opacity-90"></span>

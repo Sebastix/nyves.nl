@@ -1,7 +1,9 @@
-import { ref, readonly } from 'vue'
-import { options } from 'marked';
+import { useI18n } from 'vue-i18n'
 
 export const useDateHelpers = () => {
+  // Dates and times follow the active locale instead of a hardcoded 'nl-NL'.
+  const { locale } = useI18n()
+
   const formatDate = (timestamp) => {
     const date = new Date(timestamp * 1000)
     const options = {
@@ -10,12 +12,12 @@ export const useDateHelpers = () => {
       day: 'numeric',
       month: 'numeric'
     }
-    return date.toLocaleDateString('nl-NL', options)
+    return date.toLocaleDateString(locale.value, options)
   }
 
   const formatTime = (timestamp) => {
     const date = new Date(timestamp * 1000)
-    return date.toLocaleTimeString('nl-NL')
+    return date.toLocaleTimeString(locale.value)
   }
 
   const getDateObject = (timestamp) => {

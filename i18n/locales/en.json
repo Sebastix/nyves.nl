@@ -1,6 +1,4 @@
 {
-  "head_title": "Nyves - bring back Hyves profiles with Nostr",
-  "welcome": "Welcome",
   "welkom_bij": "Welcome at",
   "bring_back_your_hyves_profile": "Bring back your Hyves profile.",
   "hero_intro": "Thanks to {0}. This is an open and simple protocol where data is distributed via {1}. Every individual has the power thanks to {2}. Everyone can verify who owns every piece of content.",
@@ -9,16 +7,363 @@
   "zoeken": "Search",
   "zoek_profielen": "Search profiles...",
   "zoek_profielen_btn": "Search profiles",
-  "of_bekijk_dit_voorbeeld": "or open this example",
   "of_ontdek_deze_profielen": "or discover these profiles",
   "soapbox_collab": "{0} is a technology company building free and open-source software for decentralized social media. Their mission is to empower communities online through tools that prioritize user freedom, data sovereignty, and censorship resistance. They're the creators of Ditto, MKStack, Shakespeare, and other innovative platforms that are reshaping how people connect and communicate on the internet. ",
   "ditto_collab": "{0} is a social platform build by Soapbox for people who want to have fun, not feed the Big Tech machine. Open source, decentralized, and entirely yours to customize and build upon. {1} {2} With both Nyves and Ditto you can customize your profile and theme with color palettes, background images, fonts, and more.",
   "highlight_profiles_with_themes": "Profiles with a customized theme",
   "hero_intro_search_count": "Currently you can search through {0} {1} names.",
+  "Blog": "Blog",
+  "HVSbackup": "HVSbackup",
+  "Nostr": "Nostr",
+  "relays": "relays",
+  "Soapbox": "Soapbox",
+  "Ditto": "Ditto",
+  "nostrConnect": {
+    "title": "Log in",
+    "already_connected": "Already connected!",
+    "connected_as": "Connected as {0}",
+    "last_connected": "Last connected:",
+    "disconnect": "Disconnect",
+    "instructions": "Connect your Nostr identity.",
+    "checking_extension": "Looking for browser extension...",
+    "extension_detected": "Browser extension detected",
+    "extension_missing": "No browser extension found",
+    "install_hint": "Install a Nostr browser extension, for example:",
+    "detecting": "Detecting extension...",
+    "connecting": "Connecting...",
+    "connect_with_extension": "Connect with browser extension",
+    "extension_required": "Browser extension required",
+    "check_again": "Check again",
+    "no_extension_alert": "No Nostr extension available",
+    "connection_failed_alert": "Connection failed: {0}"
+  },
+  "nostrCreateProfile": {
+    "title": "Create a Nyves profile"
+  },
+  "eventJson": {
+    "heading": "Nostr event (Kind {0})",
+    "copy": "Copy JSON",
+    "view_on_njump": "View on njump ↗"
+  },
+  "articles": {
+    "error": "Error loading articles",
+    "no_articles": "No articles found",
+    "no_articles_topic": "No articles found for topic \"{0}\".",
+    "no_articles_author": "No articles found for author: {0}.",
+    "no_articles_tags": "No articles found with tags: {0}.",
+    "search_again": "Search again",
+    "by": "by",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "days_ago": "{0} days ago",
+    "months_ago": "{0} months ago",
+    "years_ago": "{0} years ago",
+    "min_read": "{0} min read",
+    "untitled": "Untitled"
+  },
+  "home": {
+    "collab_heading": "We don't do this alone",
+    "soapbox_tagline": "Taking back the internet.",
+    "ditto_tagline": "Your content. Your vibe. Your rules.",
+    "statistics": {
+      "heading": "Statistics",
+      "content_question": "How much content has been restored already?",
+      "usernames": "usernames",
+      "profile_pictures": "profile pictures",
+      "friendships": "friendships",
+      "designs": "designs",
+      "albums": "albums with {0} photos",
+      "krabbels": "krabbels",
+      "www": "who-what-wheres",
+      "blogs": "blogs",
+      "gadgets": "gadgets",
+      "profiles_question": "How many profiles are active?",
+      "archived_profiles": "{0} Nyves profiles from the archive",
+      "nostrverse_profiles": "{0} profiles from the nostrverse"
+    },
+    "build_in_public": {
+      "heading_lead": "Build in",
+      "heading_highlight": "Public",
+      "subtitle": "Follow the project process in real time.",
+      "repository_heading": "Code Repository",
+      "repository_subtitle": "Open source development",
+      "repository_text": "View the full {0} of Nyves on GitLab. How the application works is fully transparent.",
+      "repository_text_highlight": "source code",
+      "feature_nuxt": "Nuxt.js web application",
+      "feature_nostr": "Nostr protocol implementation",
+      "feature_contributions": "Contributions are welcome, AGPLv2",
+      "management_heading": "Project management",
+      "management_subtitle": "Follow it live via our Taiga board",
+      "management_text": "Follow the {0} live via our Taiga dashboard. See which features are in development and what is on the roadmap.",
+      "management_text_highlight": "progress",
+      "feature_timeline": "Project timeline",
+      "feature_epics": "Epics with a kanban board",
+      "feature_issues": "Overview of issues",
+      "view_dashboard": "View project dashboard",
+      "transparency": "Transparency",
+      "collaboration": "Collaboration",
+      "philosophy_text": "By working {0}, we share not only our code but also our process. This builds trust, lets everyone learn from it and invites others to collaborate.",
+      "philosophy_highlight": "in public"
+    },
+    "sidnfonds": {
+      "badge": "Pioneer project",
+      "body": "Nyves was selected in March 2026 as a pioneer project by SIDNfonds, the Dutch organisation that supports innovative internet projects contributing to a stronger internet.",
+      "grant": "For this the project receives a grant of € 10,000. With this financial support the idea of Nyves can be developed into a proof-of-concept application.",
+      "project_page": "Project page",
+      "more_about": "More about SIDNfonds",
+      "quote": "\"The project ‘Nyves’ aims to bring old Hyves profiles back to life with a modern, open web application based on the Nostr protocol. Users can easily reactivate, share and search their stored Hyves data. Nyves preserves digital heritage, strengthens data autonomy and shows how open protocols make the social web future-proof. It therefore aligns with goal 1 of the SIDN fund: A strong internet.\"",
+      "quote_attribution": "- SIDNfonds about Nyves"
+    },
+    "aos": {
+      "donation": "The And Other Stuff collective donated $15,000 to the project in October.",
+      "quote": "And Other Stuff (AOS) is a collective of people who build, imagine, organize, and experiment. Together, we create and steward freedom tech—open tools, protocols, and applications that strengthen human liberty. We enhance the Commons, explore the art of the possible, and empower people to build their own futures.",
+      "divine": "Divine is also part of the AOS collective. It is a platform that, among other things, brings old content from the Vine platform back to life."
+    },
+    "protocols": {
+      "platforms_heading": "Protocols, not platforms",
+      "platforms_subtitle": "A technical approach to free speech",
+      "platforms_body": "If you have read the article `protocols, not platforms` by Mike Masnick, you may have gained the insight that we can make social media less centralised. Several protocols offer us the option to create decentralised social networks. In such an ecosystem the interests disappear that today demand all our attention and break down our digital wellbeing.",
+      "nostr_heading": "Nostr",
+      "nostr_subtitle": "Notes and other Stuff Transmitted by Relays",
+      "nostr_body": "An open protocol where anyone can distribute data via so-called events through a network of relays. No verification restrictions and no APIs. It is a grassroots project without a central intermediary pulling all the strings. All data can be requested and verified by anyone. Every event carries a digital signature, made with a cryptographic private key."
+    },
+    "archive": {
+      "heading": "The public Hyves archive",
+      "body": "Right now we use the publicly available data of Hyves profiles collected by the Archive Team. This data is the source for all content that we convert into so-called nostr events. These events can then be retrieved from various relays. That is what the application on Nyves.nl currently does."
+    },
+    "video": {
+      "play": "Play video",
+      "pause": "Pause",
+      "transcript": [
+      {
+        "start": 0,
+        "end": 3.2,
+        "text": "Let's bring Hyves back."
+      },
+      {
+        "start": 3.2,
+        "end": 10.8,
+        "text": "Profile by profile, note by note, picture by picture."
+      },
+      {
+        "start": 10.8,
+        "end": 18,
+        "text": "Before Hyves went dark, thousands of people backed up their profile with Hyves Backup."
+      },
+      {
+        "start": 18,
+        "end": 26,
+        "text": "That was a desktop app I built that stored all your Hyves content locally on your own computer."
+      },
+      {
+        "start": 26,
+        "end": 32.5,
+        "text": "Valuable content, valuable memories that form a digital memory and should be preserved."
+      },
+      {
+        "start": 32.5,
+        "end": 40,
+        "text": "My idea is to invite everyone who made a backup"
+      },
+      {
+        "start": 40,
+        "end": 47,
+        "text": "to turn that backup back into a Hyves profile, through the app Nyves."
+      },
+      {
+        "start": 47,
+        "end": 56,
+        "text": "Just like Hyves Backup, this is a web app that runs locally in your browser,"
+      },
+      {
+        "start": 56,
+        "end": 60,
+        "text": "with no server and no platform."
+      },
+      {
+        "start": 60,
+        "end": 64.5,
+        "text": "Because data is exchanged through what are called relays."
+      },
+      {
+        "start": 64.5,
+        "end": 73,
+        "text": "On Nyves you can also browse profiles and leave notes, just like before."
+      },
+      {
+        "start": 73,
+        "end": 80,
+        "text": "This is all made possible by a new social networking protocol called Nostr."
+      },
+      {
+        "start": 80,
+        "end": 87,
+        "text": "So yes, once again: Nyves is an app, and therefore not a platform."
+      },
+      {
+        "start": 87,
+        "end": 94.5,
+        "text": "With Nyves we can bring back the authentic feeling of social media."
+      },
+      {
+        "start": 94.5,
+        "end": 102,
+        "text": "Social media where connection comes first, where your friends and their content come first."
+      },
+      {
+        "start": 102,
+        "end": 108.4,
+        "text": "Social media without third parties, the platforms, doing all they can to grab as much attention as possible,"
+      },
+      {
+        "start": 108.4,
+        "end": 111,
+        "text": "for commercial interests."
+      },
+      {
+        "start": 111,
+        "end": 113.5,
+        "text": "Nyves, with an N."
+      },
+      {
+        "start": 113.5,
+        "end": 116.5,
+        "text": "This is the idea I'd love to turn into a proof of concept."
+      },
+      {
+        "start": 116.5,
+        "end": 119,
+        "text": "Thank you."
+      }
+      ]
+    }
+  },
+  "search": {
+    "no_results_dropdown": "No profiles found for \"{0}\"",
+    "no_results": "Unfortunately, no profiles were found for the search term \"{0}\"",
+    "found": "{0} profiles found for \"{1}\"",
+    "more_available": "(more available)",
+    "page_info": "Page {0} ({1}-{2} profiles)",
+    "load_more": "Load more",
+    "loading": "Loading...",
+    "error": "Something went wrong while searching. Please try again."
+  },
+  "relayHealth": {
+    "relay_status": "Relay status",
+    "refreshed": "Refresh status",
+    "hide_details": "Hide details",
+    "show_details": "Show details",
+    "connection_error": "Connection error:",
+    "testing": "Testing relay connection...",
+    "about_nip50": "Nyves uses {0} to search for information on the relay {1}.",
+    "connection_details": "Connection Details",
+    "relay": "Relay:",
+    "status": "Status:",
+    "response_time": "Response time:",
+    "event_count": "Event count:",
+    "last_checked": "Last checked:",
+    "relay_info": "Relay Information (NIP-11)",
+    "description": "Description:",
+    "software": "Software:",
+    "contact": "Contact:",
+    "admin_pubkey": "Admin Pubkey:",
+    "supported_nips": "Supported NIPs:",
+    "fees": "Fees:",
+    "payment_required_details": "Payment required (see relay for details)",
+    "nip11_error": "NIP-11 error:",
+    "limitations": "Server Limitations",
+    "no_limitations": "No specific limitations found",
+    "limitation_message_length": "Max message: {0}KB",
+    "limitation_subscriptions": "Max subscriptions: {0}",
+    "limitation_limit": "Max limit: {0}",
+    "limitation_auth": "Auth required",
+    "limitation_payment": "Payment required",
+    "limitation_pow": "Min PoW: {0}",
+    "event_stats": "Event Statistics (NIP-45)",
+    "total_events": "Total events:",
+    "approximate": "* Estimated count (HyperLogLog)",
+    "count_failed": "COUNT not supported or failed: {0}",
+    "feature_support": "Feature Support",
+    "nip11_label": "NIP-11 (Relay info):",
+    "nip45_label": "NIP-45 (Event count):",
+    "nip50_label": "NIP-50 (Search):",
+    "auto_check": "Automatic check every {0} seconds",
+    "status_connected": "Connected",
+    "status_connecting": "Connecting...",
+    "status_error": "Connection failed",
+    "status_disconnected": "Not connected",
+    "speed_excellent": "excellent",
+    "speed_good": "good",
+    "speed_fair": "fair",
+    "speed_slow": "slow",
+    "connection_timeout": "Connection timeout",
+    "connection_failed": "Connection failed",
+    "websocket_error": "WebSocket connection error",
+    "count_timeout": "COUNT timeout",
+    "count_unsupported": "COUNT not supported by relay",
+    "count_websocket_error": "WebSocket error during COUNT",
+    "connected_relays": "{0} connected relays"
+  },
+  "profiel": {
+    "nav": {
+      "about": "About",
+      "friends": "Friends",
+      "www": "WWW",
+      "photos": "Photos",
+      "blog": "Blog",
+      "more": "More"
+    },
+    "about": {
+      "heading": "Profile",
+      "name": "Name:",
+      "member_since": "Hyver since {0}",
+      "brands": "My brands:",
+      "spots": "Spots:",
+      "website": "Website:",
+      "view_full_profile": "View full profile"
+    },
+    "media": {
+      "heading": "Photos & videos",
+      "spots": "Spotted! ({0})",
+      "view_all": "View all photos and videos"
+    },
+    "friends": {
+      "heading": "Friends ({0})",
+      "view_all": "View all friends"
+    },
+    "krabbels": {
+      "reply": "Reply"
+    },
+    "www": {
+      "replies": "{0} comment(s)",
+      "reply": "Reply",
+      "respect": "{0} Nyvers respect this"
+    },
+    "blog": {
+      "no_items": "No items found"
+    }
+  },
+  "common": {
+    "home": "Home",
+    "code": "Code",
+    "language": "Language",
+    "no_items": "No items found",
+    "loading": "Loading...",
+    "load_more": "Load more",
+    "previous": "Previous",
+    "next": "Next",
+    "page": "Page",
+    "reply": "Reply",
+    "comments": "comment(s)",
+    "read_more": "Read more",
+    "close": "Close",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "retry": "Try again",
+    "sats": "sats"
+  },
   "Nieuws": "News",
   "Doneer": "Donate",
-  "OpenCollective is een platform waar je kunt doneren aan projecten. Je kunt eenmalig doneren, maar ook een maandelijks doen via een bankoverboeking.": "OpenCollective is a platform where you can donate to projects. You can donate once or monthly using your bank.",
-  "Hoe je het project Nyves kunt steunen met geld": "How you can support the Nyves project with money",
   "Over_Nyves": "About Nyves",
   "Veelgestelde_vragen": "FAQ",
   "Voorwaarden": "Terms",

@@ -3,6 +3,7 @@
 import { ref, readonly, onUnmounted, onMounted } from 'vue';
 
 const { pool, queryRelays, closeRelays } = useSharedRelayPool()
+const { locale } = useI18n()
 
 const STATS_RELAY = 'wss://rely.nyves.nl'
 
@@ -33,7 +34,7 @@ const nyvesUsernameCounts = async () => {
         const data = JSON.parse(event.data)
         if (data[0] === 'COUNT' && data[1] === countId) {
           if (data[2]) {
-            count.value.usernames = data[2].count.toLocaleString('nl-NL')
+            count.value.usernames = data[2].count.toLocaleString(locale.value)
           }
         }
       } catch (e) {
@@ -67,7 +68,7 @@ const nyvesProfileCounts = async () => {
         const data = JSON.parse(event.data)
         if (data[0] === 'COUNT' && data[1] === countId) {
           if (data[2]) {
-            count.value.profiles = data[2].count.toLocaleString('nl-NL')
+            count.value.profiles = data[2].count.toLocaleString(locale.value)
           }
         }
       } catch (e) {
@@ -106,7 +107,7 @@ const nostrverseCounts = async () => {
         const data = JSON.parse(event.data)
         if (data[0] === 'COUNT' && data[1] === countId) {
           if (data[2]) {
-            count.value.nostrverse = data[2].count.toLocaleString('nl-NL')
+            count.value.nostrverse = data[2].count.toLocaleString(locale.value)
           }
         }
       } catch (e) {
@@ -135,48 +136,48 @@ onMounted(async () => {
 <template>
   <div class="border border-gray-200 bg-[#fcfcfc] rounded-sm text-center pb-8 mb-8">
     <div class="h-[44px] nyves-bg-gray-header"></div>
-    <h2 class="text-center text-4xl font-bold mb-4">Statistieken</h2>
+    <h2 class="text-center text-4xl font-bold mb-4">{{ $t('home.statistics.heading') }}</h2>
     <p class="mb-8 text-2xl">
-      Hoeveel content hebben al terug kunnen zetten?
+      {{ $t('home.statistics.content_question') }}
     </p>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-xl">
       <div>
-        <span class="usernames font-bold">{{ count.usernames }}</span> gebruikersnamen
+        <span class="usernames font-bold">{{ count.usernames }}</span> {{ $t('home.statistics.usernames') }}
       </div>
       <div>
-        <span class="font-bold">0</span> profielfoto's
+        <span class="font-bold">0</span> {{ $t('home.statistics.profile_pictures') }}
       </div>
       <div>
-        <span class="font-bold">0</span> vriendschappen
+        <span class="font-bold">0</span> {{ $t('home.statistics.friendships') }}
       </div>
       <div>
-        <span class="font-bold">0</span> designs
+        <span class="font-bold">0</span> {{ $t('home.statistics.designs') }}
       </div>
       <div>
-        <span class="font-bold">0</span> albums met <span class="usernames font-bold">0</span> foto's
+        <span class="font-bold">0</span> {{ $t('home.statistics.albums', ['0']) }}
       </div>
       <div>
-        <span class="font-bold">0</span> krabbels
+        <span class="font-bold">0</span> {{ $t('home.statistics.krabbels') }}
       </div>
       <div>
-        <span class="font-bold">0</span> wiewatwaar's
+        <span class="font-bold">0</span> {{ $t('home.statistics.www') }}
       </div>
       <div>
-        <span class="font-bold">0</span> blogs
+        <span class="font-bold">0</span> {{ $t('home.statistics.blogs') }}
       </div>
       <div>
-        <span class="font-bold">0</span> gadgets
+        <span class="font-bold">0</span> {{ $t('home.statistics.gadgets') }}
       </div>
     </div>
     <p class="my-8 text-2xl">
-      Hoeveel profielen zijn er actief?
+      {{ $t('home.statistics.profiles_question') }}
     </p>
     <div class="grid grid-cols-1 gap-4 text-xl">
       <div>
-        <span class="font-bold">{{ count.profiles }}</span> Nyves profielen uit het archief
+        {{ $t('home.statistics.archived_profiles', [count.profiles]) }}
       </div>
       <div>
-        <span class="font-bold">{{ count.nostrverse }}</span> profielen uit de nostrverse
+        {{ $t('home.statistics.nostrverse_profiles', [count.nostrverse]) }}
       </div>
     </div>
   </div>

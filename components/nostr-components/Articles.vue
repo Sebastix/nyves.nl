@@ -193,7 +193,7 @@ watch(() => props.autoRefresh, () => {
     <div v-if="hasError" class="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
       <div class="flex">
         <div>
-          <h3 class="text-sm font-medium text-red-800">Error Loading Articles</h3>
+          <h3 class="text-sm font-medium text-red-800">{{ $t('articles.error') }}</h3>
           <p class="text-sm text-red-700 mt-1">{{ articlesData.error }}</p>
         </div>
       </div>
@@ -206,22 +206,22 @@ watch(() => props.autoRefresh, () => {
 
     <!-- Empty State -->
     <div v-else-if="!isLoading && !hasArticles" class="text-center">
-      <h3 class="text-lg font-medium text-gray-900 mb-2">Geen artikelen gevonden</h3>
+      <h3 class="text-lg font-medium text-gray-900 mb-2">{{ $t('articles.no_articles') }}</h3>
       <p class="text-gray-500 break-all">
         <span v-if="selectedTopic">
-          No articles found for topic "{{ selectedTopic }}".
+          {{ $t('articles.no_articles_topic', [selectedTopic]) }}
         </span>
         <span v-else-if="authorFilter">
-          No articles found for author: {{ authorFilter }}.
+          {{ $t('articles.no_articles_author', [authorFilter]) }}
         </span>
         <span v-else>
-          No articles found with tags: {{ tagFilterDisplay }}.
+          {{ $t('articles.no_articles_tags', [tagFilterDisplay]) }}
         </span>
       </p>
       <button
         @click="handleRefresh"
         class="mt-4 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2">
-        Zoek opnieuw
+        {{ $t('articles.search_again') }}
       </button>
     </div>
 

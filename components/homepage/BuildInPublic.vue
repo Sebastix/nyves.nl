@@ -8,10 +8,10 @@
       <!-- Sectie Header -->
       <div class="text-center mb-4">
         <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-          Build in <span class="text-nyves-orange">Public</span>
+          {{ $t('home.build_in_public.heading_lead') }} <span class="text-nyves-orange">{{ $t('home.build_in_public.heading_highlight') }}</span>
         </h2>
         <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-          Volg het proces van het project in real-time.
+          {{ $t('home.build_in_public.subtitle') }}
         </p>
       </div>
 
@@ -29,8 +29,8 @@
                 </svg>
               </div>
               <div>
-                <h3 class="text-xl font-bold text-gray-900">Code Repository</h3>
-                <p class="text-gray-600 text-sm">Open source ontwikkeling</p>
+                <h3 class="text-xl font-bold text-gray-900">{{ $t('home.build_in_public.repository_heading') }}</h3>
+                <p class="text-gray-600 text-sm">{{ $t('home.build_in_public.repository_subtitle') }}</p>
               </div>
             </div>
             
@@ -42,8 +42,9 @@
 
           <div class="space-y-4 mb-6">
             <p class="text-gray-700 leading-relaxed">
-              Bekijk de volledige <strong>broncode</strong> van Nyves op GitLab. 
-              De werking van de applicatie is volledig transparant.
+              <i18n-t keypath="home.build_in_public.repository_text" tag="span">
+                <strong>{{ $t('home.build_in_public.repository_text_highlight') }}</strong>
+              </i18n-t>
             </p>
             
             <!-- Features -->
@@ -52,19 +53,19 @@
                 <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
                 </svg>
-                <span>Nuxt.js web applicatie</span>
+                <span>{{ $t('home.build_in_public.feature_nuxt') }}</span>
               </li>
               <li class="flex items-center space-x-2">
                 <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
                 </svg>
-                <span>Nostr protocol implementatie</span>
+                <span>{{ $t('home.build_in_public.feature_nostr') }}</span>
               </li>
               <li class="flex items-center space-x-2">
                 <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
                 </svg>
-                <span>Contributions zijn welkom, AGPLv2</span>
+                <span>{{ $t('home.build_in_public.feature_contributions') }}</span>
               </li>
             </ul>
           </div>
@@ -97,8 +98,8 @@
                 </svg>
               </div>
               <div>
-                <h3 class="text-xl font-bold text-gray-900">Project management</h3>
-                <p class="text-gray-600 text-sm">Live te volgen via ons Taiga board</p>
+                <h3 class="text-xl font-bold text-gray-900">{{ $t('home.build_in_public.management_heading') }}</h3>
+                <p class="text-gray-600 text-sm">{{ $t('home.build_in_public.management_subtitle') }}</p>
               </div>
             </div>
             
@@ -110,8 +111,9 @@
 
           <div class="space-y-4 mb-6">
             <p class="text-gray-700 leading-relaxed">
-              Bekijk de <strong>voortgang</strong> live via ons Taiga dashboard.
-              Zie welke features in ontwikkeling zijn en wat er op de roadmap staat.
+              <i18n-t keypath="home.build_in_public.management_text" tag="span">
+                <strong>{{ $t('home.build_in_public.management_text_highlight') }}</strong>
+              </i18n-t>
             </p>
             
             <!-- Features -->
@@ -120,19 +122,19 @@
                 <svg class="w-4 h-4 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
                 </svg>
-                <span>Project timeline</span>
+                <span>{{ $t('home.build_in_public.feature_timeline') }}</span>
               </li>
               <li class="flex items-center space-x-2">
                 <svg class="w-4 h-4 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
                 </svg>
-                <span>Epics met een kanban bord</span>
+                <span>{{ $t('home.build_in_public.feature_epics') }}</span>
               </li>
               <li class="flex items-center space-x-2">
                 <svg class="w-4 h-4 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
                 </svg>
-                <span>Overzicht met issues</span>
+                <span>{{ $t('home.build_in_public.feature_issues') }}</span>
               </li>
             </ul>
           </div>
@@ -143,7 +145,7 @@
             rel="noopener noreferrer"
             class="inline-flex items-center px-6 py-3 bg-nyves-blue text-white! font-semibold rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200"
           >
-            Bekijk project dashboard
+            {{ $t('home.build_in_public.view_dashboard') }}
           </a>
         </div>
       </div>
@@ -152,11 +154,12 @@
       <div class="text-center">
         <div class="bg-white p-8">
           <h3 class="text-2xl font-bold text-gray-900 mb-4">
-            <span class="text-nyves-orange">Transparantie</span> & <span class="text-nyves-blue">Samenwerking</span>
+            <span class="text-nyves-orange">{{ $t('home.build_in_public.transparency') }}</span> & <span class="text-nyves-blue">{{ $t('home.build_in_public.collaboration') }}</span>
           </h3>
           <p class="text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Door <strong>build in public</strong> te werken, delen we niet alleen onze code, maar ook ons proces. 
-            Dit zorgt voor vertrouwen, kan iedereen ervan leren en nodigt anderen uit tot samenwerking.
+            <i18n-t keypath="home.build_in_public.philosophy_text" tag="span">
+              <strong>{{ $t('home.build_in_public.philosophy_highlight') }}</strong>
+            </i18n-t>
           </p>
         </div>
       </div>

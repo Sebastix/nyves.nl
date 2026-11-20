@@ -56,7 +56,7 @@ onUnmounted(async () => {
     <LoadingSpinner class="size-12 mx-auto mb-12" />
   </div>
   <p v-else-if="blogsData.length === 0" class="p-2 text-sm">
-    Geen items gevonden
+    {{ $t('profiel.blog.no_items') }}
   </p>
   <div v-else class="flex px-2" v-for="item in blogsData" :key="item.id">
     <template v-if="item.tags" v-for="(tag, key) in item.tags" :key="tag[0]">

@@ -1,4 +1,5 @@
 import { ref, readonly } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { nip19 } from 'nostr-tools'
 
 // Default relays to use for fetching articles
@@ -8,6 +9,7 @@ const DEFAULT_RELAYS = [
 ]
 
 export const useNostrArticles = () => {
+  const { t } = useI18n()
   const { pool } = useSharedRelayPool()
 
   // Reactive state
@@ -88,7 +90,7 @@ export const useNostrArticles = () => {
       const tags = event.tags || []
 
       // Get basic article data
-      const title = getTagValue(tags, 'title') || 'Untitled Article'
+      const title = getTagValue(tags, 'title') || t('articles.untitled')
       const summary = getTagValue(tags, 'summary') || ''
       const image = getTagValue(tags, 'image') || ''
       const publishedAtTag = getTagValue(tags, 'published_at')

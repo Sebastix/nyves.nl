@@ -60,7 +60,7 @@ onUnmounted(async () => {
     <LoadingSpinner class="size-12 mx-auto my-12" />
   </div>
   <p v-else-if="krabbelsData.length === 0" class="p-2 text-sm">
-    Geen items gevonden
+    {{ $t('common.no_items') }}
   </p>
   <div v-else v-for="krabbel in krabbelsData" :key="krabbel.id" class="border-b border-gray-200 p-2">
     <div class="flex gap-2">
@@ -75,7 +75,7 @@ onUnmounted(async () => {
         </NuxtLink>
         <NostrComponentsNoteContent :event="krabbel" />
         <div class="text-xs text-[#a9a9a9]">
-          {{ formatDate(krabbel.created_at) }}, {{ getDateObject(krabbel.created_at).getHours() }}:{{ getDateObject(krabbel.created_at).getMinutes() }} <NuxtLink to="">Reageer</NuxtLink>
+          {{ formatDate(krabbel.created_at) }}, {{ getDateObject(krabbel.created_at).getHours() }}:{{ getDateObject(krabbel.created_at).getMinutes() }} <NuxtLink to="">{{ $t('profiel.krabbels.reply') }}</NuxtLink>
         </div>
       </div>
     </div>

@@ -1,5 +1,6 @@
 <script setup>
 const localePath = useLocalePath()
+const { locale } = useI18n()
 const { pool, queryRelays } = useSharedRelayPool()
 
 const RELAY = 'wss://rely.nyves.nl'
@@ -33,7 +34,7 @@ onMounted(async () => {
           const data = JSON.parse(event.data)
           if (data[0] === 'COUNT' && data[1] === countId) {
             if (data[2]) {
-              count.value.names = data[2].count.toLocaleString('nl-NL')
+              count.value.names = data[2].count.toLocaleString(locale.value)
             }
           }
           loading.value = false
@@ -92,7 +93,7 @@ onMounted(async () => {
       <!-- Call to Action buttons -->
       <div class="mt-8 flex flex-row justify-center gap-4">
         <NuxtLink 
-          to="/zoek" 
+          :to="localePath('zoek')" 
           class="inline-flex items-center px-8 py-3 bg-nyves-orange text-white! font-semibold rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200"
         >
           <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

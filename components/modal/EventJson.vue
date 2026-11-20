@@ -4,6 +4,9 @@ import { useModalStore } from '~/stores/modal'
 
 const modalStore = useModalStore()
 
+// Briefly show a confirmation on the copy button
+const copied = ref(false)
+
 // Get the event data from the modal store
 const eventData = computed(() => modalStore.eventJsonData)
 
@@ -17,8 +20,8 @@ const formattedJson = computed(() => {
 const copyToClipboard = async () => {
   try {
     await navigator.clipboard.writeText(formattedJson.value)
-    // You could add a temporary success message here
-    console.log('Event JSON copied to clipboard')
+    copied.value = true
+    setTimeout(() => { copied.value = false }, 2000)
   } catch (err) {
     console.error('Failed to copy JSON:', err)
   }
@@ -36,7 +39,7 @@ const closeModal = () => {
     <!-- Header -->
     <div class="flex items-center justify-between mb-6">
       <h2 class="text-2xl font-bold text-white">
-        Nostr event (Kind {{ eventData.kind }})
+        {{ $t('eventJson.heading', [eventData.kind]) }}
       </h2>
     </div>
 
@@ -47,7 +50,7 @@ const closeModal = () => {
         @click="copyToClipboard"
         class="absolute top-2 right-2 bg-gray-700 hover:bg-gray-600 text-white text-xs px-3 py-1 rounded transition-colors"
       >
-        Copy JSON
+        {{ copied ? $t('common.copied') : $t('eventJson.copy') }}
       </button>
       <!-- JSON Content -->
       <pre class="text-green-400 text-xs overflow-x-auto whitespace-pre-wrap font-mono leading-relaxed py-1">{{ formattedJson }}</pre>
@@ -60,7 +63,7 @@ const closeModal = () => {
         target="_blank"
         class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded transition-colors inline-block"
       >
-        View on njump ↗
+        {{ $t('eventJson.view_on_njump') }}
       </a>
     </div>
 

@@ -6,7 +6,7 @@ const localePath = useLocalePath()
   <header>
     <!-- Header Navigation -->
     <div class="navigation rounded-sm my-1 px-2 py-1 flex gap-6 text-sm">
-      <NuxtLink :to="localePath('index')">Home</NuxtLink>
+      <NuxtLink :to="localePath('index')">{{ $t('common.home') }}</NuxtLink>
       <NuxtLink :to="localePath('zoek')">{{ $t('zoeken') }}</NuxtLink>
     </div>
 

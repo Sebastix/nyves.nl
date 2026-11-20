@@ -1,5 +1,6 @@
 <script setup>
 const route = useRoute()
+const { locale } = useI18n()
 const { fetchArticleByIdentifier } = useNostrArticles()
 const { fetchProfileByPubkey } = useNostrProfile()
 const { markdownToHtml } = useMarkdown()
@@ -91,7 +92,7 @@ const stripMarkdown = (text) => {
 const formatDate = (timestamp) => {
   if (!timestamp) return ''
   const date = new Date(timestamp * 1000)
-  return date.toLocaleDateString('en-US', {
+  return date.toLocaleDateString(locale.value, {
     year: 'numeric',
     month: 'long',
     day: 'numeric'

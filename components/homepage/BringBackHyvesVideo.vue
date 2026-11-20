@@ -1,5 +1,7 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
+
+const { tm, rt } = useI18n()
 
 const videoRef = ref(null)
 const currentSegment = ref(0)
@@ -12,36 +14,27 @@ const parseTimestamp = (timestamp) => {
   return parseInt(hours) * 3600 + parseInt(minutes) * 60 + parseInt(secs) + parseInt(ms) / 1000
 }
 
-// Transcript segments with start/end times
-const segments = [
-  { start: 0, end: 3.2, text: "Let's bring Hyves back." },
-  { start: 3.2, end: 10.8, text: "Profile by profile, note by note, picture by picture." },
-  { start: 10.8, end: 18, text: "Before Hyves went dark, thousands of people backed up their profile with Hyves Backup." },
-  { start: 18, end: 26, text: "That was a desktop app I built that stored all your Hyves content locally on your own computer." },
-  { start: 26, end: 32.5, text: "Valuable content, valuable memories that form a digital memory and should be preserved." },
-  { start: 32.5, end: 40, text: "My idea is to invite everyone who made a backup" },
-  { start: 40, end: 47, text: "to turn that backup back into a Hyves profile, through the app Nyves." },
-  { start: 47, end: 56, text: "Just like Hyves Backup, this is a web app that runs locally in your browser," },
-  { start: 56, end: 60, text: "with no server and no platform." },
-  { start: 60, end: 64.5, text: "Because data is exchanged through what are called relays." },
-  { start: 64.5, end: 73, text: "On Nyves you can also browse profiles and leave notes, just like before." },
-  { start: 73, end: 80, text: "This is all made possible by a new social networking protocol called Nostr." },
-  { start: 80, end: 87, text: "So yes, once again: Nyves is an app, and therefore not a platform." },
-  { start: 87, end: 94.5, text: "With Nyves we can bring back the authentic feeling of social media." },
-  { start: 94.5, end: 102, text: "Social media where connection comes first, where your friends and their content come first." },
-  { start: 102, end: 108.4, text: "Social media without third parties, the platforms, doing all they can to grab as much attention as possible," },
-  { start: 108.4, end: 111, text: "for commercial interests." },
-  { start: 111, end: 113.5, text: "Nyves, with an N." },
-  { start: 113.5, end: 116.5, text: "This is the idea I'd love to turn into a proof of concept." },
-  { start: 116.5, end: 119, text: "Thank you." }
-]
+// Transcript segments (start/end times live in the locale files, the text is translated)
+// The narration itself is English, so the nl transcript is a translation of it.
+//
+// `tm()` only gives the *structure* (the array of segments). @nuxtjs/i18n
+// precompiles locale messages at build time, so each `text` is a message AST
+// object, not a string — it has to be resolved with `rt()` before rendering,
+// otherwise the template would dump the AST as JSON. Same approach as
+// pages/tijdlijn/index.vue.
+const segments = computed(() =>
+  (tm('home.video.transcript') || []).map((segment) => ({
+    ...segment,
+    text: rt(segment.text),
+  }))
+)
 
 const updateActiveSegment = () => {
   if (!videoRef.value) return
   
   const currentTime = videoRef.value.currentTime
-  const activeIndex = segments.findIndex((segment, index) => {
-    const nextSegment = segments[index + 1]
+  const activeIndex = segments.value.findIndex((segment, index) => {
+    const nextSegment = segments.value[index + 1]
     return currentTime >= segment.start && (nextSegment ? currentTime < nextSegment.start : true)
   })
   
@@ -93,7 +86,7 @@ onMounted(() => {
             <svg v-else class="size-6" fill="currentColor" viewBox="0 0 20 20">
               <path d="M6 4h2v12H6V4zm6 0h2v12h-2V4z"/>
             </svg>
-            <span>{{ isPlaying ? 'Pause' : 'Play video' }}</span>
+            <span>{{ isPlaying ? $t('home.video.pause') : $t('home.video.play') }}</span>
           </button>
         </div>
         

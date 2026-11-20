@@ -1,6 +1,8 @@
 <script setup>
 import { ref, onMounted, computed } from 'vue'
 
+const { t, locale } = useI18n()
+
 // Props and emits for modal interaction
 const emit = defineEmits(['close'])
 
@@ -47,7 +49,7 @@ const detectNostrExtension = async () => {
 // Connect with browser extension
 const connectWithExtension = async () => {
   if (!nostrStore.extensionAvailable) {
-    alert('No Nostr extension available')
+    alert(t('nostrConnect.no_extension_alert'))
     return
   }
   
@@ -62,7 +64,7 @@ const connectWithExtension = async () => {
     
   } catch (error) {
     console.error('❌ Connection failed:', error)
-    alert(`Connection failed: ${error.message}`)
+    alert(t('nostrConnect.connection_failed_alert', [error.message]))
   }
 }
 
@@ -78,7 +80,7 @@ const showConnectionStatus = computed(() => {
 
 const connectionStatusText = computed(() => {
   if (nostrStore.isConnected) {
-    return `Connected as ${nostrStore.userDisplayName}`
+    return t('nostrConnect.connected_as', [nostrStore.userDisplayName])
   }
   return null
 })
@@ -100,7 +102,7 @@ onMounted(() => {
 <template>
   <div class="text-white">
     <div class="flex items-center justify-between mb-4">
-      <h2 class="text-xl font-bold">Inloggen</h2>
+      <h2 class="text-xl font-bold">{{ $t('nostrConnect.title') }}</h2>
     </div>
 
     <div class="space-y-4">
@@ -111,9 +113,9 @@ onMounted(() => {
             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
           </svg>
           <div>
-            <p class="text-green-400 font-medium">Already Connected!</p>
+            <p class="text-green-400 font-medium">{{ $t('nostrConnect.already_connected') }}</p>
             <p class="text-green-300 text-sm">{{ connectionStatusText }}</p>
-            <p class="text-green-200 text-xs">Last connected: {{ new Date(nostrStore.lastConnected).toLocaleString() }}</p>
+            <p class="text-green-200 text-xs">{{ $t('nostrConnect.last_connected') }} {{ new Date(nostrStore.lastConnected).toLocaleString(locale) }}</p>
           </div>
         </div>
         
@@ -121,14 +123,14 @@ onMounted(() => {
         <div class="mt-3">
           <button @click="disconnect" 
                   class="text-sm bg-yellow-800 hover:bg-yellow-900 text-white px-3 py-1 w-full rounded transition-colors">
-            Disconnect
+            {{ $t('nostrConnect.disconnect') }}
           </button>
         </div>
       </div>
       
       <!-- Connection Instructions (only shown when not connected) -->
       <p v-else class="text-gray-300 text-sm">
-        Connect your Nostr identity.
+        {{ $t('nostrConnect.instructions') }}
       </p>
       
       <!-- Extension Status Indicator -->
@@ -141,7 +143,7 @@ onMounted(() => {
               <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
               <path class="opacity-75" fill="currentColor" d="m4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
             </svg>
-            <span class="text-sm">Checking for browser extension...</span>
+            <span class="text-sm">{{ $t('nostrConnect.checking_extension') }}</span>
           </div>
           
           <!-- Extension Available -->
@@ -149,7 +151,7 @@ onMounted(() => {
             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
             </svg>
-            <span class="text-sm font-medium">Browser extension detected</span>
+            <span class="text-sm font-medium">{{ $t('nostrConnect.extension_detected') }}</span>
           </div>
           
           <!-- Extension Not Available -->
@@ -157,7 +159,7 @@ onMounted(() => {
             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
             </svg>
-            <span class="text-sm">No browser extension found</span>
+            <span class="text-sm">{{ $t('nostrConnect.extension_missing') }}</span>
           </div>
         </div>
         
@@ -168,7 +170,7 @@ onMounted(() => {
         
         <!-- Extension Not Found Help -->
         <div v-if="!isCheckingExtension && !nostrStore.extensionAvailable" class="mt-2 text-xs text-gray-400">
-          <p>Install a Nostr browser extension like:</p>
+          <p>{{ $t('nostrConnect.install_hint') }}</p>
           <ul class="mt-1 space-y-1">
             <li>• Alby</li>
             <li>• nos2x</li>
@@ -190,10 +192,10 @@ onMounted(() => {
               : 'bg-gray-700 text-gray-400 cursor-not-allowed'
           ]"
         >
-          <span v-if="isCheckingExtension">Detecting Extension...</span>
-          <span v-else-if="nostrStore.isConnecting">Connecting...</span>
-          <span v-else-if="nostrStore.extensionAvailable">Connect with Browser Extension</span>
-          <span v-else>Browser Extension Required</span>
+          <span v-if="isCheckingExtension">{{ $t('nostrConnect.detecting') }}</span>
+          <span v-else-if="nostrStore.isConnecting">{{ $t('nostrConnect.connecting') }}</span>
+          <span v-else-if="nostrStore.extensionAvailable">{{ $t('nostrConnect.connect_with_extension') }}</span>
+          <span v-else>{{ $t('nostrConnect.extension_required') }}</span>
         </button>
         
         <!-- Retry Button (only shown when extension not found) -->
@@ -205,7 +207,7 @@ onMounted(() => {
           <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
             <path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd" />
           </svg>
-          Check Again
+          {{ $t('nostrConnect.check_again') }}
         </button>
 
       </div>
