@@ -6,131 +6,148 @@ useSeoMeta({
   title: () => `${t('Veelgestelde_vragen')} - Nyves`,
   description: () => t('veelgestelde_vragen.seo_description')
 })
+
+const YME_BOSMA_NPUB = 'npub1tef4nks9rrfcvkxlwts9eu4zluhfs025nrr3ldkm8ssuqv7m46ksf7nskn'
 </script>
 
 <template>
   <section class="leading-relaxed mb-8">
-    <h1 class="text-3xl text-nyves-blue my-3 text-center font-bold">Veelgestelde vragen</h1>
+    <h1 class="text-3xl text-nyves-blue my-3 text-center font-bold">{{ $t('Veelgestelde_vragen') }}</h1>
     <p class="text-xl text-center">
-      Alles wat je moet weten over Nyves
+      {{ $t('veelgestelde_vragen.subtitle') }}
     </p>
   </section>
   <section class="categorie">
-    <h2>Aan de slag</h2>
+    <h2>{{ $t('veelgestelde_vragen.sections.getting_started') }}</h2>
     <details>
-      <summary>Wat is Nyves?</summary>
-      Nyves is een nostr applicatie.
+      <summary>{{ $t('veelgestelde_vragen.q.what_is_nyves') }}</summary>
+      {{ $t('veelgestelde_vragen.a.what_is_nyves') }}
     </details>
     <details>
-      <summary>Hoe maak ik een nieuw profiel aan?</summary>
+      <summary>{{ $t('veelgestelde_vragen.q.create_profile') }}</summary>
       <p>
-        Nyves zelf kan op dit moment (nog) geen nieuw profiel aanmaken of een bestaand profiel koppelen.
-        In ontwikkeling: Nyves geeft je automatisch een gastprofiel waarmee je kunt reageren en berichten plaatsen.
-        Een gastprofiel is een echt Nostr-profiel, maar heeft enkel een naam en wordt na 7 dagen verwijderd als je het niet permanent maakt.
+        {{ $t('veelgestelde_vragen.a.create_profile_1') }}
       </p>
       <p>
-        Wil je een blijvend profiel? Maak er dan een aan met een Nostr-applicatie zoals
-        <a href="https://ditto.pub" target="_blank" rel="noopener noreferrer" class="inline-flex items-center align-top">
-          Ditto
-          <svg class="size-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-          </svg>
-        </a>.
-        Bewaar je privésleutel altijd op een veilige plek: wie die sleutel bezit, heeft volledige toegang tot je profiel.
-      </p>
-    </details>
-    <details>
-      <summary>Hoe maak ik een eigen design voor mijn profiel?</summary>
-      <p>
-        Nyves ondersteunt zogenoemde thema's of eigen designs voor je profiel.
-        Zo'n design wordt vastgelegd in een Nostr-event (kind 16767) dat je maakt met een applicatie die profielthema's ondersteunt, zoals
-        <a href="https://ditto.pub" target="_blank" rel="noopener noreferrer" class="inline-flex items-center align-top">
-          Ditto
-          <svg class="size-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-          </svg>
-        </a>.
-        Je kunt daarin onder meer de achtergrondkleur of -afbeelding, de kleuren van de tekst en de gebruikte lettertypes instellen.
-      </p>
-      <p>
-        Zodra jouw profiel een eigen design heeft, verschijnt op je profielpagina de knop 'Toon eigen design!' waarmee je heen en weer kunt schakelen tussen je eigen design en het standaard design van Nyves.
-        Wil je inspiratie opdoen? Bekijk dan de
-        <NuxtLink :to="localePath('profielen-uit-de-nostrverse-en-fediverse')">profielen met een eigen design</NuxtLink>.
+        <i18n-t keypath="veelgestelde_vragen.a.create_profile_2" tag="span" scope="global">
+          <template #link>
+            <a href="https://ditto.pub" target="_blank" rel="noopener noreferrer" class="inline-flex items-center align-top">
+              Ditto
+              <svg class="size-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+          </template>
+        </i18n-t>
       </p>
     </details>
     <details>
-      <summary>Is Nyves opensource?</summary>
-      Ja, alle code is openbaar in te zien via verschillende repositories:
-      <a
-          href="https://gitlab.com/sebastix-group/nyves"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center align-top"
-      >
-        https://gitlab.com/sebastix-group/nyves
-        <svg class="size-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-        </svg>
-      </a>
-      en
-      <a
-          href="https://gitworkshop.dev/relay.nyves.nl"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center align-top"
-      >
-        https://gitworkshop.dev/relay.nyves.nl
-        <svg class="size-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-        </svg>
-      </a>
+      <summary>{{ $t('veelgestelde_vragen.q.custom_design') }}</summary>
+      <p>
+        <i18n-t keypath="veelgestelde_vragen.a.custom_design_1" tag="span" scope="global">
+          <template #link>
+            <a href="https://ditto.pub" target="_blank" rel="noopener noreferrer" class="inline-flex items-center align-top">
+              Ditto
+              <svg class="size-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+          </template>
+        </i18n-t>
+      </p>
+      <p>
+        <i18n-t keypath="veelgestelde_vragen.a.custom_design_2" tag="span" scope="global">
+          <template #link>
+            <NuxtLink :to="localePath('profielen-uit-de-nostrverse-en-fediverse')">{{ $t('veelgestelde_vragen.link_profiles_with_design') }}</NuxtLink>
+          </template>
+        </i18n-t>
+      </p>
     </details>
     <details>
-      <summary>Wat is een relay?</summary>
-      Een relay is een eenvoudige webserver.
+      <summary>{{ $t('veelgestelde_vragen.q.opensource') }}</summary>
+      <i18n-t keypath="veelgestelde_vragen.a.opensource" tag="span" scope="global">
+        <template #link1>
+          <a
+              href="https://gitlab.com/sebastix-group/nyves"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center align-top"
+          >
+            https://gitlab.com/sebastix-group/nyves
+            <svg class="size-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </a>
+        </template>
+        <template #link2>
+          <a
+              href="https://gitworkshop.dev/relay.nyves.nl"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center align-top"
+          >
+            https://gitworkshop.dev/relay.nyves.nl
+            <svg class="size-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </a>
+        </template>
+      </i18n-t>
     </details>
     <details>
-      <summary>Wat betekent zo'n <code class="text-sm bg-gray-200 p-1">npub1...</code> reeks die ik in de links en op profielen zie staan?</summary>
-      Dit is een public key / publieke sleutel.
+      <summary>{{ $t('veelgestelde_vragen.q.what_is_relay') }}</summary>
+      {{ $t('veelgestelde_vragen.a.what_is_relay') }}
     </details>
     <details>
-      <summary>Kan ik mijn profiel verwijderen?</summary>
-      Ja, stuur een verzoek naar info[at]nyves.nl.
+      <summary>
+        <i18n-t keypath="veelgestelde_vragen.q.npub" tag="span" scope="global">
+          <template #code><code class="text-sm bg-gray-200 p-1">npub1...</code></template>
+        </i18n-t>
+      </summary>
+      {{ $t('veelgestelde_vragen.a.npub') }}
     </details>
     <details>
-      <summary>Weten de oprichters van Hyves van het bestaan van Nyves af?</summary>
-      Dat is niet met zekerheid te zeggen, maar een van de stafleden van het Hyves team weet er wel vanaf. Dat is <NuxtLink :to="localePath({ name: 'profiel-id', params: { id: 'npub1tef4nks9rrfcvkxlwts9eu4zluhfs025nrr3ldkm8ssuqv7m46ksf7nskn' } })">Yme Bosma</NuxtLink>.
+      <summary>{{ $t('veelgestelde_vragen.q.delete_profile') }}</summary>
+      {{ $t('veelgestelde_vragen.a.delete_profile') }}
     </details>
     <details>
-      <summary>Mogen kinderen gebruikmaken van Nyves?</summary>
-      Wij vinden van wel, maar we adviseren wel om dit te overleggen met je ouders als je zelf een kind bent.
+      <summary>{{ $t('veelgestelde_vragen.q.hyves_founders') }}</summary>
+      <i18n-t keypath="veelgestelde_vragen.a.hyves_founders" tag="span" scope="global">
+        <template #link>
+          <NuxtLink :to="localePath({ name: 'profiel-id', params: { id: YME_BOSMA_NPUB } })">Yme Bosma</NuxtLink>
+        </template>
+      </i18n-t>
     </details>
     <details>
-      <summary>Is Nyves verantwoordelijk voor de content in de applicatie?</summary>
-      Nee. Wij zijn alleen verantwoordelijk wat we zelf hosten op onze relays.
+      <summary>{{ $t('veelgestelde_vragen.q.children') }}</summary>
+      {{ $t('veelgestelde_vragen.a.children') }}
     </details>
     <details>
-      <summary>Hoe kan ik zien waar de content vandaan komt?</summary>
-      Dat is een hele goed vraag. Content kan namelijk van verschillende relays worden opgehaald die getoond wordt in de applicatie.
+      <summary>{{ $t('veelgestelde_vragen.q.responsible_content') }}</summary>
+      {{ $t('veelgestelde_vragen.a.responsible_content') }}
     </details>
     <details>
-      <summary>Hoe voeg ik iemand toe als vriend?</summary>
+      <summary>{{ $t('veelgestelde_vragen.q.content_origin') }}</summary>
+      {{ $t('veelgestelde_vragen.a.content_origin') }}
     </details>
     <details>
-      <summary>Wat is Hyves?</summary>
-      Hyves was een social media platform die in Nederland actief was vanaf 2004 tot 2013. Hierbij enkele feiten van het platform uit die tijd:
+      <summary>{{ $t('veelgestelde_vragen.q.add_friend') }}</summary>
+    </details>
+    <details>
+      <summary>{{ $t('veelgestelde_vragen.q.what_is_hyves') }}</summary>
+      {{ $t('veelgestelde_vragen.a.what_is_hyves') }}
       <ul class="list-disc pl-8">
-        <li>850 million krabbels were sent.</li>
-        <li>8% of all Dutch people online were spent on Hyves.</li>
-        <li>The Partysquad was the most played band: more than 8 million times in one year.</li>
-        <li>Gerard Joling was most popular with more than 290.000 friends.</li>
-        <li>All the hosted data was around 2 petabytes big. That was insane for a small country such as the Netherlands.</li>
-        <li>At some days, more than 2 million pictures were uploaded in a single day.</li>
+        <li>{{ $t('veelgestelde_vragen.a.hyves_fact_krabbels') }}</li>
+        <li>{{ $t('veelgestelde_vragen.a.hyves_fact_time') }}</li>
+        <li>{{ $t('veelgestelde_vragen.a.hyves_fact_band') }}</li>
+        <li>{{ $t('veelgestelde_vragen.a.hyves_fact_friends') }}</li>
+        <li>{{ $t('veelgestelde_vragen.a.hyves_fact_data') }}</li>
+        <li>{{ $t('veelgestelde_vragen.a.hyves_fact_photos') }}</li>
       </ul>
     </details>
     <details>
-      <summary>Waar zijn alle Hyves gegevens gebleven?</summary>
-      Antwoorden vind je in dit artikel waar VPNgids in 2019 al onderzoek naar deed:
+      <summary>{{ $t('veelgestelde_vragen.q.hyves_data') }}</summary>
+      {{ $t('veelgestelde_vragen.a.hyves_data') }}
       <br />
       <a
           href="https://www.vpngids.nl/nieuws/hyves-waar-zijn-onze-gegevens-gebleven/"
@@ -145,107 +162,117 @@ useSeoMeta({
       </a>
     </details>
     <details>
-      <summary>Wie is de eigenaar van Hyves?</summary>
+      <summary>{{ $t('veelgestelde_vragen.q.hyves_owner') }}</summary>
       <p>
-        Dat is Mediahuis.
+        {{ $t('veelgestelde_vragen.a.hyves_owner') }}
       </p>
     </details>
     <details>
-      <summary>Welke gegevens heeft Mediahuis nog van Hyves?</summary>
+      <summary>{{ $t('veelgestelde_vragen.q.mediahuis_data') }}</summary>
       <p>
-        Volgens
-        <a
-            href="https://www.nu.nl/tech/5994609/ruim-negen-miljoen-gearchiveerde-hyves-profielen-online-te-vinden.html"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center align-top"
-        >
-          deze bron
-          <svg class="size-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-          </svg>
-        </a>, heeft Mediahuis mogelijk nog alle inloggegevens. In 2018 is Hyves Games verkocht aan Azerion waarbij alle data mee is verhuisd, op de wachtwoorden na.
+        <i18n-t keypath="veelgestelde_vragen.a.mediahuis_data" tag="span" scope="global">
+          <template #link>
+            <a
+                href="https://www.nu.nl/tech/5994609/ruim-negen-miljoen-gearchiveerde-hyves-profielen-online-te-vinden.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center align-top"
+            >
+              {{ $t('veelgestelde_vragen.source_this_source') }}
+              <svg class="size-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+          </template>
+        </i18n-t>
       </p>
     </details>
     <details>
-      <summary>Wat is het verschil tussen Nyves en Hyves?</summary>
-      Antwoorden op deze vraag vind je op <NuxtLink :to="localePath('blog-verschil-tussen-nyves-en-hyves')">deze pagina</NuxtLink>.
+      <summary>{{ $t('veelgestelde_vragen.q.difference') }}</summary>
+      <i18n-t keypath="veelgestelde_vragen.a.difference" tag="span" scope="global">
+        <template #link>
+          <NuxtLink :to="localePath('blog-verschil-tussen-nyves-en-hyves')">{{ $t('veelgestelde_vragen.link_this_page') }}</NuxtLink>
+        </template>
+      </i18n-t>
     </details>
     <details>
-      <summary>Wat is de Nostrverse?</summary>
+      <summary>{{ $t('veelgestelde_vragen.q.nostrverse') }}</summary>
       <p>
-        De Nostrverse is het geheel van relays, applicaties en personen die samen gebruikmaken van het open Nostr-protocol.
-        Anders dan bij een centraal platform is er geen eigenaar: je identiteit is een sleutelpaar dat volledig van jou is, en je content wordt bewaard op relays die jij kiest.
+        {{ $t('veelgestelde_vragen.a.nostrverse_1') }}
       </p>
       <p>
-        Omdat je profiel, volgers en berichten niet aan één applicatie gebonden zijn, kun je vrij wisselen tussen verschillende Nostr-apps en toch alles behouden.
-        Denk aan het verschil tussen het telefoonnetwerk en één specifieke app: het netwerk blijft, de app kun je vervangen.
+        {{ $t('veelgestelde_vragen.a.nostrverse_2') }}
       </p>
     </details>
     <details>
-      <summary>Wat is de Fediverse?</summary>
+      <summary>{{ $t('veelgestelde_vragen.q.fediverse') }}</summary>
       <p>
-        De Fediverse is het netwerk van verschillende platformen die via het open ActivityPub-protocol met elkaar kunnen praten, zoals Mastodon, Pixelfed en PeerTube.
-        Ook hier is er geen centrale eigenaar: iedereen kan een eigen server beginnen en die servers wisselen onderling berichten uit.
+        {{ $t('veelgestelde_vragen.a.fediverse_1') }}
       </p>
       <p>
-        De Fediverse en Nostr delen dezelfde idealen van decentralisatie en gebruikersvrijheid, maar gebruiken een ander protocol.
-        Daarom tonen we profielen uit beide werelden naast elkaar op de pagina
-        <NuxtLink :to="localePath('profielen-uit-de-nostrverse-en-fediverse')">Ontdek profielen uit de Nostrverse en Fediverse</NuxtLink>.
+        <i18n-t keypath="veelgestelde_vragen.a.fediverse_2" tag="span" scope="global">
+          <template #link>
+            <NuxtLink :to="localePath('profielen-uit-de-nostrverse-en-fediverse')">{{ $t('veelgestelde_vragen.link_discover_profiles') }}</NuxtLink>
+          </template>
+        </i18n-t>
       </p>
     </details>
-    <h2 class="text-xl">Content</h2>
+    <h2 class="text-xl">{{ $t('veelgestelde_vragen.sections.content') }}</h2>
     <details>
-      <summary>Hoe verwijder ik content?</summary>
+      <summary>{{ $t('veelgestelde_vragen.q.delete_content') }}</summary>
     </details>
     <details>
-      <summary>Hoe plaats ik een krabbel?</summary>
+      <summary>{{ $t('veelgestelde_vragen.q.post_krabbel') }}</summary>
     </details>
     <details>
-      <summary>Hoe plaats ik een foto of video?</summary>
+      <summary>{{ $t('veelgestelde_vragen.q.post_photo') }}</summary>
     </details>
     <details>
-      <summary>Hoe kan ik mijn profielfoto aanpassen?</summary>
+      <summary>{{ $t('veelgestelde_vragen.q.change_avatar') }}</summary>
     </details>
-    <h2 class="text-xl">Privacy</h2>
+    <h2 class="text-xl">{{ $t('veelgestelde_vragen.sections.privacy') }}</h2>
     <details>
-      <summary>Is mijn content zichtbaar voor iedereen?</summary>
+      <summary>{{ $t('veelgestelde_vragen.q.content_visible') }}</summary>
     </details>
     <details>
-      <summary>Hoe maak ik mijn content alleen zichtbaar voor mijn vrienden?</summary>
+      <summary>{{ $t('veelgestelde_vragen.q.content_friends_only') }}</summary>
     </details>
     <div class="hidden">
-      <h2 class="text-xl">Moderatie</h2>
+      <h2 class="text-xl">{{ $t('veelgestelde_vragen.sections.moderation') }}</h2>
       <details>
-        <summary>Ik zie ongewenste content, hoe kan dat?</summary>
+        <summary>{{ $t('veelgestelde_vragen.q.unwanted_content') }}</summary>
       </details>
       <details>
-        <summary>Kan ik ongewenste of strafbare content rapporteren?</summary>
+        <summary>{{ $t('veelgestelde_vragen.q.report_content') }}</summary>
       </details>
       <details>
-        <summary>Kan ik ongewenste of strafbare content verwijderen?</summary>
+        <summary>{{ $t('veelgestelde_vragen.q.remove_content') }}</summary>
       </details>
       <details>
-        <summary>Kan ik iemand anders blokkeren zodat die persoon mijn profiel niet meer kan zien of met mij kan communiceren?</summary>
+        <summary>{{ $t('veelgestelde_vragen.q.block_person') }}</summary>
       </details>
     </div>
-    <h2 class="text-xl">Technische vragen</h2>
+    <h2 class="text-xl">{{ $t('veelgestelde_vragen.sections.technical') }}</h2>
     <details>
-      <summary>Met welke technologie is de Nyves applicatie gemaakt?</summary>
-      Met <NuxtLink :to="localePath('nostr')">nostr</NuxtLink>.
+      <summary>{{ $t('veelgestelde_vragen.q.technology') }}</summary>
+      <i18n-t keypath="veelgestelde_vragen.a.technology" tag="span" scope="global">
+        <template #link>
+          <NuxtLink :to="localePath('nostr')">nostr</NuxtLink>
+        </template>
+      </i18n-t>
     </details>
     <details>
-      <summary>Waar kan ik de code zien van de Nyves applicatie?</summary>
-      Dat kan via
+      <summary>{{ $t('veelgestelde_vragen.q.see_code') }}</summary>
+      {{ $t('veelgestelde_vragen.a.see_code') }}
     </details>
     <details>
-      <summary>Wie beheert nu alle keypairs van alle aangemaakte profielen?</summary>
-      Op dit moment zijn deze keypairs in beheer bij Sebastian Hagens die de Nyves applicatie ontwikkelt.
+      <summary>{{ $t('veelgestelde_vragen.q.keypairs') }}</summary>
+      {{ $t('veelgestelde_vragen.a.keypairs') }}
     </details>
-    <h2 class="text-xl">Support</h2>
+    <h2 class="text-xl">{{ $t('veelgestelde_vragen.sections.support') }}</h2>
     <details>
-      <summary>Hoe kan ik contact opnemen met Nyves?</summary>
-      Stuur een mail naar info[at]nyves.nl of gebruik de contactgegevens die je kunt vinden op de website van Sebastian Hagens.
+      <summary>{{ $t('veelgestelde_vragen.q.contact') }}</summary>
+      {{ $t('veelgestelde_vragen.a.contact') }}
     </details>
   </section>
 </template>
