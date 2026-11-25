@@ -1064,7 +1064,28 @@
     "opt4_body": "Gebruik een {code}-string."
   },
   "hvsbackup": {
-    "seo_description": "HVSbackup was een applicatie om content van jouw Hyves profiel te downloaden."
+    "seo_description": "HVSbackup was een applicatie om content van jouw Hyves profiel te downloaden.",
+    "intro_1": "In de periode 2010-2013 ontwikkelde Sebastian Hagens een applicatie genaamd HVSbackup waarmee je verschillende content van jouw Hyves profiel kon downloaden.",
+    "intro_2": "Hieronder vind je een video-opname (Flash video die wordt afgespeeld met de Ruffle emulator) uit 2011 die een beeld geeft hoe de applicatie werkte.",
+    "loading_title": "Ruffle Flash emulator laden...",
+    "loading_hint": "Dit kan een moment duren bij de eerste keer",
+    "error_title": "Fout bij laden",
+    "retry": "Opnieuw proberen",
+    "swf_loading": "SWF wordt geladen...",
+    "error_cdn": "Laden van de Ruffle Flash emulator vanaf de CDN is mislukt.",
+    "error_unknown": "Onbekende fout bij het laden van Ruffle.",
+    "error_player": "Initialiseren van de SWF-speler is mislukt.",
+    "testimonials_title": "Wat anderen zeiden over HVSbackup",
+    "testimonial_1": "Werkt top en die ene euro is het meer dan waard om al mijn oude foto's van mijn al jaren niet meer gebruikte hyves-account te downloaden!",
+    "testimonial_2": "Ideaal: back-up maken van al je Hyves gegevens zoals foto's, krabbels etc. Opzegging gaat voor mij dan toch wel dichtbij komen!",
+    "testimonial_3": "Echt bedankt, ik wist niet hoe ik anders al die foto's moest backuppen! Een 5 euro goed gespendeerd! ;)",
+    "testimonial_4": "Met één druk op de knop de inhoud van uw Hyves-profiel downloaden, zeer gebruiksvriendelijk, alles opgeslagen als handige HTML-bestanden",
+    "testimonial_5": "Werkt super simpel die backup! Als ik het zelf kan, dan moet het voor anderen ook niet zo moeilijk in gebruik zijn ;-)",
+    "testimonial_6": "Met hun applicatie kun je in één keer downloaden wat je zelf ooit op je eigen Hyves hebt achtergelaten, en veilig stellen.",
+    "testimonial_7": "Mooi programma ook, zeker de moeite waard.",
+    "testimonial_8": "Geweldig programma om een backup te maken van al mijn Hyves bestanden. Dankzij dit programma waren toch niet al mijn foto's verloren...",
+    "source_facebook_wall": "HVSbackup's Facebook prikbord",
+    "wayback_link": "Bekijk hier de hvsbackup.nl website op 19 november 2013 in de Wayback machine."
   },
   "nostr": {
     "seo_description": "Het open protocol dat het web repareert.",

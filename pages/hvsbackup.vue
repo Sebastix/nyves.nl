@@ -63,7 +63,7 @@ const loadRuffle = async () => {
     // Handle load error
     script.onerror = (error) => {
       console.error('❌ Failed to load Ruffle script:', error)
-      ruffleError.value = 'Failed to load Ruffle Flash emulator from CDN'
+      ruffleError.value = 'hvsbackup.error_cdn'
       isLoading.value = false
     }
     
@@ -72,7 +72,8 @@ const loadRuffle = async () => {
     
   } catch (error) {
     console.error('❌ Error loading Ruffle:', error)
-    ruffleError.value = error.message || 'Unknown error loading Ruffle'
+    // keep the technical detail in the console, show a translated message
+    ruffleError.value = 'hvsbackup.error_unknown'
     isLoading.value = false
   }
 }
@@ -111,7 +112,7 @@ const initSwfPlayer = async () => {
     
   } catch (error) {
     console.error('❌ Error initializing SWF player:', error)
-    ruffleError.value = error.message || 'Failed to initialize SWF player'
+    ruffleError.value = 'hvsbackup.error_player'
   }
 }
 
@@ -146,34 +147,34 @@ const formatFileSize = (bytes) => {
   <section>
 
     <h1 class="my-3 text-3xl font-bold text-center text-nyves-blue mb-4">
-      HVSbackup
+      {{ $t('HVSbackup') }}
     </h1>
 
     <div class="my-4 lg:max-w-2/3 lg:mx-auto">
       <p class="text-gray-600 text-lg lg:text-xl leading-6">
-        In de periode 2010-2013 ontwikkelde Sebastian Hagens een applicatie genaamd HVSbackup waarmee je verschillende content van jouw Hyves profiel kon downloaden.
+        {{ $t('hvsbackup.intro_1') }}
         <br />
         <br />
-        Hieronder vind je video opname (Flash video die wordt afgespeeld met de Ruffle emulator) uit 2011 die een beeld geeft hoe de applicatie werkte.
+        {{ $t('hvsbackup.intro_2') }}
       </p>
     </div>
 
     <!-- Loading State -->
     <div v-if="isLoading" class="rounded-sm text-center">
       <div class="animate-spin inline-block w-8 h-8 border-4 border-current border-t-transparent text-blue-600 rounded-full mb-4"></div>
-      <p class="text-gray-600">Ruffle Flash emulator laden...</p>
-      <p class="text-sm text-gray-500 mt-2">Dit kan een moment duren bij de eerste keer</p>
+      <p class="text-gray-600">{{ $t('hvsbackup.loading_title') }}</p>
+      <p class="text-sm text-gray-500 mt-2">{{ $t('hvsbackup.loading_hint') }}</p>
     </div>
 
     <!-- Error State -->
     <div v-else-if="ruffleError" class="bg-red-50 border border-red-200 rounded-lg p-6">
-      <h3 class="text-lg font-semibold text-red-800 mb-2">❌ Fout bij laden</h3>
-      <p class="text-red-700 mb-4">{{ ruffleError }}</p>
+      <h3 class="text-lg font-semibold text-red-800 mb-2">❌ {{ $t('hvsbackup.error_title') }}</h3>
+      <p class="text-red-700 mb-4">{{ $t(ruffleError) }}</p>
       <button 
         @click="retryLoad"
         class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition-colors"
       >
-        🔄 Opnieuw proberen
+        🔄 {{ $t('hvsbackup.retry') }}
       </button>
     </div>
 
@@ -186,38 +187,38 @@ const formatFileSize = (bytes) => {
         class="bg-white rounded-sm min-h-[600px] flex items-center justify-center"
       >
         <div class="text-gray-500">
-          <div class="animate-pulse">🎮 SWF wordt geladen...</div>
+          <div class="animate-pulse">🎮 {{ $t('hvsbackup.swf_loading') }}</div>
         </div>
       </div>
     </div>
     <div class="my-8 flex flex-col lg:flex-row gap-x-2">
       <div class="grow lg:max-w-1/2 testimonials">
-        <h2 class="text-2xl font-bold mb-2">Wat anderen zeiden over HVSbackup</h2>
-        <blockquote>Werkt top en die ene euro is het meer dan waard om al mijn oude foto's van mijn al jaren niet meer gebruikte hyves-account te downloaden!
+        <h2 class="text-2xl font-bold mb-2">{{ $t('hvsbackup.testimonials_title') }}</h2>
+        <blockquote>{{ $t('hvsbackup.testimonial_1') }}
           <small>Ron Evers, <a href="https://web.archive.org/web/20131119232322/https://www.facebook.com/hvsbackup/posts/603935849652915?comment_id=5986671&amp;offset=0&amp;total_comments=1¬if_t=share_comment">Facebook</a></small>
         </blockquote>
-        <blockquote>Ideaal: back-up maken van al je Hyves gegevens zoals foto's, krabbels etc. Opzegging gaat voor mij dan toch wel dichtbij komen!
+        <blockquote>{{ $t('hvsbackup.testimonial_2') }}
           <small>@Marketim, <a href="https://web.archive.org/web/20131119232322/http://twitter.com/Marketim/statuses/162241837178945536" target="_blank">Twitter</a></small>
         </blockquote>
-        <blockquote>Echt bedankt, ik wist niet hoe ik anders al die foto's moest backuppen! Een 5 euro goed gespendeerd! ;)
+        <blockquote>{{ $t('hvsbackup.testimonial_3') }}
           <small>@XonaTanoX, <a href="https://web.archive.org/web/20131119232322/http://twitter.com/XonaTanoX/statuses/120962322893242368" target="_blank">Twitter</a></small>
         </blockquote>
-        <blockquote>Met één druk op de knop de inhoud van uw Hyves-profiel downloaden, zeer gebruiksvriendelijk, alles opgeslagen als handige HTML-bestanden
+        <blockquote>{{ $t('hvsbackup.testimonial_4') }}
           <small>Martin Gijzemijter, <a href="https://web.archive.org/web/20131119232322/http://computertotaal.nl/" target="_blank">ComputerTotaal!</a></small>
         </blockquote>
-        <blockquote>Werkt super simpel die backup! Als ik het zelf kan, dan moet het voor anderen ook niet zo moeilijk in gebruik zijn ;-)
+        <blockquote>{{ $t('hvsbackup.testimonial_5') }}
           <small>Marloes Hentzen</small>
         </blockquote>
-        <blockquote>Met hun applicatie kun je in één keer downloaden wat je zelf ooit op je eigen Hyves hebt achtergelaten, en veilig stellen.
+        <blockquote>{{ $t('hvsbackup.testimonial_6') }}
           <small>Leon Krijnen, <a href="https://web.archive.org/web/20131119232322/http://www.dutchcowboys.nl/" target="_blank">Dutchcowboys</a></small>
         </blockquote>
-        <blockquote>Mooi programma ook, zeker de moeite waard.
+        <blockquote>{{ $t('hvsbackup.testimonial_7') }}
           <small>Sebastiaan Jacobs</small>
         </blockquote>
-        <blockquote>Geweldig programma om een backup te maken van al mijn Hyves bestanden. Dankzij dit programma waren toch niet al mijn foto's verloren...
-          <small>Chantal Pruim, <a href="https://web.archive.org/web/20131119232322/http://www.facebook.com/permalink.php?story_fbid=266069983439505&amp;id=150183405028164" target="_blank">HVSbackup's Facebook prikbord</a></small>
+        <blockquote>{{ $t('hvsbackup.testimonial_8') }}
+          <small>Chantal Pruim, <a href="https://web.archive.org/web/20131119232322/http://www.facebook.com/permalink.php?story_fbid=266069983439505&amp;id=150183405028164" target="_blank">{{ $t('hvsbackup.source_facebook_wall') }}</a></small>
         </blockquote>
-        <a href="https://web.archive.org/web/20131119232322/http://hvsbackup.nl/" class="block text-sm my-4">Bekijk hier de hvsbackup.nl website op 19 november 2013 in de Wayback machine.</a>
+        <a href="https://web.archive.org/web/20131119232322/http://hvsbackup.nl/" class="block text-sm my-4">{{ $t('hvsbackup.wayback_link') }}</a>
       </div>
       <div class="grow lg:max-w-1/2">
         <img src="/2012-hvsbackup_bndestem.jpg" class="rounded-sm" />

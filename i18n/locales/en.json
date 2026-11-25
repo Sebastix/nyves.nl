@@ -1064,7 +1064,28 @@
     "opt4_body": "Use a {code} string."
   },
   "hvsbackup": {
-    "seo_description": "HVSbackup was an application to download content from your Hyves profile."
+    "seo_description": "HVSbackup was an application to download content from your Hyves profile.",
+    "intro_1": "Between 2010 and 2013 Sebastian Hagens developed an application called HVSbackup that let you download various parts of your Hyves profile.",
+    "intro_2": "Below is a video recording (Flash video played with the Ruffle emulator) from 2011 that gives an impression of how the application worked.",
+    "loading_title": "Loading Ruffle Flash emulator...",
+    "loading_hint": "This may take a moment the first time",
+    "error_title": "Error while loading",
+    "retry": "Try again",
+    "swf_loading": "SWF is loading...",
+    "error_cdn": "Failed to load the Ruffle Flash emulator from the CDN.",
+    "error_unknown": "Unknown error while loading Ruffle.",
+    "error_player": "Failed to initialize the SWF player.",
+    "testimonials_title": "What others said about HVSbackup",
+    "testimonial_1": "Works great, and that one euro is more than worth it to download all my old photos from my Hyves account that I hadn't used in years!",
+    "testimonial_2": "Ideal: back up all your Hyves data such as photos, krabbels, etc. Cancelling is coming pretty close for me now!",
+    "testimonial_3": "Thanks a lot, I had no idea how else I would back up all those photos! 5 euros well spent! ;)",
+    "testimonial_4": "Download the contents of your Hyves profile with a single click, very user-friendly, everything saved as handy HTML files",
+    "testimonial_5": "That backup is super simple! If I can manage it, it can't be that hard to use for others either ;-)",
+    "testimonial_6": "With their application you can download in one go everything you ever left on your own Hyves, and secure it.",
+    "testimonial_7": "Nice program too, definitely worth it.",
+    "testimonial_8": "Great program to make a backup of all my Hyves files. Thanks to this program not all my photos were lost after all...",
+    "source_facebook_wall": "HVSbackup's Facebook wall",
+    "wayback_link": "View the hvsbackup.nl website as it was on 19 November 2013 in the Wayback machine."
   },
   "nostr": {
     "seo_description": "The open protocol that fixes the web.",
