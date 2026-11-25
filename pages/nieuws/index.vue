@@ -83,7 +83,7 @@ useSeoMeta({
   <section>
     <h1 class="text-3xl text-nyves-blue my-3 text-center font-bold">{{ $t('Nieuws') }}</h1>
     <p class="text-xl text-center mb-4">
-      Hier lees je de laatste updates rondom Nyves
+      {{ $t('nieuws_pagina.intro') }}
     </p>
 
     <section class="border border-gray-200 bg-[#fcfcfc] rounded-sm mb-8 pb-8">

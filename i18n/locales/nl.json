@@ -1044,7 +1044,24 @@
   },
   "connect": {
     "title": "Connect",
-    "seo_description": "Manieren om met andere profielen te beginnen met interactie"
+    "seo_description": "Manieren om met andere profielen te beginnen met interactie",
+    "subtitle": "Manieren om met andere profielen te beginnen met interactie",
+    "notice_title": "Op dit moment is het (nog) niet mogelijk om een nieuw profiel aan te maken en te verbinden met Nyves.",
+    "notice_body": "Je kunt een profiel aanmaken met de nostr-applicatie Ditto op {link}.",
+    "opt1_summary": "1. Verbinden met een gastprofiel",
+    "opt1_body": "Nyves geeft je automatisch een gastprofiel, zodat je meteen kunt beginnen met interactie. Het gastprofiel is onderhuids een echt Nostr-profiel; het heeft alleen (nog) geen naam of foto. Bij je eerste interactie vraagt Nyves je een naam in te stellen als je er nog geen hebt, zodat anderen weten wie je bent. Gastprofielen met alleen een naam worden na 7 dagen verwijderd. Wil je een permanent profiel, dan moet je je profiel bewerken en een back-up van je privésleutel maken.",
+    "opt1_action": "Maak een gastprofiel voor mij aan",
+    "opt2_summary": "2. Verbinden met een Google-account",
+    "opt2_body": "Log in met je Google-account om te verbinden met Nyves, of om automatisch een nieuw Nostr-profiel aan te maken als je er nog geen hebt.",
+    "opt2_how_title": "Hoe werkt dit?",
+    "opt2_how_body": "Je privésleutel wordt opgesplitst in fragmenten die door aparte, onafhankelijke ({link}) operators worden bewaard, zodat hij nooit op één plek wordt opgeslagen. Google wordt alleen gebruikt om je identiteit aan de operators te bewijzen, nooit om je sleutel op te slaan.",
+    "opt2_action": "Inloggen met mijn Google-account",
+    "opt3_summary": "3. Een bestaand profiel verbinden met een remote signer",
+    "opt3_advanced": "geavanceerd",
+    "opt3_body": "Gebruik een {code}-string.",
+    "opt4_summary": "4. Een bestaand profiel verbinden met je versleutelde privésleutel",
+    "opt4_unrecommended": "niet aanbevolen",
+    "opt4_body": "Gebruik een {code}-string."
   },
   "hvsbackup": {
     "seo_description": "HVSbackup was een applicatie om content van jouw Hyves profiel te downloaden."
@@ -1114,5 +1131,20 @@
     "pubkeys": "Pubkeys ({0})",
     "pubkeys_hint": "Profielen voor onderstaande contacten worden (nog) niet automatisch geladen om performance redenen. Zodra je zoekt, worden de namen alsnog opgehaald zodat je ook in deze lijst op naam kunt zoeken.",
     "view": "Bekijk"
+  },
+  "zoeken_pagina": {
+    "intro": "Vind jouw Hyves profiel in een lijst met {count} namen.",
+    "update_date": "26-10-2026",
+    "update_body": "9+ miljoen gebruikersnamen zijn verwerkt! De migratie zal verder gaan met het terugzetten van profielfoto's en andere elementen van elk profiel.",
+    "update_news": "Lees de laatste updates op de {link}.",
+    "update_news_link": "nieuwspagina",
+    "hint": "De zoekfunctie werkt nog niet optimaal. Probeer andere zoektermen voor verschillende resultaten."
+  },
+  "nieuws_pagina": {
+    "intro": "Hier lees je de laatste updates rondom Nyves."
+  },
+  "blog_pagina": {
+    "other_articles": "Overige artikelen:",
+    "difference_title": "Wat is het verschil tussen Nyves en Hyves?"
   }
 }

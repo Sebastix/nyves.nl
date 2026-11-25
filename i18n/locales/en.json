@@ -1044,7 +1044,24 @@
   },
   "connect": {
     "title": "Connect",
-    "seo_description": "Ways to start interacting with other profiles"
+    "seo_description": "Ways to start interacting with other profiles",
+    "subtitle": "Ways to start interacting with other profiles",
+    "notice_title": "At this moment it's not possible (yet) to create and connect a new profile with Nyves.",
+    "notice_body": "You can create a profile using the nostr application Ditto at {link}.",
+    "opt1_summary": "1. Connect with a guest profile",
+    "opt1_body": "Nyves will automatically give you a guest profile, so you can start interacting straight away. The guest profile is a real Nostr profile under the hood; it just has no name or picture (yet). On your first interaction, if you haven’t set a name, Nyves will prompt you to set one so others know who you are. Guest profiles with only a name will be removed after 7 days. If you would like to have a permanent profile, you will need to edit your profile and make a backup of your private key.",
+    "opt1_action": "Create a guest profile for me",
+    "opt2_summary": "2. Connect with a Google account",
+    "opt2_body": "Sign in with your Google account to connect to Nyves, or to create a new Nostr profile automatically if you do not have one yet.",
+    "opt2_how_title": "How does this work?",
+    "opt2_how_body": "Your private key is split into shards held by separate, independent ({link}) operators, so it is never stored in one place. Google is only used to prove your identity to the operators, never to store your key.",
+    "opt2_action": "Sign in with my Google account",
+    "opt3_summary": "3. Connect an existing profile using a remote signer",
+    "opt3_advanced": "advanced",
+    "opt3_body": "Use a {code} string.",
+    "opt4_summary": "4. Connect an existing profile using your encrypted private key",
+    "opt4_unrecommended": "unrecommended",
+    "opt4_body": "Use a {code} string."
   },
   "hvsbackup": {
     "seo_description": "HVSbackup was an application to download content from your Hyves profile."
@@ -1114,5 +1131,20 @@
     "pubkeys": "Pubkeys ({0})",
     "pubkeys_hint": "Profiles of the contacts below are not (yet) loaded automatically for performance reasons. As soon as you search, the names are fetched so you can search this list by name too.",
     "view": "View"
+  },
+  "zoeken_pagina": {
+    "intro": "Find your Hyves profile in a list of {count} names.",
+    "update_date": "26-10-2026",
+    "update_body": "9+ million usernames have been processed! The migration will continue with restoring profile pictures and other elements of each profile.",
+    "update_news": "Read the latest updates on the {link}.",
+    "update_news_link": "news page",
+    "hint": "The search does not work optimally yet. Try other search terms for different results."
+  },
+  "nieuws_pagina": {
+    "intro": "Here you can read the latest updates about Nyves."
+  },
+  "blog_pagina": {
+    "other_articles": "Other articles:",
+    "difference_title": "What is the difference between Nyves and Hyves?"
   }
 }

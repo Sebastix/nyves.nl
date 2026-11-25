@@ -12,7 +12,7 @@ useSeoMeta({
   <section class="leading-relaxed">
     <h1 class="text-3xl text-nyves-blue my-3 text-center font-bold">Blog</h1>
     <p class="text-center text-xl mb-6">
-      Diverse artikelen rondom Nyves
+      {{ $t('blog.seo_description') }}
     </p>
   </section>
   <section class="border border-gray-200 bg-[#fcfcfc] rounded-sm mb-8">
@@ -28,9 +28,9 @@ useSeoMeta({
   </section>
   <section class="max-w-2xl mx-auto">
     <p>
-      Overige artikelen:
+      {{ $t('blog_pagina.other_articles') }}
       <ul class="list-disc list-inside my-4">
-        <li><NuxtLink :to="localePath('blog-verschil-tussen-nyves-en-hyves')" class="nyves-btn nyves-btn-primary">Wat is het verschil tussen Nyves en Hyves?</NuxtLink></li>
+        <li><NuxtLink :to="localePath('blog-verschil-tussen-nyves-en-hyves')" class="nyves-btn nyves-btn-primary">{{ $t('blog_pagina.difference_title') }}</NuxtLink></li>
       </ul>
     </p>
   </section>

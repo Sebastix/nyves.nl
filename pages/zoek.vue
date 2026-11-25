@@ -65,20 +65,29 @@ useSeoMeta({
     <h1 class="text-3xl text-nyves-blue my-3 text-center font-bold">{{ $t('zoeken') }}</h1>
 
     <p class="leading-relaxed text-center text-xl mb-2">
-      Vind jouw Hyves profiel in een lijst met <LoadingSpinner class="scale-25 align-middle mx-1 inline-block" v-if="loading && count.names === 0" /> <strong>{{ count.names }}</strong> namen.
+      <i18n-t keypath="zoeken_pagina.intro" tag="span" scope="global">
+        <template #count>
+          <LoadingSpinner class="scale-25 align-middle mx-1 inline-block" v-if="loading && count.names === 0" />
+          <strong>{{ count.names }}</strong>
+        </template>
+      </i18n-t>
     </p>
 
     <p class="bg-orange-100/50 border border-orange-100 max-w-2xl mx-auto text-xs leading-relaxed mb-12 p-2 flex flex-col md:flex-row">
-      <span class="w-1/4 font-bold">26-10-2026</span>
+      <span class="w-1/4 font-bold">{{ $t('zoeken_pagina.update_date') }}</span>
       <span>
-        9+ miljoen gebruikersnamen zijn verwerkt! De migratie zal verder gaan met het terugzetten van profielfoto's en andere elementen van elk profiel.
+        {{ $t('zoeken_pagina.update_body') }}
         <br />
-        Lees de laatste updates op de <NuxtLink :to="localePath('nieuws')">nieuwspagina</NuxtLink>.
+        <i18n-t keypath="zoeken_pagina.update_news" tag="span" scope="global">
+          <template #link>
+            <NuxtLink :to="localePath('nieuws')">{{ $t('zoeken_pagina.update_news_link') }}</NuxtLink>
+          </template>
+        </i18n-t>
       </span>
     </p>
 
     <div class="max-w-lg mx-auto text-sm text-gray-500 mb-1">
-      De zoekfunctie werkt nog niet optimaal. Probeer andere zoektermen voor een verschillende resultaten.
+      {{ $t('zoeken_pagina.hint') }}
     </div>
     <!-- Zoek Component -->
     <Search
