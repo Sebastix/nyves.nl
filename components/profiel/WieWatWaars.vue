@@ -92,7 +92,7 @@ onUnmounted(async () => {
     <div v-for="item in wwwData" :key="item.id">
       <div class="flex gap-2 border-b border-gray-200">
         <div class="text-xs min-w-[48px] max-w-[72px]">
-          <NuxtLink :to="localePath('profiel-id', { id: nip19.npubEncode(item.pubkey) })">
+          <NuxtLink :to="localePath({ name: 'profiel-id', params: { id: nip19.npubEncode(item.pubkey) } })">
             <NostrComponentsProfilePicture :pubkey="item.pubkey" class="max-w-[48px]" />
             <NostrComponentsPubkeyToName :pubkey="item.pubkey" />
           </NuxtLink>

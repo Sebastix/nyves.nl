@@ -2,6 +2,30 @@
  * For debugging only fow now.
  */
 export default defineNuxtRouteMiddleware((to, from) => {
+  const router = useRouter()
+  const localePath = useLocalePath()
+
+  // A locale prefix combined with a *default locale* path does not exist, e.g.
+  // /en/profiel/<id> (English uses /en/profile/<id>) or /en/zoek (-> /en/search).
+  // nuxt-i18n only registers the localised path for each locale, so these would
+  // 404. Resolve the unprefixed path to a route name and redirect to the
+  // correctly localised path, so old bookmarks and hand-written links keep
+  // working instead of showing a 404.
+  const prefixed = to.path.match(/^\/([a-z]{2})\/(.+)$/)
+  if (prefixed) {
+    const [, , rest] = prefixed
+    const resolved = router.resolve('/' + rest)
+    if (resolved.name && resolved.matched.length > 0) {
+      const localized = localePath(
+        { name: resolved.name, params: resolved.params },
+        prefixed[1]
+      )
+      if (localized && localized !== to.path) {
+        return navigateTo(localized + to.hash, { redirectCode: 301 })
+      }
+    }
+  }
+
   // Only handle profiel routes
   if (!to.path.startsWith('/profiel/')) {
     return

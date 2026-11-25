@@ -211,7 +211,7 @@ console.log('[id]/index.vue loaded:', {
           {{ error }}
         </div>
         <NuxtLink
-            to="/"
+            :to="localePath('/')"
             class="text-nyves-blue hover:text-nyves-blue/80 underline"
         >
           ← {{ $t('profiel_paginas.back_home') }}
@@ -226,12 +226,12 @@ console.log('[id]/index.vue loaded:', {
       <div class="grid grid-cols-1 md:grid-cols-2 profileHeader">
         <h1 class="col-span-2 text-3xl font-bold mb-1">{{ profile.name }} <a :href="profile.urlWaybackMachine" target="_blank" class="text-xs" v-if="profile.urlWaybackMachine">{{ profile.urlWaybackMachine }}</a></h1>
         <div class="mb-2">
-          <RouterLink :to="`${localePath('profiel-over', { id: profile.npub })}`" class="mr-4 text-xs font-bold">{{ $t('profiel.nav.about') }}</RouterLink>
-          <RouterLink :to="`${localePath('profiel-vrienden', { id: profile.npub })}`" class="mr-4 text-xs">{{ $t('profiel.nav.friends') }}</RouterLink>
-          <RouterLink :to="`${localePath('profiel-wiewatwaar', { id: profile.npub })}`" class="mr-4 text-xs">{{ $t('profiel.nav.www') }}</RouterLink>
-          <RouterLink :to="`${localePath('profiel-media', { id: profile.npub })}`" class="mr-4 text-xs">{{ $t('profiel.nav.photos') }}</RouterLink>
-          <RouterLink :to="`${localePath('profiel-blog', { id: profile.npub })}`" class="mr-4 text-xs">{{ $t('profiel.nav.blog') }}</RouterLink>
-          <RouterLink :to="`${localePath('profiel-meer', { id: profile.npub })}`" class="text-xs">{{ $t('profiel.nav.more') }}</RouterLink>
+          <RouterLink :to="`${localePath({ name: 'profiel-id-over', params: { id: profile.npub } })}`" class="mr-4 text-xs font-bold">{{ $t('profiel.nav.about') }}</RouterLink>
+          <RouterLink :to="`${localePath({ name: 'profiel-id-vrienden', params: { id: profile.npub } })}`" class="mr-4 text-xs">{{ $t('profiel.nav.friends') }}</RouterLink>
+          <RouterLink :to="`${localePath({ name: 'profiel-id-wiewatwaar', params: { id: profile.npub } })}`" class="mr-4 text-xs">{{ $t('profiel.nav.www') }}</RouterLink>
+          <RouterLink :to="`${localePath({ name: 'profiel-id-media', params: { id: profile.npub } })}`" class="mr-4 text-xs">{{ $t('profiel.nav.photos') }}</RouterLink>
+          <RouterLink :to="`${localePath({ name: 'profiel-id-blog', params: { id: profile.npub } })}`" class="mr-4 text-xs">{{ $t('profiel.nav.blog') }}</RouterLink>
+          <RouterLink :to="`${localePath({ name: 'profiel-id-meer', params: { id: profile.npub } })}`" class="text-xs">{{ $t('profiel.nav.more') }}</RouterLink>
         </div>
         <button
             @click="toggleCustomDesign"
@@ -296,22 +296,22 @@ console.log('[id]/index.vue loaded:', {
           <!-- WWW section -->
           <div class="border border-gray-200 bg-[#fcfcfc] rounded-sm mb-3">
             <h3 class="nyves-bg-gray-header p-2 text-nyves-blue font-bold">
-              <NuxtLink :to="localePath('profiel-wiewatwaar', { id: profile.npub })">{{ $t('profiel_paginas.www_page_heading') }}</NuxtLink>
+              <NuxtLink :to="localePath({ name: 'profiel-id-wiewatwaar', params: { id: profile.npub } })">{{ $t('profiel_paginas.www_page_heading') }}</NuxtLink>
             </h3>
             <ProfielWieWatWaars :profile="profile" :filters="{'limit': 20, 'cols': 1}" />
             <div class="my-1">
-              <NuxtLink :to="localePath('profiel-wiewatwaar', { id: profile.npub })" class="text-xs mx-2">› {{ $t('profiel.nav.more') }}</NuxtLink>
+              <NuxtLink :to="localePath({ name: 'profiel-id-wiewatwaar', params: { id: profile.npub } })" class="text-xs mx-2">› {{ $t('profiel.nav.more') }}</NuxtLink>
             </div>
           </div>
 
           <!-- Blogs section -->
           <div class="border border-gray-200 bg-[#fcfcfc] rounded-sm mb-3">
             <h3 class="nyves-bg-gray-header p-2 text-nyves-blue font-bold">
-              <NuxtLink :to="localePath('profiel-blog', { id: profile.npub })">{{ $t('profiel.nav.blog') }}</NuxtLink>
+              <NuxtLink :to="localePath({ name: 'profiel-id-blog', params: { id: profile.npub } })">{{ $t('profiel.nav.blog') }}</NuxtLink>
             </h3>
             <ProfielBlog :profile="profile" />
             <div class="my-1">
-              <NuxtLink :to="localePath('profiel-blog', { id: profile.npub })" class="text-xs mx-2">› {{ $t('profiel.nav.more') }}</NuxtLink>
+              <NuxtLink :to="localePath({ name: 'profiel-id-blog', params: { id: profile.npub } })" class="text-xs mx-2">› {{ $t('profiel.nav.more') }}</NuxtLink>
             </div>
           </div>
 

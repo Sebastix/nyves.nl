@@ -95,7 +95,7 @@ useSeoMeta({
         <div v-for="item in newsData" :key="item.id" class="bg-white rounded-sm p-2 border border-nyves-blue/25">
           <p class="text-gray-500 font-light mb-2 text-sm">
             {{ formatDate(item.created_at) }}, {{ formatTime(item.created_at) }},
-            <NuxtLink :to="localePath('profiel-id', { id: nip19.npubEncode(item.pubkey) })" class="inline-block">
+            <NuxtLink :to="localePath({ name: 'profiel-id', params: { id: nip19.npubEncode(item.pubkey) } })" class="inline-block">
               <NostrComponentsPubkeyToName :pubkey="item.pubkey" class="font-bold text-xs" />
             </NuxtLink>
           </p>

@@ -105,10 +105,10 @@ onUnmounted(() => {
         v-for="(npub) in filters.authors"
     >
       <div class="w-full aspect-square grid content-center" :data-npub="`${npub}`">
-        <NuxtLink :to="localePath('profiel-id', { id: npub })" class="border-3 rounded-sm mx-auto transform hover:-translate-y-0.5 transition-all duration-200">
+        <NuxtLink :to="localePath({ name: 'profiel-id', params: { id: npub } })" class="border-3 rounded-sm mx-auto transform hover:-translate-y-0.5 transition-all duration-200">
           <NostrComponentsProfilePicture :pubkey="nip19.decode(npub).data" />
         </NuxtLink>
-        <NuxtLink :to="localePath('profiel-id', { id: npub })" class="text-sm mx-auto">
+        <NuxtLink :to="localePath({ name: 'profiel-id', params: { id: npub } })" class="text-sm mx-auto">
           <NostrComponentsPubkeyToName :pubkey="nip19.decode(npub).data" />
         </NuxtLink>
       </div>

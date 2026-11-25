@@ -78,7 +78,7 @@ onMounted(async () => {
   <div class="border border-gray-200 bg-[#fcfcfc] rounded-sm">
     <!-- Friends Section -->
     <h3 class="nyves-bg-gray-header h-10 font-bold text-nyves-blue mb-2 p-2">
-      <NuxtLink :to="localePath('profiel-id-vrienden', { id: profile.npub })">
+      <NuxtLink :to="localePath({ name: 'profiel-id-vrienden', params: { id: profile.npub } })">
         {{ $t('profiel.friends.heading', [contactsData.length]) }}
       </NuxtLink>
     </h3>
@@ -91,7 +91,7 @@ onMounted(async () => {
     <div v-else class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-3 gap-1 mb-4">
       <template v-for="(contact, index) in contactsData" :key="contact.id">
         <div v-if="index < 9" class="text-center">
-          <NuxtLink :to="localePath('profiel-id', { id: contact.npub })" class="text-xs">
+          <NuxtLink :to="localePath({ name: 'profiel-id', params: { id: contact.npub } })" class="text-xs">
             <NostrComponentsProfilePicture :pubkey="contact.pubkey" />
             <NostrComponentsPubkeyToName :pubkey="contact.pubkey" />
           </NuxtLink>
@@ -99,7 +99,7 @@ onMounted(async () => {
       </template>
     </div>
     <div class="my-1">
-      <NuxtLink :to="localePath('profiel-id-vrienden', { id: profile.npub })" class="text-xs mx-2">› {{ $t('profiel.friends.view_all') }}</NuxtLink>
+      <NuxtLink :to="localePath({ name: 'profiel-id-vrienden', params: { id: profile.npub } })" class="text-xs mx-2">› {{ $t('profiel.friends.view_all') }}</NuxtLink>
     </div>
   </div>
 </template>

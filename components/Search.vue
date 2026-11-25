@@ -114,7 +114,7 @@ const selecteerProfiel = (profiel) => {
   // Hier kun je navigeren naar profiel pagina
   router.push(
       {
-        path: '/profiel/' + profiel.name,
+        path: localePath({ name: 'profiel-id', params: { id: profiel.name || profiel.npub } }),
         hash: '#' + profiel.npub
       }
   )
@@ -288,7 +288,7 @@ onUnmounted(() => {
           <NostrComponentsProfilePicture :pubkey="profiel.pubkey" class="min-w-[120px] flex items-center" />
           <!-- Profiel info -->
           <div class="flex-1 break-all">
-            <NuxtLink :to="`profiel/${profiel.name }#${profiel.npub}`" :title="`${profiel.name ?? profiel.npub}`" :alt="`${profiel.name ?? profiel.npub}`" class="text-xl font-bold">
+            <NuxtLink :to="`${localePath({ name: 'profiel-id', params: { id: profiel.name || profiel.npub } })}#${profiel.npub}`" :title="`${profiel.name ?? profiel.npub}`" :alt="`${profiel.name ?? profiel.npub}`" class="text-xl font-bold">
               <template v-if="profiel.name">
                 {{ profiel.name }}
               </template>

@@ -10,7 +10,7 @@ const props = defineProps({
 })
 
 const selecteerProfiel = () => {
-  router.push(localePath('profiel-id', { id: props.profiel.npub || props.profiel.name }))
+  router.push(localePath({ name: 'profiel-id', params: { id: props.profiel.npub || props.profiel.name } }))
 }
 </script>
 

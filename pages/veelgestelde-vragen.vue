@@ -99,7 +99,7 @@ useSeoMeta({
     </details>
     <details>
       <summary>Weten de oprichters van Hyves van het bestaan van Nyves af?</summary>
-      Dat is niet met zekerheid te zeggen, maar een van de stafleden van het Hyves team weet er wel vanaf. Dat is <a href="profiel/npub1tef4nks9rrfcvkxlwts9eu4zluhfs025nrr3ldkm8ssuqv7m46ksf7nskn">Yme Bosma</a>.
+      Dat is niet met zekerheid te zeggen, maar een van de stafleden van het Hyves team weet er wel vanaf. Dat is <NuxtLink :to="localePath({ name: 'profiel-id', params: { id: 'npub1tef4nks9rrfcvkxlwts9eu4zluhfs025nrr3ldkm8ssuqv7m46ksf7nskn' } })">Yme Bosma</NuxtLink>.
     </details>
     <details>
       <summary>Mogen kinderen gebruikmaken van Nyves?</summary>

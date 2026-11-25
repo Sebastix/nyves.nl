@@ -419,7 +419,7 @@ useSeoMeta({
                   :key="vriend.npub"
                   class="text-center"
               >
-                <NuxtLink :to="localePath('profiel-id', { id: vriend.npub })" class="text-xs">
+                <NuxtLink :to="localePath({ name: 'profiel-id', params: { id: vriend.npub } })" class="text-xs">
                   <NostrComponentsProfilePicture :pubkey="vriend.pubkey" />
                   <NostrComponentsPubkeyToName :pubkey="vriend.pubkey" />
                 </NuxtLink>
@@ -455,7 +455,7 @@ useSeoMeta({
                   </div>
 
                   <NuxtLink
-                      :to="localePath('profiel-id', { id: contact.npub })"
+                      :to="localePath({ name: 'profiel-id', params: { id: contact.npub } })"
                       class="text-nyves-blue hover:text-nyves-blue/80 text-xs underline"
                   >
                     {{ $t('profiel_paginas.view') }}
@@ -475,7 +475,7 @@ useSeoMeta({
           {{ error }}
         </div>
         <NuxtLink
-            :to="localePath('profiel-id', { id: npub })"
+            :to="localePath({ name: 'profiel-id', params: { id: npub } })"
             class="text-nyves-blue hover:text-nyves-blue/80 underline"
         >
           ← {{ $t('profiel_paginas.back_to_profile') }}
