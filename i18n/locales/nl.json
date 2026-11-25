@@ -1125,7 +1125,62 @@
     "published_via": "Gepubliceerd via Nostr",
     "event_id": "Event ID:",
     "article_id": "Artikel ID:",
-    "public_key": "Publieke sleutel:"
+    "public_key": "Publieke sleutel:",
+    "static": {
+      "difference": {
+        "seo_title": "Wat is het verschil tussen Nyves en Hyves | Blog",
+        "seo_description": "De N van Nyves verwijst naar nostr. Nyves is geen platform.",
+        "title": "Wat is het verschil tussen Nyves en Hyves?",
+        "intro_short": "Het korte antwoord is simpel: 1 letter ;-) De N van Nyves verwijst naar nostr.",
+        "intro_long": "Het lange antwoord is iets complexer.",
+        "intro_no_platform": "Nyves is namelijk {strong}.",
+        "intro_no_platform_strong": "geen platform",
+        "nostr_body": "Nostr is een afkorting die staat voor Notes and Other Stuff Transmitted by Relays. Het is een open protocol, net zoals bijvoorbeeld e-mail. Het is een eenvoudig protocol dat beschrijft hoe je berichten verstuurt tussen applicaties en relays. Er is een open netwerk waarop iedereen applicaties kan bouwen. Nyves is zo'n applicatie.",
+        "heading_archive": "Archief",
+        "archive_body": "Met Nyves kun je oude Hyves-profielen opzoeken en bekijken. Deze zijn gearchiveerd door {link} voordat Hyves als sociaal netwerk op zwart ging. Dit archief is speciaal voor Nyves opnieuw opgebouwd op basis van de beschikbare data die je ook kunt vinden via The Wayback Machine.",
+        "heading_heritage": "Digitaal erfgoed",
+        "heritage_body": "Dankzij Hyves zijn veel herinneringen ontstaan en daarom is het goed om deze sporen uit het verleden te bewaren. Laten we niet vergeten hoe sociaal Hyves was, voordat social media asociaal werd in de periode na Hyves. Dit stukje collectief geheugen borgen we door alle content van Hyves beschikbaar te stellen via nostr relays.",
+        "heading_interoperable": "Interoperabel",
+        "interoperable_body_1": "Omdat er gebruik wordt gemaakt van een open protocol, zijn er afspraken over hoe alle berichten worden opgemaakt die tussen relays en applicaties worden uitgewisseld. In principe kan iedereen met een relay communiceren. Jouw profiel is niet specifiek gebonden aan de Nyves applicatie, maar zal ook werken in andere nostr applicaties.",
+        "interoperable_body_2": "Alle data is interoperabel; daarmee heb je de keuzevrijheid om andere applicaties te gebruiken die het beste bij jouw wensen en behoeften passen.",
+        "heading_no_accounts": "Geen accounts",
+        "no_accounts_body": "Nyves werkt niet met accounts, maar met profielen op basis van zogenaamde keypairs. Je hebt dus geen gebruikersnaam en wachtwoord die ergens op een centrale, afgesloten plek zijn opgeslagen. Wat je wel hebt, zijn een publieke en een geheime sleutel waarmee je jezelf kunt identificeren of waarmee anderen jou kunnen verifiëren. Voor elk Hyves-profiel is een keypair aangemaakt. Elk stukje content dat bij een profiel hoort, is voorzien van een digitale handtekening. Die kan iedereen zien en verifiëren, zodat je zeker weet dat die content ook echt bij het profiel hoort.",
+        "heading_no_database": "Geen centrale database",
+        "no_database_body": "Omdat alle data wordt verstuurd via relays, is er geen centrale plek waar alle data wordt opgeslagen. Deze relays zijn eenvoudige servers en staan overal ter wereld waar een internetverbinding is. Op dit moment zijn er enkele duizenden relays die niets anders doen dan berichten versturen tussen applicaties.",
+        "heading_opensource": "Opensource",
+        "opensource_body": "Alle code van de Nyves applicatie en relay is door iedereen te bekijken dankzij de AGPLv2-licentie. Iedereen is vrij om een kopie van deze code te maken, bijvoorbeeld om een variant van de Nyves applicatie te bouwen of om zelf een relay op te zetten waar je jouw berichten naartoe stuurt.",
+        "code_button": "Code",
+        "heading_build_in_public": "Build in public",
+        "build_in_public_body": "Nyves wordt in het openbaar ontwikkeld. Iedereen kan zien wat er ontwikkeld wordt. De backlog met epics en user stories is openbaar, dus je kunt zien waaraan er gewerkt wordt.",
+        "project_button": "Project",
+        "heading_autonomy": "Autonomie ligt bij het individu",
+        "autonomy_body": "Dankzij het open netwerk is er geen centrale tussenpartij die alle mensen met elkaar verbindt, zoals Facebook, TikTok, WhatsApp, Instagram of Hyves. Met Nyves herdefiniëren we social media. Het is een gedecentraliseerd netwerk waar de macht bij het individu ligt. In zo'n netwerk verdwijnen de belangen die vandaag de dag al onze aandacht opeisen en ons digitaal welzijn afbreken.",
+        "heading_dutch_project": "Nederlands project",
+        "dutch_project_body": "Nyves is een idee dat wordt ontwikkeld door een Nederlander, in Nederland zelf. Zowel de applicatie op nyves.nl als de relay op rely.nyves.nl staan op een server in Nederland."
+      },
+      "fediverse_account": {
+        "title": "Een account uit de fediverse tonen in Nyves"
+      },
+      "view_old_profile": {
+        "title": "Hoe bekijk ik mijn oude Hyves profiel?",
+        "body": "Je kunt je oude Hyves-profiel soms nog bekijken via de Wayback Machine van The Internet Archive."
+      },
+      "create_new_profile": {
+        "title": "Hoe maak ik een nieuw profiel met Nyves?"
+      },
+      "delete_profile": {
+        "title": "Hoe verwijder ik mijn Hyves profiel?"
+      },
+      "find_username": {
+        "title": "Hoe vind je jouw Hyves gebruikersnaam?"
+      },
+      "restore_profile": {
+        "title": "Hoe zet ik mijn oude Hyves profiel terug?"
+      },
+      "hyves_restart_pointless": {
+        "title": "Waarom de herstart van Hyves zinloos is"
+      }
+    }
   },
   "profiel_paginas": {
     "seo_prefix": "{0} - Nyves",

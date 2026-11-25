@@ -1,10 +1,15 @@
 <script setup>
+const { t } = useI18n()
 
+useSeoMeta({
+  title: () => `${t('blog_article.static.delete_profile.title')} - Nyves`,
+  description: () => t('blog_article.static.delete_profile.title')
+})
 </script>
 
 <template>
   <section class="leading-relaxed max-w-2xl mx-auto">
-    <h1 class="text-3xl text-nyves-blue my-3 text-center font-bold">Hoe verwijder ik mijn Hyves profiel?</h1>
+    <h1 class="text-3xl text-nyves-blue my-3 text-center font-bold">{{ $t('blog_article.static.delete_profile.title') }}</h1>
     <p>
 
     </p>

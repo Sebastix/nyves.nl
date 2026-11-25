@@ -1125,7 +1125,62 @@
     "published_via": "Published via Nostr",
     "event_id": "Event ID:",
     "article_id": "Article ID:",
-    "public_key": "Public key:"
+    "public_key": "Public key:",
+    "static": {
+      "difference": {
+        "seo_title": "What is the difference between Nyves and Hyves | Blog",
+        "seo_description": "The N in Nyves stands for nostr. Nyves is not a platform.",
+        "title": "What is the difference between Nyves and Hyves?",
+        "intro_short": "The short answer is simple: 1 letter ;-) The N in Nyves stands for nostr.",
+        "intro_long": "The long answer is a bit more complicated.",
+        "intro_no_platform": "Nyves is, after all, {strong}.",
+        "intro_no_platform_strong": "not a platform",
+        "nostr_body": "Nostr is an abbreviation that stands for Notes and Other Stuff Transmitted by Relays. It is an open protocol, much like e-mail. It is a simple protocol that describes how you send messages between applications and relays. There is an open network on which anyone can build applications. Nyves is one such application.",
+        "heading_archive": "Archive",
+        "archive_body": "With Nyves you can look up and view old Hyves profiles. They were archived by {link} before Hyves went dark as a social network. This archive was rebuilt especially for Nyves, based on the available data that you can also find via The Wayback Machine.",
+        "heading_heritage": "Digital heritage",
+        "heritage_body": "Hyves gave rise to many memories, and that is why these traces of the past are worth preserving. Let's not forget how social Hyves was, before social media became antisocial in the period after Hyves. We safeguard this piece of collective memory by making all of Hyves' content available through nostr relays.",
+        "heading_interoperable": "Interoperable",
+        "interoperable_body_1": "Because an open protocol is used, there are agreements about how all messages exchanged between relays and applications are formatted. In principle anyone can communicate with a relay. Your profile is not tied specifically to the Nyves application, but will also work in other nostr applications.",
+        "interoperable_body_2": "All data is interoperable; that gives you the freedom to choose other applications that best suit your wishes and needs.",
+        "heading_no_accounts": "No accounts",
+        "no_accounts_body": "Nyves does not work with accounts, but with profiles based on so-called keypairs. So you have no username and password stored somewhere in a central, closed-off place. What you do have is a public and a secret key with which you can identify yourself, or with which others can verify you. A keypair has been created for every Hyves profile. Every piece of content belonging to a profile carries a digital signature. Anyone can see and verify it, so you can be sure that the content really belongs to that profile.",
+        "heading_no_database": "No central database",
+        "no_database_body": "Because all data is sent via relays, there is no central place where all data is stored. These relays are simple servers and are located anywhere in the world where there is an internet connection. At the moment there are several thousand relays that do nothing but send messages between applications.",
+        "heading_opensource": "Open source",
+        "opensource_body": "All code of the Nyves application and relay can be inspected by anyone thanks to the AGPLv2 licence. Everyone is free to make a copy of this code, for example to build a variant of the Nyves application or to set up their own relay to send their messages to.",
+        "code_button": "Code",
+        "heading_build_in_public": "Build in public",
+        "build_in_public_body": "Nyves is developed in public. Anyone can see what is being developed. The backlog with epics and user stories is public, so you can see what is being worked on.",
+        "project_button": "Project",
+        "heading_autonomy": "Autonomy lies with the individual",
+        "autonomy_body": "Thanks to the open network there is no central intermediary connecting all people, like Facebook, TikTok, WhatsApp, Instagram or Hyves. With Nyves we are redefining social media. It is a decentralised network where power lies with the individual. In such a network, the interests that demand all our attention today and break down our digital well-being disappear.",
+        "heading_dutch_project": "Dutch project",
+        "dutch_project_body": "Nyves is an idea being developed by a Dutchman, in the Netherlands itself. Both the application on nyves.nl and the relay on rely.nyves.nl run on a server in the Netherlands."
+      },
+      "fediverse_account": {
+        "title": "Showing a fediverse account in Nyves"
+      },
+      "view_old_profile": {
+        "title": "How do I view my old Hyves profile?",
+        "body": "You can sometimes still view your old Hyves profile through the Wayback Machine of The Internet Archive."
+      },
+      "create_new_profile": {
+        "title": "How do I create a new profile with Nyves?"
+      },
+      "delete_profile": {
+        "title": "How do I delete my Hyves profile?"
+      },
+      "find_username": {
+        "title": "How do you find your Hyves username?"
+      },
+      "restore_profile": {
+        "title": "How do I restore my old Hyves profile?"
+      },
+      "hyves_restart_pointless": {
+        "title": "Why the Hyves restart is pointless"
+      }
+    }
   },
   "profiel_paginas": {
     "seo_prefix": "{0} - Nyves",

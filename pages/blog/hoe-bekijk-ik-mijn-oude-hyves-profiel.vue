@@ -1,12 +1,17 @@
 <script setup>
+const { t } = useI18n()
 
+useSeoMeta({
+  title: () => `${t('blog_article.static.view_old_profile.title')} - Nyves`,
+  description: () => t('blog_article.static.view_old_profile.title')
+})
 </script>
 
 <template>
   <section class="leading-relaxed max-w-2xl mx-auto">
-    <h1 class="text-3xl text-nyves-blue my-3 text-center font-bold">Hoe bekijk ik mijn oude Hyves profiel?</h1>
+    <h1 class="text-3xl text-nyves-blue my-3 text-center font-bold">{{ $t('blog_article.static.view_old_profile.title') }}</h1>
     <p>
-      Je kunt je oude Hyves-profiel soms nog bekijken via de Wayback Machine van The Internet Archive.
+      {{ $t('blog_article.static.view_old_profile.body') }}
     </p>
   </section>
 </template>
