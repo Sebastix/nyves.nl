@@ -23,16 +23,10 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      title: "Welkom bij Nyves - breng jouw Hyves profiel terug tot leven",
-      htmlAttrs: {
-        lang: 'nl',
-      },
+      // Static fallbacks; the title, description and og tags are overridden per
+      // locale in layouts/default.vue and per page via useSeoMeta().
       meta: [
-        { name: 'description', content: 'Nyves heeft als doel om oude Hyves-profielen opnieuw tot leven te brengen met een moderne, open webapplicatie gebaseerd op het Nostr-protocol.' },
-        // Open Graph / Social Media
         { property: 'og:type', content: 'website' },
-        { property: 'og:title', content: 'Welkom bij Nyves - breng jouw Hyves profiel terug tot leven' },
-        { property: 'og:description', content: 'Nyves heeft als doel om oude Hyves-profielen opnieuw tot leven te brengen met een moderne, open webapplicatie gebaseerd op het Nostr-protocol.' },
         { property: 'og:image', content: '/ogimage.png' },
       ],
       link: [
@@ -102,6 +96,67 @@ export default defineNuxtConfig({
       'profielen-uit-de-nostrverse-en-fediverse' : {
         nl: '/profielen-uit-de-nostrverse-en-fediverse',
         en: '/profiles-from-the-nostrverse-and-fediverse'
+      },
+      'blog-verschil-tussen-nyves-en-hyves': {
+        nl: '/blog/verschil-tussen-nyves-en-hyves',
+        en: '/blog/difference-between-nyves-and-hyves'
+      },
+      'blog-hoe-zet-ik-mijn-oude-hyves-profiel-terug': {
+        nl: '/blog/hoe-zet-ik-mijn-oude-hyves-profiel-terug',
+        en: '/blog/how-do-i-restore-my-old-hyves-profile'
+      },
+      'blog-hoe-bekijk-ik-mijn-oude-hyves-profiel': {
+        nl: '/blog/hoe-bekijk-ik-mijn-oude-hyves-profiel',
+        en: '/blog/how-do-i-view-my-old-hyves-profile'
+      },
+      'blog-hoe-vind-je-jouw-hyves-gebruikersnaam': {
+        nl: '/blog/hoe-vind-je-jouw-hyves-gebruikersnaam',
+        en: '/blog/how-do-you-find-your-hyves-username'
+      },
+      'blog-hoe-verwijder-ik-mijn-hyves-profiel': {
+        nl: '/blog/hoe-verwijder-ik-mijn-hyves-profiel',
+        en: '/blog/how-do-i-delete-my-hyves-profile'
+      },
+      'blog-hoe-maak-ik-een-nieuw-profiel': {
+        nl: '/blog/hoe-maak-ik-een-nieuw-profiel',
+        en: '/blog/how-do-i-create-a-new-profile'
+      },
+      'blog-waarom-de-herstart-van-hyves-zinloos-is': {
+        nl: '/blog/waarom-de-herstart-van-hyves-zinloos-is',
+        en: '/blog/why-the-hyves-restart-is-pointless'
+      },
+      'blog-een-fediverse-account-tonen-in-nyves': {
+        nl: '/blog/een-fediverse-account-tonen-in-nyves',
+        en: '/blog/showing-a-fediverse-account-in-nyves'
+      },
+      'nostr-search': {
+        nl: '/nostr/zoeken',
+        en: '/nostr/search'
+      },
+      // Dynamic profile routes (the index page defines its own paths)
+      'profiel-id-blog': {
+        nl: '/profiel/[id]/blog',
+        en: '/profile/[id]/blog'
+      },
+      'profiel-id-media': {
+        nl: '/profiel/[id]/media',
+        en: '/profile/[id]/media'
+      },
+      'profiel-id-meer': {
+        nl: '/profiel/[id]/meer',
+        en: '/profile/[id]/more'
+      },
+      'profiel-id-over': {
+        nl: '/profiel/[id]/over',
+        en: '/profile/[id]/about'
+      },
+      'profiel-id-vrienden': {
+        nl: '/profiel/[id]/vrienden',
+        en: '/profile/[id]/friends'
+      },
+      'profiel-id': {
+        nl: '/profiel/[id]',
+        en: '/profile/[id]'
       }
     }
   },

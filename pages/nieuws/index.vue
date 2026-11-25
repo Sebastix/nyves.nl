@@ -1,6 +1,8 @@
 <script setup>
 import { nip19 } from 'nostr-tools'
 
+const { t } = useI18n()
+const localePath = useLocalePath()
 const { queryRelays } = useSharedRelayPool()
 const { formatDate, formatTime } = useDateHelpers()
 
@@ -72,8 +74,8 @@ definePageMeta({
 })
 
 useSeoMeta({
-  title: $t('Nieuws') + ` - Nyves`,
-  description: `De laatste updates rondom Nyves`
+  title: () => `${t('Nieuws')} - Nyves`,
+  description: () => t('nieuws_seo')
 })
 </script>
 
@@ -93,7 +95,7 @@ useSeoMeta({
         <div v-for="item in newsData" :key="item.id" class="bg-white rounded-sm p-2 border border-nyves-blue/25">
           <p class="text-gray-500 font-light mb-2 text-sm">
             {{ formatDate(item.created_at) }}, {{ formatTime(item.created_at) }},
-            <NuxtLink :to="`/profiel/${nip19.npubEncode(item.pubkey)}`" class="inline-block">
+            <NuxtLink :to="localePath('profiel-id', { id: nip19.npubEncode(item.pubkey) })" class="inline-block">
               <NostrComponentsPubkeyToName :pubkey="item.pubkey" class="font-bold text-xs" />
             </NuxtLink>
           </p>

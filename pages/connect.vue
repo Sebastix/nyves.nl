@@ -1,7 +1,9 @@
 <script setup>
+const { t } = useI18n()
+
 useSeoMeta({
-  title: `Connect - Nyves`,
-  description: ``
+  title: () => `${t('connect.title')} - Nyves`,
+  description: () => t('connect.seo_description')
 })
 </script>
 

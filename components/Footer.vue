@@ -33,9 +33,9 @@ const changeLanguage = (event) => {
         |
         <NuxtLink :to="localePath('over-nyves')">{{ $t('Over_Nyves') }}</NuxtLink>
         |
-        <NuxtLink to="/blog">{{ $t('Blog') }}</NuxtLink>
+        <NuxtLink :to="localePath('blog')">{{ $t('Blog') }}</NuxtLink>
         |
-        <NuxtLink to="/hvsbackup">{{ $t('HVSbackup') }}</NuxtLink>
+        <NuxtLink :to="localePath('hvsbackup')">{{ $t('HVSbackup') }}</NuxtLink>
         |
         <NuxtLink :to="localePath('doneer')">{{ $t('Doneer') }}</NuxtLink>
       </div>
@@ -44,7 +44,7 @@ const changeLanguage = (event) => {
         |
         <NuxtLink :to="localePath('voorwaarden')">{{ $t('Voorwaarden') }}</NuxtLink>
         |
-        <NuxtLink :to="localePath('/privacy')">{{ $t('Privacy') }}</NuxtLink>
+        <NuxtLink :to="localePath('privacy')">{{ $t('Privacy') }}</NuxtLink>
         |
         <a href="https://gitlab.com/sebastix-group/nyves" target="_blank">
           {{ $t('common.code') }}<svg class="size-3 inline align-text-top" fill="none" stroke="currentColor" viewBox="0 0 24 24">

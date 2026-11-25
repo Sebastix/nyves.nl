@@ -1,4 +1,5 @@
 <script setup>
+const localePath = useLocalePath()
 import { nip19 } from 'nostr-tools'
 
 const props = defineProps({
@@ -123,7 +124,7 @@ const trimTrailingPunctuation = (match) => {
         <source :src="part.src" />
       </video>
       <img v-else-if="part.type === 'emoji'" :src="part.src" :alt="part.alt" class="inline-block size-5!" />
-      <NuxtLink v-else-if="part.type === 'npub'" :to="`/profiel/${part.npub}`">
+      <NuxtLink v-else-if="part.type === 'npub'" :to="localePath('profiel-id', { id: part.npub })">
         <NostrComponentsPubkeyToName :pubkey="part.pubkey" />
       </NuxtLink>
       <a v-else-if="part.type === 'url'" :href="part.href" target="_blank" rel="noopener noreferrer nofollow">{{ part.value }}</a>

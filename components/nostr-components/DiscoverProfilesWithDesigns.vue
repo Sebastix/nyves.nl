@@ -1,4 +1,5 @@
 <script setup>
+const localePath = useLocalePath()
 import { nip19 } from 'nostr-tools'
 
 const { pool, queryRelays, closeRelays } = useSharedRelayPool()
@@ -66,10 +67,10 @@ onUnmounted(() => {
       <div
           :style="`background-color: ${profile.background}; color: ${profile.text}`"
           class="w-full aspect-square grid content-center">
-        <NuxtLink :to="`/profiel/${profile.npub}`" class="border-3 rounded-sm mx-auto transform hover:-translate-y-0.5 transition-all duration-200" :style="`color: ${profile.primary} !important`">
+        <NuxtLink :to="localePath('profiel-id', { id: profile.npub })" class="border-3 rounded-sm mx-auto transform hover:-translate-y-0.5 transition-all duration-200" :style="`color: ${profile.primary} !important`">
           <NostrComponentsProfilePicture :pubkey="profile.pubkey" />
         </NuxtLink>
-        <NuxtLink :to="`/profiel/${profile.npub}`" class="text-sm mx-auto" :style="`color: ${profile.primary} !important`">
+        <NuxtLink :to="localePath('profiel-id', { id: profile.npub })" class="text-sm mx-auto" :style="`color: ${profile.primary} !important`">
           <NostrComponentsPubkeyToName :pubkey="profile.pubkey" />
         </NuxtLink>
       </div>

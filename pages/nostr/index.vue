@@ -1,5 +1,10 @@
 <script setup>
+const { t } = useI18n()
 
+useSeoMeta({
+  title: () => `${t('Nostr')} - Nyves`,
+  description: () => t('nostr.seo_description')
+})
 </script>
 
 <template>

@@ -1,6 +1,7 @@
 <script setup>
 const route = useRoute()
-const { locale } = useI18n()
+const localePath = useLocalePath()
+const { locale, t } = useI18n()
 const { fetchArticleByIdentifier } = useNostrArticles()
 const { fetchProfileByPubkey } = useNostrProfile()
 const { markdownToHtml } = useMarkdown()
@@ -24,7 +25,7 @@ const fetchArticle = async () => {
     const fetchedArticle = await fetchArticleByIdentifier(identifier.value)
     
     if (!fetchedArticle) {
-      error.value = 'Article not found'
+      error.value = t('blog_article.not_found_short')
       return
     }
     
@@ -48,7 +49,7 @@ const fetchArticle = async () => {
     
   } catch (err) {
     console.error('Error fetching article:', err)
-    error.value = 'Failed to load article'
+    error.value = t('blog_article.load_failed')
   } finally {
     loading.value = false
   }
@@ -130,13 +131,13 @@ const getAuthorAvatar = () => {
     <!-- Navigation -->
     <div class="mb-8">
       <NuxtLink
-        to="/blog"
+        :to="localePath('blog')"
         class="inline-flex items-center"
       >
         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
         </svg>
-        Back to blog
+        {{ $t('blog_article.back_to_blog') }}
       </NuxtLink>
     </div>
 
@@ -151,13 +152,13 @@ const getAuthorAvatar = () => {
         {{ error }}
       </div>
       <p class="text-red-500">
-        The article with identifier "{{ identifier }}" could not be found or loaded.
+        {{ $t('blog_article.not_found', [identifier]) }}
       </p>
       <button
         @click="fetchArticle"
         class="mt-4 bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition-colors"
       >
-        Try Again
+        {{ $t('blog_article.try_again') }}
       </button>
     </div>
 
@@ -210,7 +211,7 @@ const getAuthorAvatar = () => {
               {{ getAuthorDisplayName() }}
             </div>
             <div class="text-gray-400 text-xs my-1 break-all" :title="article.authorPubkey">
-              Public key: {{ `${authorProfile?.npub}` }}
+              {{ $t('blog_article.public_key') }} {{ `${authorProfile?.npub}` }}
             </div>
           </div>
         </div>
@@ -253,11 +254,11 @@ const getAuthorAvatar = () => {
       <footer class="my-12 pt-4 border-t border-gray-200">
         <div class="text-sm text-gray-500">
           <p>
-            Published via Nostr
+            {{ $t('blog_article.published_via') }}
             |
-            Event ID: <code class="bg-gray-100 px-1 py-0.5 rounded text-xs">{{ article.id.substring(0, 8) }}...</code>
+            {{ $t('blog_article.event_id') }} <code class="bg-gray-100 px-1 py-0.5 rounded text-xs">{{ article.id.substring(0, 8) }}...</code>
             |
-            Article ID: <code class="bg-gray-100 px-1 py-0.5 rounded text-xs">{{ article.identifier }}</code>
+            {{ $t('blog_article.article_id') }} <code class="bg-gray-100 px-1 py-0.5 rounded text-xs">{{ article.identifier }}</code>
           </p>
         </div>
       </footer>

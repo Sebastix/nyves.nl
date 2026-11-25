@@ -1,7 +1,10 @@
 <script setup>
+const { t } = useI18n()
+const localePath = useLocalePath()
+
 useSeoMeta({
-  title: `Over Nyves - Nyves`,
-  description: `Het verhaal achter Nyves`
+  title: () => `${t('Over_Nyves')} - Nyves`,
+  description: () => t('over_nyves.seo_description')
 })
 </script>
 
@@ -27,7 +30,7 @@ useSeoMeta({
             </sup>
             waarmee je verschillende content van jouw Hyves profiel kon downloaden.
           </p>
-          <NuxtLink to="/hvsbackup" class="text-sm my-4 inline-block">> Bekijk hier hoe de applicatie werkte</NuxtLink>
+          <NuxtLink :to="localePath('hvsbackup')" class="text-sm my-4 inline-block">> Bekijk hier hoe de applicatie werkte</NuxtLink>
           <p class="text-gray-600 leading-relaxed">
             Een paar maanden voordat Hyves offline ging als sociaal netwerk, hebben duizenden mensen een backup gemaakt van hun Hyves profiel met de applicatie. Naast deze backups, is er ook een grote backup als publiek archief gemaakt door de Archive Team van The Internet Archive<sup>
               <a href="https://wiki.archiveteam.org/index.php/Hyves" target="_blank">
@@ -41,7 +44,7 @@ useSeoMeta({
             <br />
             Dat is wat Nyves aan het worden is.
             <br />
-            <NuxtLink to="/tijdlijn" class="text-sm my-4 inline-block">> Bekijk hier de tijdlijn van Nyves</NuxtLink>
+            <NuxtLink :to="localePath('tijdlijn')" class="text-sm my-4 inline-block">> Bekijk hier de tijdlijn van Nyves</NuxtLink>
           </p>
           <h2 class="text-lg mt-4 mb-2 font-bold">Waarom?</h2>
           <p class="text-gray-600 leading-relaxed">
@@ -65,7 +68,7 @@ useSeoMeta({
           <p class="text-gray-600 leading-relaxed">
             Sebastian is active in the nostr community since 2023.
             <br />
-            He believes any contribution to <NuxtLink to="/nostr" class="font-bold">Nostr</NuxtLink> can have in <strong>potential</strong> an <strong>exponential benefit for all people</strong> and <strong>the web</strong> in general.
+            He believes any contribution to <NuxtLink :to="localePath('nostr')" class="font-bold">Nostr</NuxtLink> can have in <strong>potential</strong> an <strong>exponential benefit for all people</strong> and <strong>the web</strong> in general.
           </p>
           <NuxtLink to="https://nostrver.se" class="text-sm my-4 inline-block">> More contributions can be found here <svg class="size-3 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />

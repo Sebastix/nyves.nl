@@ -1,4 +1,5 @@
 <script setup>
+const localePath = useLocalePath()
 import { nip19 } from 'nostr-tools'
 const { queryRelays } = useSharedRelayPool()
 
@@ -65,12 +66,12 @@ onUnmounted(async () => {
   <div v-else v-for="krabbel in krabbelsData" :key="krabbel.id" class="border-b border-gray-200 p-2">
     <div class="flex gap-2">
       <div>
-        <NuxtLink :to="`/profiel/${nip19.npubEncode(krabbel.pubkey)}`">
+        <NuxtLink :to="localePath('profiel-id', { id: nip19.npubEncode(krabbel.pubkey) })">
           <NostrComponentsProfilePicture :pubkey="krabbel.pubkey" class="size-12!" />
         </NuxtLink>
       </div>
       <div>
-        <NuxtLink :to="`/profiel/${nip19.npubEncode(krabbel.pubkey)}`">
+        <NuxtLink :to="localePath('profiel-id', { id: nip19.npubEncode(krabbel.pubkey) })">
           <NostrComponentsPubkeyToName :pubkey="krabbel.pubkey" class="font-bold text-xs" />
         </NuxtLink>
         <NostrComponentsNoteContent :event="krabbel" />

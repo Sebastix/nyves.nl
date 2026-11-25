@@ -2,11 +2,17 @@
 import { nip19 } from 'nostr-tools'
 
 const route = useRoute()
+const { t } = useI18n()
 const { fetchProfile } = useNostrProfile()
 
 const npub = route.params.id
 const loading = ref(true)
 const profile = ref(null)
+
+// Name to show in the title/description, with a localized fallback
+const displayName = () => profile.value?.display_name
+  || profile.value?.name
+  || t('profiel_paginas.index_fallback')
 
 onMounted(async () => {
   try {
@@ -24,8 +30,8 @@ onMounted(async () => {
     }
     loading.value = false
     useSeoMeta({
-      title: `Over ${profile.value.display_name || profile.value.name || 'Over'} - Nyves`,
-      description: `Over pagina van het profielvan  ${profile.value.display_name || profile.value.name} op Nyves`
+      title: () => t('profiel_paginas.seo_prefix', [displayName()]),
+      description: () => t('profiel_paginas.about_seo', [displayName()])
     })
   } catch (e) {
     console.error(e)
@@ -36,10 +42,11 @@ onUnmounted(() => {
 
 })
 
+
 // Default SEO
 useSeoMeta({
-  title: 'Over - Nyves',
-  description: 'Over het profiel pagina'
+  title: () => `${t('profiel.nav.about')} - Nyves`,
+  description: () => t('profiel_paginas.about_seo', [displayName()])
 })
 </script>
 
@@ -49,17 +56,17 @@ useSeoMeta({
     <div v-if="loading" class="flex justify-center items-center min-h-64">
       <div class="text-center">
         <LoadingSpinner class="size-12 mx-auto mb-12" />
-        <p class="text-gray-600">Een moment geduld...</p>
+        <p class="text-gray-600">{{ $t('profiel_paginas.loading') }}</p>
       </div>
     </div>
     <div v-if="profile">
       <ProfielProfileHeader :profile="profile" />
       <section class="border border-gray-200 bg-[#fcfcfc] rounded-sm">
         <h2 class="nyves-bg-gray-header font-bold text-nyves-blue mb-0 p-2">
-          Over {{ profile.name || profile.display_name || '...' }}
+          {{ $t('profiel_paginas.about_page_heading', [profile.name || profile.display_name || '...']) }}
         </h2>
         <p class="px-2 mb-2">
-          Dit onderdeel is nog in ontwikkeling.
+          {{ $t('profiel_paginas.still_in_development') }}
         </p>
       </section>
     </div>

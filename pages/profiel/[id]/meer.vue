@@ -2,11 +2,17 @@
 import { nip19 } from 'nostr-tools'
 
 const route = useRoute()
+const { t } = useI18n()
 const { fetchProfile } = useNostrProfile()
 
 const npub = route.params.id
 const loading = ref(true)
 const profile = ref(null)
+
+// Name to show in the title/description, with a localized fallback
+const displayName = () => profile.value?.display_name
+  || profile.value?.name
+  || t('profiel_paginas.index_fallback')
 
 onMounted(async () => {
   try {
@@ -24,8 +30,8 @@ onMounted(async () => {
     }
     loading.value = false
     useSeoMeta({
-      title: `Meer over ${profile.value.display_name || profile.value.name || 'Meer'} - Nyves`,
-      description: `Meer over pagina van het profiel van ${profile.value.display_name || profile.value.name} op Nyves`
+      title: () => t('profiel_paginas.seo_prefix', [displayName()]),
+      description: () => t('profiel_paginas.more_seo', [displayName()])
     })
   } catch (e) {
     console.error(e)
@@ -36,10 +42,11 @@ onUnmounted(() => {
 
 })
 
+
 // Default SEO
 useSeoMeta({
-  title: 'Meer - Nyves',
-  description: 'Meer profiel pagina'
+  title: () => `${t('profiel.nav.more')} - Nyves`,
+  description: () => t('profiel_paginas.more_seo', [displayName()])
 })
 </script>
 
@@ -49,17 +56,17 @@ useSeoMeta({
     <div v-if="loading" class="flex justify-center items-center min-h-64">
       <div class="text-center">
         <LoadingSpinner class="size-12 mx-auto mb-12" />
-        <p class="text-gray-600">Een moment geduld...</p>
+        <p class="text-gray-600">{{ $t('profiel_paginas.loading') }}</p>
       </div>
     </div>
     <div v-if="profile">
       <ProfielProfileHeader :profile="profile" />
       <section class="border border-gray-200 bg-[#fcfcfc] rounded-sm">
         <h2 class="nyves-bg-gray-header font-bold text-nyves-blue mb-0 p-2">
-          Meer pagina van {{ profile.name || profile.display_name || '...' }}
+          {{ $t('profiel_paginas.more_page_heading', [profile.name || profile.display_name || '...']) }}
         </h2>
         <p class="px-2 mb-2">
-          Dit onderdeel is nog in ontwikkeling.
+          {{ $t('profiel_paginas.still_in_development') }}
         </p>
       </section>
     </div>

@@ -1,4 +1,5 @@
 <script setup>
+const localePath = useLocalePath()
 import { nip19 } from 'nostr-tools'
 
 const { pool, queryRelays } = useSharedRelayPool()
@@ -104,10 +105,10 @@ onUnmounted(() => {
         v-for="(npub) in filters.authors"
     >
       <div class="w-full aspect-square grid content-center" :data-npub="`${npub}`">
-        <NuxtLink :to="`/profiel/${npub}`" class="border-3 rounded-sm mx-auto transform hover:-translate-y-0.5 transition-all duration-200">
+        <NuxtLink :to="localePath('profiel-id', { id: npub })" class="border-3 rounded-sm mx-auto transform hover:-translate-y-0.5 transition-all duration-200">
           <NostrComponentsProfilePicture :pubkey="nip19.decode(npub).data" />
         </NuxtLink>
-        <NuxtLink :to="`/profiel/${npub}`" class="text-sm mx-auto">
+        <NuxtLink :to="localePath('profiel-id', { id: npub })" class="text-sm mx-auto">
           <NostrComponentsPubkeyToName :pubkey="nip19.decode(npub).data" />
         </NuxtLink>
       </div>

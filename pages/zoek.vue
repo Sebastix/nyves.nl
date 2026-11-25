@@ -2,7 +2,7 @@
 const { pool, queryRelays, closeRelays } = useSharedRelayPool()
 
 const localePath = useLocalePath()
-const { locale } = useI18n()
+const { locale, t } = useI18n()
 
 const RELAY = 'wss://rely.nyves.nl'
 
@@ -54,9 +54,9 @@ onMounted(async () => {
 })
 // Set page meta
 useSeoMeta({
-  title: $t('zoeken') + ` - Nyves`,
-  description: `Hier kun je jouw Hyves profiel opzoeken.`,
-  ogDescription: `Hier kun je jouw Hyves profiel opzoeken.`,
+  title: () => `${t('zoeken')} - Nyves`,
+  description: () => t('zoeken_seo'),
+  ogDescription: () => t('zoeken_seo'),
 })
 </script>
 

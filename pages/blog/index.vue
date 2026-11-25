@@ -1,7 +1,10 @@
 <script setup>
+const { t } = useI18n()
+const localePath = useLocalePath()
+
 useSeoMeta({
-  title: `Blog - Nyves`,
-  description: `Diverse artikelen rondom Nyves`
+  title: () => `${t('Blog')} - Nyves`,
+  description: () => t('blog.seo_description')
 })
 </script>
 
@@ -27,7 +30,7 @@ useSeoMeta({
     <p>
       Overige artikelen:
       <ul class="list-disc list-inside my-4">
-        <li><NuxtLink to="/blog/verschil-tussen-nyves-en-hyves" class="nyves-btn nyves-btn-primary">Wat is het verschil tussen Nyves en Hyves?</NuxtLink></li>
+        <li><NuxtLink :to="localePath('blog-verschil-tussen-nyves-en-hyves')" class="nyves-btn nyves-btn-primary">Wat is het verschil tussen Nyves en Hyves?</NuxtLink></li>
       </ul>
     </p>
   </section>

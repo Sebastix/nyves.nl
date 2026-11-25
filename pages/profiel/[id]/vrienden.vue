@@ -3,6 +3,8 @@ import { nip19 } from 'nostr-tools';
 import LoadingSpinner from '../../../components/LoadingSpinner.vue';
 
 const route = useRoute()
+const { t } = useI18n()
+const localePath = useLocalePath()
 const { fetchProfile, fetchProfiles, getCachedName, getCachedProfile } = useNostrProfile()
 const { queryRelays } = useSharedRelayPool()
 
@@ -11,6 +13,11 @@ const npub = route.params.id
 
 // Profile and friends data
 const profile = ref(null)
+
+// Name to show in the title/description, with a localized fallback
+const displayName = () => profile.value?.display_name
+  || profile.value?.name
+  || t('profiel_paginas.index_fallback')
 const vrienden = ref([])
 const contactListEvent = ref(null)
 const rawContactData = ref([])
@@ -143,7 +150,7 @@ const loadProfileAndFriends = async (pubkey) => {
     loadingFriends.value = false
   } catch (e) {
     console.error('Error loading profile and friends:', e)
-    error.value = 'Er ging iets mis bij het laden van de gegevens'
+    error.value = t('profiel_paginas.profile_load_failed')
   } finally {
     loading.value = false
   }
@@ -303,8 +310,8 @@ onMounted(async () => {
     }
     loading.value = false
     useSeoMeta({
-      title: `Vrienden van ${profile.value.display_name || profile.value.name || 'Profiel'} - Nyves`,
-      description: `Lijst met vrienden van ${profile.value.display_name || profile.value.name} op Nyves`
+      title: () => t('profiel_paginas.seo_prefix', [displayName()]),
+      description: () => t('profiel_paginas.friends_seo', [displayName()])
     })
     await loadProfileAndFriends(pubkey)
   } catch (e) {
@@ -322,8 +329,8 @@ watch(() => route.params.id, (id) => {
 
 // Default SEO
 useSeoMeta({
-  title: 'Vrienden - Nyves',
-  description: 'Bekijk vrienden op Nyves'
+  title: () => `${t('profiel.nav.friends')} - Nyves`,
+  description: () => t('profiel_paginas.friends_seo', [displayName()])
 })
 </script>
 
@@ -333,7 +340,7 @@ useSeoMeta({
     <div v-if="loading" class="flex justify-center items-center min-h-64">
       <div class="text-center">
         <LoadingSpinner class="size-12 mx-auto mb-12" />
-        <p class="text-gray-600">Een moment geduld...</p>
+        <p class="text-gray-600">{{ $t('profiel_paginas.loading') }}</p>
       </div>
     </div>
     <div v-if="profile">
@@ -343,7 +350,7 @@ useSeoMeta({
       <div v-if="loadingFriends" class="flex justify-center items-center min-h-64">
         <div class="text-center">
           <LoadingSpinner class="size-12 mx-auto mb-12" />
-          <p class="text-gray-600">Vrienden van {{ profile.display_name || profile.name }} worden geladen...</p>
+          <p class="text-gray-600">{{ $t('profiel_paginas.friends_loading', [profile.display_name || profile.name]) }}</p>
         </div>
       </div>
       <div v-else>
@@ -356,19 +363,19 @@ useSeoMeta({
           </div>
           <div v-if="rawContactData.length === 0">
             <h4 class="text-lg font-medium text-gray-900 mb-2">
-              Geen Kind 3 contact lijst gevonden
+              {{ $t('profiel_paginas.no_contact_list') }}
             </h4>
             <p class="text-gray-600 mb-4">
-              Deze gebruiker heeft nog geen publieke contact lijst (Kind 3 event) gepubliceerd.
+              {{ $t('profiel_paginas.no_contact_list_text') }}
             </p>
           </div>
 
           <div v-else>
             <h4 class="text-lg font-medium text-gray-900 mb-2">
-              {{ rawContactData.length }} contacten gevonden, {{ vrienden.length }} profielen geladen
+              {{ $t('profiel_paginas.contacts_found', [rawContactData.length, vrienden.length]) }}
             </h4>
             <p class="text-gray-600 mb-4">
-              Profielen worden nog geladen van de overige contacten...
+              {{ $t('profiel_paginas.contacts_loading_rest') }}
             </p>
           </div>
         </div>
@@ -377,7 +384,7 @@ useSeoMeta({
           <!-- Loaded Profiles -->
           <div v-if="vrienden.length > 0" class="border border-gray-200 bg-[#fcfcfc] rounded-sm">
             <h2 class="nyves-bg-gray-header font-bold text-nyves-blue mb-0 p-2">
-              Vrienden ({{ isSearchActive ? `${searchResultCount} / ${rawContactData.length}` : rawContactData.length }})
+              {{ $t('profiel.friends.heading', [isSearchActive ? `${searchResultCount} / ${rawContactData.length}` : rawContactData.length]) }}
             </h2>
 
             <form class="px-2 mb-4" @submit.prevent>
@@ -387,19 +394,19 @@ useSeoMeta({
                     type="search"
                     name="search-friend"
                     class="p-1 bg-white rounded-sm border border-gray-500 text-sm min-w-96"
-                    placeholder="Tik (de eerste letter van) de naam in:"
+                    :placeholder="$t('profiel_paginas.friend_search_placeholder')"
                     autocomplete="off"
                     @keydown.esc="clearSearch"
                 />
               </label>
               <!-- Search feedback -->
               <p v-if="searchQuery.trim().length > 0 && !isSearchActive" class="text-xs text-gray-500 mt-1">
-                Typ minstens {{ MIN_SEARCH_LENGTH }} letters om te zoeken...
+                {{ $t('profiel_paginas.search_min_chars', [MIN_SEARCH_LENGTH]) }}
               </p>
               <p v-else-if="isSearchActive" class="text-xs text-gray-600 mt-1">
-                {{ searchResultCount }} van {{ rawContactData.length }} vrienden gevonden voor "{{ searchQuery.trim() }}"
-                <button type="button" class="ml-1 underline cursor-pointer" @click="clearSearch">wis zoekopdracht</button>
-                <span v-if="loadingSearchNames" class="ml-1 text-gray-500">· namen van de overige contacten worden geladen...</span>
+                {{ $t('profiel_paginas.search_results', [searchResultCount, rawContactData.length, searchQuery.trim()]) }}
+                <button type="button" class="ml-1 underline cursor-pointer" @click="clearSearch">{{ $t('profiel_paginas.clear_search') }}</button>
+                <span v-if="loadingSearchNames" class="ml-1 text-gray-500">· {{ $t('profiel_paginas.search_names_loading') }}</span>
               </p>
             </form>
 
@@ -412,7 +419,7 @@ useSeoMeta({
                   :key="vriend.npub"
                   class="text-center"
               >
-                <NuxtLink :to="`/profiel/${vriend.npub}`" class="text-xs">
+                <NuxtLink :to="localePath('profiel-id', { id: vriend.npub })" class="text-xs">
                   <NostrComponentsProfilePicture :pubkey="vriend.pubkey" />
                   <NostrComponentsPubkeyToName :pubkey="vriend.pubkey" />
                 </NuxtLink>
@@ -422,21 +429,20 @@ useSeoMeta({
             <!-- No results for the current search query -->
             <div v-if="isSearchActive && !hasSearchResults && !loadingSearchNames" class="text-center py-8 px-2 text-gray-600">
               <p class="font-medium text-gray-900">
-                Geen vrienden gevonden voor "{{ searchQuery.trim() }}"
+                {{ $t('profiel_paginas.search_no_results', [searchQuery.trim()]) }}
               </p>
               <p class="text-sm mt-1">
-                <button type="button" class="underline cursor-pointer" @click="clearSearch">Wis de zoekopdracht</button>
-                om alle vrienden weer te tonen.
+                <button type="button" class="underline cursor-pointer" @click="clearSearch">{{ $t('profiel_paginas.clear_search') }}</button>
+                {{ $t('profiel_paginas.search_clear_hint') }}
               </p>
             </div>
 
             <template v-if="otherContacts.length > 0">
               <h3 class="text-lg font-semibold text-nyves-blue mb-2 p-2">
-                Pubkeys ({{ filteredOtherContacts.length }})
+                {{ $t('profiel_paginas.pubkeys', [filteredOtherContacts.length]) }}
               </h3>
               <p class="text-center text-sm text-gray-600 bg-yellow-100 p-2 mb-3">
-                💡 Profielen voor onderstaande contacten worden (nog) niet automatisch geladen om performance redenen.
-                Zodra je zoekt, worden de namen alsnog opgehaald zodat je ook in deze lijst op naam kunt zoeken.
+                💡 {{ $t('profiel_paginas.pubkeys_hint') }}
               </p>
               <div class="grid grid-cols-1 md:grid-cols-5 gap-2 p-2">
                 <div
@@ -449,10 +455,10 @@ useSeoMeta({
                   </div>
 
                   <NuxtLink
-                      :to="`/profiel/${contact.npub}`"
+                      :to="localePath('profiel-id', { id: contact.npub })"
                       class="text-nyves-blue hover:text-nyves-blue/80 text-xs underline"
                   >
-                    Bekijk
+                    {{ $t('profiel_paginas.view') }}
                   </NuxtLink>
                 </div>
               </div>
@@ -469,10 +475,10 @@ useSeoMeta({
           {{ error }}
         </div>
         <NuxtLink
-            :to="`/profiel/${npub}`"
+            :to="localePath('profiel-id', { id: npub })"
             class="text-nyves-blue hover:text-nyves-blue/80 underline"
         >
-          ← Terug naar profiel
+          ← {{ $t('profiel_paginas.back_to_profile') }}
         </NuxtLink>
       </div>
     </div>

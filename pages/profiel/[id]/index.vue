@@ -4,11 +4,18 @@ import LoadingSpinner from '../../../components/LoadingSpinner.vue';
 const { fetchProfile } = useNostrProfile()
 const { } = useSharedRelayPool() // Ensure shared pool is available
 const route = useRoute()
+const { t } = useI18n()
+const localePath = useLocalePath()
 const { formatDate} = useDateHelpers()
 // Custom design composable
 const { designData, fetchCustomDesign, setCustomDesign, toggleCustomDesign, removeBackground, toggleFonts, toggleHeader, toggleFooter } = useCustomDesign()
 // Custom design reactive property
 const custom_design = computed(() => designData.value.custom_design)
+
+// Name to show in the title/description, with a localized fallback
+const displayName = () => profile.value?.display_name
+  || profile.value?.name
+  || t('profiel_paginas.index_fallback')
 // Nyves profile data
 const nyvesProfile = ref({
   name: '',
@@ -95,7 +102,7 @@ const loadProfile = async () => {
     const profileId = parseProfileId(route.params.id, route.hash)
 
     if (!profileId) {
-      error.value = 'Ongeldig profiel ID format'
+      error.value = t('profiel_paginas.invalid_id')
       return
     }
 
@@ -130,15 +137,15 @@ const loadProfile = async () => {
 
       // Update page title with name
       useSeoMeta({
-        title: `${profile.value.display_name || profile.value.name || 'Profiel'} - Nyves`,
-        description: `Bekijk het Nostr profiel van ${profile.value.display_name || profile.value.name} op Nyves`
+        title: () => t('profiel_paginas.seo_prefix', [displayName()]),
+        description: () => t('profiel_paginas.index_seo', [displayName()])
       })
     } else {
-      error.value = 'Profiel niet gevonden'
+      error.value = t('profiel_paginas.profile_not_found')
     }
   } catch (e) {
     console.error('Error loading profile:', e)
-    error.value = 'Er ging iets mis bij het laden van het profiel'
+    error.value = t('profiel_paginas.profile_load_failed')
   } finally {
     loading.value = false
   }
@@ -168,12 +175,6 @@ onUnmounted(() => {
   close()
 })
 definePageMeta({
-  i18n: {
-    paths: {
-      nl: '/profiel/[id]',
-      en: '/profile/[id]'
-    }
-  },
   // Validate route
   validate (route) {
     // todo
@@ -182,8 +183,8 @@ definePageMeta({
 })
 // Set default SEO
 useSeoMeta({
-  title: 'Profiel - Nyves',
-  description: 'Bekijk Nostr profiel op Nyves'
+  title: () => `${t('profiel_paginas.index_fallback')} - Nyves`,
+  description: () => t('profiel_paginas.index_seo', [displayName()])
 })
 // Debug routing
 console.log('[id]/index.vue loaded:', {
@@ -199,7 +200,7 @@ console.log('[id]/index.vue loaded:', {
     <div v-if="loading" class="flex justify-center items-center min-h-64">
       <div class="text-center">
         <LoadingSpinner class="size-12 mx-auto mb-12" />
-        <p class="text-gray-600">Profiel wordt geladen...</p>
+        <p class="text-gray-600">{{ $t('profiel_paginas.profile_loading') }}</p>
       </div>
     </div>
 
@@ -213,7 +214,7 @@ console.log('[id]/index.vue loaded:', {
             to="/"
             class="text-nyves-blue hover:text-nyves-blue/80 underline"
         >
-          ← Terug naar homepage
+          ← {{ $t('profiel_paginas.back_home') }}
         </NuxtLink>
       </div>
     </div>
@@ -225,20 +226,20 @@ console.log('[id]/index.vue loaded:', {
       <div class="grid grid-cols-1 md:grid-cols-2 profileHeader">
         <h1 class="col-span-2 text-3xl font-bold mb-1">{{ profile.name }} <a :href="profile.urlWaybackMachine" target="_blank" class="text-xs" v-if="profile.urlWaybackMachine">{{ profile.urlWaybackMachine }}</a></h1>
         <div class="mb-2">
-          <RouterLink :to="`/profiel/${profile.npub}/over`" class="mr-4 text-xs font-bold">Over</RouterLink>
-          <RouterLink :to="`/profiel/${profile.npub}/vrienden`" class="mr-4 text-xs">Vrienden</RouterLink>
-          <RouterLink :to="`/profiel/${profile.npub}/wiewatwaar`" class="mr-4 text-xs">WWW</RouterLink>
-          <RouterLink :to="`/profiel/${profile.npub}/media`" class="mr-4 text-xs">Foto's</RouterLink>
-          <RouterLink :to="`/profiel/${profile.npub}/blog`" class="mr-4 text-xs">Blog</RouterLink>
-          <RouterLink :to="`/profiel/${profile.npub}/meer`" class="text-xs">Meer</RouterLink>
+          <RouterLink :to="`${localePath('profiel-over', { id: profile.npub })}`" class="mr-4 text-xs font-bold">{{ $t('profiel.nav.about') }}</RouterLink>
+          <RouterLink :to="`${localePath('profiel-vrienden', { id: profile.npub })}`" class="mr-4 text-xs">{{ $t('profiel.nav.friends') }}</RouterLink>
+          <RouterLink :to="`${localePath('profiel-wiewatwaar', { id: profile.npub })}`" class="mr-4 text-xs">{{ $t('profiel.nav.www') }}</RouterLink>
+          <RouterLink :to="`${localePath('profiel-media', { id: profile.npub })}`" class="mr-4 text-xs">{{ $t('profiel.nav.photos') }}</RouterLink>
+          <RouterLink :to="`${localePath('profiel-blog', { id: profile.npub })}`" class="mr-4 text-xs">{{ $t('profiel.nav.blog') }}</RouterLink>
+          <RouterLink :to="`${localePath('profiel-meer', { id: profile.npub })}`" class="text-xs">{{ $t('profiel.nav.more') }}</RouterLink>
         </div>
         <button
             @click="toggleCustomDesign"
             class="justify-self-end text-xs mb-1 cursor-pointer px-1"
             :class="[ custom_design ? 'bg-linear-to-b from-[#65d018] to-[#49a811] text-white rounded-sm font-bold border border-[#96e05e] hover:border-[#44a806] text-shadow-xs' : '' ]"
         >
-          <span class="text-white font-sans" v-if="custom_design">🛟 Toon in standaard design</span>
-          <span class="text-nyves-blue" v-else>🛟 Toon eigen design!</span>
+          <span class="text-white font-sans" v-if="custom_design">🛟 {{ $t('profiel_paginas.toggle_custom_design_off') }}</span>
+          <span class="text-nyves-blue" v-else>🛟 {{ $t('profiel_paginas.toggle_custom_design_on') }}</span>
         </button>
       </div>
 
@@ -269,7 +270,7 @@ console.log('[id]/index.vue loaded:', {
           <ProfielMedia :profile="profile" :nyvesProfile="nyvesProfile" />
           <!-- Krabbels Section -->
           <div class="border border-gray-200 bg-[#fcfcfc] rounded-sm">
-            <h3 class="nyves-bg-gray-header p-2 text-nyves-blue font-bold">Krabbels</h3>
+            <h3 class="nyves-bg-gray-header p-2 text-nyves-blue font-bold">{{ $t('profiel_paginas.krabbels_heading') }}</h3>
             <ProfielKrabbels :profile="profile" />
           </div>
         </div>
@@ -280,7 +281,7 @@ console.log('[id]/index.vue loaded:', {
           <div class="border border-gray-200 bg-[#fcfcfc] rounded-sm mb-3">
             <h3 class="nyves-bg-gray-header p-2 text-nyves-blue font-bold">Hyves</h3>
             <p v-if="!hyvesItems.length" class="p-2 text-sm">
-              Geen items gevonden
+              {{ $t('common.no_items') }}
             </p>
             <div v-else class="grid grid-cols-4 gap-2 p-2">
               <div v-for="item in hyvesItems" :key="item.id" class="text-center">
@@ -295,30 +296,30 @@ console.log('[id]/index.vue loaded:', {
           <!-- WWW section -->
           <div class="border border-gray-200 bg-[#fcfcfc] rounded-sm mb-3">
             <h3 class="nyves-bg-gray-header p-2 text-nyves-blue font-bold">
-              <NuxtLink :to="`${profile.npub}/wiewatwaar`">WieWatWaar</NuxtLink>
+              <NuxtLink :to="localePath('profiel-wiewatwaar', { id: profile.npub })">{{ $t('profiel_paginas.www_page_heading') }}</NuxtLink>
             </h3>
             <ProfielWieWatWaars :profile="profile" :filters="{'limit': 20, 'cols': 1}" />
             <div class="my-1">
-              <NuxtLink :to="`${profile.npub}/wiewatwaar`" class="text-xs mx-2">› Meer</NuxtLink>
+              <NuxtLink :to="localePath('profiel-wiewatwaar', { id: profile.npub })" class="text-xs mx-2">› {{ $t('profiel.nav.more') }}</NuxtLink>
             </div>
           </div>
 
           <!-- Blogs section -->
           <div class="border border-gray-200 bg-[#fcfcfc] rounded-sm mb-3">
             <h3 class="nyves-bg-gray-header p-2 text-nyves-blue font-bold">
-              <NuxtLink :to="`${profile.npub}/blog`">Blog</NuxtLink>
+              <NuxtLink :to="localePath('profiel-blog', { id: profile.npub })">{{ $t('profiel.nav.blog') }}</NuxtLink>
             </h3>
             <ProfielBlog :profile="profile" />
             <div class="my-1">
-              <NuxtLink :to="`${profile.npub}/blog`" class="text-xs mx-2">› Meer</NuxtLink>
+              <NuxtLink :to="localePath('profiel-blog', { id: profile.npub })" class="text-xs mx-2">› {{ $t('profiel.nav.more') }}</NuxtLink>
             </div>
           </div>
 
           <!-- Login Box -->
           <div class="bg-yellow-100 border border-yellow-400 p-2 mb-3 text-xs">
-            Je moet ingelogd zijn om dit onderdeel te bekijken!
+            {{ $t('profiel_paginas.login_required') }}
             <div class="mt-2">
-              <NuxtLink to="/connect" class="block mb-1">🔑 Klik hier om in te loggen...</NuxtLink>
+              <NuxtLink :to="localePath('connect')" class="block mb-1">🔑 {{ $t('profiel_paginas.login_link') }}</NuxtLink>
             </div>
           </div>
 

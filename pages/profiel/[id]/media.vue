@@ -60,7 +60,7 @@ onMounted(async () => {
     <div v-if="loading" class="flex justify-center items-center min-h-64">
       <div class="text-center">
         <LoadingSpinner class="size-12 mx-auto mb-12" />
-        <p class="text-gray-600">Een moment geduld...</p>
+        <p class="text-gray-600">{{ $t('profiel_paginas.loading') }}</p>
       </div>
     </div>
     <div v-if="profile">
@@ -68,14 +68,14 @@ onMounted(async () => {
 
       <section class="border border-gray-200 bg-[#fcfcfc] rounded-sm">
         <h2 class="nyves-bg-gray-header font-bold text-nyves-blue mb-0 p-2">
-          Foto's en video's van {{ profile.name || profile.display_name || '...' }}
+          {{ $t('profiel_paginas.media_page_heading', [profile.name || profile.display_name || '...']) }}
         </h2>
         <div v-if="loadingMedia" class="text-center col-span-3 md:col-span-5">
           <LoadingSpinner class="size-12 mx-auto my-12" />
-          <p class="text-gray-600">Media wordt geladen...</p>
+          <p class="text-gray-600">{{ $t('profiel_paginas.media_loading') }}</p>
         </div>
         <div v-if="mediaData.length === 0" class="px-2 mb-2">
-          Geen items gevonden
+          {{ $t('common.no_items') }}
         </div>
         <div v-else class="columns-3 md:columns-5 gap-1 px-2">
           <div v-for="item in mediaData" :key="item.id" class="max-w-30 md:max-w-fit">

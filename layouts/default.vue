@@ -3,6 +3,25 @@ import * as Sentry from "@sentry/vue";
 
 const { isModalOpen, modalType, modalContent, closeModal } = useModal()
 
+// Locale driven <html lang>, hreflang alternates and og:locale. Without this the
+// document always claims to be `lang="nl"`, even on the /en routes.
+const head = useLocaleHead()
+useHead(() => ({
+  htmlAttrs: head.value.htmlAttrs,
+  link: head.value.link,
+  meta: head.value.meta,
+}))
+
+// Locale driven default title/description/og tags. Pages that call
+// useSeoMeta() themselves override these.
+const { t } = useI18n()
+useSeoMeta({
+  title: () => t('site.default_title'),
+  description: () => t('site.default_description'),
+  ogTitle: () => t('site.default_title'),
+  ogDescription: () => t('site.default_description'),
+})
+
 useScriptMatomoAnalytics({
   matomoUrl: 'https://matomo.sebastix.nl',
   siteId: 17,

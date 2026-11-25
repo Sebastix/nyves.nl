@@ -2,11 +2,17 @@
 import { nip19 } from 'nostr-tools'
 
 const route = useRoute()
+const { t } = useI18n()
 const { fetchProfile } = useNostrProfile()
 
 const npub = route.params.id
 const loading = ref(true)
 const profile = ref(null)
+
+// Name to show in the title/description, with a localized fallback
+const displayName = () => profile.value?.display_name
+  || profile.value?.name
+  || t('profiel_paginas.index_fallback')
 
 onMounted(async () => {
   try {
@@ -24,8 +30,8 @@ onMounted(async () => {
     }
     loading.value = false
     useSeoMeta({
-      title: `WieWatWaars van ${profile.value.display_name || profile.value.name || 'WieWatWaars'} - Nyves`,
-      description: `Alle WieWatWaar berichten van het profiel van ${profile.value.display_name || profile.value.name} op Nyves`
+      title: () => t('profiel_paginas.seo_prefix', [displayName()]),
+      description: () => t('profiel_paginas.www_seo', [displayName()])
     })
     // TODO Fetch event kinds 1s
   } catch (e) {
@@ -37,10 +43,11 @@ onUnmounted(() => {
 
 })
 
+
 // Default SEO
 useSeoMeta({
-  title: 'WieWatWaars - Nyves',
-  description: 'WieWatWaars profiel pagina'
+  title: () => `${t('profiel.nav.www')} - Nyves`,
+  description: () => t('profiel_paginas.www_seo', [displayName()])
 })
 </script>
 
@@ -50,14 +57,14 @@ useSeoMeta({
     <div v-if="loading" class="flex justify-center items-center min-h-64">
       <div class="text-center">
         <LoadingSpinner class="size-12 mx-auto mb-12" />
-        <p class="text-gray-600">Een moment geduld...</p>
+        <p class="text-gray-600">{{ $t('profiel_paginas.loading') }}</p>
       </div>
     </div>
     <div v-if="profile">
       <ProfielProfileHeader :profile="profile" />
       <section class="border border-gray-200 bg-[#fcfcfc] rounded-sm">
         <h2 class="nyves-bg-gray-header font-bold text-nyves-blue mb-0 p-2">
-          WieWatWaar
+          {{ $t('profiel_paginas.www_page_heading') }}
         </h2>
         <ProfielWieWatWaars :profile="profile" :filters="{}" />
       </section>

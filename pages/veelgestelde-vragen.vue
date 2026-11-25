@@ -1,7 +1,10 @@
 <script setup>
+const { t } = useI18n()
+const localePath = useLocalePath()
+
 useSeoMeta({
-  title: `Veelgestelde vragen - Nyves`,
-  description: ``
+  title: () => `${t('Veelgestelde_vragen')} - Nyves`,
+  description: () => t('veelgestelde_vragen.seo_description')
 })
 </script>
 
@@ -52,7 +55,7 @@ useSeoMeta({
       <p>
         Zodra jouw profiel een eigen design heeft, verschijnt op je profielpagina de knop 'Toon eigen design!' waarmee je heen en weer kunt schakelen tussen je eigen design en het standaard design van Nyves.
         Wil je inspiratie opdoen? Bekijk dan de
-        <NuxtLink to="/profielen-uit-de-nostrverse-en-fediverse">profielen met een eigen design</NuxtLink>.
+        <NuxtLink :to="localePath('profielen-uit-de-nostrverse-en-fediverse')">profielen met een eigen design</NuxtLink>.
       </p>
     </details>
     <details>
@@ -166,7 +169,7 @@ useSeoMeta({
     </details>
     <details>
       <summary>Wat is het verschil tussen Nyves en Hyves?</summary>
-      Antwoorden op deze vraag vind je op <NuxtLink to="/blog/verschil-tussen-nyves-en-hyves">deze pagina</NuxtLink>.
+      Antwoorden op deze vraag vind je op <NuxtLink :to="localePath('blog-verschil-tussen-nyves-en-hyves')">deze pagina</NuxtLink>.
     </details>
     <details>
       <summary>Wat is de Nostrverse?</summary>
@@ -188,7 +191,7 @@ useSeoMeta({
       <p>
         De Fediverse en Nostr delen dezelfde idealen van decentralisatie en gebruikersvrijheid, maar gebruiken een ander protocol.
         Daarom tonen we profielen uit beide werelden naast elkaar op de pagina
-        <NuxtLink to="/profielen-uit-de-nostrverse-en-fediverse">Ontdek profielen uit de Nostrverse en Fediverse</NuxtLink>.
+        <NuxtLink :to="localePath('profielen-uit-de-nostrverse-en-fediverse')">Ontdek profielen uit de Nostrverse en Fediverse</NuxtLink>.
       </p>
     </details>
     <h2 class="text-xl">Content</h2>
@@ -229,7 +232,7 @@ useSeoMeta({
     <h2 class="text-xl">Technische vragen</h2>
     <details>
       <summary>Met welke technologie is de Nyves applicatie gemaakt?</summary>
-      Met <NuxtLink to="/nostr">nostr</NuxtLink>.
+      Met <NuxtLink :to="localePath('nostr')">nostr</NuxtLink>.
     </details>
     <details>
       <summary>Waar kan ik de code zien van de Nyves applicatie?</summary>

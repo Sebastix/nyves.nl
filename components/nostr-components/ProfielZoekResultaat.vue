@@ -1,5 +1,6 @@
 <script setup>
 const router = useRouter()
+const localePath = useLocalePath()
 
 const props = defineProps({
   profiel: {
@@ -9,7 +10,7 @@ const props = defineProps({
 })
 
 const selecteerProfiel = () => {
-  router.push({ path: '/profiel/'+props.profiel.name })
+  router.push(localePath('profiel-id', { id: props.profiel.npub || props.profiel.name }))
 }
 </script>
 

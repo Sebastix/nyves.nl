@@ -1,8 +1,10 @@
 <script setup>
+const { t } = useI18n()
+
 // SEO Meta tags
 useSeoMeta({
-  title: 'HVSbackup - Nyves',
-  description: ''
+  title: () => `${t('HVSbackup')} - Nyves`,
+  description: () => t('hvsbackup.seo_description')
 })
 
 // Ruffle state management
