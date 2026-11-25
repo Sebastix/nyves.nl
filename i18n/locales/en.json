@@ -1075,7 +1075,25 @@
     "seo_description": "Everything you need to know about Nyves."
   },
   "over_nyves": {
-    "seo_description": "The story behind Nyves."
+    "seo_description": "The story behind Nyves.",
+    "subtitle": "The story behind Nyves",
+    "hvsbackup_title": "HVSbackup",
+    "hvsbackup_body": "Between 2010 and 2013 Sebastian Hagens developed an application called HVSbackup{link} that let you download various parts of your Hyves profile.",
+    "hvsbackup_link": "See here how the application worked",
+    "archive_body": "A few months before Hyves went offline as a social network, thousands of people made a backup of their Hyves profile with the application. Besides these backups, a large backup was also made as a public archive by the Archive Team of The Internet Archive{link}. These sources can be used to bring Hyves back. Not as a central platform, however, but purely as an application that fetches all content from so-called relays.",
+    "becoming": "That is what Nyves is becoming.",
+    "timeline_link": "See the timeline of Nyves here",
+    "why_title": "Why?",
+    "why_body": "We want to preserve Hyves as a piece of cultural digital heritage. On top of that, Nyves is an application that uses an open network where you as an individual have full autonomy over your data.",
+    "nostr_title": "Let's fix the web - nostr by default",
+    "nostr_body1": "Since Sebastian has been online on the internet (1998), he is highly interested in online communities, social networking and new ways of digital interactions. The internet has changed radically in the last decade and that change is not serving our interests. It's fair to say the web is broken in many ways. With Nostr we can fix this.",
+    "nostr_body2": "Sebastian is active in the nostr community since 2023.",
+    "nostr_body3": "He believes any contribution to {nostr} can have in {potential} an {exponential} and {web} in general.",
+    "nostr_potential": "potential",
+    "nostr_exponential": "exponential benefit for all people",
+    "nostr_web": "the web",
+    "nostr_link": "More contributions can be found here",
+    "fosdem_alt": "Nostr stand at FOSDEM 2025"
   },
   "blog_article": {
     "back_to_blog": "Back to blog",

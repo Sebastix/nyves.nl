@@ -1075,7 +1075,25 @@
     "seo_description": "Alles wat je moet weten over Nyves."
   },
   "over_nyves": {
-    "seo_description": "Het verhaal achter Nyves."
+    "seo_description": "Het verhaal achter Nyves.",
+    "subtitle": "Het verhaal achter Nyves",
+    "hvsbackup_title": "HVSbackup",
+    "hvsbackup_body": "In de periode 2010-2013 ontwikkelde Sebastian Hagens een applicatie genaamd HVSbackup{link} waarmee je verschillende content van jouw Hyves profiel kon downloaden.",
+    "hvsbackup_link": "Bekijk hier hoe de applicatie werkte",
+    "archive_body": "Een paar maanden voordat Hyves offline ging als sociaal netwerk, hebben duizenden mensen een backup gemaakt van hun Hyves profiel met de applicatie. Naast deze backups, is er ook een grote backup als publiek archief gemaakt door de Archive Team van The Internet Archive{link}. Deze bronnen kunnen gebruikt worden om Hyves terug te brengen. Echter niet als een centraal platform, maar puur als applicatie die alle content ophaalt van zogenaamde relays.",
+    "becoming": "Dat is wat Nyves aan het worden is.",
+    "timeline_link": "Bekijk hier de tijdlijn van Nyves",
+    "why_title": "Waarom?",
+    "why_body": "We willen Hyves behouden als een stukje cultureel digitaal erfgoed. Daarnaast is Nyves een applicatie die gebruik maakt van een open netwerk waar je als individu volledige autonomie hebt over je data.",
+    "nostr_title": "Laten we het web fixen - nostr als standaard",
+    "nostr_body1": "Sinds Sebastian online is op het internet (1998) is hij zeer geïnteresseerd in online communities, sociale netwerken en nieuwe manieren van digitale interactie. Het internet is het afgelopen decennium radicaal veranderd en die verandering dient onze belangen niet. Het is eerlijk om te zeggen dat het web op veel manieren kapot is. Met Nostr kunnen we dit oplossen.",
+    "nostr_body2": "Sebastian is sinds 2023 actief in de nostr community.",
+    "nostr_body3": "Hij gelooft dat elke bijdrage aan {nostr} in {potential} een {exponential} heeft en {web} in het algemeen.",
+    "nostr_potential": "potentie",
+    "nostr_exponential": "exponentieel voordeel voor alle mensen",
+    "nostr_web": "het web",
+    "nostr_link": "Meer bijdragen vind je hier",
+    "fosdem_alt": "Nostr-stand op FOSDEM 2025"
   },
   "blog_article": {
     "back_to_blog": "Terug naar de blog",
